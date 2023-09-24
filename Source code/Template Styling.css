@@ -1,0 +1,334 @@
+/* v1.0 */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
+
+:root {
+    --dumpprogress-barwidth: 1.2em;
+    --mem-green: #83c53d;
+    --mem-red: #ff756b;
+    --mem-yellow: #ffc001;
+    --mem-darkblue: #2b3648;
+    --mem-lightblue: #b9d7e3;
+  
+    --mem-bg: #fffcf3;
+    --mem-text: rgb(49, 48, 51);
+    --mem-textlabel: rgb(142, 148, 160);
+  
+    --mem-sep: rgb(217, 222, 232);
+    --mem-note-bg: rgb(231, 234, 240);
+  
+    --mem-input-text: rgb(41, 55, 73);
+    --mem-input-border: rgb(188, 194, 207);
+    --mem-input-bg: var(--mem-note-bg);
+  
+    --mem-outline: rgb(0, 159, 187);
+  
+    --mem-alert-text: rgb(177, 48, 57);
+    --mem-alert-bg: rgba(255, 191, 188, 0.5);
+
+		font-size: 16px;  
+    /*font-size: 15pt;*/
+}
+.correct {
+    --mem-input-text: rgb(1, 65, 53);
+    --mem-input-border: rgb(0, 167, 120);
+    --mem-input-bg: rgb(93, 231, 192);
+}
+.soclose {
+    --mem-input-text: rgb(141, 64, 33);
+    --mem-input-border: rgb(237, 107, 53);
+    --mem-input-bg: rgb(255, 213, 195);
+}
+.wrong {
+    --mem-input-text: rgb(109, 0, 9);
+    --mem-input-border: rgb(177, 48, 57);
+    --mem-input-bg: rgb(255, 191, 188);
+}
+
+
+button#mem-flip {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+/* ーーー general ーーー */
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+div code#typeans {
+  font-family: "Open Sans", "Meiryo", sans-serif, sans-serif !important;
+}
+
+body {
+  background: var(--mem-bg);
+  color: var(--mem-text);
+  margin: 0;
+}
+
+
+/* ーーー cards ーーー */
+
+.frontside .card-content.back {
+	display: none;
+}
+.backside .card-content.front {
+	display: none;
+}
+
+.card {
+	width: 100vw;
+	overflow-x: hidden;
+	left: 0;
+}
+
+#qa {
+  padding: 1rem;
+  max-width: calc(60rem - 6.75rem);
+  margin: auto;
+  min-width: 13rem;
+  box-sizing: content-box;
+}
+@media (min-width: 45rem) {
+  #qa {
+    padding: 2rem;
+  }
+}
+
+.card-content {
+  align-items: stretch;
+  display: flex; /*todo*/
+  flex-flow: column; /*todo*/
+  justify-content: flex-start;
+  
+  height: 100%;
+  
+  padding-top: 4rem;
+}
+
+
+/* ーーー frontside ーーー */
+
+.card-content.front {
+  display: grid;
+  grid-template-rows: 0;
+  grid-template-columns: 1fr;
+}
+.card-content.front > :first-child {
+  overflow: hidden;
+}
+@media (min-width: 40rem) {
+  .card-content.front {
+      grid-template-rows: 3.5rem;
+  }
+}
+@media (min-width: 60rem) {
+  .card-content.front {
+      grid-template-rows: 4.5rem;
+  }
+}
+
+/*overhead*/
+
+.mem-instruction {
+  color: var(--mem-textlabel);
+  font-size: 1.5rem;
+  font-weight: 500;
+  
+  margin-bottom: calc(0.5rem + 0.83em);
+}
+@media (min-width: 60rem) {
+  .mem-instruction {
+      font-size: 1.875rem;
+  }
+}
+.frontside .mem-instruction {
+  display: none;
+}
+
+.front-extra {
+  display: none;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--mem-note-bg); 
+  color: var(--mem-text);
+  border-radius: 1rem;
+}
+.frontside .front-extra {
+  display: flex;
+}
+.front-extra label {
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-right: 0.5rem;
+}
+
+/*question*/
+
+.mem-question {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  font-size: 2.25rem;
+  font-weight: bold;
+  
+  margin: 0.83em 0 calc(0.5rem + 0.83em);
+}
+.mem-question.large {
+  font-size: 3.75rem;
+}
+
+/*typing*/
+
+.mem-typing {
+  display: flex;
+  flex-direction: column;
+}
+
+.mem-typing label {
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+input#typeans,
+code#typeans {
+  font: inherit !important;
+
+  font-size: 1.5rem !important;
+  height: 4rem;
+  padding: 0px 1rem;
+  
+  width: calc(100% - 0.5rem);  
+  margin: 0 auto 2rem;
+  
+  border-radius: 0.75rem;
+  
+  color: var(--mem-input-text);
+  border: 2px solid var(--mem-input-border);
+  background-color: var(--mem-input-bg);
+}
+.mem-typing.large input#typeans,
+.mem-typing.large code#typeans {
+  font-size: 2.25rem !important;
+}
+
+
+  /*focus outline*/
+  body :focus-visible {
+    box-shadow: var(--mem-outline) 0px 0px 0px 3px;
+    outline: none;
+}
+
+  /*remove anki defaults*/
+code#typeans :is(br, br ~ span, .typeMissed) {
+	display: none;
+}
+code#typeans {
+  color: transparent;
+}
+code#typeans span {
+	background: none;
+	color: var(--mem-input-text);
+}
+code#typeans {
+	display: flex;
+  align-items: center;
+}
+  /*change typed ans in preview*/
+  /*code#typeans * {display: none;}*/
+  /*code#typeans br ~ br ~ span {display: initial;}*/
+
+
+/* ーーー backside ーーー */
+
+/*typed answer alert*/
+
+.mem-alert{
+  display: none;
+  
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: var(--mem-alert-text);
+  background-color: var(--mem-alert-bg);
+  
+  margin-bottom: 1rem;
+}
+:is(.wrong, .soclose) .mem-alert {
+  display: block;
+}
+.mem-alert:empty {
+  display: none;
+}
+.mem-alert::before {
+  content: 'your answer';
+  display: block;
+  margin: 0px 0px 0.25rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/*fields*/
+
+.mem-field, .sep {
+  margin-bottom: 1rem;
+}
+
+.sep {
+  background: var(--mem-sep);
+  height: 0.125rem;
+  width: 100%
+}
+
+.mem-field label {
+  display: block;
+  margin: 0.5rem 0px;
+
+  color: var(--mem-textlabel);
+  font-size: 0.75rem;
+  font-weight: 600; 
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.mem-field :is(h2, h3, h4) {
+  hyphens: auto;
+  margin: 0px;
+  overflow-wrap: anywhere;
+}
+
+.mem-field h2 { 
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.mem-field.large h2 {
+  font-size: 3rem;
+}
+
+.mem-field h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.mem-field.large h3 {
+	font-size: 1.875rem;
+}
+
+.mem-field h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
