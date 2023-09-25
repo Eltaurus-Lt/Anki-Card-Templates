@@ -20,3 +20,5 @@ This template emulates the Memrise interface for Anki cards, including automatic
 </p>
 
 This template also fixes the layout bugs present in the original site, such as jumping text on answer submission and clipped fonts:
+
+![dither](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/72018147-1252-4df8-901b-efe93b7b330f)
