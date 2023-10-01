@@ -34,7 +34,7 @@ The main file is `Memrise Templates (Lτ).apkg`. After opening it with Anki it a
 
 ### Extra
 
-Download the template from AnkiWeb: [Memrise cards [template]](https://ankiweb.net/shared/info/510199145)
+The template can be downloaded either from this page or from [AnkiWeb](https://ankiweb.net/shared/info/510199145)
 
 Separate parts of the source code for use in your own card templates can be found in the `Source code` folder.
 
