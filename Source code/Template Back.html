@@ -13,8 +13,8 @@
 			<h3>{{Definition}}</h3>
 		</div>
 
-		{{#Extra}}<div class="sep"></div>{{/Extra}}
-		{{^Extra}}{{#Extra 2}}<div class="sep"></div>{{/Extra 2}}{{/Extra}}
+		<div class="sep"></div>
+
 
 		{{#Extra}}
 			<div class="mem-field">
@@ -28,6 +28,12 @@
 				<h4>{{Extra 2}}</h4>
 			</div>
 		{{/Extra 2}}
+		{{#Audio}}
+			<div class="mem-field">
+				<label>Audio</label>
+				<div class="audio-container">{{Audio}}</div>
+			</div>
+		{{/Audio}}
   </div>	
 </div>
 
@@ -66,7 +72,7 @@ function rmBrac(s) {
 }
 function rmPunc(s) {
 	//removes other punctuation
-	return s.replace(/[.,\/#?!$%\^&\'"*;:{}=\-_`~　…～－。、・？！＠＃＄％＾＆＊（）]/g, '');
+	return s.replace(/[.,\/#?!$%\^&\'"*;:{}=\-_`~　…〜～－。、・？！＠＃＄％＾＆＊（）]/g, '');
 }
 function rmSpaces(s) {
 	//removes spaces from the start and the end, replaces japanese spaces, removes repeated spaces
@@ -148,5 +154,16 @@ document.onkeydown = function (e) {
 	}
 }
 
+//audio buttons animation
+audioButtons = document.querySelectorAll('a.replay-button');
+audioButtons.forEach((a) => {
+	a.addEventListener("click", () => {
+		audioButtons.forEach((b) => {
+			b.classList.remove('animate');
+		});
+		void a.offsetWidth;
+		a.classList.add('animate');
+	});
+});
 
 </script>
