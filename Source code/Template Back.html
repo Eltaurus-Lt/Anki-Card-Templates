@@ -133,7 +133,7 @@ activeTimeout = setTimeout((pid0)=>{
 	MemFlip();
 }, 1500, pid);
 
-//submit
+//Submit
 function autorateAgain() {
 		flipBtn.onclick = null;
 		pycmd('ease1');
@@ -145,7 +145,7 @@ function autorateGood() {
 		console.log("autorated 'good'");
 }
 
-//Enter hotkey
+//enter hotkey
 document.onkeydown = function (e) {
 	var ev = window.event || e;
 
@@ -154,15 +154,20 @@ document.onkeydown = function (e) {
 	}
 }
 
-//audio buttons animation
+//Audio buttons animation
 audioButtons = document.querySelectorAll('a.replay-button');
+svgCircles = document.querySelectorAll('a.replay-button svg.playImage circle');
 audioButtons.forEach((a) => {
 	a.addEventListener("click", () => {
 		audioButtons.forEach((b) => {
-			b.classList.remove('animate');
+			b.classList.remove('active');
 		});
-		void a.offsetWidth;
-		a.classList.add('animate');
+    a.classList.add('active');
+
+		let c = a.querySelector('svg.playImage circle');
+		c.classList.remove('pulse');
+		void a.offsetHeight;
+		c.classList.add('pulse');
 	});
 });
 

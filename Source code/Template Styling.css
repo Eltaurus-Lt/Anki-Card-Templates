@@ -1,4 +1,4 @@
-/* v2.0 */
+/* v2.1 */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
 
@@ -369,33 +369,30 @@ svg.playImage {
 	transform:		translate(-50%, -50%);
 	transition:	transform .1s linear;
 	overflow: visible;
-	background: rgba(246, 246, 246, 1);
+	/*background: rgba(246, 246, 246, 1);*/
 }
 svg.playImage:hover:not(:active) {
 	transform:		translate(-50%, -50%)
 								scale(1.1);
 }
 
-a.replay-button.soundLink.animate svg.playImage circle {
-	animation: pulse 2s;
-	r:	50px;
+a.replay-button.soundLink.active svg.playImage circle {
+  opacity: 1;
+	r: 50px;
 }
 
 @keyframes pulse {
-  0%, 50%, 100% {
-		transform: scale(0.8);
-		opacity: 0;
-  }
   25%, 75% {
 		transform: scale(1);
-		opacity: 1;
+    fill: var(--mem-button-orange);
   }
-	0%, 85% {
-		r: 50px;
-	}
-	100% {
-		r: 0px; 
-	}
+  0%, 50%, 100% {
+		transform: scale(.8);
+    fill: transparent;
+  }
+  100% {
+    transform: scale(0.5);
+  }
 }
 
 svg.playImage circle {
@@ -404,8 +401,12 @@ svg.playImage circle {
 	opacity: 0;
 	transform-origin: center;
 	stroke-width: 0px;
-	transition: r .3s,
-								opacity .6s;
+	transition: r .2s,
+								opacity .2s;
+}
+svg.playImage circle.pulse {
+  animation: pulse 2s; 
+  animation-fill-mode: forwards;
 }
 
 svg.playImage path {
