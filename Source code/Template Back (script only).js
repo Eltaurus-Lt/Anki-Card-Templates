@@ -31,7 +31,7 @@ function rmBrac(s) {
 }
 function rmPunc(s) {
 	//removes other punctuation
-	return s.replace(/[.,\/#?!$%\^&\'"*;:{}=\-_`~　…～－。、・？！＠＃＄％＾＆＊（）]/g, '');
+	return s.replace(/[.,\/#?!$%\^&\'"*;:{}=\-_`~　…〜～－。、・？！＠＃＄％＾＆＊（）]/g, '');
 }
 function rmSpaces(s) {
 	//removes spaces from the start and the end, replaces japanese spaces, removes repeated spaces
@@ -92,7 +92,7 @@ activeTimeout = setTimeout((pid0)=>{
 	MemFlip();
 }, 1500, pid);
 
-//submit
+//Submit
 function autorateAgain() {
 		flipBtn.onclick = null;
 		pycmd('ease1');
@@ -104,11 +104,42 @@ function autorateGood() {
 		console.log("autorated 'good'");
 }
 
-//Enter hotkey
+//keyboard navigation
+tabSelected = null;
+document.onkeyup = function (e) {
+	var ev = window.event || e;
+	
+	if (ev.key === 'Tab') {
+		tabSelected = document.activeElement;
+	}
+}
+
 document.onkeydown = function (e) {
 	var ev = window.event || e;
 
-	if (flipBtn && ev.key === 'Enter' && flipBtn.onclick) {
-		flipBtn.onclick();
+	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {
+		if (document.activeElement.matches('a.replay-button.soundLink')) {
+			document.activeElement.blur();
+		}
+		if (flipBtn &&  flipBtn.onclick) {				
+			flipBtn.onclick();
+		}
 	}
 }
+
+//Audio buttons animation
+audioButtons = document.querySelectorAll('a.replay-button');
+svgCircles = document.querySelectorAll('a.replay-button svg.playImage circle');
+audioButtons.forEach((a) => {
+	a.addEventListener("click", () => {
+		audioButtons.forEach((b) => {
+			b.classList.remove('active');
+		});
+    a.classList.add('active');
+
+		let c = a.querySelector('svg.playImage circle');
+		c.classList.remove('pulse');
+		void a.offsetHeight;
+		c.classList.add('pulse');
+	});
+});
