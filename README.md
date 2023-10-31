@@ -39,6 +39,21 @@ This template also avoids layout bugs prominent in the original design, such as:
 The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds `Memrise Templates (Lτ) v2.3` Note Type, which can then be used to create new cards, change Note Type of existing ones, or import external spreadsheets.
 <br><sub>Both, the deck and the single card in it, which are imported with the Note Type, serve only as its holders and can be deleted right away.</sub>
 
+### Updating
+
+If you have cards in your collection, that are using an older version of the template, and you want to upgrade them to the latest one, after downloading and importing the current `.akpg` deck follow these steps:
+
+1. In your Anki open the Browser by clicking on `Browse` button in the top center menu
+2. In the left tab scroll down and open the `Note Types` category
+3. Click on the older version of `Memrise Template (Lτ) ...` you were using before
+4. Click on any of the cards displayed in the table, then press `Ctrl + A` to select all of them
+5. In the top menu go to `Notes` -> `Change Note Type`
+6. In the top right dialog of Notetype conversion select the new version of the Notetype
+7. Check the mapping of the Current fields to the New ones (if you didn't change anything in your template, all names should be the same on both sides)
+8. Press `Save`
+
+<sub>Same steps can be used to convert existing cards from any other Note Type to this Memrise Template</sub>
+
 ### Extra
 
 The template can be downloaded either from this page or from [AnkiWeb](https://ankiweb.net/shared/info/510199145)
