@@ -19,11 +19,13 @@ This template emulates the Memrise interface for Anki cards, including automatic
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/c7446347-0b12-427d-97b8-bdc0b899a715" title="Memrise" style="width: 48%">
 </p>
 
-
+&nbsp;  
+&nbsp;  
 
 This template also avoids layout bugs prominent in the original design, such as:
 
 - Elements jumping on answer submission
+
 ![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 
 - Cropped fonts and blurring of audio icons on hover
@@ -49,4 +51,4 @@ The template can be used for Memrise courses imported into Anki with [this exten
 
 ### Discussion
 
-If you have any questions about the template (how to adapt it for a certain course, modify to create reverse cards, add more extra fields, change default settings, etc.) or simply want to discuss its further development, please feel free to leave a comment in [this Anki Forums thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233) or in the issues section of this repository.
+If you have any questions about the template (how to adapt it for a certain course, modify to create reverse cards, make additional extra fields, change default settings, etc.) or simply want to discuss its further development, please feel free to leave a comment in [this Anki Forums thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233) or in the issues section of this repository.
