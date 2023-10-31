@@ -20,7 +20,6 @@ This template emulates the Memrise interface for Anki cards, including automatic
 </p>
 
 &nbsp;  
-&nbsp;  
 
 This template also avoids layout bugs prominent in the original design, such as:
 
@@ -52,7 +51,7 @@ If you have cards in your collection, that are using an older version of the tem
 7. Check the mapping of the Current fields to the New ones (if you didn't change anything in your template, all names should be the same on both sides)
 8. Press `Save`
 
-<sub>Same steps can be used to convert existing cards from any other Note Type to this Memrise Template</sub>
+<sub>Same steps can be taken to convert existing cards from any other Note Type to this Memrise Template</sub>
 
 ### Extra
 
