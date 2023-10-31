@@ -2,7 +2,7 @@
 
 ## Memrise
 
-This template emulates the Memrise interface for Anki cards, including automatic grading of answers, fuzzy string matching, interactive audio buttons, and the extra info screen shown after wrong answers:
+This template emulates the Memrise interface for Anki cards, including automatic grading of answers, fuzzy string matching, animated audio buttons, and the extra info screen shown after wrong answers:
 
 <p align="middle">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%">
