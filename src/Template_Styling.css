@@ -1,13 +1,3 @@
-/*	v2.3	*/
-/* 
-		Card template by Eltaurus:
-			GitHub: github.com/Eltaurus-Lt
-			AF: forums.ankiweb.net/u/Eltaurus
-			✉️: Eltaurus@inbox.lt
-*/
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
-
 :root {
     --dumpprogress-barwidth: 1.2em;
     --mem-green: #83c53d;
@@ -36,7 +26,6 @@
     --mem-button-orange: rgb(255, 187, 0);
 
 		font-size: 16px;  
-    /*font-size: 15pt;*/
 }
 .correct {
     --mem-input-text: rgb(1, 65, 53);
@@ -69,7 +58,7 @@ button#mem-flip {
 
 body,
 div code#typeans {
-  font-family: "Open Sans", "Meiryo", sans-serif, sans-serif !important;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
 }
 
 body {
@@ -79,21 +68,6 @@ body {
   position: relative;
   min-height: 100vh;
 }
-
-#Lt::after {
-  content: 'by Lτ';
-}
-#Lt {
-  position: absolute;
-  right: 1em;
-  bottom: 1em;	
-  opacity: 0;
-  color: var(--mem-text);
-}
-#Lt:hover {
-  opacity: .25;
-}
-
 
 /* ーーー cards ーーー */
 
@@ -269,16 +243,12 @@ code#typeans {
   align-items: center;
 }
 body::after {
-  content: "b" "y L"'τ';
   opacity: 0.2;
   position: absolute;
   right: 1em;
   bottom: 1em;
   z-index: -42;
 }
-  /*change typed ans in preview*/
-  /*code#typeans * {display: none;}*/
-  /*code#typeans br ~ br ~ span {display: initial;}*/
 
 /* ーーー backside ーーー */
 
