@@ -6,7 +6,7 @@
 #    By: YohanGH <YohanGH@proton.me>                    //    ''     Code      #
 #                                                      (|     | )              #
 #    Created: 2024/01/26 15:09:53 by YohanGH           '__   _/_               #
-#    Updated: 2024/01/26 18:00:47 by YohanGH          (___)=(___)              #
+#    Updated: 2024/01/26 23:18:21 by YohanGH          (___)=(___)              #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@
 - Fork : 
     - Rename folder Source code --> src
     - Rename folder AnkiWeb preview --> asset
-    - Rename Img
+    - Delete Img
     - Rename file src
-    - Remove file Lt
+    - Delete file Lt
     - Editing css
     - Editing Front
     - Editing Back
