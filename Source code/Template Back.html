@@ -60,14 +60,14 @@ document.getElementsByClassName("mem-alert")[0].innerText = typedAnswer;
 //answer processing
 function rmEnc(s) {
 	//removes parts enclosed in the innermost parentheses
-	return s.replace(/\([^()]*\)/g, '');
+	return s.replace(/\x28[^()]*\x29/g, '');
 }
 function rmEncAll(s) {
 	//remove everything between first and last brackets
-	return s.replace(/\(.*\)/g, '');
+	return s.replace(/\x28.*\x29/g, '');
 }
 function rmBrac(s) {
-	//removes parantheses, keeping the contents
+	//removes parentheses, keeping the contents
 	return s.replace(/[()]/g, '');
 }
 function rmPunc(s) {
