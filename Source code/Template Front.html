@@ -11,8 +11,8 @@
 					</div>
 				{{/Extra}}
     </div>
-    <div class="mem-question">
-      {{Definition}}
+    <div class="mem-question memblob">
+      {{Audio}}
     </div>
     <div class="mem-typing">
       <label>Learnable</label>
@@ -21,3 +21,25 @@
 </div>
 <a id="Lt" href="https://github.com/Eltaurus-Lt/Anki-Card-Templates"></a>
 {{/Definition}}{{/Learnable}}
+
+
+<script>
+//Audio buttons animation
+audioButtonsFront = document.querySelectorAll('.card-content.front a.replay-button');
+audioButtonsFront.forEach((a) => {
+	a.addEventListener("click", () => {
+		audioButtonsFront.forEach((b) => {
+			b.classList.remove('active');
+		});
+    a.classList.add('active');
+
+		a.classList.remove('pulse');
+		void a.offsetHeight;
+		a.classList.add('pulse');
+	});
+});
+if (audioButtonsFront && audioButtonsFront.length > 0) {
+	audioButtonsFront[0].classList.add('active');
+	audioButtonsFront[0].classList.add('pulse');
+}
+</script>
