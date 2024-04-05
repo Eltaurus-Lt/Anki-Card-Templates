@@ -1,4 +1,4 @@
-/*	v2.32	 */
+/*	v2.4	 */
 /* 
 		Card template by Eltaurus:
 			GitHub: github.com/Eltaurus-Lt
@@ -369,6 +369,7 @@ body::after {
 
 /* ーーー audio ーーー */
 
+h4:has(a.replay-button.soundLink),
 .audio-container {    
   background: var(--mem-button-bg);
   border-radius: 1rem;
