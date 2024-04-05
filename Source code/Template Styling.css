@@ -1,4 +1,4 @@
-/*	v2.4	 */
+/*	v2.5	 */
 /* 
 		Card template by Eltaurus:
 			GitHub: github.com/Eltaurus-Lt
@@ -367,8 +367,81 @@ body::after {
 }
 
 
-/* ーーー audio ーーー */
+/* ーーーーーーーーーー AUDIO ーーーーーーーーーー */
+/* Q */
+.mem-question a.replay-button.soundLink {
+  width: 10rem;
+  height: 10rem;
+}
 
+.mem-question a.replay-button:not(:first-child) {
+  display: none;
+}
+
+.mem-question svg.playImage {
+	width: calc(40% * (1 - 2 * 6/160));
+	height: calc(40% * (1 - 2 * 1/160));
+}
+
+@media (min-width: 33.25rem) {
+  .mem-question.large a.replay-button.soundLink {
+    width: 20rem;
+    height: 20rem;
+  }  
+  .mem-question.large svg.playImage {
+    width: calc(40% * (1 - 2 * 6/320));
+    height: calc(40% * (1 - 2 * 1/320));
+  }
+}
+
+.memblob svg.playImage circle {
+  display: none;
+}
+
+.mem-question a::before,
+.memblob a::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: '';
+  
+  width: auto;
+  height: auto;
+  
+  background: var(--mem-button-orange);
+
+  clip-path: polygon(100% 52.01%, 99.83% 57.16%, 99.31% 62.14%, 98.45% 66.92%, 97.23% 71.47%, 95.66% 75.74%, 93.73% 79.7%, 91.45% 83.31%, 88.79% 86.53%, 85.1% 89.87%, 80.86% 92.69%, 76.17% 95.02%, 71.1% 96.87%, 65.75% 98.27%, 60.23% 99.25%, 54.6% 99.82%, 48.98% 100%, 44.98% 99.89%, 41.02% 99.55%, 37.12% 98.97%, 33.3% 98.16%, 29.56% 97.09%, 25.94% 95.76%, 22.45% 94.16%, 19.1% 92.29%, 15.88% 89.88%, 12.6% 86.56%, 9.39% 82.44%, 6.42% 77.64%, 3.84% 72.26%, 1.81% 66.41%, 0.48% 60.21%, 0% 53.76%, 0.16% 49.13%, 0.69% 44.08%, 1.63% 38.78%, 3.03% 33.42%, 4.94% 28.18%, 7.42% 23.23%, 10.5% 18.74%, 14.24% 14.9%, 15.47% 13.91%, 17.12% 12.66%, 19.17% 11.22%, 21.58% 9.65%, 24.29% 8.01%, 27.28% 6.38%, 30.5% 4.81%, 33.91% 3.38%, 36% 2.62%, 38.12% 1.95%, 40.25% 1.37%, 42.37% 0.89%, 44.46% 0.51%, 46.51% 0.23%, 48.5% 0.06%, 50.41% 0%, 54.8% 0.23%, 59% 0.88%, 63.01% 1.91%, 66.83% 3.26%, 70.44% 4.88%, 73.84% 6.74%, 77.02% 8.76%, 79.98% 10.92%, 84.53% 14.76%, 88.53% 18.87%, 91.96% 23.29%, 94.81% 28.09%, 97.05% 33.3%, 98.68% 38.99%, 99.67% 45.21%);
+}
+a.replay-button.soundLink::before {
+  z-index: -200;
+  opacity: 0.2; 
+}
+.memblob a::after {
+  z-index: -100;
+  opacity: 0; 
+  scale: 0;
+  transition: scale 0.2s,
+              opacity 0.2s;
+}
+
+.mem-question:not(.memblob) a::before {
+  clip-path: circle(50%);
+}
+
+.memblob a.replay-button.soundLink.pulse::after {
+  animation: pulse 2s; 
+  animation-fill-mode: forwards;
+}
+
+.memblob a.replay-button.soundLink.active::after {
+  opacity: 1;
+  scale: 1;
+}
+.mem-question.memblob a.replay-button.soundLink.active::after {
+  scale: 0.625;
+}
+
+/* A */
 h4:has(a.replay-button.soundLink),
 .audio-container {    
   background: var(--mem-button-bg);
@@ -404,6 +477,10 @@ svg.playImage {
 a.replay-button.soundLink:hover:not(:active) svg.playImage path {
   transform: scale(1.1);
 }
+a.replay-button.soundLink.active svg.playImage circle {
+  opacity: 1;
+  r: 50px;
+}
 
 svg.playImage circle {
   fill: var(--mem-button-orange);
@@ -413,7 +490,7 @@ svg.playImage circle {
   stroke-width: 0px;
   transition: r .2s, opacity .2s;
 }
-svg.playImage circle.pulse {
+a.replay-button.soundLink.pulse svg.playImage circle {
   animation: pulse 2s; 
   animation-fill-mode: forwards;
 }
@@ -421,19 +498,18 @@ svg.playImage circle.pulse {
   25%, 75% {
     transform: scale(1);
     fill: var(--mem-button-orange);
+    background: var(--mem-button-orange);
   }
   0%, 50%, 100% {
     transform: scale(.8);
     fill: transparent;
+    background: transparent;
   }
   100% {
     transform: scale(0.5);
   }
 }
-a.replay-button.soundLink.active svg.playImage circle {
-  opacity: 1;
-  r: 50px;
-}
+
 
 svg.playImage path {
   transform-origin: center;

@@ -128,8 +128,7 @@ document.onkeydown = function (e) {
 }
 
 //Audio buttons animation
-audioButtons = document.querySelectorAll('a.replay-button');
-svgCircles = document.querySelectorAll('a.replay-button svg.playImage circle');
+audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
 audioButtons.forEach((a) => {
 	a.addEventListener("click", () => {
 		audioButtons.forEach((b) => {
@@ -137,9 +136,8 @@ audioButtons.forEach((a) => {
 		});
     a.classList.add('active');
 
-		let c = a.querySelector('svg.playImage circle');
-		c.classList.remove('pulse');
+		a.classList.remove('pulse');
 		void a.offsetHeight;
-		c.classList.add('pulse');
+		a.classList.add('pulse');
 	});
 });
