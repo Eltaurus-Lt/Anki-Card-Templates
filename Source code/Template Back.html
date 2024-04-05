@@ -31,7 +31,7 @@
 		{{#Audio}}
 			<div class="mem-field">
 				<label>Audio</label>
-				<div class="audio-container">{{Audio}}</div>
+				<h4>{{Audio}}</h4>
 			</div>
 		{{/Audio}}
   </div>	
@@ -39,6 +39,9 @@
 
 
 <script>
+//android source
+//htmlcons = document.createElement("div");cardqa = document.getElementById("qa");htmlcons.innerText = cardqa.innerHTML;cardqa.appendChild(htmlcons);
+
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
@@ -67,7 +70,7 @@ function rmEncAll(s) {
 	return s.replace(/\x28.*\x29/g, '');
 }
 function rmBrac(s) {
-	//removes parentheses, keeping the contents
+	//removes parantheses, keeping the contents
 	return s.replace(/[()]/g, '');
 }
 function rmPunc(s) {
