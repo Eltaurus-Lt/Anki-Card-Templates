@@ -1,3 +1,12 @@
+platform = '';
+if (!document.documentElement.classList.contains("mobile")) {
+	platform = 'desk';
+} else if (document.documentElement.classList.contains("android")) {
+	//var jsApiContract = { version: "0.0.3", developer: "eltaurus@inbox.lt" };
+	//var api = new AnkiDroidJS(jsApiContract);
+	platform = 'android';
+} 
+
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
@@ -98,12 +107,20 @@ activeTimeout = setTimeout((pid0)=>{
 //Submit
 function autorateAgain() {
 		flipBtn.onclick = null;
-		pycmd('ease1');
+		if (platform === 'desk') {
+			pycmd('ease1');
+		} else if (platform === 'android') {
+			buttonAnswerEase1();
+		}
 		console.log("autorated 'again'");
 }
 function autorateGood() {
 		flipBtn.onclick = null;
-		pycmd('ease3');
+		if (platform === 'desk') {
+			pycmd('ease3');
+		} else if (platform === 'android') {
+			buttonAnswerEase3();
+		}
 		console.log("autorated 'good'");
 }
 
