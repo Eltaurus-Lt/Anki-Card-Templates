@@ -5,11 +5,14 @@ pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random()
 // extract answers
 typeAns = document.getElementById('typeans'); 
 
-correctAnswerFull = [...typeAns.querySelectorAll("br ~ br ~ span")].map(e => e.innerText).join('');
+correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
+typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
+
+correctAnswerFull = correctNodes.map(e => e.innerText).join('');
 if (!correctAnswerFull && typeAns) { //typed answer is correct or no typed answer
 	correctAnswerFull = typeAns.innerText;
 }
-typedAnswer = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")].map(e => e.innerText).join('');
+typedAnswer = typedNodes.map(e => e.innerText).join('');
 typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map(e => e.innerText).join('');
 typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
 
@@ -104,28 +107,6 @@ function autorateGood() {
 		console.log("autorated 'good'");
 }
 
-//keyboard navigation
-tabSelected = null;
-document.onkeyup = function (e) {
-	var ev = window.event || e;
-	
-	if (ev.key === 'Tab') {
-		tabSelected = document.activeElement;
-	}
-}
-
-document.onkeydown = function (e) {
-	var ev = window.event || e;
-
-	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {
-		if (document.activeElement.matches('a.replay-button.soundLink')) {
-			document.activeElement.blur();
-		}
-		if (flipBtn &&  flipBtn.onclick) {				
-			flipBtn.onclick();
-		}
-	}
-}
 
 //Audio buttons animation
 audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
@@ -141,3 +122,37 @@ audioButtons.forEach((a) => {
 		a.classList.add('pulse');
 	});
 });
+
+//spelling cf. highlights
+function isGood(list, index) {
+	return (index < list.length && list[index].classList.contains('typeGood'));
+}
+if (correctNodes.length > 0) {
+	let mergedNodes = [];
+	function mergeNode(list, index) {
+		if(index < list.length) {
+			mergedNodes.push(list[index]);
+		}
+	}
+	for (	i = j = 0; (i < correctNodes.length || j < typedNodes.length) && i < 1000 && j < 1000; ) {
+		if (isGood(correctNodes, i)) {
+			mergeNode(typedNodes,j);//all good || bad(redundant)
+			if (isGood(typedNodes, j)) {//all good
+				i++;
+			} else if (j >= typedNodes.length) {i++;}//failsafe
+			j++;
+		} else {
+			mergeNode(correctNodes,i);//missing || bad(wrong) || bad(redundant-end)
+			if (!isGood(typedNodes, j)) {
+				mergeNode(typedNodes,j);//bad(wrong) || bad(redundant-end) || missing-end
+				j++;
+			} else if (i >= correctNodes.length) {j++;}//failsafe
+			i++;
+		}
+	}
+	
+	const spellcheckHighlights = document.getElementById('spellcheck');
+	if (spellcheckHighlights) {
+		spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
+	}
+}

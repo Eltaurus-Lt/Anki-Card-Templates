@@ -24,6 +24,29 @@
 
 
 <script>
+//keyboard navigation
+tabSelected = null;
+document.onkeyup = function (e) {
+	var ev = window.event || e;
+	
+	if (ev.key === 'Tab') {
+		tabSelected = document.activeElement;
+	}
+}
+
+document.onkeydown = function (e) {
+	var ev = window.event || e;
+
+	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {//last action was NOT selecting element with Tab -> Enter=flip (prevent audio activation)
+		if (document.activeElement.matches('a.replay-button.soundLink')) {
+			document.activeElement.blur();
+		}
+		if (flipBtn &&  flipBtn.onclick) {				
+			flipBtn.onclick();
+		}
+	}
+}
+
 //Audio buttons animation
 audioButtonsFront = document.querySelectorAll('.card-content.front a.replay-button');
 audioButtonsFront.forEach((a) => {
