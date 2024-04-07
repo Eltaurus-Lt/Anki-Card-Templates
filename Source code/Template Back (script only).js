@@ -159,11 +159,11 @@ if (correctNodes.length > 0) {
 			} else if (j >= typedNodes.length) {i++;}//failsafe
 			j++;
 		} else {
-			mergeNode(correctNodes,i);//missing || bad(wrong) || bad(redundant-end)
 			if (!isGood(typedNodes, j)) {
 				mergeNode(typedNodes,j);//bad(wrong) || bad(redundant-end) || missing-end
 				j++;
 			} else if (i >= correctNodes.length) {j++;}//failsafe
+			mergeNode(correctNodes,i);//missing || bad(wrong) || bad(redundant-end)
 			i++;
 		}
 	}
