@@ -1,3 +1,12 @@
+platform = '';
+if (!document.documentElement.classList.contains("mobile")) {
+	platform = 'desk';
+} else if (document.documentElement.classList.contains("android")) {
+	//var jsApiContract = { version: "0.0.3", developer: "eltaurus@inbox.lt" };
+	//var api = new AnkiDroidJS(jsApiContract);
+	platform = 'android';
+} 
+
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
@@ -5,11 +14,14 @@ pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random()
 // extract answers
 typeAns = document.getElementById('typeans'); 
 
-correctAnswerFull = [...typeAns.querySelectorAll("br ~ br ~ span")].map(e => e.innerText).join('');
+correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
+typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
+
+correctAnswerFull = correctNodes.map(e => e.innerText).join('');
 if (!correctAnswerFull && typeAns) { //typed answer is correct or no typed answer
 	correctAnswerFull = typeAns.innerText;
 }
-typedAnswer = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")].map(e => e.innerText).join('');
+typedAnswer = typedNodes.map(e => e.innerText).join('');
 typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map(e => e.innerText).join('');
 typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
 
@@ -95,41 +107,26 @@ activeTimeout = setTimeout((pid0)=>{
 //Submit
 function autorateAgain() {
 		flipBtn.onclick = null;
-		pycmd('ease1');
+		if (platform === 'desk') {
+			pycmd('ease1');
+		} else if (platform === 'android') {
+			buttonAnswerEase1();
+		}
 		console.log("autorated 'again'");
 }
 function autorateGood() {
 		flipBtn.onclick = null;
-		pycmd('ease3');
+		if (platform === 'desk') {
+			pycmd('ease3');
+		} else if (platform === 'android') {
+			buttonAnswerEase3();
+		}
 		console.log("autorated 'good'");
 }
 
-//keyboard navigation
-tabSelected = null;
-document.onkeyup = function (e) {
-	var ev = window.event || e;
-	
-	if (ev.key === 'Tab') {
-		tabSelected = document.activeElement;
-	}
-}
-
-document.onkeydown = function (e) {
-	var ev = window.event || e;
-
-	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {
-		if (document.activeElement.matches('a.replay-button.soundLink')) {
-			document.activeElement.blur();
-		}
-		if (flipBtn &&  flipBtn.onclick) {				
-			flipBtn.onclick();
-		}
-	}
-}
 
 //Audio buttons animation
-audioButtons = document.querySelectorAll('a.replay-button');
-svgCircles = document.querySelectorAll('a.replay-button svg.playImage circle');
+audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
 audioButtons.forEach((a) => {
 	a.addEventListener("click", () => {
 		audioButtons.forEach((b) => {
@@ -137,9 +134,42 @@ audioButtons.forEach((a) => {
 		});
     a.classList.add('active');
 
-		let c = a.querySelector('svg.playImage circle');
-		c.classList.remove('pulse');
+		a.classList.remove('pulse');
 		void a.offsetHeight;
-		c.classList.add('pulse');
+		a.classList.add('pulse');
 	});
 });
+
+//spelling cf. highlights
+function isGood(list, index) {
+	return (index < list.length && list[index].classList.contains('typeGood'));
+}
+if (correctNodes.length > 0) {
+	let mergedNodes = [];
+	function mergeNode(list, index) {
+		if(index < list.length) {
+			mergedNodes.push(list[index]);
+		}
+	}
+	for (	i = j = 0; (i < correctNodes.length || j < typedNodes.length) && i < 1000 && j < 1000; ) {
+		if (isGood(correctNodes, i)) {
+			mergeNode(typedNodes,j);//all good || bad(redundant)
+			if (isGood(typedNodes, j)) {//all good
+				i++;
+			} else if (j >= typedNodes.length) {i++;}//failsafe
+			j++;
+		} else {
+			mergeNode(correctNodes,i);//missing || bad(wrong) || bad(redundant-end)
+			if (!isGood(typedNodes, j)) {
+				mergeNode(typedNodes,j);//bad(wrong) || bad(redundant-end) || missing-end
+				j++;
+			} else if (i >= correctNodes.length) {j++;}//failsafe
+			i++;
+		}
+	}
+	
+	const spellcheckHighlights = document.getElementById('spellcheck');
+	if (spellcheckHighlights) {
+		spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
+	}
+}
