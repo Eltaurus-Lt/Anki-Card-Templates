@@ -1,19 +1,8 @@
-platform = '';
-if (!document.documentElement.classList.contains("mobile")) {
-	platform = 'desk';
-} else if (document.documentElement.classList.contains("android")) {
-	//var jsApiContract = { version: "0.0.3", developer: "eltaurus@inbox.lt" };
-	//var api = new AnkiDroidJS(jsApiContract);
-	platform = 'android';
-} 
-
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
 
 // extract answers
-typeAns = document.getElementById('typeans'); 
-
 correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
 typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
 
@@ -26,6 +15,11 @@ typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map
 typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
 
 console.log(correctAnswerFull, "|", typedAnswer, "（", typedCorrect, "|", typedErrors, "）"); 
+androidAnswer = sessionStorage.getItem("android-answer");
+if (platform === 'android' && androidAnswer) {
+	typedAnswer = androidAnswer;
+	typeAns.innerHTML = '<span>' + androidAnswer + '</span>';
+}
 document.getElementsByClassName("mem-alert")[0].innerText = typedAnswer;
 
 //answer processing
@@ -72,7 +66,6 @@ function cfStrings(sQ, sA) {
 //todo?A (B; C) -> {〃, A B, A C}
 
 // grade answer
-wrap = document.getElementById('backwrap');
 if (cfStrings(correctAnswerFull, typedAnswer)) {
 	wrap.classList.add('correct');
 } else if (correctAnswerFull.split(/[;；]/).map((correctAnswer) => cfStrings(correctAnswer, typedAnswer)).includes(true)) {
