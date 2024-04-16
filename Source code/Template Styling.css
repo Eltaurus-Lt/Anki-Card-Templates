@@ -1,4 +1,4 @@
-/*	v3.1 */
+/*	v3.2 */
 /* 
 		Card template by Eltaurus:
 			GitHub: github.com/Eltaurus-Lt
@@ -177,8 +177,8 @@ body {
   --elevation: 0px;
 }
 
-:is(.frontside) #scr-keyboard .membtn:hover,
-:is(.frontside) #scr-keyboard .membtn:active {
+.frontside #scr-keyboard .membtn:hover,
+.frontside #scr-keyboard .membtn:active {
   --elevation: 4px;
 }
 
@@ -709,4 +709,102 @@ MCQ img {
 #HintButton svg path {
 	fill: currentcolor;
 	d: path("M6.113 4.508c-.324-.892-.606-1.643-1.648-2.014.865-.54 1.18-1.296 1.448-1.937.083-.2.162-.39.252-.557.064.147.125.31.188.479.26.698.563 1.51 1.333 1.775-.863.658-1.24 1.315-1.573 2.254Zm2.37 2.702c.492.478 1.005.936 1.537 1.37.694-.851 2.16-2.522 2.16-2.522s-1.08-.948-1.676-1.34c-.216.171-2.129 2.387-2.021 2.492Zm2.1-3.379c.643.22 1.187.638 1.688 1.105.209.194.41.397.609.598.35.353.04.95-.23 1.322-.367.505-5.307 6.553-7.8 9.606l-1.144 1.4c-.198.243-.47.127-.715-.058l-1.618-1.225a1.407 1.407 0 0 0-.21-.13c-.102-.055-.168-.09-.275-.274-.165-.283-.204-.624.006-.868.22-.257 1.05-1.326 2.128-2.717 2.645-3.41 6.79-8.754 7.154-8.817a.835.835 0 0 1 .407.058ZM4.636 4.868c-.063.118-.116.26-.17.408-.128.343-.267.717-.576.893.442.312.63.734.8 1.212.112-.525.347-1.041.77-1.276-.378-.137-.53-.526-.667-.877-.051-.13-.1-.254-.157-.36Zm-2.1-.478c-.055.148-.108.29-.171.408-.057-.105-.106-.23-.157-.36-.137-.351-.29-.74-.667-.877.423-.234.658-.751.769-1.276.17.478.359.9.8 1.212-.308.176-.447.55-.574.893Z");
+}
+
+/* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
+
+.card-content.mch #scr-keyboard {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: grid;
+  
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 38.25rem) {
+  .card-content.mch #scr-keyboard {
+    gap: 1rem;
+  }
+}
+@media (min-width: 23.25rem) {
+  .card-content.mch #scr-keyboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card-content.mch .mem-typing {
+  display: none;
+  opacity: .2;
+}
+.card-content.mch input#typeans {
+  pointer-events: none;
+}
+
+.card-content.mch #scr-keyboard > * {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  padding: 1rem;
+  padding-top: clamp(1rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
+/*   border-radius: 1rem; */
+  font-weight: 600;
+  
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.card-content.mch #scr-keyboard.large > * {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+@media (min-width: 33.25rem) {
+  .card-content.mch #scr-keyboard > * {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+  .card-content.mch #scr-keyboard {
+    list-style-type: none;
+    counter-reset: choice-key 0;
+  }
+  .card-content.mch #scr-keyboard > * {
+    counter-increment: choice-key 1;
+  }
+  .card-content.mch #scr-keyboard > *:before {
+    content: counter(choice-key);
+
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: calc(50% - 0.75rem);
+    left: 1rem;
+
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    background-color: var(--mem-text);
+    border-radius: 0.25rem;
+    color: var(--button-color);
+  }
+}
+
+.frontside #scr-keyboard .membtn.correct {
+    color: rgb(1, 65, 53) !important;
+    --button-border: rgb(0, 167, 120);
+    --mem-text: rgb(0, 167, 120);
+    --button-color: rgb(93, 231, 192);
+}
+
+.frontside #scr-keyboard .membtn.pressed:not(.correct) {
+    color: rgb(109, 0, 9) !important;
+    --button-border: rgb(177, 48, 57);
+    --mem-text: rgb(177, 48, 57);
+    --button-color: rgb(255, 191, 188);
+}
+
+#scr-keyboard .membtn.pressed {
+  --elevation: 0px !important;
 }

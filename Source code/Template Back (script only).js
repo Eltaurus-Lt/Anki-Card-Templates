@@ -1,3 +1,5 @@
+<script>
+
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
@@ -117,6 +119,14 @@ function autorateGood() {
 		console.log("autorated 'good'");
 }
 
+if (isMCh) {
+	keyboardButtons.forEach( btn => {
+		if (btn.innerText === typedAnswer) {
+			btn.classList.add('pressed');
+		}
+	})
+}
+
 
 //Audio buttons animation
 audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
@@ -162,7 +172,9 @@ if (correctNodes.length > 0) {
 	}
 	
 	const spellcheckHighlights = document.getElementById('spellcheck');
-	if (spellcheckHighlights) {
+	if (spellcheckHighlights && !isMCh) {
 		spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
 	}
 }
+
+</script>

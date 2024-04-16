@@ -5,6 +5,10 @@ isFrontSide = !wrap;
 </script>
 
 <script>
+isMCh = !!document.querySelector('.card-content.mch');
+</script>
+
+<script>
 //determine platform
 platform = '';
 if (!document.documentElement.classList.contains("mobile")) {
@@ -23,11 +27,13 @@ hintSetting = document.getElementById('hint');
 staticKeys = document.getElementById('static_keys');
 randomKeys = document.getElementById('random_keys');
 hintButton = document.getElementById('HintButton');
+choicesSetting = document.getElementById('choices');
 
 //const
 if (hintSetting) {hintAnswer = hintSetting.innerText} else {hintAnswer = ""}
 if (staticKeys) {keysString = staticKeys.innerText} else {keysString = ""}
 if (randomKeys) {fillerString = randomKeys.innerText} else {fillerString = ""}
+if (choicesSetting) {choices = choicesSetting.innerText.split('|').map(s => s.trim())}
 
 if (hintButton) {hintButton.innerHTML = `<svg><path></path></svg>Hint`;}
 </script>
@@ -46,12 +52,24 @@ document.onkeyup = function (e) {
 document.onkeydown = function (e) {
 	var ev = window.event || e;
 
-	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {//last action was NOT selecting element with Tab -> Enter=flip (prevent audio activation)
+	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {
+		//last action was NOT selecting element with Tab -> Enter=flip (prevent audio activation)
 		if (document.activeElement.matches('a.replay-button.soundLink')) {
 			document.activeElement.blur();
 		}
-		if (flipBtn &&  flipBtn.onclick) {				
+		if (!isFrontSide && flipBtn && flipBtn.onclick) {				
 			flipBtn.onclick();
+		} else {
+			flipToBack();
+		}
+	}
+
+	if ("0123456789".includes(ev.key) && isMCh) {
+		numkey = parseInt(ev.key);
+		if (numkey == 0) {numkey = 10};
+		mchoiceButtons = screenKeyboard.querySelectorAll('*');
+		if (numkey <= mchoiceButtons.length) {
+			mchoiceButtons[numkey - 1].onclick();
 		}
 	}
 }
@@ -80,7 +98,7 @@ if (audioButtonsFront && audioButtonsFront.length > 0) {
 
 <script>
 //--------------------------------------------
-//on-screen keyboard | mutl-choice buttons
+//on-screen keyboard | mult-choice buttons
 
 function shuffle(arr) {
   return arr.sort(() => 0.5 - Math.random());
@@ -89,11 +107,20 @@ function shuffle(arr) {
 screenKeyboard = document.getElementById('scr-keyboard');
 if (screenKeyboard) {
 	if (isFrontSide) {
-		if (fillerString && hintAnswer) {
+		if (fillerString && hintAnswer && !isMCh) {
+			//character keys
 			neededKeys = shuffle(fillerString.split('')).slice(0, 10);
 			neededKeys = shuffle([... new Set([...(hintAnswer.split('')), ...neededKeys])]);
 			neededKeys = neededKeys.filter(key => !keysString.includes(key));
 			keysString = neededKeys.join('') + keysString;
+		} else if (isMCh) {
+			//multiple-choice keys
+			choices = choices.filter(choice => (choice !== hintAnswer));
+			choices = shuffle([... new Set(choices)]);
+			choices.splice(6 - 1);
+			choices = [hintAnswer, ...choices];
+			shuffle(choices);
+			keysString = choices.join('|');
 		}
 
 		sessionStorage.setItem("mem-keyboard", keysString);
@@ -102,15 +129,24 @@ if (screenKeyboard) {
 		if (!keysString) {keysString = ""};
 	}
 
-  keys = keysString.split('');
+	if (!isMCh) {
+	  keys = keysString.split('');
+	} else {
+	  keys = keysString.split('|');
+		screenKeyboard.innerHTML = '';
+	}
   keys.reverse().forEach((key)=>{
     const keyButton = document.createElement("div");
     keyButton.innerText = key;
     keyButton.classList.add('membtn');
-    if (key === ' ' || key === '　') {keyButton.classList.add('space')}
+    if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
+    if (isMCh && key === hintAnswer) {keyButton.classList.add('correct')}
     screenKeyboard.prepend(keyButton);
   })
 }
+
+
+
 
 /*keyboard key functions*/
 keyboardButtons = document.querySelectorAll('#scr-keyboard > *');
@@ -164,8 +200,11 @@ if (isFrontSide) {
 			btn.onclick = typeHint;
 		} else {
 			btn.onclick = ()=>{
-			typeKey(btn.innerHTML);
-			btn.classList.contains('mchoice') ? flipToBack() : {};
+				typeKey(btn.innerHTML);
+				if (isMCh) {
+					btn.classList.add('pressed');
+					flipToBack();
+				};
 			};
 		}
 	})
