@@ -1,5 +1,4 @@
 <script>
-
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);

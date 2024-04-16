@@ -5,6 +5,7 @@ isFrontSide = !wrap;
 </script>
 
 <script>
+//determine input type
 isMCh = !!document.querySelector('.card-content.mch');
 </script>
 
@@ -132,7 +133,7 @@ if (screenKeyboard) {
 	if (!isMCh) {
 	  keys = keysString.split('');
 	} else {
-	  keys = keysString.split('|');
+		keys = keysString.split('|');
 		screenKeyboard.innerHTML = '';
 	}
   keys.reverse().forEach((key)=>{
@@ -175,8 +176,11 @@ function typeHint() {
 	const correctLength = lengthOfCommonPart(typeAns.value, hintAnswer);
 	if (correctLength < hintAnswer.length) {
 		typeAns.value = hintAnswer.slice(0, correctLength + 1);
+
 		androidSave();
-		typeAns.focus();
+		if (platform === 'desk') {
+			typeAns.focus();
+		}
 	} else {
 		flipToBack();
 	}
@@ -192,6 +196,9 @@ function typeKey(keyContent) {
 	
 	androidSave();
 	typeAns.focus();
+	if (platform !== 'desk') {
+		typeAns.blur();
+	}
 }
 
 if (isFrontSide) {
