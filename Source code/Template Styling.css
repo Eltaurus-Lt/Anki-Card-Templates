@@ -1,4 +1,4 @@
-/*	v2.81	 */
+/*	v3.32 */
 /* 
 		Card template by Eltaurus:
 			GitHub: github.com/Eltaurus-Lt
@@ -71,6 +71,11 @@ button#mem-flip {
   box-sizing: border-box;
 }
 
+setting,
+.off {
+	display: none !important;
+}
+
 body,
 div code#typeans {
   font-family: "Open Sans", "Meiryo", sans-serif, sans-serif !important;
@@ -141,6 +146,42 @@ body {
   padding-top: 0rem;
 }
 
+/* buttons */
+.membtn {
+  cursor: pointer;
+  
+  --button-color: var(--mem-bg);
+  --button-border: var(--mem-element-bg);
+
+  border-radius: 1rem;
+  border: var(--button-border) solid var(--mem-border-width);
+  background: var(--button-color);
+
+  --elevation: 4px;
+  box-shadow: var(--button-border) 0 var(--elevation) 0;
+  transform: translateY(calc(4px - var(--elevation)));
+
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.membtn::selection {
+  background: transparent; 
+}
+.membtn:hover {
+  --elevation: 6px;
+}
+.membtn:active {
+  --elevation: 0px;
+}
+
+.frontside #scr-keyboard .membtn:hover,
+.frontside #scr-keyboard .membtn:active {
+  --elevation: 4px;
+}
 
 /* ーーーーーーーー FRONTSIDE BASIC ーーーーーーーー */
 .card-content.front {
@@ -531,6 +572,44 @@ svg.playImage path {
   d: path("M34.814 15.727C34.339 16.079 33.845 16.446 33.955 17.481C34.003 17.643 34.055 17.831 34.112 18.036L34.112 18.036L34.112 18.037L34.112 18.037C34.26 18.573 34.442 19.231 34.672 19.873C35.023 20.857 35.434 21.017 36.48 20.683C36.765 20.592 37.042 20.473 37.311 20.343C41.998 18.075 46.684 15.808 51.366 13.532L51.679 13.38C53.511 12.489 55.344 11.599 57.156 10.671C58.279 10.096 58.361 9.828 57.968 8.703C57.751 8.08 57.518 7.462 57.286 6.844L57.285 6.843L57.171 6.539C57.046 6.207 56.923 5.874 56.8 5.541L56.8 5.541C56.472 4.654 56.144 3.766 55.784 2.891C55.268 1.639 54.774 1.514 53.599 2.263C53.471 2.344 53.349 2.435 53.227 2.526L53.227 2.526L53.227 2.526L53.227 2.526C53.157 2.578 53.088 2.63 53.017 2.681C51.682 3.63 50.347 4.579 49.012 5.528C45.87 7.76 42.728 9.993 39.592 12.232C37.989 13.376 36.406 14.546 34.825 15.719L34.814 15.727ZM28.029 49.547L28.029 49.547L28.029 49.547C28.011 49.427 27.994 49.305 27.978 49.181C28.065 48.363 27.937 47.555 27.807 46.742L27.807 46.742C27.728 46.245 27.649 45.747 27.618 45.243C27.469 42.773 27.273 40.306 27.063 37.84C26.956 36.598 26.836 35.357 26.717 34.116L26.717 34.116L26.717 34.116C26.569 32.59 26.422 31.064 26.3 29.535C26.091 26.917 25.898 24.297 25.706 21.677L25.706 21.676C25.567 19.779 25.428 17.882 25.282 15.986C25.241 15.446 25.172 14.891 25.003 14.382C24.595 13.151 23.621 12.859 22.655 13.713C21.606 14.639 20.597 15.611 19.588 16.583L19.588 16.583L19.587 16.584C19.387 16.777 19.187 16.969 18.987 17.162C17.496 18.592 16.01 20.027 14.523 21.462L14.523 21.463C13.723 22.235 12.922 23.008 12.121 23.78L12.116 23.786C11.815 24.076 11.514 24.366 11.055 24.378C10.106 24.404 9.158 24.433 8.209 24.462L8.209 24.462L8.208 24.462C6.183 24.524 4.157 24.586 2.131 24.614C0.331 24.64 -0.136 25.033 0.032 26.868C0.094 27.55 0.121 28.23 0.147 28.911C0.163 29.315 0.179 29.719 0.202 30.123L0.231 30.618L0.231 30.618C0.49 35.097 0.748 39.576 1.08 44.049C1.233 46.111 1.894 46.573 3.903 46.198C6.092 45.788 8.272 45.326 10.452 44.865L10.452 44.865L10.453 44.864L10.912 44.767C12.06 44.524 13.088 44.594 14.158 45.246C16.527 46.692 18.929 48.082 21.33 49.473L21.331 49.474C22.241 50 23.151 50.527 24.058 51.057C24.207 51.143 24.354 51.233 24.501 51.322L24.501 51.322L24.501 51.322C24.866 51.544 25.232 51.766 25.616 51.945C27.25 52.705 28.209 52.062 28.115 50.288C28.102 50.043 28.066 49.8 28.029 49.547ZM60.769 53.142C60.753 53.138 60.733 53.132 60.712 53.126C60.546 53.079 60.228 52.99 59.921 52.874C53.139 50.312 46.36 47.746 39.581 45.18C39.357 45.095 39.133 45.007 38.916 44.907C37.765 44.378 37.622 44.125 38.016 43.029C38.29 42.263 38.615 41.51 38.98 40.78C39.439 39.864 39.791 39.722 40.872 40.029C42.663 40.538 44.445 41.075 46.22 41.63C49.874 42.773 53.525 43.923 57.176 45.073C58.79 45.581 60.403 46.089 62.017 46.597C62.114 46.627 62.212 46.654 62.309 46.681C62.443 46.718 62.577 46.755 62.708 46.801C64.072 47.28 64.207 47.521 63.795 48.843C63.431 50.007 63.058 51.169 62.661 52.324C62.422 53.019 61.915 53.355 60.809 53.154C60.799 53.151 60.786 53.147 60.769 53.142ZM38.356 27.663C37.022 27.96 36.792 28.319 36.859 30.211C36.873 30.322 36.888 30.454 36.904 30.602C36.948 30.992 37.003 31.488 37.095 31.977C37.301 33.065 37.505 33.257 38.517 33.212C39.287 33.178 40.057 33.065 40.821 32.943C46.044 32.104 51.267 31.259 56.489 30.405C58.073 30.146 59.657 29.876 61.233 29.569C63.16 29.193 63.251 29.017 62.817 26.918C62.746 26.578 62.668 26.239 62.589 25.901C62.541 25.692 62.493 25.482 62.446 25.273L62.445 25.269C61.827 22.487 61.821 22.46 59.105 23.057C53.366 24.318 47.63 25.597 41.894 26.875C40.714 27.138 39.535 27.401 38.356 27.663Z");
 }
 
+/* ーーーーーーーーーー IMAGES ーーーーーーーーーー */
+
+.mem-question img {
+    border: 0px;
+    margin: 1rem auto;
+    min-height: 10rem;
+    min-width: 10rem;
+    max-height: calc(21.5rem);
+    max-width: calc(21.5rem);
+    width: 100%;
+    height: 100%;
+}
+
+.mem-question:has(img) {
+	margin: 0;
+}
+
+.mem-field :is(h2, h3, h4) img {
+    border-radius: 0.5rem;
+    margin: 0px;
+    max-width: 16rem;
+    width: 100%;
+}
+
+MCQ img {
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.front-extra img {
+	max-height: 1.5em;
+}
+.front-extra:has(img) {
+	display: none !important;
+}
+
 /* ーーーーーーー Spellcheck highlights ーーーーーーー */
 #spellcheck {
   font-size: 14px;
@@ -560,4 +639,183 @@ svg.playImage path {
 } 
 #spellcheck .typeMissed {
   background: #d4e8bc;
+}
+
+
+/* ーーーーーーー ON-SCREEN KEYBOARD ーーーーーーー */
+#scr-keyboard {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--mem-input-text0);
+}
+@media (min-width: 33.25rem) {
+	#scr-keyboard {
+  	width: 95%;
+	}
+}
+
+@media (min-width: 53.25rem) {
+	#scr-keyboard {
+  	width: 90%;
+	}
+}
+
+#scr-keyboard > * {
+  margin: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  
+  font-size: 1.5rem;
+  line-height: calc(3rem - 2 * var(--mem-border-width));
+  text-align: center;
+  vertical-align: baseline;
+}
+#scr-keyboard.large > * {
+  width: 4rem;
+  height: 4rem;
+  
+  font-size: 2.25rem;
+  line-height: calc(4rem - 2 * var(--mem-border-width));
+}
+
+#scr-keyboard > *.space {
+  width: 7rem;
+}
+#scr-keyboard.large > *.space {
+  width: 9rem;
+}
+#card-container[data-input="typing"] #scr-keyboard.no-keyboard {
+  display: none;
+}
+
+#HintButton {
+  font-size: 1.125rem;
+  font-weight: 700;
+  width: 7rem;
+  
+  padding: 0 1rem;
+  width: max-content;
+  margin-left: 2rem;
+}
+#scr-keyboard.large #HintButton {
+ font-size: 1.25rem;
+ width: 7rem;
+  
+ padding: 0 1.5rem;
+ width: max-content;
+}
+
+#HintButton svg {
+  height: 1em;
+  width: 1em;
+  vertical-align: baseline;
+  margin-right: 1rem;
+  margin-top: -0.5rem;
+}
+
+#HintButton svg path {
+	fill: currentcolor;
+	d: path("M6.113 4.508c-.324-.892-.606-1.643-1.648-2.014.865-.54 1.18-1.296 1.448-1.937.083-.2.162-.39.252-.557.064.147.125.31.188.479.26.698.563 1.51 1.333 1.775-.863.658-1.24 1.315-1.573 2.254Zm2.37 2.702c.492.478 1.005.936 1.537 1.37.694-.851 2.16-2.522 2.16-2.522s-1.08-.948-1.676-1.34c-.216.171-2.129 2.387-2.021 2.492Zm2.1-3.379c.643.22 1.187.638 1.688 1.105.209.194.41.397.609.598.35.353.04.95-.23 1.322-.367.505-5.307 6.553-7.8 9.606l-1.144 1.4c-.198.243-.47.127-.715-.058l-1.618-1.225a1.407 1.407 0 0 0-.21-.13c-.102-.055-.168-.09-.275-.274-.165-.283-.204-.624.006-.868.22-.257 1.05-1.326 2.128-2.717 2.645-3.41 6.79-8.754 7.154-8.817a.835.835 0 0 1 .407.058ZM4.636 4.868c-.063.118-.116.26-.17.408-.128.343-.267.717-.576.893.442.312.63.734.8 1.212.112-.525.347-1.041.77-1.276-.378-.137-.53-.526-.667-.877-.051-.13-.1-.254-.157-.36Zm-2.1-.478c-.055.148-.108.29-.171.408-.057-.105-.106-.23-.157-.36-.137-.351-.29-.74-.667-.877.423-.234.658-.751.769-1.276.17.478.359.9.8 1.212-.308.176-.447.55-.574.893Z");
+}
+
+/* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
+
+.card-content.mch #scr-keyboard {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: grid;
+  
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 38.25rem) {
+  .card-content.mch #scr-keyboard {
+    gap: 1rem;
+  }
+}
+@media (min-width: 23.25rem) {
+  .card-content.mch #scr-keyboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card-content.mch .mem-typing {
+  display: none;
+  opacity: .2;
+}
+.card-content.mch input#typeans {
+  pointer-events: none;
+}
+
+.card-content.mch #scr-keyboard > * {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  padding: 1rem;
+  padding-top: clamp(1rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
+/*   border-radius: 1rem; */
+  font-weight: 600;
+  
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.card-content.mch #scr-keyboard.large > * {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+@media (min-width: 33.25rem) {
+  .card-content.mch #scr-keyboard > * {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+  .card-content.mch #scr-keyboard {
+    list-style-type: none;
+    counter-reset: choice-key 0;
+  }
+  .card-content.mch #scr-keyboard > * {
+    counter-increment: choice-key 1;
+  }
+  .card-content.mch #scr-keyboard > *:before {
+    content: counter(choice-key);
+
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: calc(50% - 0.75rem);
+    left: 1rem;
+
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    background-color: var(--mem-text);
+    border-radius: 0.25rem;
+    color: var(--button-color);
+  }
+}
+
+.frontside #scr-keyboard .membtn.correct {
+    color: rgb(1, 65, 53) !important;
+    --button-border: rgb(0, 167, 120);
+    --mem-text: rgb(0, 167, 120);
+    --button-color: rgb(93, 231, 192);
+}
+
+.frontside #scr-keyboard .membtn.pressed:not(.correct) {
+    color: rgb(109, 0, 9) !important;
+    --button-border: rgb(177, 48, 57);
+    --mem-text: rgb(177, 48, 57);
+    --button-color: rgb(255, 191, 188);
+}
+
+#scr-keyboard .membtn.pressed {
+  --elevation: 0px !important;
 }
