@@ -1,4 +1,4 @@
-/*	v3.3 */
+/*	v3.32 */
 /* 
 		Card template by Eltaurus:
 			GitHub: github.com/Eltaurus-Lt
@@ -71,8 +71,9 @@ button#mem-flip {
   box-sizing: border-box;
 }
 
-setting {
-	display: none;
+setting,
+.off {
+	display: none !important;
 }
 
 body,
@@ -588,8 +589,7 @@ svg.playImage path {
 	margin: 0;
 }
 
-.mem-field h2 img,
-.mem-field h3 img {
+.mem-field :is(h2, h3, h4) img {
     border-radius: 0.5rem;
     margin: 0px;
     max-width: 16rem;
@@ -601,6 +601,13 @@ MCQ img {
     max-width: 200px;
     object-fit: contain;
     width: 100%;
+}
+
+.front-extra img {
+	max-height: 1.5em;
+}
+.front-extra:has(img) {
+	display: none !important;
 }
 
 /* ーーーーーーー Spellcheck highlights ーーーーーーー */
