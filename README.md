@@ -2,8 +2,8 @@
 
 ## Memrise
 
-This template emulates the Memrise interface for Anki cards. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **images** and **audio** as questions (with animated buttons), **on-screen keyboard** and the **hint button**. It works on **desktop** as well as in **mobile app***:
-
+This template emulates the Memrise interface for Anki cards. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **images** and **audio** as questions (fully animated buttons), **on-screen keyboard** with the **hint button**, and more. It works on **desktop** as well as in **mobile app***:
+<!-- fuzzy answer matching, spelling corrections, tab navigation | timers, mems... -->
 <sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
 
 <p align="middle">
@@ -32,14 +32,22 @@ This template emulates the Memrise interface for Anki cards. The functionality i
 This template does not use any of the original Memrise code and instead is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This also helps avoid many visual bugs present in the original Memrise layout:
 <details>
 <summary>Anki Cards vs Memrise</summary>
-  - Elements jumping on answer submission
+1. Elements jumping on answer submission
 
 ![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 
-- Cropped fonts and blurring of audio icons on hover
+2. Cropped fonts and blurring of audio icons on hover
 <p align="middle">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
 </p>
+
+3. Buttons respond to clicks:
+4. Better character centering on the keys (baseline instead of middle of the bounding box):
+5. No aliasing artifacts in the corners of the buttons:
+6. The pressed button stays pressed instead of jittering back:
+7. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+8. Number labels are better centered:
+9. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
 </details>
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
@@ -63,6 +71,21 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 🚧
 The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds `Memrise Templates (Lτ) v2.3` Note Type, which can then be used to create new cards, change Note Type of existing ones, or import external spreadsheets.
 <br><sub>Both, the deck and the single card in it, which are imported with the Note Type, serve only as its holders and can be deleted right away.</sub>
+
+- Memrise vs Anki
+  -  Note vs Card
+  -  Note Type settings = course settings | Card Type settings = level settings)
+- Adding Note Type
+- Adding Card Type
+  - text and labels
+  - changing question | converting to Audio/image
+  - changing answer | converting to MCh
+  - conditions
+- Editing Note Fields (Memrise columns)
+  - Adding (New {{Extra}} | {{Notes}})
+  - Renaming 
+- keyboard
+- classes: off | memblob | large
 
 ### Updating
 
