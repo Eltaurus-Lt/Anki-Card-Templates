@@ -36,14 +36,15 @@ This template does not use any of the original Memrise code and is written from 
 
 
 ><details>
-><summary><b>List of corrected Memrise issues</b></summary>
->
+><summary><b>Memrise vs Anki template</b></summary>
+> 
 >> All screenshots and recordings are marked by the respective logos:
 >> 
 >> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
 >> 
 >> ![mem_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/f5fd82ba-c612-44a5-8f34-e10c946d680f) - **Memrise**
 >&nbsp;
+> ### List of corrected Memrise issues:  
 > 
 > 1. Elements jumping on answer submission
 > 
