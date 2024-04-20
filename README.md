@@ -30,7 +30,7 @@ This card template replicates the Memrise interface to make Anki more accessible
 </details>
 
 This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs present in the original Memrise layout:
-<details>
+    <details>
     <summary>Anki Cards vs Memrise</summary>
     1. Elements jumping on answer submission
 
