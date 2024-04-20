@@ -2,7 +2,9 @@
 
 ## Memrise
 
-This template emulates the Memrise interface for Anki cards, including automatic answer grading, fuzzy string matching, animated audio buttons, and the extra info screen shown after wrong answers:
+This template emulates the Memrise interface for Anki cards. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **images** and **audio** as questions (with animated buttons), **on-screen keyboard** and the **hint button**. It works on **desktop** as well as in **mobile app***:
+
+<sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
 
 <p align="middle">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%">
@@ -42,14 +44,19 @@ This template does not use any of the original Memrise code and instead is writt
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
 
-### Quick start
+### 💡 Quick start
 
-1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
-2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards, or [importing courses from Memrise](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki)
-(Optional) for enabling Multiple-Choice cards
-3. Instal the support addon in desktop Anki:
-    `Tools` -> `Add-ons` -> `Get Add-ons` -> Paste "884199977" -> `Ok` -> Restart Anki
-4. Open `Browse` window -> Select Cards in the table -> Right Click -> `Fill Choices` -> `Ok`
+>---  
+>1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
+>2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards, or [importing courses from Memrise](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki)
+>
+>Enabling Multiple-Choice cards (Optional):
+>
+>3. Instal the support addon in desktop Anki:
+     `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
+>4. Open **`Browse`** window → Select Cards in the table -> Right Click 🖱️ → `Fill Choices` → `Ok`
+>5. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
+>---
 
 ### Customization
 
