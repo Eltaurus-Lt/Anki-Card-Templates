@@ -2,7 +2,7 @@
 
 ## Memrise
 
-This template emulates the Memrise interface for Anki cards. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **images** and **audio** as questions (fully animated buttons), **on-screen keyboard** with the **hint button**, and more. It works on **desktop** as well as in **mobile app***:
+This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **image** and **audio** cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and more. It works on **desktop** as well as in **mobile app***:
 <!-- fuzzy answer matching, spelling corrections, tab navigation | timers, mems... -->
 <sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
 
@@ -29,26 +29,27 @@ This template emulates the Memrise interface for Anki cards. The functionality i
   🚧
 </details>
 
-This template does not use any of the original Memrise code and instead is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This also helps avoid many visual bugs present in the original Memrise layout:
+This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs present in the original Memrise layout:
 <details>
-<summary>Anki Cards vs Memrise</summary>
-1. Elements jumping on answer submission
+    <summary>Anki Cards vs Memrise</summary>
+    1. Elements jumping on answer submission
 
-![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
+    ![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 
-2. Cropped fonts and blurring of audio icons on hover
-<p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
-</p>
+    2. Cropped fonts 
+    <p align="middle">
+       <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
+    </p>
 
-3. Buttons respond to clicks:
-4. Better character centering on the keys (baseline instead of middle of the bounding box):
-5. No aliasing artifacts in the corners of the buttons:
-6. The pressed button stays pressed instead of jittering back:
-7. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
-8. Number labels are better centered:
-9. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
-</details>
+    3. blurring of audio icons on hover
+    4. Buttons respond to clicks:
+    5. Better character centering on the keys (baseline instead of middle of the bounding box):
+    6. No aliasing artifacts in the corners of the buttons:
+    7. The pressed button stays pressed instead of jittering back:
+    8. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+    9. Number labels are better centered:
+    10. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
+    </details>
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
 
@@ -87,7 +88,7 @@ The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds 
 - keyboard
 - classes: off | memblob | large
 
-### Updating
+- Converting Note type
 
 If you have cards in your collection, that are using an older version of the template, and you want to upgrade them to the latest one, after downloading and importing the current `.akpg` deck follow these steps:
 
@@ -100,7 +101,7 @@ If you have cards in your collection, that are using an older version of the tem
 7. Check the mapping of the Current fields to the New ones (if you didn't change anything in your template, all names should be the same on both sides)
 8. Press `Save`
 
-<sub>Same steps can be taken to convert existing cards from any other Note Type to this Memrise Template</sub>
+<sub>Same steps can be taken to update the version of the Memrise Template</sub>
 
 ### Extra
 
