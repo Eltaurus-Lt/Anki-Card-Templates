@@ -21,16 +21,15 @@ This template emulates the Memrise interface for Anki cards, including automatic
 
 &nbsp;  
 
-### Usage
 
 <details>
 <summary>More comparison screenshots</summary>
   🚧
 </details>
 
-This template does not use any of the original Memrise code and instead is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This also helps avoiding many visual bugs present in the original Memrise layout:
+This template does not use any of the original Memrise code and instead is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This also helps avoid many visual bugs present in the original Memrise layout:
 <details>
-<summary>List</summary>
+<summary>Anki Cards vs Memrise</summary>
   - Elements jumping on answer submission
 
 ![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
