@@ -30,26 +30,27 @@ This card template replicates the Memrise interface to make Anki more accessible
 </details>
 
 This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs present in the original Memrise layout:
-    <details>
-    <summary>Anki Cards vs Memrise</summary>
-    1. Elements jumping on answer submission
 
-    ![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
+<details>
+<summary>Full list of improvements</summary>
+1. Elements jumping on answer submission
 
-    2. Cropped fonts 
-    <p align="middle">
-       <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
-    </p>
+![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 
-    3. blurring of audio icons on hover
-    4. Buttons respond to clicks:
-    5. Better character centering on the keys (baseline instead of middle of the bounding box):
-    6. No aliasing artifacts in the corners of the buttons:
-    7. The pressed button stays pressed instead of jittering back:
-    8. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
-    9. Number labels are better centered:
-    10. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
-    </details>
+2. Cropped fonts 
+<p align="middle">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
+</p>
+
+3. blurring of audio icons on hover
+4. Buttons respond to clicks:
+5. Better character centering on the keys (baseline instead of middle of the bounding box):
+6. No aliasing artifacts in the corners of the buttons:
+7. The pressed button stays pressed instead of jittering back:
+8. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+9. Number labels are better centered:
+10. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
+</details>
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
 
