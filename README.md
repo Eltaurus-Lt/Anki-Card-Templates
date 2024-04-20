@@ -29,28 +29,79 @@ This card template replicates the Memrise interface to make Anki more accessible
   🚧
 </details>
 
-This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs present in the original Memrise layout:
+This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs and present in the original Memrise layout:
 
-<details>
-<summary>Full list of improvements</summary>
-1. Elements jumping on answer submission
 
-![jitter](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 
-2. Cropped fonts 
-<p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bc1f512-f796-45a4-a108-0dc117a6e200">
-</p>
 
-3. blurring of audio icons on hover
-4. Buttons respond to clicks:
-5. Better character centering on the keys (baseline instead of middle of the bounding box):
-6. No aliasing artifacts in the corners of the buttons:
-7. The pressed button stays pressed instead of jittering back:
-8. The color scheme is consistent with the overall style (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
-9. Number labels are better centered:
-10. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
-</details>
+
+><details>
+><summary><b>List of corrected Memrise issues</b></summary>
+>
+>> All screenshots and recordings are marked by the respective logos:
+>> 
+>> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
+>> 
+>> ![mem_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/f5fd82ba-c612-44a5-8f34-e10c946d680f) - **Memrise**
+>&nbsp;
+> 
+> 1. Elements jumping on answer submission
+> 
+> ![Submit jitter (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
+>&nbsp;
+>
+> 2. Cropped fonts 
+>
+> ![Fonts cropping (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bec6453-353b-4c5c-9cef-b34592bb9457)
+>&nbsp;
+>
+>3. Audio icons blurring on hover
+>
+> ![Audio blurring (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7f04ce9e-3ec7-46f6-a418-21354b962c49)
+>&nbsp;
+> 
+> 4. Added keyboard navigation for audio buttons
+>
+> ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
+>&nbsp;
+> 
+> 5. On-screen keyboard buttons response to clicks:
+>
+> ![Button clicks (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/954d1852-ca73-43b3-b188-5cc3ec701305)
+>&nbsp;
+>
+> 6. Keyboard character alignment improved (text baseline instead of bounding box center):
+>
+> ![Keys centering (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/107f4c4f-7a81-4d77-b33b-f76fee53e213)
+>&nbsp;
+>
+> 7. Aliasing artifacts in the corners of buttons:
+>
+> ![Aliasing (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/85f11f4e-c6ee-429d-b462-149b9d6c907b)
+>&nbsp;
+>
+> 8. The pressed multiple-choice button stays pressed instead of jittering back:
+> 
+> ![Multiple-choice click (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/74e1c2f1-d4ae-4e13-9210-bc7b33705654)
+>&nbsp;
+>
+> 9. Color scheme is consistensy (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+>
+> ![Color scheme (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/1ff3e975-98b7-4267-b492-eecbaa75f149)
+>
+> ![Color scheme (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99f50d23-2d68-4715-b8af-846747b7a07c)
+>&nbsp;
+>
+> 10. Multiple-choice number labels centering:
+> 
+> ![Multiple-Choice labels (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/be7b7a63-71e5-429e-87f5-e54e34ba0c56)
+>&nbsp;
+>
+> 11. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
+>
+> ![Choice is not an option (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/532d3665-5dce-4614-a119-9b8908ab3c46)
+>
+></details>
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
 
@@ -70,7 +121,8 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 ### Customization
 
-🚧
+<details>
+<summary>🚧</summary>
 The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds `Memrise Templates (Lτ) v2.3` Note Type, which can then be used to create new cards, change Note Type of existing ones, or import external spreadsheets.
 <br><sub>Both, the deck and the single card in it, which are imported with the Note Type, serve only as its holders and can be deleted right away.</sub>
 
@@ -103,6 +155,7 @@ If you have cards in your collection, that are using an older version of the tem
 8. Press `Save`
 
 <sub>Same steps can be taken to update the version of the Memrise Template</sub>
+</details>
 
 ### Extra
 
