@@ -20,10 +20,12 @@ This card template replicates the Memrise interface to make Anki more accessible
 </p>
 
 &nbsp;  
-
+<details>
+<summary>More screenshots</summary>
+</details>
 
 <details>
-<summary>More comparison screenshots</summary>
+<summary>Memrise vs Anki template comparison</summary>
  <p align="middle">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
@@ -40,14 +42,12 @@ This card template replicates the Memrise interface to make Anki more accessible
 </p>
 </details>
 
-This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs and present in the original Memrise layout:
+### Corrections and changes:  
 
-
-
-
+This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also helps avoid many visual bugs and other issues present in the original Memrise layout:
 
 ><details>
-><summary><b>Memrise vs Anki template</b></summary>
+><summary><b>List of fixed issues</b></summary>
 > 
 >> All screenshots and recordings are marked by the respective logos:
 >> 
@@ -55,7 +55,6 @@ This template does not use any of the original Memrise code and is written from 
 >> 
 >> ![mem_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/f5fd82ba-c612-44a5-8f34-e10c946d680f) - **Memrise**
 >&nbsp;
-> ### List of corrected Memrise issues:  
 > 
 > 1. Elements jumping on answer submission
 > 
