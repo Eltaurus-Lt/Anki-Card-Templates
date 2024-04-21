@@ -127,7 +127,7 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 >---  
 >1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
->2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards with **`Add`**, or importing a spreadsheet (`File`→``Import [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
+>2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards with **`Add`**, or importing a spreadsheet (`File`→`Import` [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
 >
 >Enabling Multiple-Choice cards (Optional):
 >
