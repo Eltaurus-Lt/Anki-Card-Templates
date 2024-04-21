@@ -7,10 +7,17 @@ This card template replicates the Memrise interface to make Anki more accessible
 <sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
 
  <p align="middle">
-  <img src="https://private-user-images.githubusercontent.com/93875472/324230346-822a733c-ac84-4a16-8b86-f0c121b4dc67.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTM2ODQ3NjgsIm5iZiI6MTcxMzY4NDQ2OCwicGF0aCI6Ii85Mzg3NTQ3Mi8zMjQyMzAzNDYtODIyYTczM2MtYWM4NC00YTE2LThiODYtZjBjMTIxYjRkYzY3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDIxVDA3Mjc0OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdkNmQxYTU3Zjg5N2M1MTM3ZmRlYmI0MGVmMjFkNzEzZjVmYzA3MWFhZGNlMDg2MTI0M2RmMTYyN2IzMTc2MmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.Jj-mhOkbzKP6zNH1cJdC-EJ4xgJv8LtPI0hQyvcNozw" title="Anki" style="width: 43%">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
+  <img src="https://i.imgur.com/CdhGgQk.png" title="Anki Desktop" style="width: 61%">
+  <img src="https://i.imgur.com/E0Hr9Yb.png" title="AnkiDroid" style="width: 27%">
 </p>
-
+ <p align="middle">
+  <img src="https://i.imgur.com/peG7QxX.png" title="Anki Desktop" style="width: 61%">
+  <img src="https://i.imgur.com/ZCAJ6KG.png" title="AnkiDroid" style="width: 27%">
+</p>
+ <p align="middle">
+  <img src="https://i.imgur.com/xJA9F5u.png" title="Anki Desktop" style="width: 61%">
+  <img src="https://i.imgur.com/ixCkhYQ.png" title="AnkiDroid" style="width: 27%">
+</p>
 
 &nbsp;  
 
