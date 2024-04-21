@@ -4,7 +4,7 @@
 
 This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **image** and **audio** cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and more. It works on **desktop** as well as in **mobile app***:
 <!-- fuzzy answer matching, spelling corrections, tab navigation | timers, mems... -->
-<sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
+<sup>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sup>
 
  <p align="middle">
   <img src="https://i.imgur.com/CdhGgQk.png" title="Anki Desktop" style="width: 61%">
