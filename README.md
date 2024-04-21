@@ -6,7 +6,20 @@ This card template replicates the Memrise interface to make Anki more accessible
 <!-- fuzzy answer matching, spelling corrections, tab navigation | timers, mems... -->
 <sub>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sub>
 
-<p align="middle">
+![desk1](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/822a733c-ac84-4a16-8b86-f0c121b4dc67)
+![and1](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/b6877ffd-e9c6-45eb-9c31-32afe443348d)
+![desk2](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/e5797c48-01b7-40a4-bd27-47ab4999a4fd)
+![and2](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/87ea2dec-0bbb-4056-9b7b-de4a9e5b36bb)
+![desk3](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/b67a861f-2aba-45f0-befd-14f0aa14ce31)
+![and3](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/5e912b59-38ef-4e38-9ae5-a6bbe52e1e65)
+
+
+&nbsp;  
+
+
+<details>
+<summary>More comparison screenshots</summary>
+ <p align="middle">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
 </p>
@@ -20,13 +33,6 @@ This card template replicates the Memrise interface to make Anki more accessible
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/0aca8cd7-260c-4049-9bc5-1efe9a24e915" title="Anki" style="width: 43%">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/c7446347-0b12-427d-97b8-bdc0b899a715" title="Memrise" style="width: 48%">
 </p>
-
-&nbsp;  
-
-
-<details>
-<summary>More comparison screenshots</summary>
-  🚧
 </details>
 
 This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization), which also helps avoid many visual bugs and present in the original Memrise layout:
