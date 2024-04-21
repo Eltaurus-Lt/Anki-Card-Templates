@@ -127,13 +127,13 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 >---  
 >1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
->2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards with **`Add`**, or importing a spreadsheet (`File`→`Import` [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
+>2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards (click **`Add`** → …), or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
 >
 >Enabling Multiple-Choice cards (Optional):
 >
 >3. Instal the support addon in desktop Anki:
      `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->4. Open **`Browse`** window → Select Cards in the table -> Right Click 🖱️ → `Fill Choices` → `Ok`
+>4. Open **`Browse`** window → Select Cards in the table → Right Click 🖱️ → `Fill Choices` → `Ok`
 >5. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
 >---
 
