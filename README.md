@@ -103,7 +103,7 @@ This template does not use any of the original Memrise code and is written from 
 > ![Multiple-choice click (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/74e1c2f1-d4ae-4e13-9210-bc7b33705654)
 >&nbsp;
 >
-> 9. Color scheme is consistensy (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+> 9. Color scheme is consistent (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
 >
 > ![Color scheme (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/1ff3e975-98b7-4267-b492-eecbaa75f149)
 >
@@ -127,7 +127,7 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 >---  
 >1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
->2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards, or [importing courses from Memrise](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki)
+>2. Use `Memrise (Lτ) Preset [Translation+Listenting | Typing+MultipleChoice] v3.32` Note Type when making new cards with **`Add`**, or importing a spreadsheet (`File`→``Import [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
 >
 >Enabling Multiple-Choice cards (Optional):
 >
