@@ -134,7 +134,7 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 >
 >3. Instal the support addon in desktop Anki:
      `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->4. Open **`Browse`** window → Select Cards in the table → Right Click 🖱️ → `Fill Choices` → `Ok`
+>4. Open **`Browse`** window → Select Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
 >5. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
 >---
 
@@ -178,7 +178,7 @@ If you have cards in your collection, that are using an older version of the tem
 
 ### Extra
 
-The template can be downloaded either from this page or from [AnkiWeb](https://ankiweb.net/shared/info/510199145)
+<!-- [AnkiWeb](https://ankiweb.net/shared/info/510199145) -->
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
 
