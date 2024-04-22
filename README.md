@@ -7,16 +7,15 @@ This card template replicates the Memrise interface to make Anki more accessible
 <sup>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sup>
 
  <p align="middle">
-  <img src="https://i.imgur.com/CdhGgQk.png" title="Anki Desktop" style="width: 61%">
-  <img src="https://i.imgur.com/E0Hr9Yb.png" title="AnkiDroid" style="width: 27%">
+  <img src="https://i.imgur.com/ZCAJ6KG.png" title="AnkiDroid" style="width: 16%">
+  <img src="https://i.imgur.com/CdhGgQk.png" title="Anki Desktop" style="width: 36%">
+  <img src="https://i.imgur.com/peG7QxX.png" title="Anki Desktop" style="width: 36%">
 </p>
- <p align="middle">
-  <img src="https://i.imgur.com/peG7QxX.png" title="Anki Desktop" style="width: 61%">
-  <img src="https://i.imgur.com/ZCAJ6KG.png" title="AnkiDroid" style="width: 27%">
-</p>
- <p align="middle">
-  <img src="https://i.imgur.com/xJA9F5u.png" title="Anki Desktop" style="width: 61%">
-  <img src="https://i.imgur.com/ixCkhYQ.png" title="AnkiDroid" style="width: 27%">
+<p align="middle">
+ <img src="https://i.imgur.com/E0Hr9Yb.png" title="AnkiDroid" style="width: 16%">
+ <img src="https://i.imgur.com/xJA9F5u.png" title="Anki Desktop" style="width: 36%">
+ <img src="https://i.imgur.com/E8lOr98.png" title="AnkiDroid" style="width: 16%">
+ <img src="https://i.imgur.com/ixCkhYQ.png" title="AnkiDroid" style="width: 16%">
 </p>
 
 &nbsp;  
@@ -187,8 +186,9 @@ The template can be used for Memrise courses imported into Anki with [this exten
 ### Support
 
 If you found this template useful, please consider supporting the development by buying a coffee:
+
 <!-- 
 <a href="https://ankiweb.net/shared/info/510199145" target="_blank"><img src="https://i.imgur.com/CoCMk2T.png" alt="Rate on AnkiWeb"  style="height: 37px"></a>
 &nbsp;
-<a href="https://www.buymeacoffee.com/eltaurus" target="_blank"><img src="https://i.imgur.com/XQvdocZ.png" alt="Buy me a Coffee"  style="height: 37px"></a>
 -->
+<a href="https://www.buymeacoffee.com/eltaurus" target="_blank"><img src="https://i.imgur.com/XQvdocZ.png" alt="Buy me a Coffee"  style="height: 37px"></a>
