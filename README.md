@@ -163,22 +163,22 @@ The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds 
   - Renaming 
 - keyboard
 - classes: off | memblob | large
+</details>
 
-- Converting Note type
+- Converting from other Note Types
 
-If you have cards in your collection, that are using an older version of the template, and you want to upgrade them to the latest one, after downloading and importing the current `.akpg` deck follow these steps:
+If you have cards in your collection, that were previously created with other templates, and you want to convert them to this one, after downloading and importing the latest `.akpg` deck follow these steps:
 
-1. In your Anki open the Browser by clicking on `Browse` button in the top center menu
+1. In your Anki open the Browser by clicking on **`Browse`** button in the top center menu
 2. In the left tab scroll down and open the `Note Types` category
-3. Click on the older version of `Memrise Template (Lτ) ...` you were using before
+3. Click on the name of a Note Type you want to convert
 4. Click on any of the cards displayed in the table, then press `Ctrl + A` to select all of them
 5. In the top menu go to `Notes` -> `Change Note Type`
-6. In the top right dialog of Notetype conversion select the new version of the Notetype
-7. Check the mapping of the Current fields to the New ones (if you didn't change anything in your template, all names should be the same on both sides)
+6. In the top right dialog of Note Type conversion select the Memrise template you want to use
+7. Check the mapping of the Current fields to the New ones
 8. Press `Save`
 
-<sub>Same steps can be taken to update the version of the Memrise Template</sub>
-</details>
+<sub>Same steps can be taken to update from older versions of the Memrise Template. In that case, fields on the left and on the right in step 7 should be identical.</sub>
 
 ### Extra
 
