@@ -139,7 +139,7 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 >6. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
 >---
 
-If you require any help with this, please feel free to leave a comment in [this Anki Forums thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+If you require any help with this, please feel free to leave a comment in [this Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 Feedback and feature suggestions are also very much appreciated.
 
 ### Customization
