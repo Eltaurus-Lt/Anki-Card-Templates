@@ -118,6 +118,7 @@ This template does not use any of the original Memrise code and is written from 
 >
 > ![Choice is not an option (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/532d3665-5dce-4614-a119-9b8908ab3c46)
 >
+> 12. Audio buttons do not use raster assets, which reduces size, improves render quality on zoom, and keeps the code self-sufficient. Also, icons for audio questions do not scale up to comically large sizes for wide monitors.
 ></details>
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
