@@ -188,4 +188,8 @@ The template can be used for Memrise courses imported into Anki with [this exten
 
 ### Support
 
+If you found this template useful, please consider supporting the development by buying a coffee:
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/eltaurus)
+
 
