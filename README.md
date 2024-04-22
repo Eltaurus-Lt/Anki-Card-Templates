@@ -129,14 +129,18 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 >0. Click the green `Code` button on the top of this page → `Download ZIP` → Unpack the downloaded archive
 >1. Open `Memrise Templates (Lτ) v3.32.apkg` with Anki
 >2. Use `Memrise (Lτ) Preset […] v3.32` Note Type when making new cards (click **`Add`** → …), or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
+>3. For typing on Android: go to the app settings → `Advanced` → `Type answer into the card` → switch **ON**
 >
 >Enabling Multiple-Choice cards (Optional):
 >
->3. Instal the support addon in desktop Anki:
+>4. Instal the support addon in desktop Anki:
      `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->4. Open **`Browse`** window → Select Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
->5. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
+>5. Open **`Browse`** window → Select Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
+>6. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
 >---
+
+If you require any help with this, please feel free to leave a comment in [this Anki Forums thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+Feedback and feature suggestions are also very much appreciated.
 
 ### Customization
 
@@ -182,6 +186,6 @@ If you have cards in your collection, that are using an older version of the tem
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
 
-### Discussion
+### Support
 
-If you have any questions about the template (how to adapt it for a certain course, modify to create reverse cards, make additional extra fields, change default settings, etc.) or simply want to discuss its further development, please feel free to leave a comment in [this Anki Forums thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233) or in the issues section of this repository.
+
