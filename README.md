@@ -180,16 +180,15 @@ If you have cards in your collection, that were previously created with other te
 
 <sub>Same steps can be taken to update from older versions of the Memrise Template. In that case, fields on the left and on the right in step 7 should be identical.</sub>
 
-### Extra
-
-<!-- [AnkiWeb](https://ankiweb.net/shared/info/510199145) -->
+### Downloading courses from Memrise
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
 
 ### Support
 
 If you found this template useful, please consider supporting the development by buying a coffee:
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/eltaurus)
-
-
+<!-- 
+<a href="https://ankiweb.net/shared/info/510199145" target="_blank"><img src="https://i.imgur.com/CoCMk2T.png" alt="Rate on AnkiWeb"  style="height: 37px"></a>
+&nbsp;
+<a href="https://www.buymeacoffee.com/eltaurus" target="_blank"><img src="https://i.imgur.com/XQvdocZ.png" alt="Buy me a Coffee"  style="height: 37px"></a>
+-->
