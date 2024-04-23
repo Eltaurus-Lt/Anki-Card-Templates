@@ -129,7 +129,7 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 ### 💡 Quick start
 
 >---
->0. [Download](https://ankiweb.net/svc/shared/download-deck/510199145?t=eyJvcCI6InNkZCIsImlhdCI6MTcxMzg0MTE2MywianYiOjF9.kgKJ5NbSsjuskiQzLPXFf92TsGEwM5x_nh0eWuflHt4) and open the `Memrise… .apkg` file with Anki
+>1. [Download](https://ankiweb.net/svc/shared/download-deck/510199145?t=eyJvcCI6InNkZCIsImlhdCI6MTcxMzg0MTE2MywianYiOjF9.kgKJ5NbSsjuskiQzLPXFf92TsGEwM5x_nh0eWuflHt4) and open the `Memrise… .apkg` file with Anki
 >2. Use `Memrise (Lτ) Preset […] v3.32` Note Type when making new cards (click **`Add`** → …), or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
 >3. For typing on Android: app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**
 >
