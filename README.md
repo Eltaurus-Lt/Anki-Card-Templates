@@ -189,10 +189,8 @@ The template can be used for Memrise courses imported into Anki with [this exten
 
 ### Support
 
-If you found this template useful, please consider supporting the development by buying a coffee:
+If you found this template useful, please consider supporting the development by rating it on AnkiWeb or buying a coffee:
 
-<!-- 
 <a href="https://ankiweb.net/shared/info/510199145" target="_blank"><img src="https://i.imgur.com/CoCMk2T.png" alt="Rate on AnkiWeb"  style="height: 37px"></a>
 &nbsp;
--->
 <a href="https://www.buymeacoffee.com/eltaurus" target="_blank"><img src="https://i.imgur.com/XQvdocZ.png" alt="Buy me a Coffee"  style="height: 37px"></a>
