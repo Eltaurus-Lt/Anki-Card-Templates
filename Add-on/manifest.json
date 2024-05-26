@@ -1,0 +1,10 @@
+{
+    "package": "Lt-Cards",
+    "name": "Memrise Cards (Lτ)",
+    "ankiweb_id": "884199977",
+    "author": "Eltaurus",
+    "version": "v3.5",
+    "homepage": "https://github.com/Eltaurus-Lt/Anki-Card-Templates",
+    "conflicts": [
+    ]
+}
