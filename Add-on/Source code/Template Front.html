@@ -52,6 +52,16 @@ if (!document.documentElement.classList.contains("mobile")) {
 	//var jsApiContract = { version: "0.0.3", developer: "eltaurus@inbox.lt" };
 	//var api = new AnkiDroidJS(jsApiContract);
 	platform = 'android';
+} else {
+	platform = 'ios';
+}
+
+function storeAnswer(ans) {
+	sessionStorage.setItem("card-answer", ans);
+}
+
+if (isFrontSide) {
+	storeAnswer("");
 }
 </script>
 
@@ -65,10 +75,18 @@ hintButton = document.getElementById('HintButton');
 choicesSetting = document.getElementById('choices');
 
 //const
-if (hintSetting) {hintAnswer = hintSetting.innerText} else {hintAnswer = ""}
+if (hintSetting) {
+	if (isMCh) {
+		hintAnswer = hintSetting.innerHTML;
+	} else {
+		hintAnswer = hintSetting.innerText;
+	}
+} else {
+	hintAnswer = "";
+}
 if (staticKeys) {keysString = staticKeys.innerText} else {keysString = ""}
 if (randomKeys) {fillerString = randomKeys.innerText} else {fillerString = ""}
-if (choicesSetting) {choices = choicesSetting.innerText.split('|').map(s => s.trim())}
+if (choicesSetting) {choices = choicesSetting.innerHTML.split('|').map(s => s.trim())}
 
 if (hintButton) {hintButton.innerHTML = `<svg><path></path></svg>Hint`;}
 </script>
@@ -172,7 +190,11 @@ if (screenKeyboard) {
 	}
   keys.reverse().forEach((key)=>{
     const keyButton = document.createElement("div");
-    keyButton.innerText = key;
+    if (!isMCh) {
+      keyButton.innerText = key;
+    } else {
+      keyButton.innerHTML = key;
+    }
     keyButton.classList.add('membtn');
     if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
     if (isMCh && key === hintAnswer) {keyButton.classList.add('correct')}
@@ -202,16 +224,12 @@ function lengthOfCommonPart(str1, str2) {
 	return i;
 }
 
-function androidSave() {
-	sessionStorage.setItem("android-answer", typeAns.value);
-}
-
 function typeHint() {
 	const correctLength = lengthOfCommonPart(typeAns.value, hintAnswer);
 	if (correctLength < hintAnswer.length) {
 		typeAns.value = hintAnswer.slice(0, correctLength + 1);
 
-		androidSave();
+		storeAnswer(typeAns.value);
 		if (platform === 'desk') {
 			typeAns.focus();
 		}
@@ -228,7 +246,7 @@ function typeKey(keyContent) {
 	typeAns.value = currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd);
 	typeAns.setSelectionRange(cursorStart + 1, cursorStart + 1);
 	
-	androidSave();
+	storeAnswer(typeAns.value);
 	typeAns.focus();
 	if (platform !== 'desk') {
 		typeAns.blur();
@@ -239,19 +257,31 @@ if (isFrontSide) {
 	keyboardButtons.forEach( btn => {
 		if (btn.id === 'HintButton') {
 			btn.onclick = typeHint;
+		} else if (isMCh) {
+			btn.onclick = ()=>{
+				if (btn.classList.contains('pressed')) {
+					storeAnswer("");
+					btn.classList.remove('pressed');
+				} else {
+					storeAnswer(btn.innerHTML);
+					keyboardButtons.forEach((b) => {
+						b.classList.remove('pressed');
+					});
+					btn.classList.add('pressed');
+				}
+				if (platform !== 'ios') {
+					flipToBack();
+				}
+			};
 		} else {
 			btn.onclick = ()=>{
 				typeKey(btn.innerHTML);
-				if (isMCh) {
-					btn.classList.add('pressed');
-					flipToBack();
-				};
 			};
 		}
 	})
 }
 
 if (platform === 'android') {
-	typeAns.addEventListener("input", androidSave);
+	typeAns.addEventListener("input", ()=>{storeAnswer(typeAns.value)});
 }
 </script>
