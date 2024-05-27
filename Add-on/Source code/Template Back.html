@@ -45,24 +45,35 @@ pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random()
 //console.log("pageid: ", pid);
 
 // extract answers
-correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
-typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
+storedAnswer = sessionStorage.getItem("card-answer");
+correctNodes = [];
+if (!isMCh) {
+	correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
+	typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
+	
+	correctAnswerFull = correctNodes.map(e => e.innerText).join('');
+	if (!correctAnswerFull && typeAns) { //typed answer is correct or no typed answer
+		correctAnswerFull = typeAns.innerText;
+	}
+	typedAnswer = typedNodes.map(e => e.innerText).join('');
+	typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map(e => e.innerText).join('');
+	typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
 
-correctAnswerFull = correctNodes.map(e => e.innerText).join('');
-if (!correctAnswerFull && typeAns) { //typed answer is correct or no typed answer
-	correctAnswerFull = typeAns.innerText;
-}
-typedAnswer = typedNodes.map(e => e.innerText).join('');
-typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map(e => e.innerText).join('');
-typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
+	console.log(correctAnswerFull, "|", typedAnswer, "（", typedCorrect, "|", typedErrors, "）"); 
 
-console.log(correctAnswerFull, "|", typedAnswer, "（", typedCorrect, "|", typedErrors, "）"); 
-androidAnswer = sessionStorage.getItem("android-answer");
-if (platform === 'android' && androidAnswer) {
-	typedAnswer = androidAnswer;
-	typeAns.innerHTML = '<span>' + androidAnswer + '</span>';
+	if (platform === 'android' && storedAnswer) {
+		typedAnswer = storedAnswer;
+		typeAns.innerHTML = '<span>' + storedAnswer + '</span>';
+	}
+	document.getElementsByClassName("mem-alert")[0].innerText = typedAnswer;
+} else if (storedAnswer !== null) {
+	typedAnswer = storedAnswer;	
+	console.log('Chosen answer: ', typedAnswer);
+	document.getElementsByClassName("mem-alert")[0].innerHTML = typedAnswer;
+} else {
+	typedAnswer = "#error!";
 }
-document.getElementsByClassName("mem-alert")[0].innerText = typedAnswer;
+
 
 //answer processing
 function rmEnc(s) {
@@ -108,7 +119,19 @@ function cfStrings(sQ, sA) {
 //todo?A (B; C) -> {〃, A B, A C}
 
 // grade answer
-if (cfStrings(correctAnswerFull, typedAnswer)) {
+if (isMCh) {
+	keyboardButtons.forEach( btn => {
+		if (btn.innerHTML === typedAnswer) {
+			btn.classList.add('pressed');
+			if (btn.classList.contains('correct')) {
+				wrap.classList.add('correct');
+			}
+		}
+	})
+	if (!wrap.classList.contains('correct')) {
+		wrap.classList.add('wrong');
+	}
+} else if (cfStrings(correctAnswerFull, typedAnswer)) {
 	wrap.classList.add('correct');
 } else if (correctAnswerFull.split(/[;；]/).map((correctAnswer) => cfStrings(correctAnswer, typedAnswer)).includes(true)) {
 	wrap.classList.add('correct');
@@ -159,14 +182,6 @@ function autorateGood() {
 		console.log("autorated 'good'");
 }
 
-if (isMCh) {
-	keyboardButtons.forEach( btn => {
-		if (btn.innerText === typedAnswer) {
-			btn.classList.add('pressed');
-		}
-	})
-}
-
 
 //Audio buttons animation
 audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
@@ -212,7 +227,7 @@ if (correctNodes.length > 0) {
 	}
 	
 	const spellcheckHighlights = document.getElementById('spellcheck');
-	if (spellcheckHighlights && !isMCh) {
+	if (spellcheckHighlights) {
 		spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
 	}
 }
