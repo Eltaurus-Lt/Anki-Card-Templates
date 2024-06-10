@@ -1,3 +1,4 @@
+//not up to date!
 <script>
 //determine card side
 wrap = document.getElementById('backwrap');

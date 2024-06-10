@@ -1,3 +1,4 @@
+//not up to date!
 <script>
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
