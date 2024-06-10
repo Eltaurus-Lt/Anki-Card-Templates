@@ -823,5 +823,8 @@ svg.playImage path {
 }
 
 #scr-keyboard .membtn.pressed {
-  --elevation: 0px !important;
+    --elevation: 0px !important;
+    --pressed-outline-width: 6px;
+    outline-offset: calc(-1 * (1 * var(--mem-border-width) + var(--pressed-outline-width)));
+    outline: #dbd2bdaa var(--pressed-outline-width) solid;
 }
