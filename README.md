@@ -146,6 +146,22 @@ Feedback and feature suggestions are also very much appreciated.
 
 ### Customization
 
+*Comprehensive instructions will be posted here when ready.*
+
+Meanwhile, you can find tips on various customization aspects in the following posts:
+
+1. [Setting up the on-screen keyboard, creating Multiple-choice cards](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/54?u=eltaurus) ([disabling the on-screen keyboard](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/97?u=eltaurus))
+2. [Adding new fields and more card types (testing directions) per note, customizing displayed field labels](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/31?u=eltaurus) ([brief description of the default fields](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/75?u=eltaurus))
+3. [Bigger font size for specified fields](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/90?u=eltaurus), [disabling specific card elements](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/97?u=eltaurus)
+4. [Adding Extra fields on the back of a card](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/6?u=eltaurus)
+5. [Showing info screen after correct answers](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/70?u=eltaurus) (alternative: [preventing auto flip on correct answers and displaying extra info on answer screen](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/20?u=eltaurus)), [showing the top extra field on narrow screens](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/81?u=eltaurus) ([additional tweaks](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/83?u=eltaurus))
+6. [Changing text colors for the template and card content](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/49?u=eltaurus) ([making a button for coloring text on AnkiDroid](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/51?u=eltaurus))
+7. [Making Cloze Deletion cards](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/18?u=eltaurus) (older version of the template)
+
+Any questions regarding other ways customization and requests for clarification of the above points are always welcome in [the same thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+
+*Please keep in mind, that all changes on the "Styling" tab, as well as the the ones made to JavaScript code, will have to be manually reimplemented when updating to future template versions*
+
 <details>
 <summary>🚧</summary>
 The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds `Memrise Templates (Lτ) v2.3` Note Type, which can then be used to create new cards, change Note Type of existing ones, or import external spreadsheets.
