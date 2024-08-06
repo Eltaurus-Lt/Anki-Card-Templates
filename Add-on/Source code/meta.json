@@ -1,10 +1,12 @@
 {
     "prefix": "Memrise",
-    "version": "3.42",
+    "version": "4.0",
     "description": [
         "\t\tCard template by Eltaurus:",
         "\t\t\tGitHub: github.com/Eltaurus-Lt",
-        "\t\t\tAF: forums.ankiweb.net/u/Eltaurus",
+        "\t\t\tSupport the development: buymeacoffee.com/eltaurus",
+        "\t\t\tAnkiWeb: ankiweb.net/shared/info/884199977",
+        "\t\t\tForum discussion: forums.ankiweb.net/u/Eltaurus",
         "\t\t\t✉️: Eltaurus@inbox.lt"
     ]
 }
