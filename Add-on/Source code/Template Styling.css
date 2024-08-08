@@ -1,3 +1,5 @@
+/*v4β*/
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
 
 :root {
@@ -64,6 +66,7 @@ button#mem-flip {
 }
 
 setting,
+data,
 .off {
 	display: none !important;
 }
@@ -818,5 +821,15 @@ svg.playImage path {
     --elevation: 0px !important;
     --pressed-outline-width: 6px;
     outline-offset: calc(-1 * (1 * var(--mem-border-width) + var(--pressed-outline-width)));
+}
+html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: #dbd2bdaa var(--pressed-outline-width) solid;
 }
+#backwrap #scr-keyboard .membtn.pressed {
+    outline: none;
+}
+
+
+
+/* --------------------- user styles --------------------- */
+

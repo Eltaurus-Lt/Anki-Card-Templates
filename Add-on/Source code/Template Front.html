@@ -1,8 +1,8 @@
 {{#Learnable}}{{#Definition}}
-<setting id="static_keys">aäâàα </setting>
-<setting id="random_keys">αβγδεζηθικλμνξοπρστυφχψω</setting>
-<setting id="hint">{{Learnable}}</setting>
-<setting id="choices">{{Choices}}</setting>
+<setting id="static_keys">abc</setting>
+<setting id="random_keys"> </setting>
+<data id="correctAnswer">{{Learnable}}</data>
+<data id="choices">{{Choices}}</data>
 <div class="card-content front">
     <div class="overhead">
 		   <div class="mem-instruction">
@@ -20,7 +20,7 @@
     </div>
     <div class="mem-typing">
       <label>Learnable</label>
-      {{type:Learnable}}
+      <input id="typeans" type="text" inputmode="text">
     </div>
     <div id="scr-keyboard" class="">
       <div id="HintButton" class="membtn"></div>
@@ -31,6 +31,15 @@
 
 
 
+
+<!-- --------------------- user prior scripts --------------------- -->
+<script>
+  //place your scripts here
+
+</script>
+
+
+<!-- ---------------------  template scripts  --------------------- -->
 
 <script>
 //determine card side
@@ -55,40 +64,55 @@ if (!document.documentElement.classList.contains("mobile")) {
 } else {
 	platform = 'ios';
 }
-
-function storeAnswer(ans) {
-	sessionStorage.setItem("card-answer", ans);
-}
-
-if (isFrontSide) {
-	storeAnswer("");
-}
 </script>
 
 <script>
 //elements
-typeAns = document.getElementById('typeans'); 
-hintSetting = document.getElementById('hint');
-staticKeys = document.getElementById('static_keys');
-randomKeys = document.getElementById('random_keys');
+typeAns = document.getElementById('typeans');
+screenKeyboard = document.getElementById('scr-keyboard');
 hintButton = document.getElementById('HintButton');
-choicesSetting = document.getElementById('choices');
-
-//const
-if (hintSetting) {
-	if (isMCh) {
-		hintAnswer = hintSetting.innerHTML;
-	} else {
-		hintAnswer = hintSetting.innerText;
-	}
-} else {
-	hintAnswer = "";
-}
-if (staticKeys) {keysString = staticKeys.innerText} else {keysString = ""}
-if (randomKeys) {fillerString = randomKeys.innerText} else {fillerString = ""}
-if (choicesSetting) {choices = choicesSetting.innerHTML.split('|').map(s => s.trim())}
-
 if (hintButton) {hintButton.innerHTML = `<svg><path></path></svg>Hint`;}
+</script>
+
+<script>
+function updAnswer(ans = "") {
+	if (!ans && typeAns) {ans = typeAns.value};
+	sessionStorage.setItem("userAnswer", ans);
+}
+
+if (isFrontSide) {
+	updAnswer();
+}
+</script>
+
+<script>
+//determine the correct answer (fallback)
+corrAnsL = document.getElementById('correctAnswer');
+corrAns = corrAnsL?.innerHTML || "";
+
+//redefine with extracted primary correct answer
+try {
+	const tempL = document.createElement('div');
+	tempL.innerHTML = corrAns;
+	const altLs = tempL.querySelectorAll('[part="alt"]');
+	altLs.forEach((L) => {L.remove();});
+	corrAns = !isMCh ? tempL.innerText.replace("&nbsp;"," ").trim() : tempL.innerHTML;
+	tempL.remove();
+} catch (err) {}
+
+hintAns = corrAns.split(/[;；]/)[0];
+
+//determine alt answers
+try {
+ansAlts = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|').split('|').map(altAns => altAns.replace("&nbsp;"," ").trim());
+} catch (err) {}
+</script>
+
+<script>
+//consts
+keysString = document.getElementById('static_keys')?.innerText || "";
+fillerString = document.getElementById('random_keys')?.innerText || "";
+choices = document.getElementById('choices')?.innerHTML.split('|').map(s => s.replace("&nbsp;"," ").trim()) || '';
 </script>
 
 <script>
@@ -110,17 +134,19 @@ document.onkeydown = function (e) {
 		if (document.activeElement.matches('a.replay-button.soundLink')) {
 			document.activeElement.blur();
 		}
-		if (!isFrontSide && flipBtn && flipBtn.onclick) {				
-			flipBtn.onclick();
+		if (!isFrontSide) {
+			if (flipBtn && flipBtn.onclick) {
+				flipBtn.onclick();
+			}
 		} else {
 			flipToBack();
 		}
 	}
 
 	if ("0123456789".includes(ev.key) && isMCh) {
-		numkey = parseInt(ev.key);
+		let numkey = parseInt(ev.key);
 		if (numkey == 0) {numkey = 10};
-		mchoiceButtons = screenKeyboard.querySelectorAll('*');
+		const mchoiceButtons = screenKeyboard.querySelectorAll('*');
 		if (numkey <= mchoiceButtons.length) {
 			mchoiceButtons[numkey - 1].onclick();
 		}
@@ -150,42 +176,40 @@ if (audioButtonsFront && audioButtonsFront.length > 0) {
 </script>
 
 <script>
-//--------------------------------------------
 //on-screen keyboard | mult-choice buttons
 
 function shuffle(arr) {
   return arr.sort(() => 0.5 - Math.random());
 }
 
-screenKeyboard = document.getElementById('scr-keyboard');
 if (screenKeyboard) {
 	if (isFrontSide) {
-		if (fillerString && hintAnswer && !isMCh) {
+		if (fillerString && corrAns && !isMCh) {
 			//character keys
-			neededKeys = shuffle(fillerString.split('')).slice(0, 10);
-			neededKeys = shuffle([... new Set([...(hintAnswer.split('')), ...neededKeys])]);
+			if (typeof window.randomKeysN !== 'number') {randomKeysN = 10} //fallback
+			neededKeys = shuffle(fillerString.split('')).slice(0, randomKeysN);
+			neededKeys = shuffle([... new Set([...(corrAns.split('')), ...neededKeys])]);
 			neededKeys = neededKeys.filter(key => !keysString.includes(key));
 			keysString = neededKeys.join('') + keysString;
 		} else if (isMCh) {
 			//multiple-choice keys
-			choices = choices.filter(choice => (choice !== hintAnswer));
+			choices = choices.filter(choice => (choice !== corrAns && !!choice));
 			choices = shuffle([... new Set(choices)]);
-			choices.splice(6 - 1);
-			choices = [hintAnswer, ...choices];
+			choices.splice((window.mchOptionsN || 6) - 1);
+			choices = [corrAns, ...choices];
 			shuffle(choices);
 			keysString = choices.join('|');
 		}
 
-		sessionStorage.setItem("mem-keyboard", keysString);
+		sessionStorage.setItem("card-keyboard", keysString);
 	} else {
-		keysString = sessionStorage.getItem("mem-keyboard");
-		if (!keysString) {keysString = ""};
+		keysString = sessionStorage.getItem("card-keyboard") || "";
 	}
 
 	if (!isMCh) {
 	  keys = keysString.split('');
 	} else {
-		keys = keysString.split('|');
+		keys = keysString ? keysString.split('|') : [];
 		screenKeyboard.innerHTML = '';
 	}
   keys.reverse().forEach((key)=>{
@@ -197,14 +221,18 @@ if (screenKeyboard) {
     }
     keyButton.classList.add('membtn');
     if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
-    if (isMCh && key === hintAnswer) {keyButton.classList.add('correct')}
+    if (isMCh && key === corrAns) {keyButton.classList.add('correct')}
     screenKeyboard.prepend(keyButton);
   })
-}
+} 
+</script>
 
+<script>
+delete window.randomKeysN;
+delete window.mchOptionsN;
+</script>
 
-
-
+<script>
 /*keyboard key functions*/
 keyboardButtons = document.querySelectorAll('#scr-keyboard > *');
 
@@ -225,11 +253,14 @@ function lengthOfCommonPart(str1, str2) {
 }
 
 function typeHint() {
-	const correctLength = lengthOfCommonPart(typeAns.value, hintAnswer);
-	if (correctLength < hintAnswer.length) {
-		typeAns.value = hintAnswer.slice(0, correctLength + 1);
+	if (!hintAns || !typeAns) {
+		return;
+	}
+	const correctLength = lengthOfCommonPart(typeAns.value, hintAns);
+	if (correctLength < hintAns.length) {
+		typeAns.value = hintAns.slice(0, correctLength + 1);
+		updAnswer();
 
-		storeAnswer(typeAns.value);
 		if (platform === 'desk') {
 			typeAns.focus();
 		}
@@ -246,7 +277,7 @@ function typeKey(keyContent) {
 	typeAns.value = currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd);
 	typeAns.setSelectionRange(cursorStart + 1, cursorStart + 1);
 	
-	storeAnswer(typeAns.value);
+	updAnswer();
 	typeAns.focus();
 	if (platform !== 'desk') {
 		typeAns.blur();
@@ -260,10 +291,10 @@ if (isFrontSide) {
 		} else if (isMCh) {
 			btn.onclick = ()=>{
 				if (btn.classList.contains('pressed')) {
-					storeAnswer("");
+					updAnswer("");
 					btn.classList.remove('pressed');
 				} else {
-					storeAnswer(btn.innerHTML);
+					updAnswer(btn.innerHTML);
 					keyboardButtons.forEach((b) => {
 						b.classList.remove('pressed');
 					});
@@ -271,15 +302,21 @@ if (isFrontSide) {
 				}
 				flipToBack();
 			};
-		} else {
+		} else if (typeAns) {
 			btn.onclick = ()=>{
 				typeKey(btn.innerHTML);
 			};
 		}
-	})
-}
+	});
 
-if (platform === 'android') {
-	typeAns.addEventListener("input", ()=>{storeAnswer(typeAns.value)});
+	if (typeAns) {
+		typeAns.addEventListener('input', (event) => {updAnswer();});
+	}
 }
+</script>
+
+<!-- --------------------- user posterior scripts --------------------- -->
+<script>
+  //place your scripts here
+
 </script>

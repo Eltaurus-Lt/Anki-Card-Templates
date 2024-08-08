@@ -39,43 +39,42 @@
 </div>
 
 
+
+
+<!-- --------------------- user prior scripts --------------------- -->
+<script>
+  //place your scripts here
+
+</script>
+
+
+<!-- ---------------------  template scripts  --------------------- -->
+
 <script>
 //generate random page id
 pid = Array.from({length:16}, () => String.fromCharCode(Math.floor(Math.random() * 94) + 33)).join('');
 //console.log("pageid: ", pid);
 
-// extract answers
-storedAnswer = sessionStorage.getItem("card-answer");
-correctNodes = [];
-if (!isMCh) {
-	correctNodes = [...typeAns.querySelectorAll("br ~ br ~ span")];
-	typedNodes = [...typeAns.querySelectorAll("span:not(.typeMissed, br ~ span)")];
-	
-	correctAnswerFull = correctNodes.map(e => e.innerText).join('');
-	if (!correctAnswerFull && typeAns) { //typed answer is correct or no typed answer
-		correctAnswerFull = typeAns.innerText;
-	}
-	typedAnswer = typedNodes.map(e => e.innerText).join('');
-	typedCorrect = [...typeAns.querySelectorAll("span.typeGood:not(br ~ span)")].map(e => e.innerText).join('');
-	typedErrors = [...typeAns.querySelectorAll("span:is(.typeBad, .typeMissed):not(br ~ span)")].map(e => e.innerText).join(''); //exception: = '' if no typed answer
-
-	console.log(correctAnswerFull, "|", typedAnswer, "（", typedCorrect, "|", typedErrors, "）"); 
-
-	if (platform === 'android' && storedAnswer) {
-		typedAnswer = storedAnswer;
-		typeAns.innerHTML = '<span>' + storedAnswer + '</span>';
-	}
-	document.getElementsByClassName("mem-alert")[0].innerText = typedAnswer;
-} else if (storedAnswer !== null) {
-	typedAnswer = storedAnswer;	
-	console.log('Chosen answer: ', typedAnswer);
-	document.getElementsByClassName("mem-alert")[0].innerHTML = typedAnswer;
+//get user answer
+userAns = sessionStorage.getItem("userAnswer");
+if (userAns === null) {
+	document.getElementsByClassName("mem-alert")[0].innerText = "#error loading answer!";
+	userAns = '';
 } else {
-	typedAnswer = "#error!";
+	document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio
+} 
+if (typeAns.tagName === 'INPUT') {
+	typeAns.value = userAns;
+	typeAns.disabled = true;
+} else {
+	typeAns.innerHTML = '<span>' + userAns + '</span>';
 }
 
+console.log(`user answer: ${userAns} | correct answer: ${corrAns}`);
+</script>
 
-//answer processing
+<script>
+//answer comparison rules
 function rmEnc(s) {
 	//removes parts enclosed in the innermost parentheses
 	return s.replace(/\x28[^()]*\x29/g, '');
@@ -93,8 +92,8 @@ function rmPunc(s) {
 	return s.replace(/[.,\/#?!$%\^&\'"*;:{}=\-_`~　…〜～－。、・？！＠＃＄％＾＆＊（）]/g, '');
 }
 function rmSpaces(s) {
-	//removes spaces from the start and the end, replaces japanese spaces, removes repeated spaces
-	return s.trim().replace(/　/g, ' ').replace(/\s+/g, ' ');
+	//removes spaces from the start and the end, replaces japanese and non-breaking spaces, removes repeated spaces
+	return s.replace("&nbsp;"," ").trim().replace(/　/g, ' ').replace(/\s+/g, ' ');
 }
 function cfStrings(sQ, sA) {
  //unify case and remove punctuation
@@ -119,9 +118,11 @@ function cfStrings(sQ, sA) {
 //todo?A (B; C) -> {〃, A B, A C}
 
 // grade answer
+allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
+console.log(`altertnatives: ${allAlts.join(' | ')}`);
 if (isMCh) {
 	keyboardButtons.forEach( btn => {
-		if (btn.innerHTML === typedAnswer) {
+		if (btn.innerHTML === userAns) {
 			btn.classList.add('pressed');
 			if (btn.classList.contains('correct')) {
 				wrap.classList.add('correct');
@@ -131,11 +132,11 @@ if (isMCh) {
 	if (!wrap.classList.contains('correct')) {
 		wrap.classList.add('wrong');
 	}
-} else if (cfStrings(correctAnswerFull, typedAnswer)) {
+} else if (cfStrings(corrAns, userAns)) {
 	wrap.classList.add('correct');
-} else if (correctAnswerFull.split(/[;；]/).map((correctAnswer) => cfStrings(correctAnswer, typedAnswer)).includes(true)) {
+} else if (allAlts.map((altAns) => cfStrings(altAns, userAns)).includes(true)) {
 	wrap.classList.add('correct');
-} else if (typedErrors.length <= 0.5 * correctAnswerFull.length && typedCorrect.length >= (1 - 0.5) * correctAnswerFull.length) {
+} else if (false) {
 	wrap.classList.add('soclose');
 } else {
 	wrap.classList.add('wrong');	
@@ -160,7 +161,8 @@ activeTimeout = setTimeout((pid0)=>{
 //	console.log(pid, "|", pid0);
 	if (pid !== pid0) return;
 	MemFlip();
-}, 1500, pid);
+}, Math.round((window.flipDelay || 1.5) * 1000), pid);
+delete window.flipDelay;
 
 //Submit
 function autorateAgain() {
@@ -198,38 +200,19 @@ audioButtons.forEach((a) => {
 	});
 });
 
-//spelling cf. highlights
-function isGood(list, index) {
-	return (index < list.length && list[index].classList.contains('typeGood'));
-}
-if (correctNodes.length > 0) {
-	let mergedNodes = [];
-	function mergeNode(list, index) {
-		if(index < list.length) {
-			mergedNodes.push(list[index]);
-		}
-	}
-	for (	i = j = 0; (i < correctNodes.length || j < typedNodes.length) && i < 1000 && j < 1000; ) {
-		if (isGood(correctNodes, i)) {
-			mergeNode(typedNodes,j);//all good || bad(redundant)
-			if (isGood(typedNodes, j)) {//all good
-				i++;
-			} else if (j >= typedNodes.length) {i++;}//failsafe
-			j++;
-		} else {
-			if (!isGood(typedNodes, j)) {
-				mergeNode(typedNodes,j);//bad(wrong) || bad(redundant-end) || missing-end
-				j++;
-			} else if (i >= correctNodes.length) {j++;}//failsafe
-			mergeNode(correctNodes,i);//missing || bad(wrong) || bad(redundant-end)
-			i++;
-		}
-	}
+//spelling corrections
+
 	
-	const spellcheckHighlights = document.getElementById('spellcheck');
-	if (spellcheckHighlights) {
-		spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
-	}
-}
+//const spellcheckHighlights = document.getElementById('spellcheck');
+//if (spellcheckHighlights) {
+//	spellcheckHighlights.innerHTML = mergedNodes.map(node => node.outerHTML).join('');
+//}
+
+</script>
+
+
+<!-- --------------------- user posterior scripts --------------------- -->
+<script>
+  //place your scripts here
 
 </script>
