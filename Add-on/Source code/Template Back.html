@@ -7,7 +7,7 @@
 		<div class="mem-field">
 			<label>Learnable</label>
 			<h2>{{Learnable}}</h2>
-			<span id="spellcheck"></span>
+			<span id="spellcheck" class=""></span>
 		</div>   
 		<div class="mem-field">
 			<label>Definition</label>
@@ -60,14 +60,14 @@ userAns = sessionStorage.getItem("userAnswer");
 if (userAns === null) {
 	document.getElementsByClassName("mem-alert")[0].innerText = "#error loading answer!";
 	userAns = '';
-} else {
+} else if (userAns.trim()) {
 	document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio
 } 
 if (typeAns.tagName === 'INPUT') {
 	typeAns.value = userAns;
 	typeAns.disabled = true;
 } else {
-	typeAns.innerHTML = '<span>' + userAns + '</span>';
+	typeAns.innerHTML = '<span>' + userAns + '</span>'; //backward compativility with stock Anki typing
 }
 
 console.log(`user answer: ${userAns} | correct answer: ${corrAns}`);
@@ -209,7 +209,6 @@ audioButtons.forEach((a) => {
 //}
 
 </script>
-
 
 <!-- --------------------- user posterior scripts --------------------- -->
 <script>

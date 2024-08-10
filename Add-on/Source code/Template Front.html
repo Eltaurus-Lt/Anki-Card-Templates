@@ -1,6 +1,6 @@
 {{#Learnable}}{{#Definition}}
-<setting id="static_keys">abc</setting>
-<setting id="random_keys"> </setting>
+<setting id="static_keys"> </setting>
+<setting id="random_keys">asdf</setting>
 <data id="correctAnswer">{{Learnable}}</data>
 <data id="choices">{{Choices}}</data>
 <div class="card-content front">
@@ -22,8 +22,8 @@
       <label>Learnable</label>
       <input id="typeans" type="text" inputmode="text">
     </div>
-    <div id="scr-keyboard" class="">
-      <div id="HintButton" class="membtn"></div>
+    <div id="scr-keyboard" class="desk-of">
+      <div id="HintButton" class="membtn"><svg><path></path></svg>Hint</div>
     </div>
 </div>
 <a id="Lt" href="https://github.com/Eltaurus-Lt/Anki-Card-Templates"></a>
@@ -71,31 +71,29 @@ if (!document.documentElement.classList.contains("mobile")) {
 typeAns = document.getElementById('typeans');
 screenKeyboard = document.getElementById('scr-keyboard');
 hintButton = document.getElementById('HintButton');
-if (hintButton) {hintButton.innerHTML = `<svg><path></path></svg>Hint`;}
 </script>
 
 <script>
-function updAnswer(ans = "") {
+function storeAnswer(ans = "") {
 	if (!ans && typeAns) {ans = typeAns.value};
 	sessionStorage.setItem("userAnswer", ans);
 }
 
 if (isFrontSide) {
-	updAnswer();
+	storeAnswer("");
 }
 </script>
 
 <script>
-//determine the correct answer (fallback)
+//determine the correct answer
 corrAnsL = document.getElementById('correctAnswer');
-corrAns = corrAnsL?.innerHTML || "";
+corrAns = corrAnsL?.innerHTML || ""; //including alts
 
-//redefine with extracted primary correct answer
+//extract primary, removing alts
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
-	const altLs = tempL.querySelectorAll('[part="alt"]');
-	altLs.forEach((L) => {L.remove();});
+	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
 	corrAns = !isMCh ? tempL.innerText.replace("&nbsp;"," ").trim() : tempL.innerHTML;
 	tempL.remove();
 } catch (err) {}
@@ -104,7 +102,12 @@ hintAns = corrAns.split(/[;；]/)[0];
 
 //determine alt answers
 try {
-ansAlts = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|').split('|').map(altAns => altAns.replace("&nbsp;"," ").trim());
+	ansAlts = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
+	if (ansAlts) {
+		ansAlts = ansAlts.split('|').map(altAns => altAns.replace("&nbsp;"," ").trim());
+	} else {
+		ansAlts= [];
+	} 
 } catch (err) {}
 </script>
 
@@ -129,7 +132,7 @@ document.onkeyup = function (e) {
 document.onkeydown = function (e) {
 	var ev = window.event || e;
 
-	if (ev.key === 'Enter' && tabSelected !== document.activeElement) {
+	if (ev.key === 'Enter' && (tabSelected !== document.activeElement || tabSelected?.id === 'typeans')) {
 		//last action was NOT selecting element with Tab -> Enter=flip (prevent audio activation)
 		if (document.activeElement.matches('a.replay-button.soundLink')) {
 			document.activeElement.blur();
@@ -243,6 +246,7 @@ function flipToBack() {
 	} else if (platform === 'android') {
 		showAnswer();
 	}
+	console.log('prev flip');
 }
 
 function lengthOfCommonPart(str1, str2) {
@@ -253,13 +257,11 @@ function lengthOfCommonPart(str1, str2) {
 }
 
 function typeHint() {
-	if (!hintAns || !typeAns) {
-		return;
-	}
+	if (!hintAns || !typeAns) return;
 	const correctLength = lengthOfCommonPart(typeAns.value, hintAns);
 	if (correctLength < hintAns.length) {
 		typeAns.value = hintAns.slice(0, correctLength + 1);
-		updAnswer();
+		storeAnswer();
 
 		if (platform === 'desk') {
 			typeAns.focus();
@@ -277,7 +279,7 @@ function typeKey(keyContent) {
 	typeAns.value = currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd);
 	typeAns.setSelectionRange(cursorStart + 1, cursorStart + 1);
 	
-	updAnswer();
+	storeAnswer();
 	typeAns.focus();
 	if (platform !== 'desk') {
 		typeAns.blur();
@@ -291,10 +293,10 @@ if (isFrontSide) {
 		} else if (isMCh) {
 			btn.onclick = ()=>{
 				if (btn.classList.contains('pressed')) {
-					updAnswer("");
+					storeAnswer("");
 					btn.classList.remove('pressed');
 				} else {
-					updAnswer(btn.innerHTML);
+					storeAnswer(btn.innerHTML);
 					keyboardButtons.forEach((b) => {
 						b.classList.remove('pressed');
 					});
@@ -304,13 +306,13 @@ if (isFrontSide) {
 			};
 		} else if (typeAns) {
 			btn.onclick = ()=>{
-				typeKey(btn.innerHTML);
+				typeKey(btn.innerHTML); //innerText does not work for space
 			};
 		}
 	});
 
 	if (typeAns) {
-		typeAns.addEventListener('input', (event) => {updAnswer();});
+		typeAns.addEventListener('input', (event) => {storeAnswer();});
 	}
 }
 </script>

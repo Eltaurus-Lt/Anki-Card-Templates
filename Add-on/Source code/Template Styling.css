@@ -67,6 +67,11 @@ button#mem-flip {
 
 setting,
 data,
+.no-alts [part=alt],
+.win .desk-off,
+.mac .desk-off,
+.linux:not(.android) .desk-off,
+.mobile .mobile-off,
 .off {
 	display: none !important;
 }
@@ -415,6 +420,11 @@ body::after {
   line-height: 1.5;
 }
 
+[part=alt] {
+	font-size: .5em;
+	color: lightgray !important;
+  font-weight: 500;
+}
 
 /* ーーーーーーーーーー AUDIO ーーーーーーーーーー */
 /* Q */
