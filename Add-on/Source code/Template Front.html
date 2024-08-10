@@ -22,7 +22,7 @@
       <label>Learnable</label>
       <input id="typeans" type="text" inputmode="text">
     </div>
-    <div id="scr-keyboard" class="desk-of">
+    <div id="scr-keyboard" class="desk-off">
       <div id="HintButton" class="membtn"><svg><path></path></svg>Hint</div>
     </div>
 </div>
@@ -89,7 +89,7 @@ if (isFrontSide) {
 corrAnsL = document.getElementById('correctAnswer');
 corrAns = corrAnsL?.innerHTML || ""; //including alts
 
-//extract primary, removing alts
+//extract primary, excluding alts
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
@@ -102,12 +102,8 @@ hintAns = corrAns.split(/[;；]/)[0];
 
 //determine alt answers
 try {
-	ansAlts = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
-	if (ansAlts) {
-		ansAlts = ansAlts.split('|').map(altAns => altAns.replace("&nbsp;"," ").trim());
-	} else {
-		ansAlts= [];
-	} 
+	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
+	ansAlts = altsString ? altsString.split('|').map(altAns => altAns.replace("&nbsp;"," ").trim()) : [];
 } catch (err) {}
 </script>
 
@@ -246,7 +242,7 @@ function flipToBack() {
 	} else if (platform === 'android') {
 		showAnswer();
 	}
-	console.log('prev flip');
+	console.log('preview flip');
 }
 
 function lengthOfCommonPart(str1, str2) {

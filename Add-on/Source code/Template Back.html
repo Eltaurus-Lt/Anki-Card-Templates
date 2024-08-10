@@ -67,7 +67,7 @@ if (typeAns.tagName === 'INPUT') {
 	typeAns.value = userAns;
 	typeAns.disabled = true;
 } else {
-	typeAns.innerHTML = '<span>' + userAns + '</span>'; //backward compativility with stock Anki typing
+	typeAns.innerHTML = '<span>' + userAns + '</span>'; //backward compatibility with stock Anki typing
 }
 
 console.log(`user answer: ${userAns} | correct answer: ${corrAns}`);
@@ -209,6 +209,7 @@ audioButtons.forEach((a) => {
 //}
 
 </script>
+
 
 <!-- --------------------- user posterior scripts --------------------- -->
 <script>
