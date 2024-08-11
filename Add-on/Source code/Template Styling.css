@@ -638,6 +638,7 @@ svg.playImage path {
 
 #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
   font-weight: bold;
+	font-variant-ligatures: no-common-ligatures;
 }
 
 #spellcheck .typeGood {
