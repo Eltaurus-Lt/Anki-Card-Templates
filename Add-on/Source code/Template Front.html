@@ -145,7 +145,7 @@ document.onkeydown = function (e) {
 	if (isFrontSide && "1234567890".includes(ev.key) && isMCh) {
 		let numkey = parseInt(ev.key);
 		if (numkey == 0) {numkey = 10};
-		const mchoiceButtons = screenKeyboard.querySelectorAll('*');
+		const mchoiceButtons = screenKeyboard.querySelectorAll('.membtn');
 		if (numkey <= mchoiceButtons.length) {
 			mchoiceButtons[numkey - 1].onclick();
 		}
