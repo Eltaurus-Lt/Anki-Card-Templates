@@ -257,34 +257,42 @@ function lengthOfCommonPart(str1, str2) {
 	return i;
 }
 
+function updInput(inputValue, cursorPos = null) {
+	if (!typeAns) return;
+
+	typeAns.value = inputValue;
+	typeAns.setSelectionRange(cursorPos || inputValue.length, cursorPos || inputValue.length);
+
+	storeAnswer();
+
+	typeAns.focus();
+	if (platform !== 'desk') {
+		typeAns.blur();
+	}
+}
+
 function typeHint() {
 	if (!hintAns || !typeAns) return;
 	const correctLength = lengthOfCommonPart(typeAns.value, hintAns);
-	if (correctLength < hintAns.length) {
-		typeAns.value = hintAns.slice(0, correctLength + 1);
-		storeAnswer();
 
-		if (platform === 'desk') {
-			typeAns.focus();
-		}
+	if (correctLength < hintAns.length) {
+		updInput(hintAns.slice(0, correctLength + 1));
+
+	} else if (typeAns.value.length > correctLength) {
+		updInput(hintAns);
+
 	} else {
 		flipToBack();
 	}
 }
 
 function typeKey(keyContent) {
+	if (!typeAns) return;
 	const cursorStart = typeAns.selectionStart;
 	const cursorEnd = typeAns.selectionEnd;
 	const currentInput = typeAns.value;
 
-	typeAns.value = currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd);
-	typeAns.setSelectionRange(cursorStart + 1, cursorStart + 1);
-	
-	storeAnswer();
-	typeAns.focus();
-	if (platform !== 'desk') {
-		typeAns.blur();
-	}
+	updInput(currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd), cursorStart + 1);
 }
 
 if (isFrontSide) {
