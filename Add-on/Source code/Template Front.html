@@ -142,13 +142,17 @@ document.onkeydown = function (e) {
 		}
 	}
 
-	if ("0123456789".includes(ev.key) && isMCh) {
+	if (isFrontSide && "1234567890".includes(ev.key) && isMCh) {
 		let numkey = parseInt(ev.key);
 		if (numkey == 0) {numkey = 10};
 		const mchoiceButtons = screenKeyboard.querySelectorAll('*');
 		if (numkey <= mchoiceButtons.length) {
 			mchoiceButtons[numkey - 1].onclick();
 		}
+	}
+
+	if (!isFrontSide && "1234".includes(ev.key)) {
+		pycmd('ease' + ev.key);
 	}
 }
 </script>
