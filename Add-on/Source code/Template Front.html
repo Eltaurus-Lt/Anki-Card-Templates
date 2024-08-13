@@ -37,11 +37,10 @@
 <script>
   //place your scripts here
 
+
 </script>
 
-
 <!-- ---------------------  template scripts  --------------------- -->
-
 <script>
 //determine card side
 wrap = document.getElementById('backwrap');
@@ -153,7 +152,9 @@ document.onkeydown = function (e) {
 	}
 
 	if (!isFrontSide && "1234".includes(ev.key)) {
-		pycmd('ease' + ev.key);
+		try {
+			pycmd('ease' + ev.key);
+		} catch(err) {}
 	}
 }
 </script>
@@ -329,5 +330,6 @@ if (isFrontSide) {
 <!-- --------------------- user posterior scripts --------------------- -->
 <script>
   //place your scripts here
+
 
 </script>
