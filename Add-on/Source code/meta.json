@@ -2,11 +2,17 @@
     "prefix": "Memrise",
     "version": "4.1",
     "description": [
-        "\t\tCard template by Eltaurus:",
-        "\t\t\tGitHub: github.com/Eltaurus-Lt",
-        "\t\t\tSupport the development: buymeacoffee.com/eltaurus",
-        "\t\t\tAnkiWeb: ankiweb.net/shared/info/884199977",
-        "\t\t\tForum discussion: forums.ankiweb.net/u/Eltaurus",
-        "\t\t\t✉️: Eltaurus@inbox.lt"
+        "Card template by Eltaurus:",
+        [
+            "GitHub: github.com/Eltaurus-Lt/Anki-Card-Templates",
+            "Support the development: buymeacoffee.com/eltaurus",
+            "AnkiWeb:",
+                [
+                    "template deck: ankiweb.net/shared/info/510199145",
+                    "complimentary add-on: ankiweb.net/shared/info/884199977"
+                ]
+            "Forum discussion: forums.ankiweb.net/t/memrise-card-template-support-thread/34233",
+            "✉️: Eltaurus@inbox.lt"
+        ]
     ]
 }
