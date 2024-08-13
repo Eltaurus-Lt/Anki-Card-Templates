@@ -428,9 +428,13 @@ body::after {
 
 /* ーーーーーーーーーー AUDIO ーーーーーーーーーー */
 /* Q */
-.mem-question a.replay-button.soundLink {
+.mem-question a.replay-button.soundLink,
+.mem-question a.replay-button.soundLink > span {
   width: 10rem;
   height: 10rem;
+}
+a.replay-button.soundLink > span { /* Android quirk*/
+	display: block;
 }
 
 .mem-question a.replay-button:not(:first-child) {
