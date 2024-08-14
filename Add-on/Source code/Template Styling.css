@@ -187,7 +187,7 @@ body {
 .card-content.front {
   display: grid;
   grid-template-rows: 0;
-  grid-template-columns: 100%;1fr;
+  grid-template-columns: 100%;
 }
 .card-content.front > :first-child {
   overflow: hidden;
