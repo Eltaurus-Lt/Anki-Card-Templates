@@ -187,7 +187,7 @@ body {
 .card-content.front {
   display: grid;
   grid-template-rows: 0;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;1fr;
 }
 .card-content.front > :first-child {
   overflow: hidden;
@@ -313,10 +313,12 @@ code#typeans :is(br, br ~ span, .typeMissed) {
 }
 code#typeans {
   color: transparent;
+	overflow: hidden;
 }
 code#typeans span {
 	background: none;
 	color: var(--mem-input-text);
+	white-space: nowrap;
 }
 code#typeans {
 	display: flex;
