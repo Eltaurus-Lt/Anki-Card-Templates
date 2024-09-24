@@ -46,7 +46,6 @@
 <script>
   //place your scripts here
 
-
 </script>
 
 <!-- ---------------------  template scripts  --------------------- -->
@@ -194,11 +193,21 @@ function cfStrings(sQ, sA) {
 
 // grade answer
 allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
+async function cfWithMathJax(s1, s2) {
+    const mathJaxRegex = /<mjx-container[^>]*>/g;
+
+    const s1proc = document.createElement('div');
+    s1proc.innerHTML = s1;
+
+    await MathJax.typesetPromise([s1proc]);
+
+    return s1 === s2 || s1proc.innerHTML.replace(mathJaxRegex, '') === s2.replace(mathJaxRegex, '');
+}
 diff = "";
 console.log(`altertnatives: ${allAlts.join(' | ')}`);
 if (isMCh) {
-	keyboardButtons.forEach( btn => {
-		if (btn.innerHTML === userAns) {
+	keyboardButtons.forEach(async btn => {
+		if (await cfWithMathJax(btn.innerHTML, userAns)) {
 			btn.classList.add('pressed');
 			if (btn.classList.contains('correct')) {
 				wrap.classList.add('correct');
