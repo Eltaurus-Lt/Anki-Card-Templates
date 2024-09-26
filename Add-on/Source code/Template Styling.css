@@ -7,7 +7,7 @@
 
 body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
     --col-text: var(--mem-text);
-    --col-outline: var(--mem-outline);
+    --col-focus: var(--mem-focus);
     --col-bg: var(--mem-bg);
 
     --col-input-text: var(--mem-input-text);
@@ -41,6 +41,8 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
     --col-spell-good: transparent;
     --col-spell-missed: var(--mem-spell-missed);
     --col-spell-bad: var(--mem-spell-bad);
+
+    --col-pressed-outline: #dbd2bdaa;
 }
 body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
     --col-bg: var(--canvas);
@@ -59,10 +61,12 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
     --col-spell-good: transparent;
     --col-spell-missed: var(--mem-spell-missed);
     --col-spell-bad: var(--mem-spell-bad);
+
+    --col-pressed-outline: #ffbb00aa;
 }
 
 body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) {
-    --col-outline: var(--border-focus);
+    --col-focus: var(--border-focus);
 
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
@@ -82,7 +86,7 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --mem-lightblue: #b9d7e3;
 
     --mem-primary: rgb(255, 187, 0);
-    --mem-outline: rgb(0, 159, 187);
+    --mem-focus: rgb(0, 159, 187);
 
     --mem-text: rgb(49, 48, 51);
     --mem-border: rgb(188, 194, 207);
@@ -116,8 +120,11 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
 /* ーーー fallback theme ーーー */
 
 :root {
+    font-size: 16px;
+    --fonts: "Open Sans", "Meiryo", sans-serif;
+
     --col-text: var(--fg);
-    --col-outline: -webkit-focus-ring-color;
+    --col-focus: -webkit-focus-ring-color;
     --col-bg: var(--canvas);
 
     --col-input-text: fieldtext;
@@ -138,12 +145,6 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --col-sep: var(--border-subtle);
     --col-inset-bg: var(--canvas-inset);
 
-    --border-width: 2px;
-    --border-r1: 0.25rem;
-    --border-r2: 0.5rem;
-    --border-r3: 0.75rem;
-    --border-r4: 1rem;
-
     --col-correct-text: var(--mem-correct-text);
     --col-correct-border: var(--mem-correct-border);
     --col-correct-bg: var(--mem-correct-bg);
@@ -157,6 +158,20 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --col-spell-good: var(--ank-spell-good);
     --col-spell-missed: var(--ank-spell-missed);
     --col-spell-bad: var(--ank-spell-bad);
+
+    --border-width: 2px;
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
+
+    --elevation-idle: 4px;
+    --elevation-hover: 6px;
+    --elevation-pressed: 0px;
+
+    /* iOS */
+    --col-pressed-outline: var(--highlight-bg);
+    --pressed-outline-width: 6px;
 }
 
 body.nightMode, body.night_mode {
@@ -195,7 +210,7 @@ data,
 
 body,
 div code#typeans {
-  font-family: "Open Sans", "Meiryo", sans-serif, sans-serif !important;
+  font-family: var(--fonts) !important;
 }
 
 body {
@@ -278,7 +293,7 @@ button#mem-flip {
   border: var(--col-button-border) solid var(--border-width);
   background: var(--col-button-bg);
 
-  --elevation: 4px;
+  --elevation: var(--elevation-idle);
   box-shadow: var(--col-button-border) 0 var(--elevation) 0;
   transform: translateY(calc(4px - var(--elevation)));
 
@@ -293,15 +308,15 @@ button#mem-flip {
   background: transparent; 
 }
 .membtn:hover {
-  --elevation: 6px;
+  --elevation: var(--elevation-hover);
 }
 .membtn:active {
-  --elevation: 0px;
+  --elevation: var(--elevation-pressed);
 }
 
 .frontside #scr-keyboard .membtn:hover,
 .frontside #scr-keyboard .membtn:active {
-  --elevation: 4px;
+  --elevation: var(--elevation-idle);
 }
 
 /* ーーーーーーーー FRONTSIDE BASIC ーーーーーーーー */
@@ -441,7 +456,7 @@ code#typeans {
 
   /*focus outline*/
 body :focus-visible {
-  box-shadow: var(--col-outline) 0px 0px 0px 3px;
+  box-shadow: var(--col-focus) 0px 0px 0px 3px;
   outline: none;
 }
 
@@ -994,12 +1009,11 @@ svg.playImage path {
 }
 
 #scr-keyboard .membtn.pressed {
-    --elevation: 0px !important;
-    --pressed-outline-width: 6px;
+    --elevation: var(--elevation-pressed) !important;
     outline-offset: calc(-1 * (1 * var(--mem-border-width) + var(--pressed-outline-width)));
 }
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
-    outline: #dbd2bdaa var(--pressed-outline-width) solid;
+    outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
 }
 #backwrap #scr-keyboard .membtn.pressed {
     outline: none;
