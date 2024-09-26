@@ -9,12 +9,12 @@ def fill_choices(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
 
     # Defining a set of all fields present in the selected notes
-    all_fields = []
-    for note in notes:
-        all_fields += note.keys()
-
+    unique_fields = []
     added = set()
-    unique_fields = [field for field in all_fields if not (field in added or added.add(field))]
+    for note in notes:
+        for field in note.keys():
+            if not (field in added or added.add(field)):
+                unique_fields.append(field)
 
     # Settings Dialog
     dialog = Dialogs.FillChoices(unique_fields)
