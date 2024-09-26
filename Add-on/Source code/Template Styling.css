@@ -74,7 +74,7 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
 }
 
 
-/* ーーー general constants ーーー */
+/* ーーー general definitions ーーー */
 
 :root {
     /* memrise constants */
@@ -117,7 +117,7 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --ank-spell-bad: #faa;
 }
 
-/* ーーー fallback theme ーーー */
+/* ーーー root theme ーーー */
 
 :root {
     font-size: 16px;
