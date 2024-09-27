@@ -211,7 +211,7 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
     --col-correct-text: #bedf65;
     --col-correct-border: #293d05;
     --col-correct-bg: #759d0add;
-    --col-close-text: #f7dc6fdd;#f49751;
+    --col-close-text: #f7dc6fe5;#f49751;
     --col-close-border: #a12e03;
     --col-close-bg: #f49751c0;
     --col-wrong-text: #f6777d;#f55b50;
@@ -371,9 +371,9 @@ div code#typeans {
   font-family: var(--fonts) !important;
 }
 
-body {
-  background: var(--col-bg) !important;
-  color: var(--col-text) !important;
+body.card {
+  background: var(--col-bg);
+  color: var(--col-text);
   margin: 0;
   position: relative;
 
@@ -1192,5 +1192,6 @@ html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
 
 /* --------------------- user styles --------------------- */
 /* place your styles and modifications below */
+
 
 
