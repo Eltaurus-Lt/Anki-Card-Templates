@@ -74,14 +74,14 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
     --col-inset-bg: #363636;
 
     --col-correct-text: var(--mem-correct-bg);
-    --col-correct-border: var(--mem-correct-text);#29b968;
-    --col-correct-bg: var(--mem-correct-border);var(--mem-correct-text);
+    --col-correct-border: var(--mem-correct-text);
+    --col-correct-bg: var(--mem-correct-border);
     --col-close-text: var(--mem-close-bg);
-    --col-close-border: var(--mem-close-text);#c79b3c;var(--mem-close-border);
-    --col-close-bg: var(--mem-close-border);var(--mem-close-text);
+    --col-close-border: var(--mem-close-text);
+    --col-close-bg: var(--mem-close-border);
     --col-wrong-text: var(--mem-wrong-bg);
-    --col-wrong-border: var(--mem-wrong-text);#c73c3c;var(--mem-wrong-border);
-    --col-wrong-bg: var(--mem-wrong-border);#c73c3c;var(--mem-wrong-text);
+    --col-wrong-border: var(--mem-wrong-text);
+    --col-wrong-bg: var(--mem-wrong-border);
 
     --col-spell-good: transparent;
     --col-spell-missed: #226635;
@@ -137,15 +137,15 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
 
 body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
     --col-text: #14274f;
-    --col-focus: #69ade8;90c9e3;f7ca46;
+    --col-focus: #69ade8;
     --col-bg: #f1becf;
 
     --col-input-text: #f7dc6f;
     --col-input-border: #081738;
-    --col-input-bg: #493b5d;e4eee9;
+    --col-input-bg: #493b5d;
 
     --col-audio-fg: var(--col-text);
-    --col-audio-bg: #f7f395;#f7ca46;9fbcd5;
+    --col-audio-bg: #f7f395;
     --col-audio-bg2: #f6777d;
     --op-audio-passive: .65;
     --col-audio-container: #f4975180;
@@ -161,15 +161,15 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
     --col-correct-text: #293d05;
     --col-correct-border: #759d0a;
     --col-correct-bg: #bedf65;
-    --col-close-text: #a12e03;var(--mem-close-text);
+    --col-close-text: #a12e03;
     --col-close-border: #f55b50;
     --col-close-bg: #f49751;
-    --col-wrong-text: #54070c;rgb(109, 0, 9);var(--mem-wrong-text);
-    --col-wrong-border: #a5202a;var(--mem-wrong-border);
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #a5202a;
     --col-wrong-bg: #f55b50;
 
     --col-spell-good: transparent;
-    --col-spell-missed: #bedf65d0;#f7f395;
+    --col-spell-missed: #bedf65d0;
     --col-spell-bad: #f55b5070;
 
     --col-pressed-outline: #6e80ad;
@@ -187,15 +187,15 @@ body:has(div.card-content[theme="Sunset"]) ::selection {
 
 body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
     --col-text: #f7dc6f;
-    --col-focus: #a0bbd6;#69ade8;90c9e3;f7ca46;
+    --col-focus: #a0bbd6;
     --col-bg: #14274f;
 
     --col-input-text: #f7dc6f;
     --col-input-border: #081738;
-    --col-input-bg: #493b5d;e4eee9;
+    --col-input-bg: #493b5d;
 
     --col-audio-fg: #14274f;
-    --col-audio-bg: #f7f395;#f7ca46;9fbcd5;
+    --col-audio-bg: #f7f395;
     --col-audio-bg2: #f6777d;
     --op-audio-passive: .8;
     --col-audio-container: #f49751d0;
@@ -206,20 +206,20 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
 
     --col-text-faint: #7e4f6b;
     --col-sep: #493b5da0;
-    --col-inset-bg: #504165;#493b5d;#67567f;
+    --col-inset-bg: #504165;
 
     --col-correct-text: #bedf65;
     --col-correct-border: #293d05;
     --col-correct-bg: #759d0add;
-    --col-close-text: #f7dc6fe5;#f49751;
+    --col-close-text: #f7dc6fe5;
     --col-close-border: #a12e03;
     --col-close-bg: #f49751c0;
-    --col-wrong-text: #f6777d;#f55b50;
+    --col-wrong-text: #f6777d;
     --col-wrong-border: #54070c;
     --col-wrong-bg: #a5202add;
 
     --col-spell-good: transparent;
-    --col-spell-missed: #bedf6570;#f7f395;
+    --col-spell-missed: #bedf6570;
     --col-spell-bad: #f55b5070;
 
     --col-pressed-outline: #6e80ad;
@@ -228,7 +228,7 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) .front-ex
     color: #081738;
 }
 body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
-  color: #a0bbd6;var(--col-text);
+  color: #a0bbd6;
 }
 
 /* ーーー general definitions ーーー */
@@ -306,13 +306,13 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
 
     --col-correct-text: #053d17;
     --col-correct-border: #0a9d56;
-    --col-correct-bg: #64d787;#4bcc6c;#79e191;
+    --col-correct-bg: #64d787;
     --col-close-text: #a12e03;
-    --col-close-border: #df9800;#d17417;#ef8c28;
-    --col-close-bg: #f9ce5c;#f8c34e;#f3b97f;
-    --col-wrong-text: #54070c;#610910;#9e6400;#6e0910;
-    --col-wrong-border: #99101b;#b1212b;
-    --col-wrong-bg: #f66761;#f8605a;
+    --col-close-border: #df9800;
+    --col-close-bg: #f9ce5c;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #99101b;
+    --col-wrong-bg: #f66761;
 
     --col-spell-good: var(--ank-spell-good);
     --col-spell-missed: var(--ank-spell-missed);
@@ -334,15 +334,15 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
 }
 
 body.nightMode, body.night_mode {
-    --col-correct-text: #29b968;#23ad63;
-    --col-correct-border: #29b968;#098748;
+    --col-correct-text: #29b968;
+    --col-correct-border: #29b968;
     --col-correct-bg: #1c4729;
-    --col-close-text: #c79b3c;#f4c246;#eaaf27;
-    --col-close-border: #c79b3c;#df9800;
-    --col-close-bg: #632c10;#752102;#eaaf27;
-    --col-wrong-text: #c73c3c;#f66761;
+    --col-close-text: #c79b3c;
+    --col-close-border: #c79b3c;
+    --col-close-bg: #632c10;
+    --col-wrong-text: #c73c3c;
     --col-wrong-border: #c73c3c;
-    --col-wrong-bg: #581f24;#61161c;#610910;
+    --col-wrong-bg: #581f24;
 
     --col-spell-good: #226635;
     --col-spell-missed: #333;
