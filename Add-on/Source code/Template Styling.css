@@ -43,36 +43,193 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
     --col-spell-bad: var(--mem-spell-bad);
 
     --col-pressed-outline: #dbd2bdaa;
+
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
 }
 body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
-    --col-bg: var(--canvas);
-    --col-audio-fg: var(--mem-primary);
 
-    --col-correct-text: var(--mem-correct-text);
-    --col-correct-border: var(--mem-correct-border);
-    --col-correct-bg: var(--mem-correct-bg);
-    --col-close-text: var(--mem-close-text);
-    --col-close-border: var(--mem-close-border);
-    --col-close-bg: var(--mem-close-bg);
-    --col-wrong-text: var(--mem-wrong-text);
-    --col-wrong-border: var(--mem-wrong-border);
-    --col-wrong-bg: var(--mem-wrong-bg);
+    --col-text: var(--mem-bg);
+    --col-focus: #3b82f6;
+    --col-bg: #2c2c2c;
+
+    --col-input-text: white;
+    --col-input-border: #020202;
+    --col-input-bg: #252525;
+
+    --col-audio-fg: var(--mem-primary);
+    --col-audio-bg: black;
+    --col-audio-bg2: black;
+    --op-audio-passive: 0.5;
+    --col-audio-container: #141414;
+
+    --col-button-text: white;
+    --col-button-border: #202020;
+    --col-button-bg: #404040;
+
+    --col-text-faint: #545454;
+    --col-sep: #202020;
+    --col-inset-bg: #363636;
+
+    --col-correct-text: var(--mem-correct-bg);
+    --col-correct-border: var(--mem-correct-text);#29b968;
+    --col-correct-bg: var(--mem-correct-border);var(--mem-correct-text);
+    --col-close-text: var(--mem-close-bg);
+    --col-close-border: var(--mem-close-text);#c79b3c;var(--mem-close-border);
+    --col-close-bg: var(--mem-close-border);var(--mem-close-text);
+    --col-wrong-text: var(--mem-wrong-bg);
+    --col-wrong-border: var(--mem-wrong-text);#c73c3c;var(--mem-wrong-border);
+    --col-wrong-bg: var(--mem-wrong-border);#c73c3c;var(--mem-wrong-text);
 
     --col-spell-good: transparent;
-    --col-spell-missed: var(--mem-spell-missed);
-    --col-spell-bad: var(--mem-spell-bad);
+    --col-spell-missed: #226635;
+    --col-spell-bad: #732c31dd;
 
     --col-pressed-outline: #ffbb00aa;
+
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
+}
+body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) ::selection {
+    color: var(--mem-text);
+    background-color: var(--mem-bg);
 }
 
-body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) {
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-focus: var(--border-focus);
 
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
+
 }
 
+
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
+    --col-text: var(--mem-text);
+    --col-focus: #277c1d;
+    --col-bg: #8eaf62;
+
+    --col-input-text: var(--mem-input-text);
+    --col-input-border: var(--mem-border);
+    --col-input-bg: var(--mem-input-bg);
+
+    --col-audio-fg: var(--mem-text);
+    --col-audio-bg: var(--mem-primary);
+    --col-audio-bg2: var(--col-audio-bg);
+    --op-audio-passive: 0.2;
+    --col-audio-container: var(--mem-audio-container);
+
+    --col-button-text: #e6e08e; 
+    --col-button-border: #a86723;
+    --col-button-bg: #56380e;
+
+    --col-text-faint: var(--mem-textlabel);
+    --col-sep: var(--mem-sep);
+    --col-inset-bg: var(--col-input-bg);
+
+}
+
+
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
+    --col-text: #14274f;
+    --col-focus: #69ade8;90c9e3;f7ca46;
+    --col-bg: #f1becf;
+
+    --col-input-text: #f7dc6f;
+    --col-input-border: #081738;
+    --col-input-bg: #493b5d;e4eee9;
+
+    --col-audio-fg: var(--col-text);
+    --col-audio-bg: #f7f395;#f7ca46;9fbcd5;
+    --col-audio-bg2: #f6777d;
+    --op-audio-passive: .65;
+    --col-audio-container: #f4975180;
+
+    --col-button-text: #f7dc6f; 
+    --col-button-border: #081738;
+    --col-button-bg: #493b5d;
+
+    --col-text-faint: #f55b50cc;
+    --col-sep: #493b5d50;
+    --col-inset-bg: #493b5d60;
+
+    --col-correct-text: #293d05;
+    --col-correct-border: #759d0a;
+    --col-correct-bg: #bedf65;
+    --col-close-text: #a12e03;var(--mem-close-text);
+    --col-close-border: #f55b50;
+    --col-close-bg: #f49751;
+    --col-wrong-text: #54070c;rgb(109, 0, 9);var(--mem-wrong-text);
+    --col-wrong-border: #a5202a;var(--mem-wrong-border);
+    --col-wrong-bg: #f55b50;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #bedf65d0;#f7f395;
+    --col-spell-bad: #f55b5070;
+
+    --col-pressed-outline: #6e80ad;
+}
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+  color: var(--col-text);
+}
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) .membtn {
+    --col-text: #f7dc6f;
+}
+body:has(div.card-content[theme="Sunset"]) ::selection {
+    color: white;
+    background-color: #69ade8;
+}
+
+body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
+    --col-text: #f7dc6f;
+    --col-focus: #a0bbd6;#69ade8;90c9e3;f7ca46;
+    --col-bg: #14274f;
+
+    --col-input-text: #f7dc6f;
+    --col-input-border: #081738;
+    --col-input-bg: #493b5d;e4eee9;
+
+    --col-audio-fg: #14274f;
+    --col-audio-bg: #f7f395;#f7ca46;9fbcd5;
+    --col-audio-bg2: #f6777d;
+    --op-audio-passive: .8;
+    --col-audio-container: #f49751d0;
+
+    --col-button-text: #f7dc6f; 
+    --col-button-border: #081738;
+    --col-button-bg: #493b5d;
+
+    --col-text-faint: #7e4f6b;
+    --col-sep: #493b5da0;
+    --col-inset-bg: #504165;#493b5d;#67567f;
+
+    --col-correct-text: #bedf65;
+    --col-correct-border: #293d05;
+    --col-correct-bg: #759d0add;
+    --col-close-text: #f7dc6fdd;#f49751;
+    --col-close-border: #a12e03;
+    --col-close-bg: #f49751c0;
+    --col-wrong-text: #f6777d;#f55b50;
+    --col-wrong-border: #54070c;
+    --col-wrong-bg: #a5202add;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #bedf6570;#f7f395;
+    --col-spell-bad: #f55b5070;
+
+    --col-pressed-outline: #6e80ad;
+}
+body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) .front-extra {
+    color: #081738;
+}
+body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+  color: #a0bbd6;var(--col-text);
+}
 
 /* ーーー general definitions ーーー */
 
@@ -112,6 +269,8 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --mem-spell-bad: #f8d3d6;
 
     /* anki constants */
+    --ank-focus: rgb(229, 151, 0);
+
     --ank-spell-good: #afa;
     --ank-spell-missed: #ccc;
     --ank-spell-bad: #faa;
@@ -124,46 +283,46 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
     --fonts: "Open Sans", "Meiryo", sans-serif;
 
     --col-text: var(--fg);
-    --col-focus: -webkit-focus-ring-color;
+    --col-focus: var(--ank-focus);
     --col-bg: var(--canvas);
 
     --col-input-text: fieldtext;
-    --col-input-border: var(--border);
-    --col-input-bg: var(--canvas-inset);
+    --col-input-border: var(--border-strong);
+    --col-input-bg: var(--canvas-code);
 
-    --col-audio-fg: var(--button-bg);
-    --col-audio-bg: var(--button-primary-bg);
-    --col-audio-bg2: var(--col-audio-bg); /*(2)*/
-    --op-audio-passive: 0.75;
-    --col-audio-container: var(--shadow);
+    --col-audio-fg: var(--fg);
+    --col-audio-bg: var(--button-primary-disabled);
+    --col-audio-bg2: var(--button-primary-disabled);
+    --op-audio-passive: 0.5;
+    --col-audio-container: var(--border-subtle);
 
-    --col-button-text: var(--col-input-text); /*(2)*/
-    --col-button-border: var(--col-input-border); /*(2)*/
+    --col-button-text: var(--col-input-text);
+    --col-button-border: var(--border);
     --col-button-bg: var(--button-bg);
 
     --col-text-faint: var(--fg-faint);
-    --col-sep: var(--border-subtle);
-    --col-inset-bg: var(--canvas-inset);
+    --col-sep: var(--border);
+    --col-inset-bg: var(--canvas-elevated);
 
-    --col-correct-text: var(--mem-correct-text);
-    --col-correct-border: var(--mem-correct-border);
-    --col-correct-bg: var(--mem-correct-bg);
-    --col-close-text: var(--mem-close-text);
-    --col-close-border: var(--mem-close-border);
-    --col-close-bg: var(--mem-close-bg);
-    --col-wrong-text: var(--mem-wrong-text);
-    --col-wrong-border: var(--mem-wrong-border);
-    --col-wrong-bg: var(--mem-wrong-bg);
+    --col-correct-text: #053d17;
+    --col-correct-border: #0a9d56;
+    --col-correct-bg: #64d787;#4bcc6c;#79e191;
+    --col-close-text: #a12e03;
+    --col-close-border: #df9800;#d17417;#ef8c28;
+    --col-close-bg: #f9ce5c;#f8c34e;#f3b97f;
+    --col-wrong-text: #54070c;#610910;#9e6400;#6e0910;
+    --col-wrong-border: #99101b;#b1212b;
+    --col-wrong-bg: #f66761;#f8605a;
 
     --col-spell-good: var(--ank-spell-good);
     --col-spell-missed: var(--ank-spell-missed);
     --col-spell-bad: var(--ank-spell-bad);
 
     --border-width: 2px;
-    --border-r1: 0.25rem;
-    --border-r2: 0.5rem;
-    --border-r3: 0.75rem;
-    --border-r4: 1rem;
+    --border-r1: 3px;
+    --border-r2: var(--border-radius);
+    --border-r3: var(--border-radius-medium);
+    --border-r4: var(--border-radius-large);
 
     --elevation-idle: 4px;
     --elevation-hover: 6px;
@@ -175,20 +334,19 @@ body:not(.nightMode):not(.night_mode):has(setting#theme[data-theme="AnkiCard"]) 
 }
 
 body.nightMode, body.night_mode {
-    --col-audio-fg: var(--button-primary-disabled);
-    --col-audio-bg: black;
-    --col-audio-bg2: black;
-    --op-audio-passive: 0.5;
+    --col-correct-text: #29b968;#23ad63;
+    --col-correct-border: #29b968;#098748;
+    --col-correct-bg: #1c4729;
+    --col-close-text: #c79b3c;#f4c246;#eaaf27;
+    --col-close-border: #c79b3c;#df9800;
+    --col-close-bg: #632c10;#752102;#eaaf27;
+    --col-wrong-text: #c73c3c;#f66761;
+    --col-wrong-border: #c73c3c;
+    --col-wrong-bg: #581f24;#61161c;#610910;
 
-    --col-correct-text: var(--mem-correct-bg);
-    --col-correct-border: var(--mem-correct-border);
-    --col-correct-bg: var(--mem-correct-text);
-    --col-close-text: var(--mem-close-bg);
-    --col-close-border: var(--mem-close-border);
-    --col-close-bg: var(--mem-close-text);
-    --col-wrong-text: var(--mem-wrong-bg);
-    --col-wrong-border: var(--mem-wrong-border);
-    --col-wrong-bg: var(--mem-wrong-text);
+    --col-spell-good: #226635;
+    --col-spell-missed: #333;
+    --col-spell-bad: #732c31dd;
 }
 
 /* ーーー general ーーー */
@@ -214,8 +372,8 @@ div code#typeans {
 }
 
 body {
-  background: var(--col-bg);
-  color: var(--col-text);
+  background: var(--col-bg) !important;
+  color: var(--col-text) !important;
   margin: 0;
   position: relative;
 
@@ -527,6 +685,9 @@ body::after {
 	z-index: -1;
 	opacity: 0.5;
 }
+body:is(.nightMode, .night_mode) .mem-alert {
+    color: var(--col-wrong-text);
+}
 
 /*
 .soclose .mem-alert {
@@ -535,10 +696,17 @@ body::after {
 .soclose .mem-alert::after {
 	background: var(--col-close-bg);
 }
+
+body:is(.nightMode, .night_mode) .mem-alert::after {
+    background: var(--col-wrong-bg);
+}
 */
 
 .correct .mem-alert {
   color: var(--col-correct-border);
+}
+body:is(.nightMode, .night_mode) .correct .mem-alert {
+    color: var(--col-correct-text);
 }
 .correct .mem-alert::after {
 	background: var(--col-correct-bg);
@@ -820,6 +988,7 @@ svg.playImage path {
 }
 
 #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+  color: var(--col-input-text);
   font-weight: bold;
 	font-variant-ligatures: no-common-ligatures;
 }
@@ -995,14 +1164,14 @@ svg.playImage path {
 }
 
 .frontside #scr-keyboard .membtn.correct {
-    --col-button-text: var(--col-correct-text) !important;
+    --col-button-text: var(--col-correct-text);
     --col-button-border: var(--col-correct-border);
     --col-button-bg: var(--col-correct-bg);
     --col-text: var(--col-correct-border);
 }
 
 .frontside #scr-keyboard .membtn.pressed:not(.correct) {
-    --col-button-text: var(--col-wrong-text) !important;
+    --col-button-text: var(--col-wrong-text);
     --col-button-border: var(--col-wrong-border);
     --col-button-bg: var(--col-wrong-bg);
     --col-text: var(--col-wrong-border);
@@ -1010,7 +1179,7 @@ svg.playImage path {
 
 #scr-keyboard .membtn.pressed {
     --elevation: var(--elevation-pressed) !important;
-    outline-offset: calc(-1 * (1 * var(--mem-border-width) + var(--pressed-outline-width)));
+    outline-offset: calc(-1 * (1 * var(--border-width) + var(--pressed-outline-width)));
 }
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
@@ -1022,4 +1191,6 @@ html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
 
 
 /* --------------------- user styles --------------------- */
+/* place your styles and modifications below */
+
 
