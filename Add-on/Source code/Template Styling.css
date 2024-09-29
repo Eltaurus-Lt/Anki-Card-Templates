@@ -120,21 +120,21 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
 
     --col-audio-fg: #fffbe0;
     --col-audio-bg: #24561e88;
-    --col-audio-bg2: #6c950aaa;
+    --col-audio-bg2: #6c950a99;
     --op-audio-passive: 1;
-    --col-audio-container: #6c950aaa;
+    --col-audio-container: #6c950a90;
 
-    --col-button-text: #ded092;#dbc665; 
+    --col-button-text: #ebdfa9;#ded092;#dbc665; 
     --col-button-border: #5c4f3c;#584932;
     --col-button-bg: #917854;#917247;
 
-    --col-text-faint: #80913e;
+    --col-text-faint: #80913eaa;
     --col-sep: #c1b68b;
     --col-inset-bg: #d6e2badd;#edeed1;#ebe4b6;
 
     --col-correct-text: #053d17;#154f30;
-    --col-correct-border: #088548;#0a9d56;#13ad6c;
-    --col-correct-bg: #64d787;#68e485;
+    --col-correct-border: #147d10;#088548;#0a9d56;#13ad6c;
+    --col-correct-bg: #83cf6b;#64d787;#68e485;
     --col-close-text: #7e270a;
     --col-close-border: #c8671c;
     --col-close-bg: #f9bb83;
@@ -150,6 +150,45 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
 body:has(div.card-content[theme="Forest"]) ::selection {
     color: white;
     background-color: #277c1d;
+}
+
+body:is(.nightMode, .night_mode):has(div.card-content[theme="Forest"]) {
+    --col-text: #c1b68b;#c5c5a1;#8ab096;
+    --col-focus: #557d3d;#40724b;#7d971e;
+    --col-bg: #0b2a25;
+
+    --col-input-text: #d3e9d6;
+    --col-input-border: #233d34;
+    --col-input-bg: #0a1723;
+
+    --col-audio-fg: #c5c5a1;#c9d3b6;#c1b68b;
+    --col-audio-bg: #00623670;
+    --col-audio-bg2: #092412bb;#092309aa;
+    --op-audio-passive: 1;
+    --col-audio-container: #092412dd;#0b210edd;
+
+    --col-button-text: #c5c5a1;#c1b68b;#ded092;#dbc665; #8ab096;
+    --col-button-border: #001c15;#10120e;#282e2a;
+    --col-button-bg: #0b271a;#09230966;#1b2525;
+
+    --col-text-faint: #006236;
+    --col-sep: #29472e;
+    --col-inset-bg: #1c3a41;
+
+    --col-correct-text: #90e090;
+    --col-correct-border: #053d17;
+    --col-correct-bg: #066735;
+    --col-close-text: #f9bb83;
+    --col-close-border: #691913;
+    --col-close-bg: #964127;
+    --col-wrong-text: #eb8f9e;
+    --col-wrong-border: #55091f;#5f0a00;
+    --col-wrong-bg: #972343;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #3e655caa;#4b625f99;
+    --col-spell-bad: #612f40;
+
 }
 
 
