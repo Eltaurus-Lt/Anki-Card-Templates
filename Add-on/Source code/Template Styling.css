@@ -50,7 +50,6 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
     --border-r4: 1rem;
 }
 body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
-
     --col-text: var(--mem-bg);
     --col-focus: #3b82f6;
     --col-bg: #2c2c2c;
@@ -99,15 +98,60 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) ::select
     background-color: var(--mem-bg);
 }
 
+
 body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
+    --col-text: var(--fg);
     --col-focus: var(--border-focus);
+    --col-bg: var(--canvas-elevated);
+
+    --col-audio-fg: var(--fg);
+    --col-audio-bg: var(--highlight-bg);var(--canvas-glass);
+    --col-audio-bg2: var(--button-primary-gradient-start);var(--button-primary-disabled);
+    --op-audio-passive: .6;0.42;
+
+    --col-input-bg: var(--canvas);var(--selected-bg);var(--border-subtle);
+
+    --col-input-border: var(--border-strong);
+    --col-audio-container: var(--selected-bg);
+
+    --col-button-border: var(--button-hover-border);
+
+    --col-inset-bg: var(--border-subtle);
+
+    --col-correct-text: #053d17;
+    --col-correct-border: #0a9d56;
+    --col-correct-bg: #64d787;
+    --col-close-text: #a12e03;
+    --col-close-border: #df9800;
+    --col-close-bg: #f9ce5c;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #99101b;
+    --col-wrong-bg: #f66761;
 
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
 
 }
+body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) .card-content.back {
+    --col-audio-bg: var(--button-primary-gradient-start);var(--button-primary-disabled);
+}
+body:has(div.card-content[theme="AnkiCard"]) ::selection {
+    color: white;
+    background-color: var(--button-primary-disabled);
+}
 
+body:is(.nightMode, .night_mode):has(div.card-content[theme="AnkiCard"]) {
+    --col-correct-text: #29b968;
+    --col-correct-border: #29b968;
+    --col-correct-bg: #1c4729;
+    --col-close-text: #c79b3c;
+    --col-close-border: #c79b3c;
+    --col-close-bg: #632c10;
+    --col-wrong-text: #c73c3c;
+    --col-wrong-border: #c73c3c;
+    --col-wrong-bg: #581f24;
+}
 
 body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
     --col-text: #443323;
@@ -361,15 +405,15 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
     --col-sep: var(--border);
     --col-inset-bg: var(--canvas-elevated);
 
-    --col-correct-text: #053d17;
-    --col-correct-border: #0a9d56;
-    --col-correct-bg: #64d787;
-    --col-close-text: #a12e03;
-    --col-close-border: #df9800;
-    --col-close-bg: #f9ce5c;
-    --col-wrong-text: #54070c;
-    --col-wrong-border: #99101b;
-    --col-wrong-bg: #f66761;
+    --col-correct-text: var(--mem-correct-text);
+    --col-correct-border: var(--mem-correct-border);
+    --col-correct-bg: var(--mem-correct-bg);
+    --col-close-text: var(--mem-close-text);
+    --col-close-border: var(--mem-close-border);
+    --col-close-bg: var(--mem-close-bg);
+    --col-wrong-text: var(--mem-wrong-text);
+    --col-wrong-border: var(--mem-wrong-border);
+    --col-wrong-bg: var(--mem-wrong-bg);
 
     --col-spell-good: var(--ank-spell-good);
     --col-spell-missed: var(--ank-spell-missed);
@@ -391,15 +435,15 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
 }
 
 body.nightMode, body.night_mode {
-    --col-correct-text: #29b968;
-    --col-correct-border: #29b968;
-    --col-correct-bg: #1c4729;
-    --col-close-text: #c79b3c;
-    --col-close-border: #c79b3c;
-    --col-close-bg: #632c10;
-    --col-wrong-text: #c73c3c;
-    --col-wrong-border: #c73c3c;
-    --col-wrong-bg: #581f24;
+    --col-correct-text: var(--mem-correct-bg);
+    --col-correct-border: var(--mem-correct-text);
+    --col-correct-bg: var(--mem-correct-border);
+    --col-close-text: var(--mem-close-bg);
+    --col-close-border: var(--mem-close-text);
+    --col-close-bg: var(--mem-close-border);
+    --col-wrong-text: var(--mem-wrong-bg);
+    --col-wrong-border: var(--mem-wrong-text);
+    --col-wrong-bg: var(--mem-wrong-border);
 
     --col-spell-good: #226635;
     --col-spell-missed: #333;
