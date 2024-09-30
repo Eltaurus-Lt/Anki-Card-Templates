@@ -103,24 +103,13 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-focus: var(--border-focus);
     --col-bg: var(--canvas-elevated);
 
-    --col-audio-fg: var(--fg);
-    --col-audio-bg: var(--highlight-bg);var(--canvas-glass);
-    --col-audio-passive: var(--button-primary-gradient-start);var(--button-primary-disabled);
-    --op-audio-passive: .6;0.42;
-
-    --col-audio-fg: var(--button-primary-disabled);
-    --col-audio-bg: var(--button-primary-gradient-end);
-    --col-audio-passive: var(--button-primary-gradient-start);
-    --op-audio-passive: 1;
+    --col-input-border: var(--border-strong);
+    --col-input-bg: var(--canvas);
 
     --col-audio-fg: var(--fg);
     --col-audio-bg: var(--button-primary-gradient-start);
     --col-audio-passive: var(--border-subtle);
     --op-audio-passive: 1;
-
-    --col-input-bg: var(--canvas);var(--selected-bg);var(--border-subtle);
-
-    --col-input-border: var(--border-strong);
     --col-audio-container: var(--selected-bg);
 
     --col-button-border: var(--button-hover-border);
@@ -140,30 +129,27 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
-
 }
-
 body:has(div.card-content[theme="AnkiCard"]) ::selection {
     color: white;
     background-color: var(--button-primary-disabled);
 }
-
 body:is(.nightMode, .night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-text: white;
     --col-focus: var(--border-focus);
     --col-bg: var(--canvas-code);
 
-    --col-audio-fg: var(--button-primary-gradient-start);var(--button-primary-disabled);
+    --col-audio-fg: var(--button-primary-gradient-start);
     --col-audio-bg: black;
     --col-audio-passive: black;
     --op-audio-passive: 0.5;
+    --col-audio-container: var(--shadow);
 
     --col-button-text: var(--fg); 
     --col-button-border: var(--button-hover-border);
     --col-button-bg: var(--canvas);
 
     --col-sep: var(--button-hover-border);
-    --col-audio-container: var(--shadow);
 
     --col-correct-text: #64d787;
     --col-correct-border: #1c4729;
@@ -183,11 +169,11 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="AnkiCard"]) {
 body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
     --col-text: #443323;
     --col-focus: #277c1d;
-    --col-bg: #e9ffe0;#e9ffd9;#cffcac;
+    --col-bg: #e9ffe0;
 
-    --col-input-text: #493729;#294937;
+    --col-input-text: #493729;
     --col-input-border: #7d971e;
-    --col-input-bg: #f4eee5;#eee5d7;
+    --col-input-bg: #f4eee5;
 
     --col-audio-fg: #fffbe0;
     --col-audio-bg: #24561e88;
@@ -195,17 +181,17 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
     --op-audio-passive: 1;
     --col-audio-container: #6c950a90;
 
-    --col-button-text: #ebdfa9;#ded092;#dbc665; 
-    --col-button-border: #5c4f3c;#584932;
-    --col-button-bg: #917854;#917247;
+    --col-button-text: #ebdfa9; 
+    --col-button-border: #5c4f3c;
+    --col-button-bg: #917854;
 
     --col-text-faint: #80913eaa;
     --col-sep: #c1b68b;
-    --col-inset-bg: #d6e2badd;#edeed1;#ebe4b6;
+    --col-inset-bg: #d6e2badd;
 
-    --col-correct-text: #053d17;#154f30;
-    --col-correct-border: #147d10;#088548;#0a9d56;#13ad6c;
-    --col-correct-bg: #83cf6b;#64d787;#68e485;
+    --col-correct-text: #053d17;
+    --col-correct-border: #147d10;
+    --col-correct-bg: #83cf6b;
     --col-close-text: #7e270a;
     --col-close-border: #c8671c;
     --col-close-bg: #f9bb83;
@@ -215,32 +201,30 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
 
     --col-spell-good: transparent;
     --col-spell-missed: #aae53c;
-    --col-spell-bad: #ffa37e;#e67552;
-
+    --col-spell-bad: #ffa37e;
 }
 body:has(div.card-content[theme="Forest"]) ::selection {
     color: white;
     background-color: #277c1d;
 }
-
 body:is(.nightMode, .night_mode):has(div.card-content[theme="Forest"]) {
-    --col-text: #c1b68b;#c5c5a1;#8ab096;
-    --col-focus: #557d3d;#40724b;#7d971e;
+    --col-text: #c1b68b;
+    --col-focus: #557d3d;
     --col-bg: #0b2a25;
 
     --col-input-text: #d3e9d6;
     --col-input-border: #233d34;
     --col-input-bg: #0a1723;
 
-    --col-audio-fg: #c5c5a1;#c9d3b6;#c1b68b;
+    --col-audio-fg: #c5c5a1;
     --col-audio-bg: #00623670;
-    --col-audio-passive: #092412bb;#092309aa;
+    --col-audio-passive: #092412bb;
     --op-audio-passive: 1;
-    --col-audio-container: #092412dd;#0b210edd;
+    --col-audio-container: #092412dd;
 
-    --col-button-text: #c5c5a1;#c1b68b;#ded092;#dbc665; #8ab096;
-    --col-button-border: #001c15;#10120e;#282e2a;
-    --col-button-bg: #0b271a;#09230966;#1b2525;
+    --col-button-text: #c5c5a1;
+    --col-button-border: #001c15;
+    --col-button-bg: #0b271a;
 
     --col-text-faint: #006236;
     --col-sep: #29472e;
@@ -253,13 +237,12 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Forest"]) {
     --col-close-border: #691913;
     --col-close-bg: #964127;
     --col-wrong-text: #eb8f9e;
-    --col-wrong-border: #55091f;#5f0a00;
+    --col-wrong-border: #55091f;
     --col-wrong-bg: #972343;
 
     --col-spell-good: transparent;
-    --col-spell-missed: #3e655caa;#4b625f99;
+    --col-spell-missed: #3e655caa;
     --col-spell-bad: #612f40;
-
 }
 
 
@@ -312,7 +295,6 @@ body:has(div.card-content[theme="Sunset"]) ::selection {
     color: white;
     background-color: #69ade8;
 }
-
 body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
     --col-text: #f7dc6f;
     --col-focus: #a0bbd6;
@@ -424,11 +406,11 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
     --col-input-border: var(--border-strong);
     --col-input-bg: var(--canvas-code);
 
-    --col-audio-fg: var(--shadow-inset);var(--fg);
+    --col-audio-fg: var(--shadow-inset);
     --col-audio-bg: var(--button-primary-disabled);
     --col-audio-passive: var(--button-primary-disabled);
     --op-audio-passive: 0.5;
-    --col-audio-container: var(--scrollbar-bg);var(--border-subtle);
+    --col-audio-container: var(--scrollbar-bg);
 
     --col-button-text: var(--col-input-text);
     --col-button-border: var(--border);
@@ -440,13 +422,13 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
 
     --col-correct-text: var(--mem-correct-text);
     --col-correct-border: var(--mem-correct-border);
-    --col-correct-bg: var(--ank-spell-good);var(--mem-correct-bg);
+    --col-correct-bg: var(--ank-spell-good);
     --col-close-text: var(--mem-close-text);
     --col-close-border: var(--mem-close-border);
-    --col-close-bg: #ffc8b0;var(--mem-close-bg);
+    --col-close-bg: #ffc8b0;
     --col-wrong-text: var(--mem-wrong-text);
     --col-wrong-border: var(--mem-wrong-border);
-    --col-wrong-bg: var(--ank-spell-bad);var(--mem-wrong-bg);
+    --col-wrong-bg: var(--ank-spell-bad);
 
     --col-spell-good: var(--ank-spell-good);
     --col-spell-missed: var(--ank-spell-missed);
@@ -472,7 +454,7 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellche
 }
 
 body.nightMode, body.night_mode {
-    --col-correct-text: var(--ank-spell-good);var(--mem-correct-bg);
+    --col-correct-text: var(--ank-spell-good);
     --col-correct-border: var(--mem-correct-text);
     --col-correct-bg: var(--mem-correct-border);
     --col-close-text: var(--mem-close-bg);
