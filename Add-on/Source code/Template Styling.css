@@ -5,7 +5,17 @@
 
 /* ーーー themes ーーー */
 
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
+body:has(div.card-content[theme="MemRise"]) {
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
+
+    --path-play: var(--mem-play);
+    --path-blob: var(--mem-blob);
+    --path-hint: var(--mem-hint);
+}
+body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
     --col-text: var(--mem-text);
     --col-focus: var(--mem-focus);
     --col-bg: var(--mem-bg);
@@ -43,13 +53,8 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="MemRise"]) {
     --col-spell-bad: var(--mem-spell-bad);
 
     --col-pressed-outline: #dbd2bdaa;
-
-    --border-r1: 0.25rem;
-    --border-r2: 0.5rem;
-    --border-r3: 0.75rem;
-    --border-r4: 1rem;
 }
-body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-text: var(--mem-bg);
     --col-focus: #3b82f6;
     --col-bg: #2c2c2c;
@@ -87,20 +92,23 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) {
     --col-spell-bad: #732c31dd;
 
     --col-pressed-outline: #ffbb00aa;
-
-    --border-r1: 0.25rem;
-    --border-r2: 0.5rem;
-    --border-r3: 0.75rem;
-    --border-r4: 1rem;
 }
-body:is(.nightMode, .night_mode):has(div.card-content[theme="MemRise"]) ::selection {
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::selection {
     color: var(--mem-text);
     background-color: var(--mem-bg);
 }
 
 
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
+body:has(div.card-content[theme="AnkiCard"]) {
     --col-focus: var(--border-focus);
+
+    --col-button-border: var(--button-hover-border);
+}
+body:has(div.card-content[theme="AnkiCard"]) ::selection {
+    color: white;
+    background-color: var(--button-primary-disabled);
+}
+body:has(div.card-content[theme="AnkiCard"]):not(.nightMode):not(.night_mode) {
     --col-bg: var(--canvas-elevated);
 
     --col-input-border: var(--border-strong);
@@ -111,8 +119,6 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-audio-passive: var(--border-subtle);
     --op-audio-passive: 1;
     --col-audio-container: var(--selected-bg);
-
-    --col-button-border: var(--button-hover-border);
 
     --col-inset-bg: var(--border-subtle);
 
@@ -130,13 +136,8 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
 }
-body:has(div.card-content[theme="AnkiCard"]) ::selection {
-    color: white;
-    background-color: var(--button-primary-disabled);
-}
-body:is(.nightMode, .night_mode):has(div.card-content[theme="AnkiCard"]) {
+body:has(div.card-content[theme="AnkiCard"]):is(.nightMode, .night_mode) {
     --col-text: white;
-    --col-focus: var(--border-focus);
     --col-bg: var(--canvas-code);
 
     --col-audio-fg: var(--button-primary-gradient-start);
@@ -166,7 +167,12 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="AnkiCard"]) {
     --col-spell-bad: #732c31dd;
 }
 
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
+
+body:has(div.card-content[theme="Forest"]) ::selection {
+    color: white;
+    background-color: #277c1d;
+}
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
     --col-text: #443323;
     --col-focus: #277c1d;
     --col-bg: #e9ffe0;
@@ -203,11 +209,7 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Forest"]) {
     --col-spell-missed: #aae53c;
     --col-spell-bad: #ffa37e;
 }
-body:has(div.card-content[theme="Forest"]) ::selection {
-    color: white;
-    background-color: #277c1d;
-}
-body:is(.nightMode, .night_mode):has(div.card-content[theme="Forest"]) {
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-text: #c1b68b;
     --col-focus: #557d3d;
     --col-bg: #0b2a25;
@@ -246,13 +248,15 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Forest"]) {
 }
 
 
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
-    --col-text: #14274f;
-    --col-focus: #69ade8;
-    --col-bg: #f1becf;
+body:has(div.card-content[theme="Sunset"]) {
+    --col-sunset-yellow: #f7dc6f;
+    --col-sunset-focusblue: #69ade8;
+    --col-sunset-focuspaleblue: #a0bbd6;
+    --col-sunset-darkblue: #14274f;
+    --col-sunset-darkerblue: #081738;
 
-    --col-input-text: #f7dc6f;
-    --col-input-border: #081738;
+    --col-input-text: var(--col-sunset-yellow);
+    --col-input-border: var(--col-sunset-darkerblue);
     --col-input-bg: #493b5d;
 
     --col-audio-fg: var(--col-text);
@@ -261,9 +265,24 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
     --op-audio-passive: .65;
     --col-audio-container: #f4975180;
 
-    --col-button-text: #f7dc6f; 
-    --col-button-border: #081738;
-    --col-button-bg: #493b5d;
+    --col-button-text: var(--col-input-text); 
+    --col-button-border: var(--col-input-border);
+    --col-button-bg: var(--col-input-bg);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #bedf65d0;
+    --col-spell-bad: #f55b5070;
+
+    --col-pressed-outline: #6e80ad;
+}
+body:has(div.card-content[theme="Sunset"]) ::selection {
+    color: white;
+    background-color: var(--col-sunset-focusblue);
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
+    --col-text: var(--col-sunset-darkblue);
+    --col-focus: var(--col-sunset-focusblue);
+    --col-bg: #f1becf;
 
     --col-text-faint: #f55b50cc;
     --col-sep: #493b5d50;
@@ -278,41 +297,21 @@ body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) {
     --col-wrong-text: #54070c;
     --col-wrong-border: #a5202a;
     --col-wrong-bg: #f55b50;
-
-    --col-spell-good: transparent;
-    --col-spell-missed: #bedf65d0;
-    --col-spell-bad: #f55b5070;
-
-    --col-pressed-outline: #6e80ad;
 }
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
   color: var(--col-text);
 }
-body:not(.nightMode):not(.night_mode):has(div.card-content[theme="Sunset"]) .membtn {
-    --col-text: #f7dc6f;
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) .membtn {
+    --col-text: var(--col-sunset-yellow);
 }
-body:has(div.card-content[theme="Sunset"]) ::selection {
-    color: white;
-    background-color: #69ade8;
-}
-body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
-    --col-text: #f7dc6f;
-    --col-focus: #a0bbd6;
-    --col-bg: #14274f;
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
+    --col-text: var(--col-sunset-yellow);
+    --col-focus: var(--col-sunset-focuspaleblue);
+    --col-bg: var(--col-sunset-darkblue);
 
-    --col-input-text: #f7dc6f;
-    --col-input-border: #081738;
-    --col-input-bg: #493b5d;
-
-    --col-audio-fg: #14274f;
-    --col-audio-bg: #f7f395;
-    --col-audio-passive: #f6777d;
+    --col-audio-fg: var(--col-sunset-darkerblue);
     --op-audio-passive: .8;
     --col-audio-container: #f49751d0;
-
-    --col-button-text: #f7dc6f; 
-    --col-button-border: #081738;
-    --col-button-bg: #493b5d;
 
     --col-text-faint: #7e4f6b;
     --col-sep: #493b5da0;
@@ -320,25 +319,21 @@ body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) {
 
     --col-correct-text: #bedf65;
     --col-correct-border: #293d05;
-    --col-correct-bg: #759d0add;
+    --col-correct-bg: #688d14;
     --col-close-text: #f7dc6fe5;
     --col-close-border: #a12e03;
     --col-close-bg: #f49751c0;
     --col-wrong-text: #f6777d;
     --col-wrong-border: #54070c;
-    --col-wrong-bg: #a5202add;
+    --col-wrong-bg: #92212f;
 
-    --col-spell-good: transparent;
     --col-spell-missed: #bedf6570;
-    --col-spell-bad: #f55b5070;
-
-    --col-pressed-outline: #6e80ad;
 }
-body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) .front-extra {
-    color: #081738;
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
+    color: var(--col-sunset-darkerblue);
 }
-body:is(.nightMode, .night_mode):has(div.card-content[theme="Sunset"]) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
-  color: #a0bbd6;
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+    color: var(--col-sunset-focuspaleblue);
 }
 
 /* ーーー general definitions ーーー */
