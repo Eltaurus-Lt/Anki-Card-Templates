@@ -444,13 +444,13 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --elevation-hover: 6px;
     --elevation-pressed: 0px;
 
-    /* iOS */
-    --col-pressed-outline: var(--highlight-bg);
-    --pressed-outline-width: 6px;
-
     --path-play: var(--mem-play);
     --path-blob: var(--mem-blob);
     --path-hint: var(--mem-hint);
+
+    /* iOS */
+    --col-pressed-outline: var(--highlight-bg);
+    --pressed-outline-width: 6px;
 }
 
 body.nightMode, body.night_mode {
@@ -899,7 +899,7 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
   width: 10rem;
   height: 10rem;
 }
-a.replay-button.soundLink > span { /* Android quirk*/
+a.replay-button.soundLink > span { /* Android quirk */
 	display: block;
 }
 
@@ -927,8 +927,8 @@ a.replay-button.soundLink > span { /* Android quirk*/
   display: none;
 }
 
-.mem-question a::before,
-.memblob a::after {
+.mem-question a.replay-button::before,
+.memblob a.replay-button::after {
   position: absolute;
   inset: 0;
   display: block;
@@ -946,7 +946,7 @@ a.replay-button.soundLink::before {
   opacity: var(--op-audio-passive); 
   background: var(--col-audio-passive);
 }
-.memblob a::after {
+.memblob a.replay-button::after {
   z-index: -100;
   opacity: 0; 
   scale: 0;
