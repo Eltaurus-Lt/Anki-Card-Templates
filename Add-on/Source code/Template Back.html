@@ -9,7 +9,7 @@
 			<h2>{{Learnable}}</h2>
 			<span id="spellcheck" class=""></span>
 		</div>
-		<div class="mem-field">
+		<div class="mem-field no-alts">
 			<label>Definition</label>
 			<h3>{{Definition}}</h3>
 		</div>
@@ -18,19 +18,19 @@
 
 
 		{{#Extra}}
-			<div class="mem-field">
+			<div class="mem-field no-alts">
 				<label>Extra</label>
 				<h4>{{Extra}}</h4>      
 			</div>
 		{{/Extra}}
 		{{#Extra 2}}
-			<div class="mem-field">
+			<div class="mem-field no-alts">
 				<label>Extra 2</label>
 				<h4>{{Extra 2}}</h4>
 			</div>
 		{{/Extra 2}}
 		{{#Audio}}
-			<div class="mem-field">
+			<div class="mem-field no-alts">
 				<label>Audio</label>
 				<h4>{{Audio}}</h4>
 			</div>
@@ -71,7 +71,7 @@ function stringDiff(s1, s2) {
             }
         }
     }
-  
+
     function minorLCS(n1, n2, m1, m2) {
         let max = 0;
         let pos;

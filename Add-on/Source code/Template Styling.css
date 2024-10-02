@@ -887,9 +887,21 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
 }
 
 [part=alt] {
-	font-size: .5em;
-	color: lightgray !important;
-  font-weight: 500;
+    font-size: .5em;
+    color: var(--col-text-faint) !important;
+    font-weight: 500;
+    hyphens: auto;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+h2 [part=alt] {
+    font-size: 1.25rem;
+}
+h3 [part=alt] {
+    font-size: 1rem;
+}
+h4 [part=alt] {
+    font-size: .75rem;
 }
 
 /* ーーーーーーーーーー AUDIO ーーーーーーーーーー */
