@@ -88,10 +88,10 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-wrong-bg: var(--mem-wrong-border);
 
     --col-spell-good: transparent;
-    --col-spell-missed: #226635;
-    --col-spell-bad: #732c31dd;
+    --col-spell-missed: #22663588;
+    --col-spell-bad: #732c31bb;
 
-    --col-pressed-outline: #ffbb00aa;
+    --col-pressed-outline: #ffbb0025;
 }
 body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::selection {
     color: var(--mem-text);
@@ -101,8 +101,10 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::select
 
 body:has(div.card-content[theme="AnkiCard"]) {
     --col-focus: var(--border-focus);
-
+    
     --col-button-border: var(--button-hover-border);
+
+    --path-blob: var(--ank-blob);
 }
 body:has(div.card-content[theme="AnkiCard"]) ::selection {
     color: white;
@@ -208,6 +210,8 @@ body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
     --col-spell-good: transparent;
     --col-spell-missed: #aae53c;
     --col-spell-bad: #ffa37e;
+
+    --col-pressed-outline: #ebdfa990;
 }
 body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-text: #c1b68b;
@@ -245,6 +249,8 @@ body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-spell-good: transparent;
     --col-spell-missed: #3e655caa;
     --col-spell-bad: #612f40;
+
+    --col-pressed-outline: #1c3a41;
 }
 
 
@@ -259,7 +265,6 @@ body:has(div.card-content[theme="Sunset"]) {
     --col-input-border: var(--col-sunset-darkerblue);
     --col-input-bg: #493b5d;
 
-    --col-audio-fg: var(--col-text);
     --col-audio-bg: #f7f395;
     --col-audio-passive: #f6777d;
     --op-audio-passive: .65;
@@ -270,8 +275,8 @@ body:has(div.card-content[theme="Sunset"]) {
     --col-button-bg: var(--col-input-bg);
 
     --col-spell-good: transparent;
-    --col-spell-missed: #bedf65d0;
-    --col-spell-bad: #f55b5070;
+    --col-spell-missed: var(--col-inset-bg);
+    --col-spell-bad: #f55b5088;
 
     --col-pressed-outline: #6e80ad;
 }
@@ -283,6 +288,8 @@ body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
     --col-text: var(--col-sunset-darkblue);
     --col-focus: var(--col-sunset-focusblue);
     --col-bg: #f1becf;
+
+    --col-audio-fg: var(--col-text);
 
     --col-text-faint: #f55b50cc;
     --col-sep: #493b5d50;
@@ -326,8 +333,6 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
     --col-wrong-text: #f6777d;
     --col-wrong-border: #54070c;
     --col-wrong-bg: #92212f;
-
-    --col-spell-missed: #bedf6570;
 }
 body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
     color: var(--col-sunset-darkerblue);
@@ -1296,17 +1301,15 @@ svg.playImage path {
     --elevation: var(--elevation-pressed) !important;
     outline-offset: calc(-1 * (1 * var(--border-width) + var(--pressed-outline-width)));
 }
-html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
-    outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
-}
 #backwrap #scr-keyboard .membtn.pressed {
     outline: none;
 }
-
-
+/* iOS */
+html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
+    outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
+}
 
 /* --------------------- user styles --------------------- */
 /* place your styles and modifications below */
-
 
 
