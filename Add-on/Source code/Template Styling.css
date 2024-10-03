@@ -483,12 +483,18 @@ data,
 .linux:not(.android) .desk-off,
 .mobile .mobile-off,
 .off {
-	display: none !important;
+    display: none !important;
+}
+
+.sys {
+    opacity: 0;
+    margin: 0;
+    border: 0;
 }
 
 body,
 div code#typeans {
-  font-family: var(--fonts) !important;
+    font-family: var(--fonts) !important;
 }
 
 body.card {
@@ -767,10 +773,6 @@ body::after {
   /*change typed ans in preview*/
   /*code#typeans * {display: none;}*/
   /*code#typeans br ~ br ~ span {display: initial;}*/
-#answer {
-    margin: 0;
-    border: 0;
-}
 
 /* ーーー backside ーーー */
 
