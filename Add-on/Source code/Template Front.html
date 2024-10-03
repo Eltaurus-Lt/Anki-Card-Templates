@@ -275,7 +275,7 @@ if (screenKeyboard) {
     if (isMCh) {
       if (key === corrAns || ansAlts.includes(key)) {
         keyButton.classList.add('correct')
-      } else if (isMathJax){
+      } else if (isMathJax) {
         allAlts.map(async (altAns) => cfWithMathJax(altAns, key).then((res) => {
           if (res) {keyButton.classList.add('correct')}
         }));
