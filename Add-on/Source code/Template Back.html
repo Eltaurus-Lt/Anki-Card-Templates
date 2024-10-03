@@ -45,7 +45,7 @@
 <!-- --------------------- user prior scripts --------------------- -->
 <script>
   //place your scripts here
-isMathJax = true;
+
 
 </script>
 
@@ -227,10 +227,11 @@ async function cfWithMathJax(sQ, sA) {
 //todo?A (B; C) -> {〃, A B, A C}
 
 // grade answer
+allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
+diff = "";
+console.log(`altertnatives: ${allAlts.join(' | ')}`);
+
 async function setCorrectClass() {
-	allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
-	diff = "";
-	console.log(`altertnatives: ${allAlts.join(' | ')}`);
 	if (!window.isMathJax) {
 //text cf
 	//mch
@@ -279,7 +280,6 @@ async function setCorrectClass() {
 			});
 		}
 	}
-	delete window.isMathJax;
 }
 setCorrectClass().then(() => {
 	if (!wrap.classList.contains('correct')) {

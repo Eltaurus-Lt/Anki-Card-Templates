@@ -1,12 +1,12 @@
 {{#Learnable}}{{#Definition}}
-<setting id="static_keys"> </setting>
-<setting id="random_keys">asdf</setting>
+<setting id="static_keys">-+*/^_\{}()[]<>=</setting>
+<setting id="random_keys"></setting>
 <data id="correctAnswer">{{Learnable}}</data>
 <data id="choices">{{Choices}}</data>
-<div class="card-content front mcq">
+<div class="card-content front eq">
     <div class="overhead">
 		   <div class="mem-instruction">
-        Choose the correct formula
+        Type the correct LaTeX expression
       </div>
 			 {{#Extra}}
 					<div class="front-extra">
@@ -48,8 +48,9 @@ isFrontSide = !wrap;
 </script>
 
 <script>
-//determine input type
+//determine input flags
 isMCh = !!document.querySelector('.card-content.mch');
+isMathJax = !!document.querySelector('.card-content.eq');
 </script>
 
 <script>
