@@ -190,11 +190,6 @@ function cfStrings(sQ, sA) {
 	}
 	return false;
 }
-async function cfWithMathJax(sQ, sA) {
-  const mathJaxRegex = /<mjx-container[^>]*>/g;
-
-  return sQ.replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === (await MJconvert(sA)).replace(mathJaxRegex, '');
-}
 
 //A (B) -> {〃, A, A B}
 //A; B -> {〃, A, B}
@@ -202,7 +197,6 @@ async function cfWithMathJax(sQ, sA) {
 //todo?A (B; C) -> {〃, A B, A C}
 
 // grade answer
-allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
 diff = "";
 console.log(`altertnatives: ${allAlts.join(' | ')}`);
 

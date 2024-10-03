@@ -97,6 +97,12 @@ async function MJconvert(latexString) {
 
   return latexL.innerHTML;
 }
+
+async function cfWithMathJax(sQ, sA) {
+  const mathJaxRegex = /<mjx-container[^>]*>/g;
+
+  return sQ.replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === (await MJconvert(sA)).replace(mathJaxRegex, '');
+}
 </script>
 
 <script>
@@ -266,7 +272,15 @@ if (screenKeyboard) {
     }
     keyButton.classList.add('membtn');
     if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
-    if (isMCh && (key === corrAns || ansAlts.includes(key))) {keyButton.classList.add('correct')}
+    if (isMCh) {
+      if (key === corrAns || ansAlts.includes(key)) {
+        keyButton.classList.add('correct')
+      } else if (isMathJax){
+        allAlts.map(async (altAns) => cfWithMathJax(altAns, key).then((res) => {
+          if (res) {keyButton.classList.add('correct')}
+        }));
+      }
+    }
     screenKeyboard.prepend(keyButton);
   })
 } 
