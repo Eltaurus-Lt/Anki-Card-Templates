@@ -136,7 +136,11 @@ if (userAns === null) {
 	document.getElementsByClassName("mem-alert")[0].innerText = "#error loading answer!";
 	userAns = '';
 } else if (userAns.trim()) {
-	document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio
+  if (isMCh || !window.isMathJax) {
+	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio
+  } else {
+    MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
+  }
 } 
 if (typeAns.tagName === 'INPUT') {
 	typeAns.value = userAns;
@@ -144,6 +148,7 @@ if (typeAns.tagName === 'INPUT') {
 } else {
 	typeAns.innerHTML = '<span>' + userAns + '</span>'; //backward compatibility with stock Anki typing
 }
+
 
 console.log(`user answer: ${userAns} | correct answer: ${corrAns}`);
 </script>
@@ -186,6 +191,11 @@ function cfStrings(sQ, sA) {
 	}
 	return false;
 }
+async function cfWithMathJax(sQ, sA) {
+  const mathJaxRegex = /<mjx-container[^>]*>/g;
+
+  return sQ.replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === sA.replace(mathJaxRegex, '') || (await MJconvert(sQ)).replace(mathJaxRegex, '') === (await MJconvert(sA)).replace(mathJaxRegex, '');
+}
 
 //A (B) -> {〃, A, A B}
 //A; B -> {〃, A, B}
@@ -196,35 +206,78 @@ function cfStrings(sQ, sA) {
 allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
 diff = "";
 console.log(`altertnatives: ${allAlts.join(' | ')}`);
-if (isMCh) {
-	keyboardButtons.forEach( btn => {
-		if (btn.innerHTML === userAns) {
-			btn.classList.add('pressed');
-			if (btn.classList.contains('correct')) {
-				wrap.classList.add('correct');
+
+async function setCorrectClass() {
+	if (!window.isMathJax) {
+//text cf
+	//mch
+		if (isMCh) {
+			keyboardButtons.forEach(btn => {
+				if (btn.innerHTML === userAns) {
+					btn.classList.add('pressed');
+					if (btn.classList.contains('correct')) {
+						wrap.classList.add('correct');
+					}
+				}
+			})
+
+	//type-in
+		} else if (cfStrings(corrAns, userAns)) {
+			wrap.classList.add('correct');
+		} else if (allAlts.map((altAns) => cfStrings(altAns, userAns)).includes(true)) {
+			wrap.classList.add('correct');
+		}
+	} else {
+//latex cf
+	userAns = MJunwrap(userAns);
+	corrAns = MJunwrap(corrAns);
+	//mch
+		if (isMCh) {
+			const btnPromises = [...keyboardButtons].map(async btn => {
+				if (btn.innerHTML === userAns || (await cfWithMathJax(btn.innerHTML, userAns))) {
+					btn.classList.add('pressed');
+					if (btn.classList.contains('correct')) {
+						wrap.classList.add('correct');
+					}
+				}
+			});
+			await Promise.all(btnPromises);
+
+	//type-in
+		} else if (corrAns === userAns) {
+			wrap.classList.add('correct');
+		} else {
+			const altPromises = allAlts.map(async (altAns) => await cfWithMathJax(altAns, userAns));
+			
+			await Promise.all(altPromises).then(results => {
+				if (results.includes(true)) {
+					wrap.classList.add('correct');
+				}
+			});
+		}
+	}
+}
+setCorrectClass().then(() => {
+	if (!wrap.classList.contains('correct')) {
+		if (isMCh) {
+	//mch
+				wrap.classList.add('wrong');
+		} else {
+	//type-in
+			diff = stringDiff(corrAns, userAns);
+			if (diff.score > 0.67) {
+				wrap.classList.add('soclose');
+			} else {
+				wrap.classList.add('wrong');
+			}
+			//spelling corrections
+			const spellcheckHighlights = document.getElementById('spellcheck');
+			if (spellcheckHighlights && userAns.trim()) {
+				spellcheckHighlights.innerHTML = diff.diff;
 			}
 		}
-	})
-	if (!wrap.classList.contains('correct')) {
-		wrap.classList.add('wrong');
 	}
-} else if (cfStrings(corrAns, userAns)) {
-	wrap.classList.add('correct');
-} else if (allAlts.map((altAns) => cfStrings(altAns, userAns)).includes(true)) {
-	wrap.classList.add('correct');
-} else {
-	diff = stringDiff(corrAns, userAns);
-	if (diff.score > 0.67) {
-		wrap.classList.add('soclose');
-	} else {
-		wrap.classList.add('wrong');
-	}
-	//spelling corrections
-	const spellcheckHighlights = document.getElementById('spellcheck');
-	if (spellcheckHighlights && userAns.trim()) {
-		spellcheckHighlights.innerHTML = diff.diff;
-	}	
-}
+});
 
 //timeout flip
 infoOnCorrect = !!window.alwaysShowInfo; //without this redef impossible to reliably clear the hook if rated with Anki buttons
