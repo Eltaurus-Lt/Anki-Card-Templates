@@ -3,7 +3,7 @@
 <setting id="random_keys"></setting>
 <data id="correctAnswer">{{Learnable}}</data>
 <data id="choices">{{Choices}}</data>
-<div class="card-content front eq" theme="">
+<div class="card-content front mch eq" theme="">
     <div class="overhead">
 		   <div class="mem-instruction">
         Type the correct LaTeX expression
@@ -130,10 +130,13 @@ if (isMathJax) {
 }
 
 //determine alt answers
+ansAlts = [];
 try {
 	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
 	ansAlts = altsString ? altsString.split('|').map(altAns => altAns.replace("&nbsp;"," ").trim()) : [];
 } catch (err) {}
+
+allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
 </script>
 
 <script>
@@ -263,7 +266,7 @@ if (screenKeyboard) {
     }
     keyButton.classList.add('membtn');
     if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
-    if (isMCh && key === corrAns) {keyButton.classList.add('correct')}
+    if (isMCh && (key === corrAns || ansAlts.includes(key))) {keyButton.classList.add('correct')}
     screenKeyboard.prepend(keyButton);
   })
 } 
