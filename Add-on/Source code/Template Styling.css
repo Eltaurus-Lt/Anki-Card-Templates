@@ -483,12 +483,18 @@ data,
 .linux:not(.android) .desk-off,
 .mobile .mobile-off,
 .off {
-	display: none !important;
+    display: none !important;
+}
+
+.sys {
+    opacity: 0;
+    margin: 0;
+    border: 0;
 }
 
 body,
 div code#typeans {
-  font-family: var(--fonts) !important;
+    font-family: var(--fonts) !important;
 }
 
 body.card {
@@ -1319,6 +1325,14 @@ svg.playImage path {
 /* iOS */
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
+}
+
+#typeans:disabled {
+    opacity: 1 !important;
+}
+
+html:is(.iphone, ipad) .card-content.back { /* experimental */
+    align-items: start !important;
 }
 
 /* --------------------- user styles --------------------- */
