@@ -238,6 +238,7 @@ function MemFlip(toInfo = false) {
 	} else {
 		wrap.classList.add("backside");
 		wrap.classList.remove("frontside");
+		setTimeout(()=>window.scrollTo(0, 0), 1);
 		flipBtn.onclick = ()=>{
 			if (wrap.classList.contains("correct")) {
 				autorateGood();

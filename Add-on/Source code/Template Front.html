@@ -146,6 +146,7 @@ document.onkeydown = function (e) {
 		if (wrap.classList.contains("backside")) {
 			return;
 		}
+		e.preventDefault();
 		MemFlip(true);
 	}
 
