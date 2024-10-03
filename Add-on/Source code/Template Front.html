@@ -75,6 +75,31 @@ hintButton = document.getElementById('HintButton');
 </script>
 
 <script>
+//MathJax
+function MJwrap(latexString) {
+  if ((latexString.startsWith("\\\x28") && latexString.endsWith("\\\x29")) || !latexString) {
+    return latexString;
+  }
+  return "\\\x28" + latexString + "\\\x29";
+}
+
+function MJunwrap(latexString) {
+  if (latexString.startsWith("\\\x28") && latexString.endsWith("\\\x29")) {
+    return latexString.slice(2, -2);
+  }
+  return latexString;
+}
+
+async function MJconvert(latexString) {
+  const latexL = document.createElement('div');
+  latexL.innerHTML = MJwrap(latexString);
+  await MathJax.typesetPromise([latexL]);
+
+  return latexL.innerHTML;
+}
+</script>
+
+<script>
 function storeAnswer(ans = "") {
 	if (!ans && typeAns) {ans = typeAns.value};
 	sessionStorage.setItem("userAnswer", ans);
@@ -100,6 +125,9 @@ try {
 } catch (err) {}
 
 hintAns = corrAns.split(/[;；]/)[0];
+if (isMathJax) {
+	hintAns = MJunwrap(hintAns);
+}
 
 //determine alt answers
 try {
@@ -275,7 +303,8 @@ function updInput(inputValue, cursorPos = null) {
 
 function typeHint() {
 	if (!hintAns || !typeAns) return;
-	const correctLength = lengthOfCommonPart(typeAns.value, hintAns);
+	const tempAns = window.isMathJax && typeAns.value.startsWith('\\\x28') ? typeAns.value.slice(2) : typeAns.value;
+	const correctLength = lengthOfCommonPart(tempAns, hintAns);
 
 	if (correctLength < hintAns.length) {
 		updInput(hintAns.slice(0, correctLength + 1));
