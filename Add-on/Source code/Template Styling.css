@@ -767,6 +767,10 @@ body::after {
   /*change typed ans in preview*/
   /*code#typeans * {display: none;}*/
   /*code#typeans br ~ br ~ span {display: initial;}*/
+#answer {
+    margin: 0;
+    border: 0;
+}
 
 /* ーーー backside ーーー */
 
@@ -1319,6 +1323,14 @@ svg.playImage path {
 /* iOS */
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
+}
+
+#typeans:disabled {
+    opacity: 1 !important;
+}
+
+html:is(.iphone, ipad) .card-content.back { /* experimental */
+    align-items: start !important;
 }
 
 /* --------------------- user styles --------------------- */
