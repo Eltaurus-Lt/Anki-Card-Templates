@@ -226,7 +226,7 @@ if (isMCh) {
 }
 
 //timeout flip
-infoOnCorrect = !!window.alwaysShowInfo;
+infoOnCorrect = !!window.alwaysShowInfo; //without this redef impossible to reliably clear the hook if rated with Anki buttons
 delete window.alwaysShowInfo;
 
 flipBtn = document.getElementById('mem-flip');
