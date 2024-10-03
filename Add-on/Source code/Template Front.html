@@ -142,6 +142,13 @@ document.onkeydown = function (e) {
 		}
 	}
 
+	if (!isFrontSide && ev.code === 'Space') {
+		if (wrap.classList.contains("backside")) {
+			return;
+		}
+		MemFlip(true);
+	}
+
 	if (isFrontSide && "1234567890".includes(ev.key) && isMCh) {
 		let numkey = parseInt(ev.key);
 		if (numkey == 0) {numkey = 10};

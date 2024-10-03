@@ -226,16 +226,27 @@ if (isMCh) {
 }
 
 //timeout flip
+infoOnCorrect = !!window.alwaysShowInfo;
+delete window.alwaysShowInfo;
+
 flipBtn = document.getElementById('mem-flip');
-function MemFlip() {
+function MemFlip(toInfo = false) {
 	try {clearTimeout(activeTimeout)} catch (err) {};
 
-	if (wrap.classList.contains("correct")) {
+	if (wrap.classList.contains("correct") && !toInfo && !infoOnCorrect) {
 		autorateGood();
 	} else {
 		wrap.classList.add("backside");
 		wrap.classList.remove("frontside");
-		flipBtn.onclick = autorateAgain;
+		flipBtn.onclick = ()=>{
+			if (wrap.classList.contains("correct")) {
+				autorateGood();
+			} else if (wrap.classList.contains("wrong") || wrap.classList.contains("soclose")) {
+				autorateAgain();
+			} else {
+				console.log("the answer is not yet evaluated");
+			}
+		}
 	}
 }
 flipBtn.onclick = MemFlip;
