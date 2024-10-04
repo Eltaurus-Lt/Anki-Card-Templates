@@ -1085,6 +1085,14 @@ svg.playImage path {
     max-width: calc(21.5rem);
 }
 
+.mem-question > img { /* backward compatibility */
+    margin: 1rem auto;
+    min-height: 10rem;
+    min-width: 10rem;
+    max-height: calc(21.5rem);
+    max-width: calc(21.5rem);
+}
+
 .mem-question:has(img) {
   margin: 1rem 0 calc(0.5rem + 1rem);
 }
