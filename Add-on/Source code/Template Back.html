@@ -280,7 +280,7 @@ flipBtn = document.getElementById('mem-flip');
 function MemFlip(toInfo = false) {
 	try {clearTimeout(activeTimeout)} catch (err) {};
 
-	if (wrap.classList.contains("correct") && !toInfo && !infoOnCorrect) {
+	if (wrap.classList.contains("correct") && !toInfo && !infoOnCorrect && platform !== 'ios') {
 		autorateGood();
 	} else {
 		wrap.classList.add("backside");
