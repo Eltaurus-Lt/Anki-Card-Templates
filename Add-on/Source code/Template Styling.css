@@ -435,6 +435,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --shadow-inset: #202020;
     --highlight-bg: rgba(147, 197, 253, 0.5);
     --selected-bg: rgba(147, 197, 253, 0.5);
+
+    --col-input-text: white;
 }
 
 /* ーーー root theme ーーー */
