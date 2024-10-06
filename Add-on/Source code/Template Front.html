@@ -91,6 +91,10 @@ function MJunwrap(latexString) {
 }
 
 async function MJconvert(latexString) {
+  if (!window.MathJax) {
+    console.log("MathJax not found");
+    return latexString;
+  }
   const latexL = document.createElement('div');
   latexL.innerHTML = MJwrap(latexString);
   await MathJax.typesetPromise([latexL]);
