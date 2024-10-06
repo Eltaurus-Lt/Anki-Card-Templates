@@ -392,6 +392,51 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --ank-play: path("M56.502,32.301l-37.502,20.101l0.329,-40.804l37.173,20.703Z");
 }
 
+.mobile {
+    --border-radius: 5px;
+    --border-radius-medium: 12px;
+    --border-radius-large: 15px;
+
+    --fg: #020202;
+    --fg-faint: #afafaf;
+    --canvas: #f5f5f5;
+    --canvas-elevated: white;
+    --canvas-code: white;
+    --border: #c4c4c4;
+    --border-subtle: #e4e4e4;
+    --border-strong: #858585;
+    --border-focus: #3b82f6;
+    --button-bg: #fcfcfc;
+    --button-hover-border: #999999;
+    --button-primary-gradient-start: #3b82f6;
+    --button-primary-disabled: #93c5fd;
+    --scrollbar-bg: #d6d6d6;
+    --shadow: #c4c4c4;
+    --shadow-inset: #454545;
+    --highlight-bg: rgba(37, 99, 235, 0.5);
+    --selected-bg: rgba(214, 214, 214, 0.5);
+}
+.mobile:has(body.nightMode, body.night_mode) {
+    --fg: #fcfcfc;
+    --fg-faint: #545454;
+    --canvas: #2c2c2c;
+    --canvas-elevated: #363636;
+    --canvas-code: #252525;
+    --border: #202020;
+    --border-subtle: #252525;
+    --border-strong: #020202;
+    --border-focus: #3b82f6;
+    --button-bg: #404040;
+    --button-hover-border: #141414;
+    --button-primary-gradient-start: #2f67e1;
+    --button-primary-disabled: #4484ed;
+    --scrollbar-bg: #454545;
+    --shadow: #141414;
+    --shadow-inset: #202020;
+    --highlight-bg: rgba(147, 197, 253, 0.5);
+    --selected-bg: rgba(147, 197, 253, 0.5);
+}
+
 /* ーーー root theme ーーー */
 
 :root {
@@ -1267,7 +1312,7 @@ svg.playImage path {
   padding: 1rem;
   padding-top: clamp(1rem, 2.5vw, 1.5rem);
   padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
-/*   border-radius: 1rem; */
+
   font-weight: 600;
   
   line-height: 1.2;
