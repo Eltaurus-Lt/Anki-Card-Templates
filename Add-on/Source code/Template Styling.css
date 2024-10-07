@@ -746,6 +746,7 @@ button#mem-flip {
 }
 
 .mem-typing input#typeans,
+input#typeans,
 code#typeans {
   font: inherit !important;
 
