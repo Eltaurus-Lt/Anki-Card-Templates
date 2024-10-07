@@ -68,6 +68,16 @@ if (!document.documentElement.classList.contains("mobile")) {
 </script>
 
 <script>
+function htmlEscape(string) {
+  return string.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll("'", '&#39;').replaceAll('"', '&quot;');
+}
+
+function htmlUnEscape(string) {
+  return string.replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('&#39;', "'").replaceAll('&quot;', '"').replaceAll('&amp;', '&');
+}
+</script>
+
+<script>
 //elements
 typeAns = document.getElementById('typeans');
 screenKeyboard = document.getElementById('scr-keyboard');
@@ -123,14 +133,14 @@ if (isFrontSide) {
 <script>
 //determine the correct answer
 corrAnsL = document.getElementById('correctAnswer');
-corrAns = corrAnsL?.innerHTML.replace("&nbsp;"," ") || ""; //including alts
+corrAns = corrAnsL?.innerHTML.replaceAll("&nbsp;"," ") || ""; //including alts
 
 //extract primary, excluding alts
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
 	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
-	corrAns = !isMCh ? tempL.innerText.replace("&nbsp;"," ").trim() : tempL.innerHTML;
+	corrAns = !isMCh ? tempL.innerText.replaceAll("&nbsp;"," ").trim() : tempL.innerHTML;
 	tempL.remove();
 } catch (err) {}
 
@@ -143,7 +153,7 @@ if (isMathJax) {
 ansAlts = [];
 try {
 	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
-	ansAlts = altsString ? altsString.split('|').map(altAns => altAns.replace("&nbsp;"," ").trim()) : [];
+	ansAlts = altsString ? altsString.split('|').map(altAns => altAns.replaceAll("&nbsp;"," ").trim()) : [];
 } catch (err) {}
 
 allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
@@ -153,7 +163,7 @@ allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
 //consts
 keysString = document.getElementById('static_keys')?.innerText || "";
 fillerString = document.getElementById('random_keys')?.innerText || "";
-choices = document.getElementById('choices')?.innerHTML.split('|').map(s => s.replace("&nbsp;"," ").trim()) || '';
+choices = document.getElementById('choices')?.innerHTML.split('|').map(s => s.replaceAll("&nbsp;"," ").trim()) || '';
 </script>
 
 <script>
@@ -352,8 +362,7 @@ function typeKey(keyContent) {
 	const cursorEnd = typeAns.selectionEnd;
 	const currentInput = typeAns.value;
 
-	updInput(currentInput.slice(0, cursorStart) + keyContent.replace("&lt;","<").replace("&gt;",">") + currentInput.slice(cursorEnd), cursorStart + 1);
-}
+	updInput(currentInput.slice(0, cursorStart) + htmlUnEscape(keyContent) + currentInput.slice(cursorEnd), cursorStart + 1);}
 
 if (isFrontSide) {
 	keyboardButtons.forEach( btn => {
