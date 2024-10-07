@@ -123,7 +123,7 @@ if (isFrontSide) {
 <script>
 //determine the correct answer
 corrAnsL = document.getElementById('correctAnswer');
-corrAns = corrAnsL?.innerHTML || ""; //including alts
+corrAns = corrAnsL?.innerHTML.replace("&nbsp;"," ") || ""; //including alts
 
 //extract primary, excluding alts
 try {
