@@ -138,7 +138,7 @@ if (userAns === null) {
 } else if (userAns.trim()) {
   if (isMCh) {
 	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
-  } if (!window.isMathJax) {
+  } else if (!window.isMathJax) {
     document.getElementsByClassName("mem-alert")[0].innerText = userAns; // "a<b" and "b>a" in plane text
   } else {
     MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
