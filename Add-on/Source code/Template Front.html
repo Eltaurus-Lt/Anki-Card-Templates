@@ -352,7 +352,7 @@ function typeKey(keyContent) {
 	const cursorEnd = typeAns.selectionEnd;
 	const currentInput = typeAns.value;
 
-	updInput(currentInput.slice(0, cursorStart) + keyContent + currentInput.slice(cursorEnd), cursorStart + 1);
+	updInput(currentInput.slice(0, cursorStart) + keyContent.replace("&lt;","<").replace("&gt;",">") + currentInput.slice(cursorEnd), cursorStart + 1);
 }
 
 if (isFrontSide) {

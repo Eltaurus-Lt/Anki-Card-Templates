@@ -136,8 +136,10 @@ if (userAns === null) {
 	document.getElementsByClassName("mem-alert")[0].innerText = "#error loading answer!";
 	userAns = '';
 } else if (userAns.trim()) {
-  if (isMCh || !window.isMathJax) {
-	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio
+  if (isMCh) {
+	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
+  } if (!window.isMathJax) {
+    document.getElementsByClassName("mem-alert")[0].innerText = userAns; // "a<b" and "b>a" in plane text
   } else {
     MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
