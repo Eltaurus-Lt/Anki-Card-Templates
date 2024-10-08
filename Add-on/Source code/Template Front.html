@@ -110,7 +110,7 @@ async function MJconvert(latexString) {
     return latexString;
   }
   const latexL = document.createElement('div');
-  latexL.innerHTML = MJwrap(latexString);
+  latexL.innerText = MJwrap(latexString);
   await MathJax.typesetPromise([latexL]);
 
   return latexL.innerHTML;
@@ -144,7 +144,7 @@ try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
 	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
-	corrAns = !isMCh ? ansCleanUp(tempL.innerText) : tempL.innerHTML;
+	corrAns = ansCleanUp(!isMCh ? tempL.innerText : tempL.innerHTML);
 	tempL.remove();
 } catch (err) {}
 
