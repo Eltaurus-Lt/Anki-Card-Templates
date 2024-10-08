@@ -147,7 +147,7 @@ if (userAns === null) {
 if (typeAns?.tagName === 'INPUT') {
 	typeAns.value = userAns;
 	typeAns.disabled = true;
-} else {
+} else if (typeAns) {
 	typeAns.innerHTML = '<span>' + htmlEscape(userAns) + '</span>'; //backward compatibility with stock Anki typing
 }
 
