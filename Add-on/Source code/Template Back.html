@@ -144,7 +144,7 @@ if (userAns === null) {
     MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
 } 
-if (typeAns.tagName === 'INPUT') {
+if (typeAns?.tagName === 'INPUT') {
 	typeAns.value = userAns;
 	typeAns.disabled = true;
 } else {
