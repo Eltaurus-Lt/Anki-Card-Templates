@@ -75,6 +75,10 @@ function htmlEscape(string) {
 function htmlUnEscape(string) {
   return string.replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('&#39;', "'").replaceAll('&quot;', '"').replaceAll('&amp;', '&');
 }
+
+function ansCleanUp(ansString) {
+  return ansString?.replaceAll("&nbsp;"," ")?.trim();
+}
 </script>
 
 <script>
@@ -133,18 +137,18 @@ if (isFrontSide) {
 <script>
 //determine the correct answer
 corrAnsL = document.getElementById('correctAnswer');
-corrAns = corrAnsL?.innerHTML.replaceAll("&nbsp;"," ") || ""; //including alts
+corrAns = ansCleanUp(corrAnsL?.innerHTML) || ""; //including alts
 
 //extract primary, excluding alts
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
 	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
-	corrAns = !isMCh ? tempL.innerText.replaceAll("&nbsp;"," ").trim() : tempL.innerHTML;
+	corrAns = !isMCh ? ansCleanUp(tempL.innerText) : tempL.innerHTML;
 	tempL.remove();
 } catch (err) {}
 
-hintAns = corrAns.split(/[;；]/)[0];
+hintAns = ansCleanUp(corrAns.split(/[;；]/)[0]);
 if (isMathJax) {
 	hintAns = MJunwrap(hintAns);
 }
@@ -153,17 +157,17 @@ if (isMathJax) {
 ansAlts = [];
 try {
 	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
-	ansAlts = altsString ? altsString.split('|').map(altAns => altAns.replaceAll("&nbsp;"," ").trim()) : [];
+	ansAlts = altsString ? altsString.split('|').map(ansCleanUp) : [];
 } catch (err) {}
 
-allAlts = [...corrAns.split(/[;；]/), ...ansAlts];
+allAlts = [...corrAns.split(/[;；]/).map(ansCleanUp), ...ansAlts];
 </script>
 
 <script>
 //consts
 keysString = document.getElementById('static_keys')?.innerText || "";
 fillerString = document.getElementById('random_keys')?.innerText || "";
-choices = document.getElementById('choices')?.innerHTML.split('|').map(s => s.replaceAll("&nbsp;"," ").trim()) || '';
+choices = document.getElementById('choices')?.innerHTML.split('|').map(ansCleanUp) || '';
 </script>
 
 <script>
@@ -287,7 +291,7 @@ if (screenKeyboard) {
     keyButton.classList.add('membtn');
     if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
     if (isMCh) {
-      if (key === corrAns || ansAlts.includes(key)) {
+      if (key === corrAns || allAlts.includes(key)) {
         keyButton.classList.add('correct')
       } else if (isMathJax) {
         allAlts.map(async (altAns) => cfWithMathJax(altAns, key).then((res) => {

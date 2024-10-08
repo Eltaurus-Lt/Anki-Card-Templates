@@ -174,7 +174,7 @@ function rmPunc(s) {
 }
 function rmSpaces(s) {
 	//removes spaces from the start and the end, replaces japanese and non-breaking spaces, removes repeated spaces
-	return s.replaceAll("&nbsp;"," ").trim().replace(/　/g, ' ').replace(/\s+/g, ' ');
+	return ansCleanUp(s).replace(/　/g, ' ').replace(/\s+/g, ' ');
 }
 function cfStrings(sQ, sA) {
  //unify case and remove punctuation
