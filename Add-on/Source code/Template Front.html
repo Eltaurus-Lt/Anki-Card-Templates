@@ -109,8 +109,11 @@ async function MJconvert(latexString) {
     console.log("MathJax not found");
     return latexString;
   }
+  if (latexString.includes("mjx-container")) {
+    return latexString;
+  }
   const latexL = document.createElement('div');
-  latexL.innerText = MJwrap(latexString);
+  latexL.innerHTML = MJwrap(latexString);
   await MathJax.typesetPromise([latexL]);
 
   return latexL.innerHTML;
@@ -148,19 +151,25 @@ try {
 	tempL.remove();
 } catch (err) {}
 
-hintAns = ansCleanUp(corrAns.split(/[;；]/)[0]);
+inlnAlts = corrAns.split(/[;；]/).map(ansCleanUp);
+
+hintAns = inlnAlts[0];
 if (isMathJax) {
 	hintAns = MJunwrap(hintAns);
+	if (isMCh) {
+		inlnAlts = []; //otherwise is splite at ';' in '&gt;', '&lt;', etc.
+
+	}
 }
 
 //determine alt answers
-ansAlts = [];
+partAlts = [];
 try {
 	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
-	ansAlts = altsString ? altsString.split('|').map(ansCleanUp) : [];
+	partAlts = altsString ? altsString.split('|').map(ansCleanUp) : [];
 } catch (err) {}
 
-allAlts = [...corrAns.split(/[;；]/).map(ansCleanUp), ...ansAlts];
+allAlts = [...inlnAlts, ...partAlts];
 </script>
 
 <script>
