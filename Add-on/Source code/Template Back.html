@@ -141,7 +141,7 @@ if (userAns === null) {
   } else if (!window.isMathJax) {
     setTimeout(()=>document.getElementsByClassName("mem-alert")[0].innerText = userAns, 0); // "a<b" and "b>a" in plain text
   } else {
-    MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
+    MJconvert(htmlEscape(userAns)).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
 } 
 if (typeAns?.tagName === 'INPUT') {
