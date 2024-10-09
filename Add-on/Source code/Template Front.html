@@ -293,6 +293,8 @@ if (screenKeyboard) {
     if (isMCh) {
       if (key === corrAns || allAlts.includes(key)) {
         keyButton.classList.add('correct')
+      } else if (isMathJax && MJwrap(key) === corrAns) {
+        keyButton.classList.add('correct')
       } else if (isMathJax) {
         allAlts.map(async (altAns) => cfWithMathJax(altAns, key).then((res) => {
           if (res) {keyButton.classList.add('correct')}
@@ -320,7 +322,7 @@ function flipToBack() {
 	} else if (platform === 'android') {
 		showAnswer();
 	}
-	console.log('preview flip');
+	console.log('flip');
 }
 
 function lengthOfCommonPart(str1, str2) {

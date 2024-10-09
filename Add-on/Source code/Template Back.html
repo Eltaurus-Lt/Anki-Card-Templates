@@ -139,7 +139,7 @@ if (userAns === null) {
   if (isMCh) {
 	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
   } else if (!window.isMathJax) {
-    document.getElementsByClassName("mem-alert")[0].innerText = userAns; // "a<b" and "b>a" in plane text
+    setTimeout(()=>document.getElementsByClassName("mem-alert")[0].innerText = userAns, 0); // "a<b" and "b>a" in plain text
   } else {
     MJconvert(userAns).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
@@ -316,7 +316,7 @@ function autorateAgain() {
 		} else if (platform === 'android') {
 			buttonAnswerEase1();
 		}
-		console.log("autorated 'again'");
+		console.log("🔴 autorated 'again'");
 }
 function autorateGood() {
 		flipBtn.onclick = null;
@@ -325,7 +325,7 @@ function autorateGood() {
 		} else if (platform === 'android') {
 			buttonAnswerEase3();
 		}
-		console.log("autorated 'good'");
+		console.log("🟢 autorated 'good'");
 }
 </script>
 
