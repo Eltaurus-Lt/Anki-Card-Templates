@@ -1391,7 +1391,15 @@ html:is(.iphone, ipad) .card-content.back { /* experimental */
     align-items: start !important;
 }
 
+/* ーーーーーーーー MathJax ーーーーーーーー */
+
+mjx-merror {
+    color: var(--col-wrong-text);
+    background-color: var(--col-wrong-bg);
+}
+
 /* --------------------- user styles --------------------- */
 /* place your styles and modifications below */
+
 
 
