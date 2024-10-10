@@ -242,7 +242,7 @@ async function setCorrectClass() {
 		} else if (corrAns === userAns) {
 			wrap.classList.add('correct');
 		} else {
-			const altPromises = allAlts.map(async (altAns) => await cfWithMathJax(altAns, userAns));
+			const altPromises = allAlts.map(async (altAns) => await cfWithMathJax(htmlEscape(altAns), htmlEscape(userAns)));
 			
 			await Promise.all(altPromises).then(results => {
 				if (results.includes(true)) {

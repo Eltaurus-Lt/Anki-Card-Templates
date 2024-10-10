@@ -348,7 +348,7 @@ function updInput(inputValue, cursorPos = null) {
 
 	storeAnswer();
 
-	typeAns.focus(); // Android doesn't seem to update cursor position without this
+	typeAns.focus(); // Android quirk (doesn't seem to update cursor position without this)
 	if (platform !== 'desk') {
 		typeAns.blur();
 	}
