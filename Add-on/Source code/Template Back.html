@@ -139,7 +139,7 @@ if (userAns === null) {
   if (isMCh) {
 	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
   } else if (!window.isMathJax) {
-    setTimeout(()=>document.getElementsByClassName("mem-alert")[0].innerText = userAns, 0); // "a<b" and "b>a" in plain text
+    setTimeout(()=>document.getElementsByClassName("mem-alert")[0].innerText = userAns, 100); // "a<b" and "b>a" in plain text
   } else {
     MJconvert(htmlEscape(userAns)).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
