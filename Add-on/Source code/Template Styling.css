@@ -1,9 +1,41 @@
-/* v4.2β */
+/*  v4.2  */
+/*
+    Help and other template-related resources:
+        AnkiWeb:
+            Template deck: ankiweb.net/shared/info/510199145
+            Complimentary add-on: ankiweb.net/shared/info/884199977
+            Forum discussion: forums.ankiweb.net/t/memrise-card-template-support-thread/34233
+        Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 
+        Support the development: buymeacoffee.com/eltaurus
+*/
+
+/*
+This CSS file (Styling screen) is part of the Anki Card Type template. It may contain sections with different copyright notices. The original card template copyright notice, provided in this section, covers all other sections of the code starting with lines containing "Start of code by Eltaurus" and ending with lines containing "End of code by Eltaurus".
+
+Original card template copyright:
+
+Copyright (C) 2023-2024 Eltaurus
+Contact: 
+    Email: Eltaurus@inbox.lt
+    GitHub: github.com/Eltaurus-Lt
+    Anki Forums: forums.ankiweb.net/u/Eltaurus
+
+This template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This template is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+You are free to use this template to create your own Anki cards and decks, modify the code, and openly share the derivatived works, provided that the original template version and resource links remain intact at the top of this file (Styling screen), as well as this copyright notice and similar notices in other parts of the template are retained (as covered by section 7b of the GPLv3 license). 
+Clarification: The copyright in this notice applies only to the above-stated sections of the code. In particular, it does not extend to data contained within fields of Anki cards or any media files included in Anki decks created using this template. It also does not cover any CSS code that may be added to this CSS file (Styling screen) by creators of derivative cards/templates. Creators are encouraged to add their own copyright statements alongside their code in a similar fashion.
+*/
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
 
-/* ーーー themes ーーー */
+/*=====================================================*/
+/*                       THEMES                        */
+/*=====================================================*/
 
 body:has(div.card-content[theme="MemRise"]) {
     --border-r1: 0.25rem;
@@ -99,6 +131,7 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::select
 }
 
 
+/* Start of code by Eltaurus */
 body:has(div.card-content[theme="AnkiCard"]) {
     --col-focus: var(--border-focus);
     
@@ -168,8 +201,10 @@ body:has(div.card-content[theme="AnkiCard"]):is(.nightMode, .night_mode) {
     --col-spell-missed: #226635;
     --col-spell-bad: #732c31dd;
 }
+/* End of code by Eltaurus */
 
 
+/* Start of code by Eltaurus */
 body:has(div.card-content[theme="Forest"]) ::selection {
     color: white;
     background-color: #277c1d;
@@ -252,8 +287,10 @@ body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
 
     --col-pressed-outline: #1c3a41;
 }
+/* End of code by Eltaurus */
 
 
+/* Start of code by Eltaurus */
 body:has(div.card-content[theme="Sunset"]) {
     --col-sunset-yellow: #f7dc6f;
     --col-sunset-focusblue: #69ade8;
@@ -340,6 +377,7 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-ex
 body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
     color: var(--col-sunset-focuspaleblue);
 }
+/* End of code by Eltaurus */
 
 /* ーーー general definitions ーーー */
 
@@ -439,6 +477,7 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --col-input-text: white;
 }
 
+/* Start of code by Eltaurus */
 /* ーーー root theme ーーー */
 
 :root {
@@ -1398,7 +1437,11 @@ mjx-merror {
     background-color: var(--col-wrong-bg);
 }
 
-/* --------------------- user styles --------------------- */
+/* End of code by Eltaurus */
+
+/*=====================================================*/
+/*                     USER STYLES                     */
+/*=====================================================*/
 /* place your styles and modifications below */
 
 
