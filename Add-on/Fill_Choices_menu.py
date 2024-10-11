@@ -1,4 +1,4 @@
-# This script is part of the [Lt] Card templates Add-on for Anki.
+# This script is part of the Card templates (Lτ) Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
 # Copyright (C) 2023-2024 Eltaurus
