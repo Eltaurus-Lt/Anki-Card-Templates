@@ -10,6 +10,8 @@
         Support the development: buymeacoffee.com/eltaurus
 */
 
+
+
 /*
 This CSS file (Styling screen) is part of the Anki Card Type template. It may contain sections with different copyright notices. The original card template copyright notice, provided in this section, covers all other sections of the code starting with lines containing "Start of code by Eltaurus" and ending with lines containing "End of code by Eltaurus".
 
@@ -31,11 +33,13 @@ You are free to use this template to create your own Anki cards and decks, modif
 Clarification: The copyright in this notice applies only to the above-stated sections of the code. In particular, it does not extend to data contained within fields of Anki cards or any media files included in Anki decks created using this template. It also does not cover any CSS code that may be added to this CSS file (Styling screen) by creators of derivative cards/templates. Creators are encouraged to add their own copyright statements alongside their code in a similar fashion.
 */
 
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
 
 /*=====================================================*/
 /*                       THEMES                        */
 /*=====================================================*/
+/* create your own themes here */
 
 body:has(div.card-content[theme="MemRise"]) {
     --border-r1: 0.25rem;
@@ -132,18 +136,18 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::select
 
 
 /* Start of code by Eltaurus */
-body:has(div.card-content[theme="AnkiCard"]) {
+body:has(div.card-content[theme="AnkiRise"]) {
     --col-focus: var(--border-focus);
     
     --col-button-border: var(--button-hover-border);
 
     --path-blob: var(--ank-blob);
 }
-body:has(div.card-content[theme="AnkiCard"]) ::selection {
+body:has(div.card-content[theme="AnkiRise"]) ::selection {
     color: white;
     background-color: var(--button-primary-disabled);
 }
-body:has(div.card-content[theme="AnkiCard"]):not(.nightMode):not(.night_mode) {
+body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
     --col-bg: var(--canvas-elevated);
 
     --col-input-border: var(--border-strong);
@@ -171,7 +175,7 @@ body:has(div.card-content[theme="AnkiCard"]):not(.nightMode):not(.night_mode) {
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
 }
-body:has(div.card-content[theme="AnkiCard"]):is(.nightMode, .night_mode) {
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-text: white;
     --col-bg: var(--canvas-code);
 
