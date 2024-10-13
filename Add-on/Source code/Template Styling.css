@@ -1,0 +1,1452 @@
+/*  v4.2  */
+/*
+    HELP and other template-related RESOURCES ℹ️:
+        AnkiWeb:
+            Template deck: ankiweb.net/shared/info/510199145
+            Complimentary add-on: ankiweb.net/shared/info/884199977
+            Forum discussion: forums.ankiweb.net/t/memrise-card-template-support-thread/34233
+        Source: github.com/Eltaurus-Lt/Anki-Card-Templates
+
+        Support the development: buymeacoffee.com/eltaurus
+*/
+
+
+
+/*
+This CSS file (Styling screen) is part of the Anki Card Type template. It may contain sections with different copyright notices. The original card template copyright notice, provided in this section, covers all other sections of the code starting with lines containing "Start of code by Eltaurus" and ending with lines containing "End of code by Eltaurus".
+
+Original card template copyright:
+
+Copyright (C) 2023-2024 Eltaurus
+Contact: 
+    Email: Eltaurus@inbox.lt
+    GitHub: github.com/Eltaurus-Lt
+    Anki Forums: forums.ankiweb.net/u/Eltaurus
+
+This template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This template is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+You are free to use this template to create your own Anki cards and decks, modify the code, and openly share the derivative works, provided that the original template version number with the help and resource links remain intact at the top of this file (Styling screen), as well as this copyright notice and similar notices in other parts of the template are retained (as covered by section 7b of the GPLv3 license). 
+Clarification: The copyright in this notice applies only to the above-stated sections of the code. In particular, it does not extend to data contained within fields of Anki cards or any media files included in Anki decks created using this template. It also does not cover any CSS code that may be added to this CSS file (Styling screen) by creators of derivative cards/templates. Creators are encouraged to add their own copyright statements alongside their code in a similar fashion.
+*/
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap);
+
+/*=====================================================*/
+/*                    🎨 THEMES 🎨                    */
+/*=====================================================*/
+/* create your own themes here */
+
+body:has(div.card-content[theme="MemRise"]) {
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
+
+    --path-play: var(--mem-play);
+    --path-blob: var(--mem-blob);
+    --path-hint: var(--mem-hint);
+}
+body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
+    --col-text: var(--mem-text);
+    --col-focus: var(--mem-focus);
+    --col-bg: var(--mem-bg);
+
+    --col-input-text: var(--mem-input-text);
+    --col-input-border: var(--mem-border);
+    --col-input-bg: var(--mem-input-bg);
+
+    --col-audio-fg: var(--mem-text);
+    --col-audio-bg: var(--mem-primary);
+    --col-audio-passive: var(--col-audio-bg);
+    --op-audio-passive: 0.2;
+    --col-audio-container: var(--mem-audio-container);
+
+    --col-button-text: var(--col-input-text); 
+    --col-button-border: var(--col-input-border);
+    --col-button-bg: var(--col-bg);
+
+    --col-text-faint: var(--mem-textlabel);
+    --col-sep: var(--mem-sep);
+    --col-inset-bg: var(--col-input-bg);
+
+    --col-correct-text: var(--mem-correct-text);
+    --col-correct-border: var(--mem-correct-border);
+    --col-correct-bg: var(--mem-correct-bg);
+    --col-close-text: var(--mem-close-text);
+    --col-close-border: var(--mem-close-border);
+    --col-close-bg: var(--mem-close-bg);
+    --col-wrong-text: var(--mem-wrong-text);
+    --col-wrong-border: var(--mem-wrong-border);
+    --col-wrong-bg: var(--mem-wrong-bg);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--mem-spell-missed);
+    --col-spell-bad: var(--mem-spell-bad);
+
+    --col-pressed-outline: #dbd2bdaa;
+}
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
+    --col-text: var(--mem-bg);
+    --col-focus: #3b82f6;
+    --col-bg: #2c2c2c;
+
+    --col-input-text: white;
+    --col-input-border: #020202;
+    --col-input-bg: #252525;
+
+    --col-audio-fg: var(--mem-primary);
+    --col-audio-bg: black;
+    --col-audio-passive: black;
+    --op-audio-passive: 0.5;
+    --col-audio-container: #141414;
+
+    --col-button-text: white;
+    --col-button-border: #202020;
+    --col-button-bg: #404040;
+
+    --col-text-faint: #545454;
+    --col-sep: #202020;
+    --col-inset-bg: #363636;
+
+    --col-correct-text: var(--mem-correct-bg);
+    --col-correct-border: var(--mem-correct-text);
+    --col-correct-bg: var(--mem-correct-border);
+    --col-close-text: var(--mem-close-bg);
+    --col-close-border: var(--mem-close-text);
+    --col-close-bg: var(--mem-close-border);
+    --col-wrong-text: var(--mem-wrong-bg);
+    --col-wrong-border: var(--mem-wrong-text);
+    --col-wrong-bg: var(--mem-wrong-border);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #22663588;
+    --col-spell-bad: #732c31bb;
+
+    --col-pressed-outline: #ffbb0025;
+}
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::selection {
+    color: var(--mem-text);
+    background-color: var(--mem-bg);
+}
+
+
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="AnkiRise"]) {
+    --col-focus: var(--border-focus);
+    
+    --col-button-border: var(--button-hover-border);
+
+    --path-blob: var(--ank-blob);
+}
+body:has(div.card-content[theme="AnkiRise"]) ::selection {
+    color: white;
+    background-color: var(--button-primary-disabled);
+}
+body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
+    --col-bg: var(--canvas-elevated);
+
+    --col-input-border: var(--border-strong);
+    --col-input-bg: var(--canvas);
+
+    --col-audio-fg: var(--fg);
+    --col-audio-bg: var(--button-primary-gradient-start);
+    --col-audio-passive: var(--border-subtle);
+    --op-audio-passive: 1;
+    --col-audio-container: var(--selected-bg);
+
+    --col-inset-bg: var(--border-subtle);
+
+    --col-correct-text: #053d17;
+    --col-correct-border: #0a9d56;
+    --col-correct-bg: #64d787;
+    --col-close-text: #a12e03;
+    --col-close-border: #df9800;
+    --col-close-bg: #f9ce5c;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #99101b;
+    --col-wrong-bg: #f66761;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--ank-spell-good);
+    --col-spell-bad: var(--ank-spell-bad);
+}
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
+    --col-text: white;
+    --col-bg: var(--canvas-code);
+
+    --col-audio-fg: var(--button-primary-gradient-start);
+    --col-audio-bg: black;
+    --col-audio-passive: black;
+    --op-audio-passive: 0.5;
+    --col-audio-container: var(--shadow);
+
+    --col-button-text: var(--fg); 
+    --col-button-border: var(--button-hover-border);
+    --col-button-bg: var(--canvas);
+
+    --col-sep: var(--button-hover-border);
+
+    --col-correct-text: #64d787;
+    --col-correct-border: #1c4729;
+    --col-correct-bg: #188c4f;
+    --col-close-text: #f9ce5c;
+    --col-close-border: #5e2f1e;
+    --col-close-bg: #d08e08;
+    --col-wrong-text: #f66761;
+    --col-wrong-border: #54070c;
+    --col-wrong-bg: #99101b;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #226635;
+    --col-spell-bad: #732c31dd;
+}
+/* End of code by Eltaurus */
+
+
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="Forest"]) ::selection {
+    color: white;
+    background-color: #277c1d;
+}
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
+    --col-text: #443323;
+    --col-focus: #277c1d;
+    --col-bg: #e9ffe0;
+
+    --col-input-text: #493729;
+    --col-input-border: #7d971e;
+    --col-input-bg: #f4eee5;
+
+    --col-audio-fg: #fffbe0;
+    --col-audio-bg: #24561e88;
+    --col-audio-passive: #6c950a99;
+    --op-audio-passive: 1;
+    --col-audio-container: #6c950a90;
+
+    --col-button-text: #ebdfa9; 
+    --col-button-border: #5c4f3c;
+    --col-button-bg: #917854;
+
+    --col-text-faint: #80913eaa;
+    --col-sep: #c1b68b;
+    --col-inset-bg: #d6e2badd;
+
+    --col-correct-text: #053d17;
+    --col-correct-border: #147d10;
+    --col-correct-bg: #83cf6b;
+    --col-close-text: #7e270a;
+    --col-close-border: #c8671c;
+    --col-close-bg: #f9bb83;
+    --col-wrong-text: #5f0a00;
+    --col-wrong-border: #a62715;
+    --col-wrong-bg: #fd9370;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #aae53c;
+    --col-spell-bad: #ffa37e;
+
+    --col-pressed-outline: #ebdfa990;
+}
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
+    --col-text: #c1b68b;
+    --col-focus: #557d3d;
+    --col-bg: #0b2a25;
+
+    --col-input-text: #d3e9d6;
+    --col-input-border: #233d34;
+    --col-input-bg: #0a1723;
+
+    --col-audio-fg: #c5c5a1;
+    --col-audio-bg: #00623670;
+    --col-audio-passive: #092412bb;
+    --op-audio-passive: 1;
+    --col-audio-container: #092412dd;
+
+    --col-button-text: #c5c5a1;
+    --col-button-border: #001c15;
+    --col-button-bg: #0b271a;
+
+    --col-text-faint: #006236;
+    --col-sep: #29472e;
+    --col-inset-bg: #1c3a41;
+
+    --col-correct-text: #90e090;
+    --col-correct-border: #053d17;
+    --col-correct-bg: #066735;
+    --col-close-text: #f9bb83;
+    --col-close-border: #691913;
+    --col-close-bg: #964127;
+    --col-wrong-text: #eb8f9e;
+    --col-wrong-border: #55091f;
+    --col-wrong-bg: #972343;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #3e655caa;
+    --col-spell-bad: #612f40;
+
+    --col-pressed-outline: #1c3a41;
+}
+/* End of code by Eltaurus */
+
+
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="Sunset"]) {
+    --col-sunset-yellow: #f7dc6f;
+    --col-sunset-focusblue: #69ade8;
+    --col-sunset-focuspaleblue: #a0bbd6;
+    --col-sunset-darkblue: #14274f;
+    --col-sunset-darkerblue: #081738;
+
+    --col-input-text: var(--col-sunset-yellow);
+    --col-input-border: var(--col-sunset-darkerblue);
+    --col-input-bg: #493b5d;
+
+    --col-audio-bg: #f7f395;
+    --col-audio-passive: #f6777d;
+    --op-audio-passive: .65;
+    --col-audio-container: #f4975180;
+
+    --col-button-text: var(--col-input-text); 
+    --col-button-border: var(--col-input-border);
+    --col-button-bg: var(--col-input-bg);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--col-inset-bg);
+    --col-spell-bad: #f55b5088;
+
+    --col-pressed-outline: #6e80ad;
+}
+body:has(div.card-content[theme="Sunset"]) ::selection {
+    color: white;
+    background-color: var(--col-sunset-focusblue);
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
+    --col-text: var(--col-sunset-darkblue);
+    --col-focus: var(--col-sunset-focusblue);
+    --col-bg: #f1becf;
+
+    --col-audio-fg: var(--col-text);
+
+    --col-text-faint: #f55b50cc;
+    --col-sep: #493b5d50;
+    --col-inset-bg: #493b5d60;
+
+    --col-correct-text: #293d05;
+    --col-correct-border: #759d0a;
+    --col-correct-bg: #bedf65;
+    --col-close-text: #a12e03;
+    --col-close-border: #f55b50;
+    --col-close-bg: #f49751;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #a5202a;
+    --col-wrong-bg: #f55b50;
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+  color: var(--col-text);
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) .membtn {
+    --col-text: var(--col-sunset-yellow);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
+    --col-text: var(--col-sunset-yellow);
+    --col-focus: var(--col-sunset-focuspaleblue);
+    --col-bg: var(--col-sunset-darkblue);
+
+    --col-audio-fg: var(--col-sunset-darkerblue);
+    --op-audio-passive: .8;
+    --col-audio-container: #f49751d0;
+
+    --col-text-faint: #7e4f6b;
+    --col-sep: #493b5da0;
+    --col-inset-bg: #504165;
+
+    --col-correct-text: #bedf65;
+    --col-correct-border: #293d05;
+    --col-correct-bg: #688d14;
+    --col-close-text: #f7dc6fe5;
+    --col-close-border: #a12e03;
+    --col-close-bg: #f49751c0;
+    --col-wrong-text: #f6777d;
+    --col-wrong-border: #54070c;
+    --col-wrong-bg: #92212f;
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
+    color: var(--col-sunset-darkerblue);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+    color: var(--col-sunset-focuspaleblue);
+}
+/* End of code by Eltaurus */
+
+/* ーーー general definitions ーーー */
+
+:root {
+    /* memrise constants */
+
+    --mem-green: #83c53d;
+    --mem-red: #ff756b;
+    --mem-yellow: #ffc001;
+    --mem-darkblue: #2b3648;
+    --mem-lightblue: #b9d7e3;
+
+    --mem-primary: rgb(255, 187, 0);
+    --mem-focus: rgb(0, 159, 187);
+
+    --mem-text: rgb(49, 48, 51);
+    --mem-border: rgb(188, 194, 207);
+    --mem-bg: #fffcf3;
+
+    --mem-input-text: rgb(41, 55, 73);
+    --mem-input-bg: rgb(231, 234, 240);
+    --mem-textlabel: rgb(142, 148, 160);
+    --mem-sep: rgb(217, 222, 232);
+    --mem-audio-container: rgb(246, 246, 246);
+
+    --mem-correct-text: rgb(1, 65, 53);
+    --mem-correct-border: rgb(0, 167, 120);
+    --mem-correct-bg: rgb(93, 231, 192);
+    --mem-close-text: rgb(141, 64, 33);
+    --mem-close-border: rgb(237, 107, 53);
+    --mem-close-bg: rgb(255, 213, 195);
+    --mem-wrong-text: rgb(109, 0, 9);
+    --mem-wrong-border: rgb(177, 48, 57);
+    --mem-wrong-bg: rgb(255, 191, 188);
+
+    --mem-spell-missed: #d4e8bc;
+    --mem-spell-bad: #f8d3d6;
+
+    --mem-play: path("M34.814 15.727C34.339 16.079 33.845 16.446 33.955 17.481C34.003 17.643 34.055 17.831 34.112 18.036L34.112 18.036L34.112 18.037L34.112 18.037C34.26 18.573 34.442 19.231 34.672 19.873C35.023 20.857 35.434 21.017 36.48 20.683C36.765 20.592 37.042 20.473 37.311 20.343C41.998 18.075 46.684 15.808 51.366 13.532L51.679 13.38C53.511 12.489 55.344 11.599 57.156 10.671C58.279 10.096 58.361 9.828 57.968 8.703C57.751 8.08 57.518 7.462 57.286 6.844L57.285 6.843L57.171 6.539C57.046 6.207 56.923 5.874 56.8 5.541L56.8 5.541C56.472 4.654 56.144 3.766 55.784 2.891C55.268 1.639 54.774 1.514 53.599 2.263C53.471 2.344 53.349 2.435 53.227 2.526L53.227 2.526L53.227 2.526L53.227 2.526C53.157 2.578 53.088 2.63 53.017 2.681C51.682 3.63 50.347 4.579 49.012 5.528C45.87 7.76 42.728 9.993 39.592 12.232C37.989 13.376 36.406 14.546 34.825 15.719L34.814 15.727ZM28.029 49.547L28.029 49.547L28.029 49.547C28.011 49.427 27.994 49.305 27.978 49.181C28.065 48.363 27.937 47.555 27.807 46.742L27.807 46.742C27.728 46.245 27.649 45.747 27.618 45.243C27.469 42.773 27.273 40.306 27.063 37.84C26.956 36.598 26.836 35.357 26.717 34.116L26.717 34.116L26.717 34.116C26.569 32.59 26.422 31.064 26.3 29.535C26.091 26.917 25.898 24.297 25.706 21.677L25.706 21.676C25.567 19.779 25.428 17.882 25.282 15.986C25.241 15.446 25.172 14.891 25.003 14.382C24.595 13.151 23.621 12.859 22.655 13.713C21.606 14.639 20.597 15.611 19.588 16.583L19.588 16.583L19.587 16.584C19.387 16.777 19.187 16.969 18.987 17.162C17.496 18.592 16.01 20.027 14.523 21.462L14.523 21.463C13.723 22.235 12.922 23.008 12.121 23.78L12.116 23.786C11.815 24.076 11.514 24.366 11.055 24.378C10.106 24.404 9.158 24.433 8.209 24.462L8.209 24.462L8.208 24.462C6.183 24.524 4.157 24.586 2.131 24.614C0.331 24.64 -0.136 25.033 0.032 26.868C0.094 27.55 0.121 28.23 0.147 28.911C0.163 29.315 0.179 29.719 0.202 30.123L0.231 30.618L0.231 30.618C0.49 35.097 0.748 39.576 1.08 44.049C1.233 46.111 1.894 46.573 3.903 46.198C6.092 45.788 8.272 45.326 10.452 44.865L10.452 44.865L10.453 44.864L10.912 44.767C12.06 44.524 13.088 44.594 14.158 45.246C16.527 46.692 18.929 48.082 21.33 49.473L21.331 49.474C22.241 50 23.151 50.527 24.058 51.057C24.207 51.143 24.354 51.233 24.501 51.322L24.501 51.322L24.501 51.322C24.866 51.544 25.232 51.766 25.616 51.945C27.25 52.705 28.209 52.062 28.115 50.288C28.102 50.043 28.066 49.8 28.029 49.547ZM60.769 53.142C60.753 53.138 60.733 53.132 60.712 53.126C60.546 53.079 60.228 52.99 59.921 52.874C53.139 50.312 46.36 47.746 39.581 45.18C39.357 45.095 39.133 45.007 38.916 44.907C37.765 44.378 37.622 44.125 38.016 43.029C38.29 42.263 38.615 41.51 38.98 40.78C39.439 39.864 39.791 39.722 40.872 40.029C42.663 40.538 44.445 41.075 46.22 41.63C49.874 42.773 53.525 43.923 57.176 45.073C58.79 45.581 60.403 46.089 62.017 46.597C62.114 46.627 62.212 46.654 62.309 46.681C62.443 46.718 62.577 46.755 62.708 46.801C64.072 47.28 64.207 47.521 63.795 48.843C63.431 50.007 63.058 51.169 62.661 52.324C62.422 53.019 61.915 53.355 60.809 53.154C60.799 53.151 60.786 53.147 60.769 53.142ZM38.356 27.663C37.022 27.96 36.792 28.319 36.859 30.211C36.873 30.322 36.888 30.454 36.904 30.602C36.948 30.992 37.003 31.488 37.095 31.977C37.301 33.065 37.505 33.257 38.517 33.212C39.287 33.178 40.057 33.065 40.821 32.943C46.044 32.104 51.267 31.259 56.489 30.405C58.073 30.146 59.657 29.876 61.233 29.569C63.16 29.193 63.251 29.017 62.817 26.918C62.746 26.578 62.668 26.239 62.589 25.901C62.541 25.692 62.493 25.482 62.446 25.273L62.445 25.269C61.827 22.487 61.821 22.46 59.105 23.057C53.366 24.318 47.63 25.597 41.894 26.875C40.714 27.138 39.535 27.401 38.356 27.663Z");
+    --mem-blob: polygon(100% 52.01%, 99.83% 57.16%, 99.31% 62.14%, 98.45% 66.92%, 97.23% 71.47%, 95.66% 75.74%, 93.73% 79.7%, 91.45% 83.31%, 88.79% 86.53%, 85.1% 89.87%, 80.86% 92.69%, 76.17% 95.02%, 71.1% 96.87%, 65.75% 98.27%, 60.23% 99.25%, 54.6% 99.82%, 48.98% 100%, 44.98% 99.89%, 41.02% 99.55%, 37.12% 98.97%, 33.3% 98.16%, 29.56% 97.09%, 25.94% 95.76%, 22.45% 94.16%, 19.1% 92.29%, 15.88% 89.88%, 12.6% 86.56%, 9.39% 82.44%, 6.42% 77.64%, 3.84% 72.26%, 1.81% 66.41%, 0.48% 60.21%, 0% 53.76%, 0.16% 49.13%, 0.69% 44.08%, 1.63% 38.78%, 3.03% 33.42%, 4.94% 28.18%, 7.42% 23.23%, 10.5% 18.74%, 14.24% 14.9%, 15.47% 13.91%, 17.12% 12.66%, 19.17% 11.22%, 21.58% 9.65%, 24.29% 8.01%, 27.28% 6.38%, 30.5% 4.81%, 33.91% 3.38%, 36% 2.62%, 38.12% 1.95%, 40.25% 1.37%, 42.37% 0.89%, 44.46% 0.51%, 46.51% 0.23%, 48.5% 0.06%, 50.41% 0%, 54.8% 0.23%, 59% 0.88%, 63.01% 1.91%, 66.83% 3.26%, 70.44% 4.88%, 73.84% 6.74%, 77.02% 8.76%, 79.98% 10.92%, 84.53% 14.76%, 88.53% 18.87%, 91.96% 23.29%, 94.81% 28.09%, 97.05% 33.3%, 98.68% 38.99%, 99.67% 45.21%);
+    --mem-hint: path("M6.113 4.508c-.324-.892-.606-1.643-1.648-2.014.865-.54 1.18-1.296 1.448-1.937.083-.2.162-.39.252-.557.064.147.125.31.188.479.26.698.563 1.51 1.333 1.775-.863.658-1.24 1.315-1.573 2.254Zm2.37 2.702c.492.478 1.005.936 1.537 1.37.694-.851 2.16-2.522 2.16-2.522s-1.08-.948-1.676-1.34c-.216.171-2.129 2.387-2.021 2.492Zm2.1-3.379c.643.22 1.187.638 1.688 1.105.209.194.41.397.609.598.35.353.04.95-.23 1.322-.367.505-5.307 6.553-7.8 9.606l-1.144 1.4c-.198.243-.47.127-.715-.058l-1.618-1.225a1.407 1.407 0 0 0-.21-.13c-.102-.055-.168-.09-.275-.274-.165-.283-.204-.624.006-.868.22-.257 1.05-1.326 2.128-2.717 2.645-3.41 6.79-8.754 7.154-8.817a.835.835 0 0 1 .407.058ZM4.636 4.868c-.063.118-.116.26-.17.408-.128.343-.267.717-.576.893.442.312.63.734.8 1.212.112-.525.347-1.041.77-1.276-.378-.137-.53-.526-.667-.877-.051-.13-.1-.254-.157-.36Zm-2.1-.478c-.055.148-.108.29-.171.408-.057-.105-.106-.23-.157-.36-.137-.351-.29-.74-.667-.877.423-.234.658-.751.769-1.276.17.478.359.9.8 1.212-.308.176-.447.55-.574.893Z");
+
+    /* anki constants */
+    --ank-focus: rgb(229, 151, 0);
+
+    --ank-spell-good: #afa;
+    --ank-spell-missed: #ccc;
+    --ank-spell-bad: #faa;
+
+    --ank-play: path("M56.502,32.301l-37.502,20.101l0.329,-40.804l37.173,20.703Z");
+}
+
+.mobile {
+    --border-radius: 5px;
+    --border-radius-medium: 12px;
+    --border-radius-large: 15px;
+
+    --fg: #020202;
+    --fg-faint: #afafaf;
+    --canvas: #f5f5f5;
+    --canvas-elevated: white;
+    --canvas-code: white;
+    --border: #c4c4c4;
+    --border-subtle: #e4e4e4;
+    --border-strong: #858585;
+    --border-focus: #3b82f6;
+    --button-bg: #fcfcfc;
+    --button-hover-border: #999999;
+    --button-primary-gradient-start: #3b82f6;
+    --button-primary-disabled: #93c5fd;
+    --scrollbar-bg: #d6d6d6;
+    --shadow: #c4c4c4;
+    --shadow-inset: #454545;
+    --highlight-bg: rgba(37, 99, 235, 0.5);
+    --selected-bg: rgba(214, 214, 214, 0.5);
+}
+.mobile:has(body.nightMode, body.night_mode) {
+    --fg: #fcfcfc;
+    --fg-faint: #545454;
+    --canvas: #2c2c2c;
+    --canvas-elevated: #363636;
+    --canvas-code: #252525;
+    --border: #202020;
+    --border-subtle: #252525;
+    --border-strong: #020202;
+    --border-focus: #3b82f6;
+    --button-bg: #404040;
+    --button-hover-border: #141414;
+    --button-primary-gradient-start: #2f67e1;
+    --button-primary-disabled: #4484ed;
+    --scrollbar-bg: #454545;
+    --shadow: #141414;
+    --shadow-inset: #202020;
+    --highlight-bg: rgba(147, 197, 253, 0.5);
+    --selected-bg: rgba(147, 197, 253, 0.5);
+
+    --col-input-text: white;
+}
+
+/* Start of code by Eltaurus */
+/* ーーー root theme ーーー */
+
+:root {
+    font-size: 16px;
+    --fonts: "Open Sans", "Meiryo", sans-serif;
+
+    --col-text: var(--fg);
+    --col-focus: var(--ank-focus);
+    --col-bg: var(--canvas);
+
+    --col-input-text: fieldtext;
+    --col-input-border: var(--border-strong);
+    --col-input-bg: var(--canvas-code);
+
+    --col-audio-fg: var(--shadow-inset);
+    --col-audio-bg: var(--button-primary-disabled);
+    --col-audio-passive: var(--button-primary-disabled);
+    --op-audio-passive: 0.5;
+    --col-audio-container: var(--scrollbar-bg);
+
+    --col-button-text: var(--col-input-text);
+    --col-button-border: var(--border);
+    --col-button-bg: var(--button-bg);
+
+    --col-text-faint: var(--fg-faint);
+    --col-sep: var(--border);
+    --col-inset-bg: var(--canvas-elevated);
+
+    --col-correct-text: var(--mem-correct-text);
+    --col-correct-border: var(--mem-correct-border);
+    --col-correct-bg: var(--ank-spell-good);
+    --col-close-text: var(--mem-close-text);
+    --col-close-border: var(--mem-close-border);
+    --col-close-bg: #ffc8b0;
+    --col-wrong-text: var(--mem-wrong-text);
+    --col-wrong-border: var(--mem-wrong-border);
+    --col-wrong-bg: var(--ank-spell-bad);
+
+    --col-spell-good: var(--ank-spell-good);
+    --col-spell-missed: var(--ank-spell-missed);
+    --col-spell-bad: var(--ank-spell-bad);
+
+    --border-width: 2px;
+    --border-r1: 3px;
+    --border-r2: var(--border-radius);
+    --border-r3: var(--border-radius-medium);
+    --border-r4: var(--border-radius-large);
+
+    --elevation-idle: 4px;
+    --elevation-hover: 6px;
+    --elevation-pressed: 0px;
+
+    --path-play: var(--mem-play);
+    --path-blob: var(--mem-blob);
+    --path-hint: var(--mem-hint);
+
+    /* iOS */
+    --col-pressed-outline: var(--highlight-bg);
+    --pressed-outline-width: 6px;
+}
+
+body.nightMode, body.night_mode {
+    --col-correct-text: var(--ank-spell-good);
+    --col-correct-border: var(--mem-correct-text);
+    --col-correct-bg: var(--mem-correct-border);
+    --col-close-text: var(--mem-close-bg);
+    --col-close-border: var(--mem-close-text);
+    --col-close-bg: var(--mem-close-border);
+    --col-wrong-text: var(--mem-wrong-bg);
+    --col-wrong-border: var(--mem-wrong-text);
+    --col-wrong-bg: var(--mem-wrong-border);
+
+    --col-spell-good: #226635;
+    --col-spell-missed: #333;
+    --col-spell-bad: #732c31dd;
+}
+
+/* ーーー general ーーー */
+
+* {
+  box-sizing: border-box;
+}
+
+setting,
+data,
+.no-alts [part=alt],
+.win .desk-off,
+.mac .desk-off,
+.linux:not(.android) .desk-off,
+.mobile .mobile-off,
+.off {
+    display: none !important;
+}
+
+.sys {
+    opacity: 0;
+    margin: 0;
+    border: 0;
+}
+
+body,
+div code#typeans {
+    font-family: var(--fonts) !important;
+}
+
+body.card {
+  background: var(--col-bg);
+  color: var(--col-text);
+  margin: 0;
+  position: relative;
+
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#Lt::after {
+  content: 'by Lτ';
+}
+#Lt {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;	
+  opacity: 0;
+  color: var(--col-text);
+}
+#Lt:hover {
+  opacity: .25;
+}
+
+button#mem-flip {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* ーーー cards ーーー */
+
+.frontside .card-content.back {
+	display: none;
+}
+.backside .card-content.front {
+	display: none;
+}
+
+.card {
+	width: 100vw;
+	overflow-x: hidden;
+	left: 0;
+}
+
+#qa {
+  padding: 1rem;
+  max-width: calc(60rem - 6.75rem);
+  margin: auto;
+  min-width: 13rem;
+  box-sizing: content-box;
+}
+@media (min-width: 38.25rem) {
+  #qa {
+    padding: 2rem;
+  }
+}
+
+.card-content {
+  align-items: stretch;
+  display: flex; /*todo*/
+  flex-flow: column; /*todo*/
+  justify-content: flex-start;
+  
+  height: 100%;
+  
+  padding-top: 0rem;
+}
+
+/* buttons */
+.membtn {
+  cursor: pointer;
+
+  color: var(--col-button-text);
+
+  border-radius: var(--border-r4);
+  border: var(--col-button-border) solid var(--border-width);
+  background: var(--col-button-bg);
+
+  --elevation: var(--elevation-idle);
+  box-shadow: var(--col-button-border) 0 var(--elevation) 0;
+  transform: translateY(calc(4px - var(--elevation)));
+
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.membtn::selection {
+  background: transparent; 
+}
+.membtn:hover {
+  --elevation: var(--elevation-hover);
+}
+.membtn:active {
+  --elevation: var(--elevation-pressed);
+}
+
+.frontside #scr-keyboard .membtn:hover,
+.frontside #scr-keyboard .membtn:active {
+  --elevation: var(--elevation-idle);
+}
+
+/* ーーーーーーーー FRONTSIDE BASIC ーーーーーーーー */
+.card-content.front {
+  display: grid;
+  grid-template-rows: 0;
+  grid-template-columns: 100%;
+}
+.card-content.front > :first-child {
+  overflow: hidden;
+}
+@media (min-width: 33.25rem) {
+  .card-content.front {
+      grid-template-rows: 3.81rem;
+  }
+	.card-content {  
+	  padding-top: 2rem;
+	}
+}
+
+@media (min-width: 53.25rem) {
+  .card-content.front {
+      grid-template-rows: 4.81rem;
+  }
+	.card-content {  
+	  padding-top: 4rem;
+	}
+}
+
+/*overhead*/
+
+.mem-instruction {
+  color: var(--col-text-faint);
+  font-size: 1.5rem;
+  font-weight: 500;
+  
+  margin-bottom: calc(0.5rem + 0.83em);
+}
+@media (min-width: 53.25rem) {
+  .mem-instruction {
+      font-size: 1.875rem;
+  }
+}
+.frontside .mem-instruction {
+  display: none;
+}
+
+.front-extra {
+  display: none;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--col-inset-bg); 
+  color: var(--col-text);
+  border-radius: var(--border-r4);
+}
+.frontside .front-extra {
+  display: flex;
+}
+.front-extra label {
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-right: 0.5rem;
+}
+
+/*question*/
+
+.mem-question {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  font-size: 2.25rem;
+  font-weight: bold;
+  
+  margin: 0.83em 0 calc(0.5rem + 0.83em);
+}
+.mem-question.large {
+  font-size: 3.75rem;
+}
+
+/*typing*/
+
+.mem-typing {
+  display: flex;
+  flex-direction: column;
+}
+
+.mem-typing label {
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.mem-typing input#typeans,
+input#typeans,
+code#typeans {
+  font: inherit !important;
+
+  font-size: 1.5rem !important;
+  height: 4rem;
+  padding: 0px 1rem;
+  
+  width: calc(100% - 0.5rem);  
+  margin: 0 auto 1.5rem;
+  
+  border-radius: var(--border-r3);
+  
+  color: var(--col-input-text);
+  border: var(--border-width) solid var(--col-input-border);
+  background-color: var(--col-input-bg);
+}
+.mem-typing.large input#typeans,
+.mem-typing.large code#typeans {
+  font-size: 2.25rem !important;
+}
+.correct input#typeans,
+.correct code#typeans {
+	--col-input-text: var(--col-correct-text);
+	--col-input-border: var(--col-correct-border);
+	--col-input-bg: var(--col-correct-bg);
+}
+.soclose input#typeans,
+.soclose code#typeans {
+	--col-input-text: var(--col-close-text);
+	--col-input-border: var(--col-close-border);
+	--col-input-bg: var(--col-close-bg);
+}
+.wrong input#typeans,
+.wrong code#typeans {
+	--col-input-text: var(--col-wrong-text);
+	--col-input-border: var(--col-wrong-border);
+	--col-input-bg: var(--col-wrong-bg);
+}
+
+  /*focus outline*/
+body :focus-visible {
+  box-shadow: var(--col-focus) 0px 0px 0px 3px;
+  outline: none;
+}
+
+  /*remove anki defaults*/
+code#typeans :is(br, br ~ span, .typeMissed) {
+	display: none;
+}
+code#typeans {
+  color: transparent;
+	overflow: hidden;
+}
+code#typeans span {
+	background: none;
+	color: var(--col-input-text);
+	white-space: nowrap;
+}
+code#typeans {
+	display: flex;
+  align-items: center;
+	white-space: pre-wrap;
+}
+body::after {
+  content: "\0062" "y \004C"'\03C4';
+  opacity: 0.2;
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  z-index: -1;
+}
+  /*change typed ans in preview*/
+  /*code#typeans * {display: none;}*/
+  /*code#typeans br ~ br ~ span {display: initial;}*/
+
+/* ーーー backside ーーー */
+
+/*typed answer alert*/
+
+.mem-alert {
+  display: block;
+  
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: var(--border-r2);
+  color: var(--col-wrong-border);
+  
+  margin-bottom: 1rem;
+	position: relative;
+	overflow: hidden;
+}
+.mem-alert:empty {
+  display: none;
+}
+
+.mem-alert::before {
+  content: 'your answer';
+  display: block;
+  margin: 0px 0px 0.25rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.mem-alert::after {
+	content: '';
+	inset: 0;
+	background: var(--col-wrong-bg);
+	position: absolute;
+	z-index: -1;
+	opacity: 0.5;
+}
+body:is(.nightMode, .night_mode) .mem-alert {
+    color: var(--col-wrong-text);
+}
+
+/*
+.soclose .mem-alert {
+  color: var(--col-close-border);
+}
+.soclose .mem-alert::after {
+	background: var(--col-close-bg);
+}
+
+body:is(.nightMode, .night_mode) .mem-alert::after {
+    background: var(--col-wrong-bg);
+}
+*/
+
+.correct .mem-alert {
+  color: var(--col-correct-border);
+}
+body:is(.nightMode, .night_mode) .correct .mem-alert {
+    color: var(--col-correct-text);
+}
+.correct .mem-alert::after {
+	background: var(--col-correct-bg);
+}
+
+/*fields*/
+
+.mem-field, .sep {
+  margin-bottom: 1rem;
+}
+
+.sep {
+  background: var(--col-sep);
+  height: var(--border-width);
+  width: 100%
+}
+
+.mem-field label {
+  display: block;
+  margin: 0.5rem 0px;
+
+  color: var(--col-text-faint);
+  font-size: 0.75rem;
+  font-weight: 600; 
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.mem-field :is(h2, h3, h4) {
+  hyphens: auto;
+  margin: 0px;
+  overflow-wrap: anywhere;
+}
+
+.mem-field h2 { 
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.mem-field.large h2 {
+  font-size: 3rem;
+}
+
+.mem-field h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.2;
+}
+.mem-field.large h3 {
+	font-size: 1.875rem;
+}
+
+.mem-field h4 {
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+[part=alt] {
+    font-size: .5em;
+    color: var(--col-text-faint) !important;
+    font-weight: 500;
+    hyphens: auto;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+h2 [part=alt] {
+    font-size: 1.25rem;
+}
+h3 [part=alt] {
+    font-size: 1rem;
+}
+h4 [part=alt] {
+    font-size: .75rem;
+}
+
+/* ーーーーーーーーーー AUDIO ーーーーーーーーーー */
+/* Q */
+.mem-question a.replay-button.soundLink,
+.mem-question a.replay-button.soundLink > span {
+  width: 10rem;
+  height: 10rem;
+}
+a.replay-button.soundLink > span { /* Android quirk */
+	display: block;
+}
+
+.mem-question a.replay-button:not(:first-child) {
+  display: none;
+}
+
+.mem-question svg.playImage {
+	width: calc(40% * (1 - 2 * 6/160));
+	height: calc(40% * (1 - 2 * 1/160));
+}
+
+@media (min-width: 33.25rem) {
+  .mem-question.large a.replay-button.soundLink {
+    width: 20rem;
+    height: 20rem;
+  }  
+  .mem-question.large svg.playImage {
+    width: calc(40% * (1 - 2 * 6/320));
+    height: calc(40% * (1 - 2 * 1/320));
+  }
+}
+
+.memblob svg.playImage circle {
+  display: none;
+}
+
+.mem-question a.replay-button::before,
+.memblob a.replay-button::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: '';
+  
+  width: auto;
+  height: auto;
+  
+  background: var(--col-audio-bg);
+
+  clip-path: var(--path-blob, circle(50%));
+}
+a.replay-button.soundLink::before {
+  z-index: -200;
+  opacity: var(--op-audio-passive); 
+  background: var(--col-audio-passive);
+}
+.memblob a.replay-button::after {
+  z-index: -100;
+  opacity: 0; 
+  scale: 0;
+  transition: scale 0.2s,
+              opacity 0.2s;
+}
+
+.mem-question:not(.memblob) a::before {
+  clip-path: circle(50%);
+}
+
+.memblob a.replay-button.soundLink.pulse::after {
+  animation: pulse 2s; 
+  animation-fill-mode: forwards;
+}
+
+.memblob a.replay-button.soundLink.active::after {
+  opacity: 1;
+  scale: 1;
+}
+.mem-question.memblob a.replay-button.soundLink.active::after {
+  scale: 0.625;
+}
+
+/* A */
+.mem-field *:has(a.replay-button.soundLink),
+.audio-container {    
+  background: var(--col-audio-container);
+  border-radius: var(--border-r4);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+a.replay-button.soundLink {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  margin: 0;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+}
+
+svg.playImage {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+
+a.replay-button.soundLink:hover:not(:active) svg.playImage path {
+  transform: scale(1.1);
+}
+a.replay-button.soundLink.active svg.playImage circle {
+  opacity: 1;
+  r: 50px;
+}
+
+svg.playImage circle {
+  fill: var(--col-audio-bg);
+  r: 0px;
+  opacity: 0;
+  transform-origin: center;
+  stroke-width: 0px;
+  transition: r .2s, opacity .2s;
+}
+a.replay-button.soundLink.pulse svg.playImage circle {
+  animation: pulse 2s; 
+  animation-fill-mode: forwards;
+}
+@keyframes pulse {
+  25%, 75% {
+    transform: scale(1);
+    fill: var(--col-audio-bg);
+    background: var(--col-audio-bg);
+  }
+  0%, 50%, 100% {
+    transform: scale(.8);
+    fill: transparent;
+    background: transparent;
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
+
+
+svg.playImage path {
+  transform-origin: center;
+  transition:	transform .1s linear;
+  fill: var(--col-audio-fg);
+  d: var(--path-play, var(--ank-play));
+}
+
+/* ーーーーーーーーーー IMAGES ーーーーーーーーーー */
+
+.mem-question img {
+    border: 0px;
+    margin: 0 auto;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.mem-question > div:has(img) {
+    min-height: 10rem;
+    min-width: 10rem;
+    max-height: calc(21.5rem);
+    max-width: calc(21.5rem);
+}
+
+.mem-question > img { /* backward compatibility */
+    margin: 1rem auto;
+    min-height: 10rem;
+    min-width: 10rem;
+    max-height: calc(21.5rem);
+    max-width: calc(21.5rem);
+}
+
+.mem-question:has(img) {
+  margin: 1rem 0 calc(0.5rem + 1rem);
+}
+
+.mem-alert img,
+.mem-field :is(h2, h3, h4) img {
+    border-radius: var(--border-r2);
+    margin: 0px;
+    max-width: 16rem;
+    width: 100%;
+}
+
+.card-content.mch .membtn img {
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: contain;
+    width: 100%;
+
+    border-radius: 0.5rem;
+}
+
+.front-extra img {
+	max-height: 1.5em;
+}
+.front-extra:has(img) {
+	display: none !important;
+}
+
+/* ーーーーーーー Spellcheck highlights ーーーーーーー */
+#spellcheck {
+  font-size: 14px;
+}
+#spellcheck.large {
+  font-size: 18px;
+}
+
+#spellcheck:not(:empty)::before {
+  content: 'You wrote: ';
+}
+
+#spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+  color: var(--col-input-text);
+  font-weight: bold;
+	font-variant-ligatures: no-common-ligatures;
+}
+
+#spellcheck .typeGood {
+  background: var(--col-spell-good);
+}
+#spellcheck .typeMissed {
+  background: var(--col-spell-missed);
+}
+#spellcheck .typeBad {
+  background: var(--col-spell-bad);
+  text-decoration: line-through;
+}
+
+
+/* ーーーーーーー ON-SCREEN KEYBOARD ーーーーーーー */
+#scr-keyboard {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--col-input-text);
+}
+@media (min-width: 33.25rem) {
+	#scr-keyboard {
+  	width: 95%;
+	}
+}
+
+@media (min-width: 53.25rem) {
+	#scr-keyboard {
+  	width: 90%;
+	}
+}
+
+#scr-keyboard > * {
+  margin: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  
+  font-size: 1.5rem;
+  line-height: calc(3rem - 2 * var(--border-width));
+  text-align: center;
+  vertical-align: baseline;
+}
+#scr-keyboard.large > * {
+  width: 4rem;
+  height: 4rem;
+  
+  font-size: 2.25rem;
+  line-height: calc(4rem - 2 * var(--border-width));
+}
+
+#scr-keyboard > *.space {
+  width: 7rem;
+}
+#scr-keyboard.large > *.space {
+  width: 9rem;
+}
+
+#HintButton {
+  font-size: 1.125rem;
+  font-weight: 700;
+  width: 7rem;
+  
+  padding: 0 1rem;
+  width: max-content;
+  margin-left: 2rem;
+}
+#scr-keyboard.large #HintButton {
+ font-size: 1.25rem;
+ width: 7rem;
+  
+ padding: 0 1.5rem;
+ width: max-content;
+}
+
+#HintButton svg {
+  height: 1em;
+  width: 1em;
+  vertical-align: baseline;
+  margin-right: 1rem;
+  margin-top: -0.5rem;
+}
+
+#HintButton svg path {
+	fill: currentcolor;
+	d: var(--path-hint);
+}
+
+
+/* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
+
+.card-content.mch #scr-keyboard {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: grid;
+  
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 38.25rem) {
+  .card-content.mch #scr-keyboard {
+    gap: 1rem;
+  }
+}
+@media (min-width: 23.25rem) {
+  .card-content.mch #scr-keyboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card-content.mch .mem-typing {
+  display: none;
+  opacity: .2;
+}
+.card-content.mch input#typeans {
+  pointer-events: none;
+}
+
+.card-content.mch #scr-keyboard > * {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  padding: 1rem;
+  padding-top: clamp(1rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
+
+  font-weight: 600;
+  
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.card-content.mch #scr-keyboard.large > * {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+@media (min-width: 33.25rem) {
+  .card-content.mch #scr-keyboard > * {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+  .card-content.mch #scr-keyboard {
+    list-style-type: none;
+    counter-reset: choice-key 0;
+  }
+  .card-content.mch #scr-keyboard > * {
+    counter-increment: choice-key 1;
+  }
+  .card-content.mch #scr-keyboard > *:before {
+    content: counter(choice-key);
+
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: calc(50% - 0.75rem);
+    left: 1rem;
+
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+
+    background-color: var(--col-text);
+    border-radius: var(--border-r1);
+    color: var(--col-button-bg);
+  }
+}
+
+.frontside #scr-keyboard .membtn.correct {
+    --col-button-text: var(--col-correct-text);
+    --col-button-border: var(--col-correct-border);
+    --col-button-bg: var(--col-correct-bg);
+    --col-text: var(--col-correct-border);
+}
+
+.frontside #scr-keyboard .membtn.pressed:not(.correct) {
+    --col-button-text: var(--col-wrong-text);
+    --col-button-border: var(--col-wrong-border);
+    --col-button-bg: var(--col-wrong-bg);
+    --col-text: var(--col-wrong-border);
+}
+
+#scr-keyboard .membtn.pressed {
+    --elevation: var(--elevation-pressed) !important;
+    outline-offset: calc(-1 * (1 * var(--border-width) + var(--pressed-outline-width)));
+}
+#backwrap #scr-keyboard .membtn.pressed {
+    outline: none;
+}
+/* iOS */
+html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
+    outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
+}
+
+#typeans:disabled {
+    opacity: 1 !important;
+}
+
+html:is(.iphone, ipad) .card-content.back { /* experimental */
+    align-items: start !important;
+}
+
+/* ーーーーーーーー MathJax ーーーーーーーー */
+
+mjx-merror {
+    color: var(--col-wrong-text);
+    background-color: var(--col-wrong-bg);
+}
+
+/* End of code by Eltaurus */
+
+/*=====================================================*/
+/*                 ⚙️ USER STYLES ⚙️                  */
+/*=====================================================*/
+/* place your styles and modifications below */
+
+
+
