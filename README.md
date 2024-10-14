@@ -1,22 +1,45 @@
 # Anki Card Templates
 
-## Memrise
+## Memrise Template v4.2
 
-This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users. The functionality includes **typing-in** and **multiple-choice** questions, **automatic answer grading** with the **info screen** on failed cards, **image** and **audio** cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and more. It works on **desktop** as well as in **mobile app***:
-<!-- fuzzy answer matching, spelling corrections, tab navigation | timers, mems... -->
-<sup>*tested on Android (AnkiDroid app), some features might not fully function on iPhones (AnkiMobile app)</sup>
+This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** shown after answer submission, the option to specify **alternative answers** for each card, **image** and **audio** question cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and more. It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
 
- <p align="middle">
-  <img src="https://i.imgur.com/ZCAJ6KG.png" title="AnkiDroid" style="width: 16%">
-  <img src="https://i.imgur.com/CdhGgQk.png" title="Anki Desktop" style="width: 36%">
-  <img src="https://i.imgur.com/peG7QxX.png" title="Anki Desktop" style="width: 36%">
-</p>
-<p align="middle">
- <img src="https://i.imgur.com/E0Hr9Yb.png" title="AnkiDroid" style="width: 16%">
- <img src="https://i.imgur.com/xJA9F5u.png" title="Anki Desktop" style="width: 36%">
- <img src="https://i.imgur.com/E8lOr98.png" title="AnkiDroid" style="width: 16%">
- <img src="https://i.imgur.com/ixCkhYQ.png" title="AnkiDroid" style="width: 16%">
-</p>
+<sup>*there are some minor differences in how the template looks and functions on iOS, but all the core features are there</sup>
+
+![Global overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
+
+### 💡 Quick start
+
+>---
+>1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v4.2) and open the `Memrise… .apkg` file with Anki
+>2. Use `Memrise (Lτ) Preset […] v4.2` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
+>3. For typing on Android: app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**
+>
+>Enabling Multiple-Choice cards (Optional):
+>
+>4. Install the support addon on a desktop Anki:
+     `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
+>5. Open **`Browse`** window → Select **several** Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
+>6. To make Multiple-Choice cards available on mobile: **`Sync`** in Anki desktop → **`Sync`** in your mobile Anki app
+>---
+
+If you require any help with this, please feel free to leave a comment in [this Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+Feedback and feature suggestions are also very much appreciated.
+
+---
+
+In addition to the Memrise functionality mentioned at the beginning, the template also implements several features retired from Memrise, such as highlighting **answer corrections** (look for the "You wrote:" line on the screenshots above), or never supported by Memrise, such as **tab-navigation** over a card's interface, ability to view full card's info even when the submitted answer is correct (press `Space`), and a dedicated **Dark theme**. In addition to that, the template has several **other color schemes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
+<!-- fuzzy answer matching | timers, mems... -->
+
+![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
+
+<!-- provides easy ways of customizing a lot of interface attributes and review parameters -->
+
+One more feature to mention is the **LaTeX support** (in both **type-in** and **multiple-choice** questions). It is enabled separately (LaTeX and Memrise syntax do not mix well), and in type-in questions shows both: the converted equations form of the typed answer and the corrections for typos in its source:
+
+![LaTeX](https://github.com/user-attachments/assets/e8831bf0-a43d-4d78-8b25-ed835c8e21d5)
+
+
 
 &nbsp;  
 <details>
@@ -28,12 +51,15 @@ This card template replicates the Memrise interface to make Anki more accessible
 ![On-screen keyboard](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cfc7895a-4911-4e04-8084-7a65f3a555f5)
 ![Spelling corrections](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9f30fdeb-57c8-4d04-b086-07d211b99ce0)
 ![Hint button](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/6dbd8da4-e322-4c4b-bd5a-4a744ba5e8e2)
+![Dark theme (multiple-choice)](https://github.com/user-attachments/assets/7e918a3c-365d-4f05-917a-ee9066f37644)
+![Dark theme (type-in, audio)](https://github.com/user-attachments/assets/9340eff2-eb93-452f-8f5a-51abde3cb86e)
+
 </details>
 
 <details>
-<summary>Memrise vs Anki template comparison</summary>
+<summary>Memrise vs Anki template (side-by-side comparison)</summary>
  <p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%; box-shadow: 10px 5px 5px black;">
   <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
 </p>
 
@@ -124,25 +150,7 @@ This template does not use any of the original Memrise code and is written from 
 >
 ></details>
 
-There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything.
-
-### 💡 Quick start
-
->---
->1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) and open the `Memrise… .apkg` file with Anki
->2. Use `Memrise (Lτ) Preset […] v3.32` Note Type when making new cards (click **`Add`** → …), or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
->3. For typing on Android: app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**
->
->Enabling Multiple-Choice cards (Optional):
->
->4. Instal the support addon in desktop Anki:
-     `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->5. Open **`Browse`** window → Select Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
->6. To make Multiple-Choice cards available in the app: **`Sync`** in Anki desktop → **`Sync`** in AnkiDroid
->---
-
-If you require any help with this, please feel free to leave a comment in [this Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
-Feedback and feature suggestions are also very much appreciated.
+There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything (this demo is not updated as regularly as the template itself only presents some of the older features of the template).
 
 ### Customization
 
@@ -201,6 +209,23 @@ If you have cards in your collection, that were previously created with other te
 ### Downloading courses from Memrise
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
+
+### Copyright notice
+
+Copyright © 2023-2024 Eltaurus
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 ### Support
 
