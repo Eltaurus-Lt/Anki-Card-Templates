@@ -97,7 +97,7 @@ This template does not use any of the original Memrise code and is written from 
 > ![Submit jitter (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 >&nbsp;
 >
-> 2. Cropped fonts 
+> 2. Cropped text labels 
 >
 > ![Fonts cropping (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bec6453-353b-4c5c-9cef-b34592bb9457)
 >&nbsp;
