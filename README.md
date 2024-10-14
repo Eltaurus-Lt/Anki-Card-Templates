@@ -154,7 +154,7 @@ This template does not use any of the original Memrise code and is written from 
 >
 ></details>
 
-There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality without downloading anything (this demo is not updated as regularly as the template itself only presents some of the older features of the template).
+There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
 ### Customization
 
