@@ -2,9 +2,9 @@
 
 ## Memrise Template v4.2
 
-This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users and Anki beginners in general. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** shown after answer submission, the option to specify **alternative answers** for each card, **image** and **audio** question cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and more. It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
+This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users and Anki beginners in general. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** shown after answer submission, the option to specify **alternative answers** for each card, **image** and **audio** question cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and [more](#themes). It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
 
-<sup>*there are some minor differences in how the template looks and functions on iOS, but all the core features are there</sup>
+<sup>*there are some minor differences in how the template looks and works on iOS, but all the core features are fully functioning</sup>
 
 ![Global overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
 
@@ -27,6 +27,8 @@ If you require any help with this, please feel free to leave a comment in [this 
 Feedback and feature suggestions are also very much appreciated.
 
 ---
+
+### Themes
 
 In addition to the Memrise functionality mentioned at the beginning, the template also implements several features retired from Memrise, such as highlighting **answer corrections** (look for the "You wrote:" line on the screenshots above), or never supported by Memrise, such as **tab-navigation** over a card's interface, ability to view full card's info even when the submitted answer is correct (press `Space`), and a dedicated **Dark theme**. In addition to that, the template has several **other color schemes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
 <!-- fuzzy answer matching | timers, mems... -->
