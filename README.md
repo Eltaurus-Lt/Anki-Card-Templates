@@ -37,6 +37,8 @@ In addition to the Memrise functionality mentioned at the beginning, the templat
 
 <!-- provides easy ways of customizing a lot of interface attributes and review parameters -->
 
+### LaTeX
+
 One more feature to mention is the **LaTeX support** (in both **type-in** and **multiple-choice** questions). It is enabled separately (LaTeX and Memrise syntax do not mix well), and in type-in questions shows both: the converted equations form of the typed answer and the corrections for typos in its source:
 
 ![LaTeX](https://github.com/user-attachments/assets/e8831bf0-a43d-4d78-8b25-ed835c8e21d5)
