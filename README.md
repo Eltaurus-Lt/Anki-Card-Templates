@@ -4,7 +4,7 @@
 
 This card template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone else, who finds default Anki cards too intimidating. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** after answer submission, the option to specify **alternative answers** for each card, **audio** questions with interactive buttons, **on-screen keyboard** with the **hint button**, and [more](#themes). It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
 
-<sup>*there are few non-breaking differences in how the template looks and works on iOS</sup>
+<sup>*there are some (non-breaking) differences in how the template looks and works on iOS</sup>
 
 ![General overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
 
