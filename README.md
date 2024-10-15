@@ -2,24 +2,24 @@
 
 ## Memrise Template v4.2
 
-This card template replicates the Memrise interface to make Anki more accessible for ex-Memrise users and Anki beginners in general. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** shown after answer submission, the option to specify **alternative answers** for each card, **image** and **audio** question cards (buttons fully animated), **on-screen keyboard** with the **hint button**, and [more](#themes). It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
+This card template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone else, who finds default Anki cards too intimidating. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** after answer submission, the option to specify **alternative answers** for each card, **audio** questions with interactive buttons, **on-screen keyboard** with the **hint button**, and [more](#themes). It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
 
-<sup>*there are some minor differences in how the template looks and works on iOS, but all the core features are fully functioning</sup>
+<sup>*there are few non-breaking differences in how the template looks and works on iOS</sup>
 
-![Global overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
+![General overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
 
 ### 💡 Quick start
 
 >---
 >1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v4.2) and open the `Memrise… .apkg` file with Anki
->2. Use `Memrise (Lτ) Preset […] v4.2` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#importing-into-anki))
->3. For typing on Android: app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**
+>2. Use `Memrise (Lτ) Preset […] v4.2` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
+>3. On Android also enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**)
 >
 >Enabling Multiple-Choice cards (Optional):
 >
->4. Install the support addon on a desktop Anki:
+>4. Install [the support addon](https://ankiweb.net/shared/info/884199977) on a desktop Anki:
      `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->5. Open **`Browse`** window → Select **several** Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
+>5. Open **`Browse`** window → Select multiple (**at least two**) Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
 >6. To make Multiple-Choice cards available on mobile: **`Sync`** in Anki desktop → **`Sync`** in your mobile Anki app
 >---
 
@@ -30,7 +30,7 @@ Feedback and feature suggestions are also very much appreciated.
 
 ### Themes
 
-In addition to the Memrise functionality mentioned at the beginning, the template also implements several features retired from Memrise, such as highlighting **answer corrections** (look for the "You wrote:" line on the screenshots above), or never supported by Memrise, such as **tab-navigation** over a card's interface, ability to view full card's info even when the submitted answer is correct (press `Space`), and a dedicated **Dark theme**. In addition to that, the template has several **other color schemes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
+In addition to replicating the existing Memrise functionality listed at the beginning, the template also implements several features retired from Memrise, such as highlighting **answer corrections** (look for the "You wrote:" line on the screenshots above), or never supported by Memrise, such as **tab-navigation** over a card's interface, ability to view full card's info even when the submitted answer is correct (press `Space`), and a dedicated **Dark theme**. In addition to that, the template has several **other color schemes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
 <!-- fuzzy answer matching | timers, mems... -->
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
