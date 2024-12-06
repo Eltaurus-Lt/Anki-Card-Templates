@@ -33,7 +33,9 @@ isMathJax = !!document.querySelector('.card-content.eq');
 <script>
 //determine platform
 platform = '';
-if (!document.documentElement.classList.contains("mobile")) {
+if (!!document.getElementById('qa_box')) {
+  platform = 'ankiweb';
+} else if (!document.documentElement.classList.contains("mobile")) {
 	platform = 'desk';
 } else if (document.documentElement.classList.contains("android")) {
 	//var jsApiContract = { version: "0.0.3", developer: "eltaurus@inbox.lt" };
@@ -42,6 +44,7 @@ if (!document.documentElement.classList.contains("mobile")) {
 } else {
 	platform = 'ios';
 }
+console.log("platform: ", platform);
 </script>
 
 <script>
@@ -63,6 +66,47 @@ function ansCleanUp(ansString) {
 typeAns = document.getElementById('typeans');
 screenKeyboard = document.getElementById('scr-keyboard');
 hintButton = document.getElementById('HintButton');
+embeddedAudios = [...document.querySelectorAll('audio')];
+ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+</script>
+
+<script>
+function replayAudio(i, retry = 50) { //for embedded audio tags (ankiweb)
+  embeddedAudios.forEach(audioL => audioL.pause());
+  if (embeddedAudios[i]) {
+    embeddedAudios[i].currentTime = 0;
+    embeddedAudios[i].play().catch((err) => {
+      console.warn('attempt to play unloaded audio');
+      if (retry > 0) {
+        setTimeout(()=>replayAudio(i, retry - 1), 100); 
+      } else {
+        console.warn('max retry attempts exceeded');
+      }
+    });
+  }
+}
+
+//embedding audio buttons (ankiweb)
+embeddedAudios.forEach((audioL, i) => {
+  const replayButtonHTML = `
+    <a class="replay-button soundLink" onclick="replayAudio(${i})">
+      <svg class="playImage" viewBox="0 0 64 64" version="1.1">
+        <circle cx="32" cy="32"></circle>
+        <path></path>
+      </svg>
+    </a>
+  `;
+  
+  const tempL = document.createElement('div');
+  tempL.innerHTML = replayButtonHTML.trim();
+  
+  audioL.parentNode.insertBefore(tempL.firstChild, audioL.nextSibling);
+
+  //move audio tag outside
+  document.body.appendChild(audioL);
+  audioL.classList.add('off');
+});
+
 </script>
 
 <script>
@@ -117,6 +161,22 @@ if (isFrontSide) {
 <script>
 //determine the correct answer
 corrAnsL = document.getElementById('correctAnswer');
+</script>
+<script>
+//cloze
+clozes = corrAnsL.querySelectorAll(".cloze");
+if (clozes) {
+  corrAnsL.innerHTML = [...clozes].map(L => L.getAttribute("data-cloze")).join(", ");
+  let inactCloze = corrAnsL.querySelector("span.cloze-inactive");
+  while (inactCloze) { // remove inactive nested clozes
+    const frag = document.createDocumentFragment();
+    while (inactCloze.firstChild) { frag.appendChild(inactCloze.firstChild); }
+    corrAnsL.replaceChild(frag, inactCloze);
+    inactCloze = corrAnsL.querySelector("span.cloze-inactive");
+  }
+}
+</script>
+<script>
 corrAns = ansCleanUp(corrAnsL?.innerHTML) || ""; //including alts
 
 //extract primary, excluding alts
@@ -230,6 +290,12 @@ if (audioButtonsFront && audioButtonsFront.length > 0) {
 </script>
 
 <script>
+if (embeddedAudios && embeddedAudios.length >= document.querySelectorAll('a.replay-button').length) {
+  setTimeout(replayAudio(Math.floor(Math.random() * embeddedAudios.length)), 100);
+}
+</script>
+
+<script>
 //on-screen keyboard | mult-choice buttons
 
 function shuffle(arr) {
@@ -306,6 +372,12 @@ function flipToBack() {
 		pycmd("ans");
 	} else if (platform === 'android') {
 		showAnswer();
+	} else if (platform === 'ankiweb') {
+		if (ankiwebButtons.length === 1) {
+			ankiwebButtons[0].click();
+		} else {
+			console.log("can't flip to back. unexpected number of ankiweb buttons: ", ankiwebButtons.length);
+		}
 	}
 	console.log('flip');
 }
@@ -382,6 +454,12 @@ if (isFrontSide) {
 
 	if (typeAns) {
 		typeAns.addEventListener('input', (event) => {storeAnswer();});
+		if (platform === 'ankiweb') {
+			setTimeout(()=>{
+				document.activeElement.blur();
+				typeAns.focus();
+			}, 25);
+		}
 	}
 }
 </script>

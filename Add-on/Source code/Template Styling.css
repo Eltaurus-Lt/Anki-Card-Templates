@@ -1,4 +1,4 @@
-/*  v4.2  */
+/*  v4.3β  */
 /*
     HELP and other template-related RESOURCES ℹ️:
         AnkiWeb:
@@ -7,7 +7,7 @@
             Forum discussion: forums.ankiweb.net/t/memrise-card-template-support-thread/34233
         Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 
-        Support the development: buymeacoffee.com/eltaurus
+        Support the development ☕: buymeacoffee.com/eltaurus
 */
 
 
@@ -89,6 +89,10 @@ body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
     --col-spell-bad: var(--mem-spell-bad);
 
     --col-pressed-outline: #dbd2bdaa;
+
+    --col-intbtn-text: var(--mem-next);
+    --col-intbtn-bg: var(--mem-primary);
+    /* --col-intbtn-hover: var(--mem-secondary); */
 }
 body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-text: var(--mem-bg);
@@ -128,8 +132,13 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-spell-bad: #732c31bb;
 
     --col-pressed-outline: #ffbb0025;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: #161616;
+    --col-intbtn-border: black;
 }
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::selection {
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card ::selection,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card ::selection {
     color: var(--mem-text);
     background-color: var(--mem-bg);
 }
@@ -143,7 +152,8 @@ body:has(div.card-content[theme="AnkiRise"]) {
 
     --path-blob: var(--ank-blob);
 }
-body:has(div.card-content[theme="AnkiRise"]) ::selection {
+body:has(div.card-content[theme="AnkiRise"]).card ::selection,
+body:has(div.card-content[theme="AnkiRise"]) .card ::selection {
     color: white;
     background-color: var(--button-primary-disabled);
 }
@@ -209,7 +219,8 @@ body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
 
 
 /* Start of code by Eltaurus */
-body:has(div.card-content[theme="Forest"]) ::selection {
+body:has(div.card-content[theme="Forest"]).card ::selection,
+body:has(div.card-content[theme="Forest"]) .card ::selection {
     color: white;
     background-color: #277c1d;
 }
@@ -320,8 +331,14 @@ body:has(div.card-content[theme="Sunset"]) {
     --col-spell-bad: #f55b5088;
 
     --col-pressed-outline: #6e80ad;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: var(--col-audio-bg);
+    --col-intbtn-border: #f6777d20;
+    --col-intbtn-hover: var(--col-sunset-focuspaleblue);
 }
-body:has(div.card-content[theme="Sunset"]) ::selection {
+body:has(div.card-content[theme="Sunset"]).card ::selection,
+body:has(div.card-content[theme="Sunset"]) .card ::selection {
     color: white;
     background-color: var(--col-sunset-focusblue);
 }
@@ -395,6 +412,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --mem-lightblue: #b9d7e3;
 
     --mem-primary: rgb(255, 187, 0);
+    --mem-secondary: rgb(255, 193, 25);
+    --mem-next: rgb(0, 17, 34);
     --mem-focus: rgb(0, 159, 187);
 
     --mem-text: rgb(49, 48, 51);
@@ -434,6 +453,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --ank-play: path("M56.502,32.301l-37.502,20.101l0.329,-40.804l37.173,20.703Z");
 }
 
+
+html:is(.win, .mac, .linux):has(body:not(.card)), /* ankiweb */
 .mobile {
     --border-radius: 5px;
     --border-radius-medium: 12px;
@@ -458,6 +479,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --highlight-bg: rgba(37, 99, 235, 0.5);
     --selected-bg: rgba(214, 214, 214, 0.5);
 }
+
+html:is(.win, .mac, .linux):has(body.nightMode, body.night_mode):has(body:not(.card)), /* ankiweb */
 .mobile:has(body.nightMode, body.night_mode) {
     --fg: #fcfcfc;
     --fg-faint: #545454;
@@ -541,6 +564,12 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     /* iOS */
     --col-pressed-outline: var(--highlight-bg);
     --pressed-outline-width: 6px;
+
+    /* AnkiWeb exterior */
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-bg);
+    --col-intbtn-hover: white;#ffff26;
+    --col-intbtn-border: rgba(0, 0, 0, 0.1);
 }
 
 body.nightMode, body.night_mode {
@@ -587,6 +616,7 @@ div code#typeans {
     font-family: var(--fonts) !important;
 }
 
+#qa_box.card, /* ankiweb */
 body.card {
   background: var(--col-bg);
   color: var(--col-text);
@@ -607,6 +637,7 @@ body.card {
   bottom: 1em;	
   opacity: 0;
   color: var(--col-text);
+  z-index: 42;
 }
 #Lt:hover {
   opacity: .25;
@@ -633,16 +664,22 @@ button#mem-flip {
 	left: 0;
 }
 
+#qa_box.card {  /* ankiweb */
+	width: 100%;
+}
+
 #qa {
-  padding: 1rem;
-  max-width: calc(60rem - 6.75rem);
-  margin: auto;
-  min-width: 13rem;
-  box-sizing: content-box;
+	padding: 1rem;
+	max-width: calc(60rem - 6.75rem);
+	margin: auto;
+	min-width: 13rem;
+	width: 100%; /* ankiweb */
+	box-sizing: content-box;
 }
 @media (min-width: 38.25rem) {
   #qa {
-    padding: 2rem;
+		padding: 2rem;
+		width: calc(100% - 2 * 2rem); /* ankiweb */
   }
 }
 
@@ -709,6 +746,9 @@ button#mem-flip {
 	.card-content {  
 	  padding-top: 2rem;
 	}
+	#qa_box .card-content { /* ankiweb */
+	  padding-top: 0rem;
+	}
 }
 
 @media (min-width: 53.25rem) {
@@ -717,6 +757,9 @@ button#mem-flip {
   }
 	.card-content {  
 	  padding-top: 4rem;
+	}
+	#qa_box .card-content { /* ankiweb */
+	  padding-top: 0rem;
 	}
 }
 
@@ -853,13 +896,12 @@ code#typeans {
   align-items: center;
 	white-space: pre-wrap;
 }
-body::after {
+.card::after {
   content: "\0062" "y \004C"'\03C4';
   opacity: 0.2;
   position: absolute;
   right: 1em;
   bottom: 1em;
-  z-index: -1;
 }
   /*change typed ans in preview*/
   /*code#typeans * {display: none;}*/
@@ -881,6 +923,7 @@ body::after {
   margin-bottom: 1rem;
 	position: relative;
 	overflow: hidden;
+  z-index: 10;
 }
 .mem-alert:empty {
   display: none;
@@ -1102,6 +1145,7 @@ a.replay-button.soundLink {
   cursor: pointer;
   position: relative;
   z-index: 100;
+  display: inline-flex; /* ankiweb */
 }
 
 svg.playImage {
@@ -1189,7 +1233,7 @@ svg.playImage path {
 }
 
 .mem-alert img,
-.mem-field :is(h2, h3, h4) img {
+.mem-field.mem-field :is(h2, h3, h4) img { /* specificity for ankiweb */
     border-radius: var(--border-r2);
     margin: 0px;
     max-width: 16rem;
@@ -1432,6 +1476,66 @@ html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
 
 html:is(.iphone, ipad) .card-content.back { /* experimental */
     align-items: start !important;
+}
+
+
+/* AnkiWeb exterior */
+body,
+#ansarea#ansarea {
+  background: var(--col-bg);
+}
+
+.btn.btn-primary:active,
+.btn.btn-primary {
+    font-family: var(--fonts);
+    font-weight: 700;
+    font-size: 0.875rem;
+    position: relative;
+    border: none;
+    z-index: 10;
+
+    border-radius: var(--border-r2);
+
+    color: var(--col-intbtn-text);
+    background: var(--col-intbtn-bg);
+
+    box-shadow: var(--col-intbtn-border) 0px calc(-1 * var(--elevation-idle)) 0px inset;
+}
+.btn.btn-primary:active {
+    box-shadow: var(--col-intbtn-border) 0px -1000px 0px inset;
+}
+.btn.btn-primary:hover::after,
+.btn.btn-primary:focus::after,
+.btn.btn-primary:hover:visited::after {
+    display: block;
+    content: '';
+    inset: 0;
+    background: var(--col-intbtn-hover);
+    opacity: .1;
+    position: absolute;
+    z-index: -1;
+    mix-blend-mode: screen;
+}
+/*.btn.btn-primary:focus,*/
+.btn.btn-primary:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--col-focus);
+}
+
+.btn.btn-outline-primary {
+    color: var(--col-button-border);
+    border-color: var(--col-button-border);
+}
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:active {
+    color: var(--col-button-text);
+    background: var(--col-button-border);
+    border-color: var(--col-button-border);
+}
+
+/* ーーーーーーーーー Cloze ーーーーーーーーー */
+.cloze {
+    color: var(--col-audio-bg);
 }
 
 /* ーーーーーーーー MathJax ーーーーーーーー */
