@@ -4,7 +4,6 @@
     "ankiweb_id": "884199977",
     "author": "Eltaurus",
     "homepage": "https://github.com/Eltaurus-Lt/Anki-Card-Templates",
-    "conflicts": [
-	"24411424"
-    ]
+    "conflicts": [],
+    "mod": 1728857014
 }

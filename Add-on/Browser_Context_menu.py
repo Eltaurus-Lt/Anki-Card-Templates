@@ -1,4 +1,25 @@
-# todo: undo group
+# This script is part of the Lt-Cards Add-on for Anki.
+# Source: github.com/Eltaurus-Lt/Anki-Card-Templates
+# 
+# Copyright © 2023-2024 Eltaurus
+# Contact: 
+#     Email: Eltaurus@inbox.lt
+#     GitHub: github.com/Eltaurus-Lt
+#     Anki Forums: forums.ankiweb.net/u/Eltaurus
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 from . import Dialogs
 from aqt import mw, gui_hooks
 from aqt.qt import *
@@ -9,12 +30,12 @@ def fill_choices(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
 
     # Defining a set of all fields present in the selected notes
-    all_fields = []
-    for note in notes:
-        all_fields += note.keys()
-
+    unique_fields = []
     added = set()
-    unique_fields = [field for field in all_fields if not (field in added or added.add(field))]
+    for note in notes:
+        for field in note.keys():
+            if not (field in added or added.add(field)):
+                unique_fields.append(field)
 
     # Settings Dialog
     dialog = Dialogs.FillChoices(unique_fields)
