@@ -27,7 +27,7 @@ from . import console
 
 addon_path = os.path.dirname(__file__)
 
-def alts_format_old(editor):
+def alts_format_legacy(editor):
     selection = editor.web.selectedText()
     if selection:
         alt_section = '<span part="alt">' + selection + '</span>'
@@ -101,7 +101,58 @@ def alts_format(editor):
                 
 
         except json.JSONDecodeError:
-            editor.web.eval("alert('An error occurred while processing the selection!')")
+            tooltip("An error occurred while processing the selection!")
+
+    editor.web.evalWithCallback(js_code, callback)
+
+def alts_erase(editor):
+    current_field = editor.currentField
+    if current_field is None:
+        tooltip('No field selected')
+        return
+
+    js_code = """
+        (function() {
+            try {    
+                const activeElement = document.activeElement;
+                const shadowRoot = activeElement.shadowRoot;
+                const field = shadowRoot.querySelector('[contenteditable="true"]');
+                // const fieldContent0 = field.innerHTML;
+
+                const altDivs = field.querySelectorAll('div[part="alt"]');
+
+                altDivs.forEach(altDiv => {
+                    const parent = altDiv.parentNode;
+
+                    while (altDiv.firstChild) {
+                        parent.insertBefore(altDiv.firstChild, altDiv);
+                    }
+
+                    parent.removeChild(altDiv);
+                });
+
+                const fieldContent = field.innerHTML;
+
+                return JSON.stringify({
+                    fieldContent: fieldContent
+                });
+            } catch (error) {
+                return JSON.stringify({ error: error.message });
+            }
+        })();
+    """
+
+    def callback(js_result):
+        try:
+            result = json.loads(js_result)
+            if result.get("error"):
+                console.log(result["error"], editor)
+                if result["error"] == "Cannot read properties of null (reading 'querySelector')":
+                    tooltip("formatted field content should be selected instead of html code")
+                return
+
+        except json.JSONDecodeError:
+            tooltip("An error occurred while processing the selection!")
 
     editor.web.evalWithCallback(js_code, callback)
 
@@ -112,6 +163,14 @@ def setupEditorButtonsFilter(buttons, editor):
             'alts',
             alts_format,
             tip = "Format as an alternative"
+        )
+    )
+    buttons.insert(1,
+        editor.addButton(
+            os.path.join(addon_path, "icons", "alts-erase.svg"),
+            'erase alts',
+            alts_erase,
+            tip = "Erase alternative formatting"
         )
     )
 
