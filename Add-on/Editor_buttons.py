@@ -162,7 +162,8 @@ def setupEditorButtonsFilter(buttons, editor):
             os.path.join(addon_path, "icons", "alts.svg"),
             'alts',
             alts_format,
-            tip = "Format as an alternative"
+            tip = "Format as an alternative (Alt+A)",
+            keys="Alt+A"
         )
     )
     buttons.insert(1,
@@ -170,7 +171,8 @@ def setupEditorButtonsFilter(buttons, editor):
             os.path.join(addon_path, "icons", "alts-erase.svg"),
             'erase alts',
             alts_erase,
-            tip = "Erase alternative formatting"
+            tip = "Erase alternative formatting (Alt+X)",
+            keys="Alt+X"
         )
     )
 
