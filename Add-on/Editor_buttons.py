@@ -46,7 +46,7 @@ def alts_format(editor):
                 const activeElement = document.activeElement;
                 const shadowRoot = activeElement.shadowRoot;
                 const field = shadowRoot.querySelector('[contenteditable="true"]');
-                const fieldContent0 = field.innerHTML;
+                // const fieldContent0 = field.innerHTML;
 
                 const selection = shadowRoot.getSelection();
                 console.log(selection);
@@ -54,8 +54,20 @@ def alts_format(editor):
                     const range = selection.getRangeAt(0);
                     const altDiv = document.createElement('div');
                     altDiv.setAttribute("part", "alt");
-                    altDiv.appendChild(range.extractContents());
+                    const contents = range.extractContents();
                     range.insertNode(altDiv);
+
+                    if (contents.hasChildNodes()) {
+                        altDiv.appendChild(contents);
+                    } else {
+                        altDiv.appendChild(document.createElement("br"));
+                    }
+
+                    const newrange = document.createRange();
+                    newrange.setStart(altDiv, altDiv.childNodes.length);
+                    newrange.collapse(true);
+                    selection.removeAllRanges();
+                    selection.addRange(newrange);
                 }
 
                 const fieldContent = field.innerHTML;
