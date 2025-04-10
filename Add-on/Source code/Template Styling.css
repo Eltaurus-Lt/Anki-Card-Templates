@@ -1,4 +1,4 @@
-/*  v4.3β  */
+/*  v5.0β  */
 /*
     HELP and other template-related RESOURCES ℹ️:
         AnkiWeb:
@@ -17,7 +17,7 @@ This CSS file (Styling screen) is part of the Anki Card Type template. It may co
 
 Original card template copyright:
 
-Copyright © 2023-2024 Eltaurus
+Copyright © 2023-2025 Eltaurus
 Contact: 
     Email: Eltaurus@inbox.lt
     GitHub: github.com/Eltaurus-Lt
@@ -363,7 +363,7 @@ body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
     --col-wrong-border: #a5202a;
     --col-wrong-bg: #f55b50;
 }
-body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
   color: var(--col-text);
 }
 body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) .membtn {
@@ -395,7 +395,7 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
 body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
     color: var(--col-sunset-darkerblue);
 }
-body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
     color: var(--col-sunset-focuspaleblue);
 }
 /* End of code by Eltaurus */
@@ -725,6 +725,8 @@ button#mem-flip {
   --elevation: var(--elevation-pressed);
 }
 
+.frontside .mem-typing .membtn:hover, /* tapping */
+.frontside .mem-typing .membtn:active, /* tapping */
 .frontside #scr-keyboard .membtn:hover,
 .frontside #scr-keyboard .membtn:active {
   --elevation: var(--elevation-idle);
@@ -1240,7 +1242,8 @@ svg.playImage path {
     width: 100%;
 }
 
-.card-content.mch .membtn img {
+.card-content.mch:not([mode]) .membtn img, /*legacy*/
+.card-content[mode="mchoice"] .membtn img {
     max-height: 200px;
     max-width: 200px;
     object-fit: contain;
@@ -1256,31 +1259,36 @@ svg.playImage path {
 	display: none !important;
 }
 
-/* ーーーーーーー Spellcheck highlights ーーーーーーー */
-#spellcheck {
+/* ーーーーーーー Spelling diffs ーーーーーーー */
+#spelldiff {
   font-size: 14px;
 }
-#spellcheck.large {
+#spelldiff.large {
   font-size: 18px;
 }
 
-#spellcheck:not(:empty)::before {
+#spelldiff:not(:empty)::before {
   content: 'You wrote: ';
 }
+/*
+body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
+  content: 'You tapped: ';
+}
+*/
 
-#spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+#spelldiff :is(.typeGood, .typeBad, .typeMissed) {
   color: var(--col-input-text);
   font-weight: bold;
 	font-variant-ligatures: no-common-ligatures;
 }
 
-#spellcheck .typeGood {
+#spelldiff .typeGood {
   background: var(--col-spell-good);
 }
-#spellcheck .typeMissed {
+#spelldiff .typeMissed {
   background: var(--col-spell-missed);
 }
-#spellcheck .typeBad {
+#spelldiff .typeBad {
   background: var(--col-spell-bad);
   text-decoration: line-through;
 }
@@ -1308,7 +1316,7 @@ svg.playImage path {
 	}
 }
 
-#scr-keyboard > * {
+.membtn {
   margin: 0.5rem;
   width: 3rem;
   height: 3rem;
@@ -1318,7 +1326,7 @@ svg.playImage path {
   text-align: center;
   vertical-align: baseline;
 }
-#scr-keyboard.large > * {
+#scr-keyboard.large > .membtn {
   width: 4rem;
   height: 4rem;
   
@@ -1326,10 +1334,10 @@ svg.playImage path {
   line-height: calc(4rem - 2 * var(--border-width));
 }
 
-#scr-keyboard > *.space {
+#scr-keyboard > .membtn.space {
   width: 7rem;
 }
-#scr-keyboard.large > *.space {
+#scr-keyboard.large > .membtn.space {
   width: 9rem;
 }
 
@@ -1363,10 +1371,18 @@ svg.playImage path {
 	d: var(--path-hint);
 }
 
+#scr-keyboard {
+  list-style-type: none;
+  counter-reset: choice-key 0;
+}
+#scr-keyboard > .membtn {
+  counter-increment: choice-key 1;
+}
 
 /* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
 
-.card-content.mch #scr-keyboard {
+.card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard {
   margin-top: 0.5rem;
   width: 100%;
   display: grid;
@@ -1375,25 +1391,30 @@ svg.playImage path {
   grid-template-columns: 1fr;
 }
 @media (min-width: 38.25rem) {
-  .card-content.mch #scr-keyboard {
+  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard {
     gap: 1rem;
   }
 }
 @media (min-width: 23.25rem) {
-  .card-content.mch #scr-keyboard {
+  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.card-content.mch .mem-typing {
+.card-content.mch:not([mode]) .mem-typing, /*legacy*/
+.card-content[mode="mchoice"] .mem-typing {
   display: none;
   opacity: .2;
 }
-.card-content.mch input#typeans {
+.card-content.mch:not([mode]) input#typeans, /*legacy*/
+.card-content[mode="mchoice"] input#typeans {
   pointer-events: none;
 }
 
-.card-content.mch #scr-keyboard > * {
+.card-content.mch:not([mode]) #scr-keyboard > .membtn, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard > .membtn {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -1409,23 +1430,19 @@ svg.playImage path {
   overflow-wrap: anywhere;
   hyphens: auto;
 }
-.card-content.mch #scr-keyboard.large > * {
+.card-content.mch:not([mode]) #scr-keyboard.large > .membtn, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard.large > .membtn {
     font-size: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 @media (min-width: 33.25rem) {
-  .card-content.mch #scr-keyboard > * {
+  .card-content.mch:not([mode]) #scr-keyboard > .membtn, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard > .membtn {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
   }
-  .card-content.mch #scr-keyboard {
-    list-style-type: none;
-    counter-reset: choice-key 0;
-  }
-  .card-content.mch #scr-keyboard > * {
-    counter-increment: choice-key 1;
-  }
-  .card-content.mch #scr-keyboard > *:before {
+  .card-content.mch:not([mode]).nkeys #scr-keyboard > .membtn::before, /*legacy*/
+  .card-content[mode="mchoice"].nkeys #scr-keyboard > .membtn::before {
     content: counter(choice-key);
 
     position: absolute;
@@ -1444,6 +1461,7 @@ svg.playImage path {
   }
 }
 
+.frontside.correct .card-content[mode="tapping"] .mem-typing .membtn,
 .frontside #scr-keyboard .membtn.correct {
     --col-button-text: var(--col-correct-text);
     --col-button-border: var(--col-correct-border);
@@ -1451,7 +1469,16 @@ svg.playImage path {
     --col-text: var(--col-correct-border);
 }
 
-.frontside #scr-keyboard .membtn.pressed:not(.correct) {
+.frontside.soclose .card-content[mode="tapping"] .mem-typing .membtn {
+    --col-button-text: var(--col-close-text);
+    --col-button-border: var(--col-close-border);
+    --col-button-bg: var(--col-close-bg);
+    --col-text: var(--col-close-border);
+}
+
+.frontside.wrong .card-content[mode="tapping"] .mem-typing .membtn,
+.frontside .card-content.mch:not([mode]) #scr-keyboard .membtn.pressed:not(.correct), /*legacy*/
+.frontside .card-content[mode="mchoice"] #scr-keyboard .membtn.pressed:not(.correct) {
     --col-button-text: var(--col-wrong-text);
     --col-button-border: var(--col-wrong-border);
     --col-button-bg: var(--col-wrong-bg);
@@ -1465,6 +1492,87 @@ svg.playImage path {
 #backwrap #scr-keyboard .membtn.pressed {
     outline: none;
 }
+
+/* ーーーーーーーー TAPPING QUESTIONS ーーーーーーーー */
+
+.card-content[mode="tapping"] .mem-typing :is(input, label) {
+    display: none;
+}
+
+.card-content[mode="tapping"] .mem-typing,
+.card-content[mode="tapping"] #scr-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    position: relative;
+    width: 100%;
+    min-height: calc(4rem + var(--border-width));
+    margin-bottom: 2rem;
+    padding: 0px 1rem;
+    margin-top: 0px;
+    justify-content: left;
+
+    flex-direction: row;
+}
+.card-content[mode="tapping"] .mem-typing.mem-typing { /* double selector for higher specificity */
+    margin-top: 0.5rem;
+    border-bottom: var(--border-width) solid var(--col-input-border);
+    /* box-sizing: content-box; */
+}
+.card-content[mode="tapping"] .mem-typing.large {
+    min-height: calc(5em + var(--border-width));
+}
+
+.card-content[mode="tapping"] .mem-typing .membtn,
+.card-content[mode="tapping"] #scr-keyboard .membtn {
+    margin: 0 1rem 1rem 0;
+    min-width: 6rem;
+    min-height: 3rem;
+    width: max-content;
+    padding: 0 2rem;
+}
+
+.card-content[mode="tapping"] #scr-keyboard .membtn.pressed {
+    --col-button-text: var(--col-button-border);
+    --col-button-bg: var(--col-button-border);
+}
+
+.card-content[mode="tapping"].nkeys .mem-typing .membtn::before,
+.card-content[mode="tapping"].nkeys #scr-keyboard .membtn:not(.pressed)::before {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+
+  left: 0.5rem;
+  top: 0.5rem;
+  padding: 0px 0.125rem;
+  min-width: 1rem;
+  height: 1rem;
+
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+
+  background-color: var(--col-text);
+  border-radius: var(--border-r1);
+  color: var(--col-button-bg);
+}
+.card-content[mode="tapping"].nkeys .mem-typing .membtn::before {
+  content: attr(origin);
+}
+.card-content[mode="tapping"].nkeys #scr-keyboard .membtn:not(.pressed)::before {
+  content: counter(choice-key);
+}
+
+.card-content[mode="tapping"] .mem-typing.large > .membtn {
+  height: 4rem;
+  
+  font-size: 2.25rem;
+  line-height: calc(4rem - 2 * var(--border-width));
+}
+
 /* iOS */
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
@@ -1551,6 +1659,5 @@ mjx-merror {
 /*                 ⚙️ USER STYLES ⚙️                  */
 /*=====================================================*/
 /* place your styles and modifications below */
-
 
 

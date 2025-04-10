@@ -2,7 +2,7 @@
 This section (up until the line containing "End of code by Eltaurus") is part of the Anki Card Type template.
 Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 
-Copyright © 2023-2024 Eltaurus
+Copyright (C) 2023-2025 Eltaurus
 Contact: 
     Email: Eltaurus@inbox.lt
     GitHub: github.com/Eltaurus-Lt
@@ -26,7 +26,7 @@ isFrontSide = !wrap;
 
 <script>
 //determine input flags
-isMCh = !!document.querySelector('.card-content.mch');
+Qmode = document.querySelector("div.card-content").getAttribute("mode") || (!!document.querySelector('.card-content.mch') ? "mchoice" : "typing");
 isMathJax = !!document.querySelector('.card-content.eq');
 </script>
 
@@ -57,13 +57,18 @@ function htmlUnEscape(string) {
 }
 
 function ansCleanUp(ansString) {
-  return ansString?.replaceAll("&nbsp;"," ")?.trim();
+  return ansString?.replaceAll("&nbsp;", " ")?.trim();
+}
+
+function preTokenize(ans) {
+  return ans.replaceAll('?',' ?').replace(/\u0020+/g, ' ');
 }
 </script>
 
 <script>
 //elements
 typeAns = document.getElementById('typeans');
+tapAnsArea = document.querySelector(".mem-typing");
 screenKeyboard = document.getElementById('scr-keyboard');
 hintButton = document.getElementById('HintButton');
 embeddedAudios = [...document.querySelectorAll('audio')];
@@ -165,7 +170,7 @@ corrAnsL = document.getElementById('correctAnswer');
 <script>
 //cloze
 clozes = corrAnsL.querySelectorAll(".cloze");
-if (clozes) {
+if (clozes.length > 0) {
   corrAnsL.innerHTML = [...clozes].map(L => L.getAttribute("data-cloze")).join(", ");
   let inactCloze = corrAnsL.querySelector("span.cloze-inactive");
   while (inactCloze) { // remove inactive nested clozes
@@ -177,14 +182,15 @@ if (clozes) {
 }
 </script>
 <script>
-corrAns = ansCleanUp(corrAnsL?.innerHTML) || ""; //including alts
+corrAns = ansCleanUp(Qmode === "tapping" ? corrAnsL?.innerHTML.replaceAll("　", " ").replaceAll("&nbsp;", "　") : corrAnsL?.innerHTML) || ""; //including alts
 
 //extract primary, excluding alts
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
 	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
-	corrAns = ansCleanUp(!isMCh ? tempL.innerText : tempL.innerHTML);
+	corrAns = (Qmode !== "mchoice") ? tempL.innerText : tempL.innerHTML;
+	corrAns = corrAns.trim();
 	tempL.remove();
 } catch (err) {}
 
@@ -193,7 +199,7 @@ inlnAlts = corrAns.split(/[;；]/).map(ansCleanUp);
 hintAns = inlnAlts[0];
 if (isMathJax) {
 	hintAns = MJunwrap(hintAns);
-	if (isMCh) {
+	if (Qmode === "mchoice") {
 		inlnAlts = []; //otherwise is split at ';' in '&gt;', '&lt;', etc.
 	}
 }
@@ -251,12 +257,20 @@ document.onkeydown = function (e) {
 		MemFlip(true);
 	}
 
-	if (isFrontSide && "1234567890".includes(ev.key) && isMCh) {
-		let numkey = parseInt(ev.key);
-		if (numkey == 0) {numkey = 10};
-		const mchoiceButtons = screenKeyboard.querySelectorAll('.membtn');
-		if (numkey <= mchoiceButtons.length) {
-			mchoiceButtons[numkey - 1].onclick();
+	if (isFrontSide && "1234567890".includes(ev.key) && (Qmode === "mchoice" || Qmode === "tapping")) {
+		const cardCont = document.querySelector(".card-content");
+		if (cardCont && !cardCont.classList.contains("nkeys")) {
+			cardCont.classList.add("nkeys");
+		} else {
+			let numkey = parseInt(ev.key);
+			if (numkey == 0) {numkey = 10};
+			if (numkey <= keyboardButtons.length) {
+				if (Qmode === "mchoice" || !keyboardButtons[numkey - 1].classList.contains("pressed")) {
+					keyboardButtons[numkey - 1].onclick();
+				} else {
+					untapKey(numkey);
+				}
+			}
 		}
 	}
 
@@ -296,7 +310,7 @@ if (embeddedAudios && embeddedAudios.length >= document.querySelectorAll('a.repl
 </script>
 
 <script>
-//on-screen keyboard | mult-choice buttons
+//on-screen keyboard | mult-choice buttons | tapping buttons
 
 function shuffle(arr) {
   return arr.sort(() => 0.5 - Math.random());
@@ -304,21 +318,23 @@ function shuffle(arr) {
 
 if (screenKeyboard) {
 	if (isFrontSide) {
-		if (fillerString && corrAns && !isMCh) {
-			//character keys
+		if (Qmode === "typing" && fillerString && corrAns) {
 			if (typeof window.randomKeysN !== 'number') {randomKeysN = 10} //fallback
 			neededKeys = shuffle(fillerString.split('')).slice(0, randomKeysN);
 			neededKeys = shuffle([... new Set([...(corrAns.split('')), ...neededKeys])]);
 			neededKeys = neededKeys.filter(key => !keysString.includes(key));
 			keysString = neededKeys.join('') + keysString;
-		} else if (isMCh) {
-			//multiple-choice keys
+		} else if (Qmode === "mchoice") {
 			choices = choices.filter(choice => (choice !== corrAns && !!choice));
 			choices = shuffle([... new Set(choices)]);
 			choices.splice((window.mchOptionsN || 6) - 1);
 			choices = [corrAns, ...choices];
 			shuffle(choices);
 			keysString = choices.join('|');
+		} else if (Qmode === "tapping") {
+			tokens = preTokenize(corrAns).split(' ').map(token => token.trim());
+			shuffle(tokens);
+     keysString = tokens.join(' ');
 		}
 
 		sessionStorage.setItem("card-keyboard", keysString);
@@ -326,22 +342,30 @@ if (screenKeyboard) {
 		keysString = sessionStorage.getItem("card-keyboard") || "";
 	}
 
-	if (!isMCh) {
+	if (Qmode === "typing") {
 	  keys = keysString.split('');
-	} else {
+	} else if (Qmode === "mchoice") {
 		keys = keysString ? keysString.split('|') : [];
+		screenKeyboard.innerHTML = '';
+	} else if (Qmode === "tapping") {
+		keys = keysString ? keysString.split(' ') : [];
+		screenKeyboard.innerHTML = '';
+	} else {
+		keys = [];
 		screenKeyboard.innerHTML = '';
 	}
   keys.reverse().forEach((key)=>{
     const keyButton = document.createElement("div");
-    if (!isMCh) {
-      keyButton.innerText = key;
-    } else {
+    if (Qmode === "mchoice") {
       keyButton.innerHTML = key;
+    } else if (Qmode === "tapping") {
+      keyButton.innerText = key.replaceAll("　"," ");
+    } else {
+      keyButton.innerText = key; // (Qmode === "typing")
     }
     keyButton.classList.add('membtn');
-    if (!isMCh && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
-    if (isMCh) {
+    if (Qmode === "typing" && (key === ' ' || key === '　')) {keyButton.classList.add('space')}
+    if (Qmode === "mchoice") {
       if (key === corrAns || allAlts.includes(key)) {
         keyButton.classList.add('correct')
       } else if (isMathJax && MJwrap(key) === corrAns) {
@@ -364,7 +388,7 @@ delete window.mchOptionsN;
 
 <script>
 /*keyboard key functions*/
-keyboardButtons = document.querySelectorAll('#scr-keyboard > *');
+keyboardButtons = screenKeyboard.querySelectorAll('.membtn');
 
 function flipToBack() {
 	if (!isFrontSide) return;
@@ -425,13 +449,49 @@ function typeKey(keyContent) {
 	const cursorEnd = typeAns.selectionEnd;
 	const currentInput = typeAns.value;
 
-	updInput(currentInput.slice(0, cursorStart) + htmlUnEscape(keyContent) + currentInput.slice(cursorEnd), cursorStart + 1);}
+	updInput(currentInput.slice(0, cursorStart) + htmlUnEscape(keyContent) + currentInput.slice(cursorEnd), cursorStart + 1);
+}
+
+function updTappedAnswer() {
+  const tappedWords = tapAnsArea.querySelectorAll(".membtn");
+
+  storeAnswer([...tappedWords].map(btn => btn.getAttribute("origin")).join("|"));
+  //storeAnswer([...tappedWords].map(btn => btn.innerText).join(" "));
+}
+
+function untapKey(N) {
+  if (!tapAnsArea) return;
+
+  tapAnsArea.querySelector(`[origin="${N}"]`).onclick();
+}
+
+function tapKey(N, dynamic = false) {
+  if (!tapAnsArea || !keyboardButtons || N > keyboardButtons.length || keyboardButtons[N - 1].classList.contains("pressed")) return;
+
+  keyboardButtons[N - 1].classList.add("pressed");
+
+  const tappedWordL = document.createElement("div");
+  tappedWordL.classList.add('membtn');
+  tappedWordL.innerText = keyboardButtons[N - 1].innerText;
+  tappedWordL.setAttribute("origin", N);
+  tapAnsArea.append(tappedWordL);
+
+  if (!dynamic) return;
+  
+  tappedWordL.onclick = ()=>{
+    tappedWordL.remove();
+    keyboardButtons[N - 1].classList.remove("pressed");
+    updTappedAnswer();
+  }
+
+  updTappedAnswer();
+}
 
 if (isFrontSide) {
 	keyboardButtons.forEach( btn => {
 		if (btn.id === 'HintButton') {
 			btn.onclick = typeHint;
-		} else if (isMCh) {
+		} else if (Qmode === "mchoice") {
 			btn.onclick = ()=>{
 				if (btn.classList.contains('pressed')) {
 					storeAnswer("");
@@ -445,10 +505,13 @@ if (isFrontSide) {
 				}
 				flipToBack();
 			};
-		} else if (typeAns) {
+		} else if (Qmode === "typing" && typeAns) {
 			btn.onclick = ()=>{
 				typeKey(btn.innerHTML); //innerText does not work for space
 			};
+		} else if (Qmode === "tapping") {
+			const N = 1 + Array.prototype.indexOf.call(btn.parentNode.children, btn);
+			btn.onclick = ()=>tapKey(N, true);
 		}
 	});
 

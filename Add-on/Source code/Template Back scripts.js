@@ -2,7 +2,7 @@
 This section (up until the line containing "End of code by Eltaurus") is part of the Anki Card Type template.
 Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 
-Copyright © 2023-2024 Eltaurus
+Copyright (C) 2023-2025 Eltaurus
 Contact: 
     Email: Eltaurus@inbox.lt
     GitHub: github.com/Eltaurus-Lt
@@ -103,14 +103,21 @@ if (userAns === null) {
 	document.getElementsByClassName("mem-alert")[0].innerText = "#error loading answer!";
 	userAns = '';
 } else if (userAns.trim()) {
-  if (isMCh) {
+  if (Qmode === "tapping") {
+    pressedSequence = userAns.split('|');
+    userAns = pressedSequence.map(N => keyboardButtons[N - 1].innerText).join(' ');
+  }
+  if (Qmode === "mchoice") {
 	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
   } else if (!window.isMathJax) {
     setTimeout(()=>document.getElementsByClassName("mem-alert")[0].innerText = userAns, 100); // "a<b" and "b>a" in plain text
   } else {
     MJconvert(htmlEscape(userAns)).then(res => document.getElementsByClassName("mem-alert")[0].innerHTML = res);
   }
-} 
+}
+if (Qmode === "tapping" && userAns) { //pressedSequence can remain from previous cards
+  pressedSequence.forEach((N) => tapKey(N));
+}
 if (typeAns?.tagName === 'INPUT') {
 	typeAns.value = userAns;
 	typeAns.disabled = true;
@@ -170,10 +177,16 @@ diff = "";
 console.log(`altertnatives: ${allAlts.join(' | ')}`);
 
 async function setCorrectClass() {
+  if (Qmode === "tapping") {
+	//tapping (any kind)
+    if (preTokenize(corrAns).replaceAll("　"," ") === userAns) {
+      wrap.classList.add('correct');
+    }
+    return
+  }
 	if (!window.isMathJax) {
 //text cf
-	//mch
-		if (isMCh) {
+		if (Qmode === "mchoice") {
 			keyboardButtons.forEach(btn => {
 				if (btn.innerHTML === userAns) {
 					btn.classList.add('pressed');
@@ -193,8 +206,7 @@ async function setCorrectClass() {
 //latex cf
 	userAns = MJunwrap(userAns);
 	corrAns = MJunwrap(corrAns);
-	//mch
-		if (isMCh) {
+		if (Qmode === "mchoice") {
 			const btnPromises = [...keyboardButtons].map(async btn => {
 				if (btn.innerHTML === userAns || (await cfWithMathJax(btn.innerHTML, userAns))) {
 					btn.classList.add('pressed');
@@ -221,21 +233,20 @@ async function setCorrectClass() {
 }
 setCorrectClass().then(() => {
 	if (!wrap.classList.contains('correct')) {
-		if (isMCh) {
-	//mch
+		if (Qmode === "mchoice") {
 				wrap.classList.add('wrong');
 		} else {
-	//type-in
-			diff = stringDiff(corrAns, userAns);
+	//type-in or tapping
+			diff = stringDiff((Qmode !== "tapping") ? corrAns : preTokenize(corrAns).replaceAll("　"," "), userAns);
 			if (diff.score > 0.67) {
 				wrap.classList.add('soclose');
 			} else {
 				wrap.classList.add('wrong');
 			}
-			//spelling corrections
-			const spellcheckHighlights = document.getElementById('spellcheck');
-			if (spellcheckHighlights && userAns.trim()) {
-				spellcheckHighlights.innerHTML = diff.diff;
+			//spelling diffs
+			const spellDiff = document.getElementById('spelldiff');
+			if (spellDiff && userAns.trim()) {
+				spellDiff.innerHTML = diff.diff;
 			}
 		}
 	}
