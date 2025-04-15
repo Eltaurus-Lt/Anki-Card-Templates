@@ -1641,6 +1641,15 @@ body,
     border-color: var(--col-button-border);
 }
 
+#ansarea > div div:nth-child(1):nth-last-child(4) .btn.btn-primary.preselected {
+    background: var(--col-wrong-border);
+    color: var(--col-wrong-text);
+}
+#ansarea > div div:nth-child(3):nth-last-child(2) .btn.btn-primary.preselected  {
+    background: var(--col-correct-border);
+    color: var(--col-correct-text);
+}
+
 /* ーーーーーーーーー Cloze ーーーーーーーーー */
 .cloze {
     color: var(--col-audio-bg);

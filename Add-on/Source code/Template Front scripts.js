@@ -48,6 +48,26 @@ console.log("platform: ", platform);
 </script>
 
 <script>
+//prevent ankiweb from autofocusing "show answer" and rate buttons
+if (platform === 'ankiweb' && !window.observer) {
+  window.observer = new MutationObserver(() => {
+    document.querySelectorAll('[autofocus]').forEach((L) => {
+      L.removeAttribute('autofocus');
+      L.blur();
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+};
+</script>
+
+<script>
+//block key presses immediately after page loading
+ongcd = true;
+setTimeout(()=>{ongcd = false}, 100);
+</script>
+
+<script>
 function htmlEscape(string) {
   return string.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll("'", '&#39;').replaceAll('"', '&quot;');
 }
@@ -72,7 +92,6 @@ tapAnsArea = document.querySelector(".mem-typing");
 screenKeyboard = document.getElementById('scr-keyboard');
 hintButton = document.getElementById('HintButton');
 embeddedAudios = [...document.querySelectorAll('audio')];
-ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
 </script>
 
 <script>
@@ -233,6 +252,7 @@ document.onkeyup = function (e) {
 }
 
 document.onkeydown = function (e) {
+	if (window.ongcd) {console.log("on cd");return;}
 	var ev = window.event || e;
 
 	if (ev.key === 'Enter' && (tabSelected !== document.activeElement || tabSelected?.id === 'typeans')) {
@@ -397,10 +417,11 @@ function flipToBack() {
 	} else if (platform === 'android') {
 		showAnswer();
 	} else if (platform === 'ankiweb') {
+		const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
 		if (ankiwebButtons.length === 1) {
 			ankiwebButtons[0].click();
 		} else {
-			console.log("can't flip to back. unexpected number of ankiweb buttons: ", ankiwebButtons.length);
+			console.log(ankiwebButtons.length < 1 ? "can't flip to back: ankiweb button not found" : "can't flip to back: can't single out the ankiweb button");
 		}
 	}
 	console.log('flip');

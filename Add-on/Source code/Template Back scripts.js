@@ -232,7 +232,10 @@ async function setCorrectClass() {
 	}
 }
 setCorrectClass().then(() => {
-	if (!wrap.classList.contains('correct')) {
+	if (wrap.classList.contains('correct')) {
+		highlightGood();
+	} else {
+		highlightAgain();
 		if (Qmode === "mchoice") {
 				wrap.classList.add('wrong');
 		} else {
@@ -287,12 +290,43 @@ activeTimeout = setTimeout((pid0)=>{
 delete window.flipDelay;
 
 //Submit
+function highlightAgain() {
+	if (platform === "ankiweb") {
+		const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+		if (ankiwebButtons.length === 4) {
+			ankiwebButtons[0].classList.add('preselected');
+			ankiwebButtons[0].focus();
+			ankiwebButtons[0].blur();
+		} else {
+			console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
+		}
+	}
+}
+function highlightGood() {
+	if (platform === "ankiweb") {
+		const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+		if (ankiwebButtons.length === 4) {
+			ankiwebButtons[2].classList.add('preselected');
+			ankiwebButtons[2].focus();
+			ankiwebButtons[2].blur();
+		} else {
+			console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
+		}
+	}
+}
 function autorateAgain() {
 		flipBtn.onclick = null;
 		if (platform === 'desk') {
 			pycmd('ease1');
 		} else if (platform === 'android') {
 			buttonAnswerEase1();
+		} else if (platform === 'ankiweb') {
+			const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+			if (ankiwebButtons.length === 4) {
+				ankiwebButtons[0].click();
+			} else {
+				console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
+			}
 		}
 		console.log("🔴 autorated 'again'");
 }
@@ -302,6 +336,13 @@ function autorateGood() {
 			pycmd('ease3');
 		} else if (platform === 'android') {
 			buttonAnswerEase3();
+		} else if (platform === 'ankiweb') {
+			const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+			if (ankiwebButtons.length === 4) {
+				ankiwebButtons[2].click();
+			} else {
+				console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
+			}
 		}
 		console.log("🟢 autorated 'good'");
 }
