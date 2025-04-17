@@ -22,12 +22,16 @@ Clarification: The copyright in this notice applies only to the above-stated sec
 //determine card side
 wrap = document.getElementById('backwrap');
 isFrontSide = !wrap;
+if (isFrontSide) {
+  console.log("------------- card -------------");
+}
 </script>
 
 <script>
 //determine input flags
-Qmode = document.querySelector("div.card-content").getAttribute("mode") || (!!document.querySelector('.card-content.mch') ? "mchoice" : "typing");
-isMathJax = !!document.querySelector('.card-content.eq');
+cardContF = document.querySelector(".card-content.front");
+Qmode = cardContF.getAttribute("mode") || (cardContF.classList.contains("mch") ? "mchoice" : "typing");
+isMathJax = cardContF.classList.contains("eq");
 </script>
 
 <script>
@@ -95,25 +99,57 @@ embeddedAudios = [...document.querySelectorAll('audio')];
 </script>
 
 <script>
-function replayAudio(i, retry = 50) { //for embedded audio tags (ankiweb)
+function audioAnimation(aL) {
+	if (!aL) return;
+	document.querySelectorAll('.card-content a.replay-button').forEach((b) => {
+		b.classList.remove('active');
+	});
+	aL.classList.add('active');
+	aL.classList.remove('pulse');
+	void aL.offsetHeight;
+	aL.classList.add('pulse');
+}
+
+function replayEmbedded(i, aL, retry = 50) { //for embedded audio tags (ankiweb)
+  if (!embeddedAudios[i]) return;
   embeddedAudios.forEach(audioL => audioL.pause());
-  if (embeddedAudios[i]) {
-    embeddedAudios[i].currentTime = 0;
-    embeddedAudios[i].play().catch((err) => {
-      console.warn('attempt to play unloaded audio');
+  embeddedAudios[i].currentTime = 0;
+  embeddedAudios[i].play().then(()=>{
+    aL.classList.remove('loading');
+    aL.classList.remove('failed');
+    audioAnimation(aL);
+  }).catch((err) => {
+    if (err.name === "NotAllowedError" || err.message.includes("user didn't interact")) {
+      console.warn('awaits interaction');
+
+      const interactions = ["click", "keydown"];
+      const handler = ()=> {
+        console.log('interaction detected');
+        interactions.forEach(evt => document.removeEventListener(evt, handler));
+        replayEmbedded(i, aL, retry - 1);
+      }
+      interactions.forEach(event => {
+          document.addEventListener(event, handler);
+      });
+
+    } else {
+      console.warn(`autoplay error (${err})`);
+      aL.classList.add('loading');
       if (retry > 0) {
-        setTimeout(()=>replayAudio(i, retry - 1), 100); 
+        setTimeout(()=>replayEmbedded(i, aL, retry - 1), 100); 
       } else {
         console.warn('max retry attempts exceeded');
+        aL.classList.remove('loading');
+        aL.classList.add('failed');
       }
-    });
-  }
+    }
+  });
 }
 
 //embedding audio buttons (ankiweb)
 embeddedAudios.forEach((audioL, i) => {
   const replayButtonHTML = `
-    <a class="replay-button soundLink" onclick="replayAudio(${i})">
+    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i}, this)">
       <svg class="playImage" viewBox="0 0 64 64" version="1.1">
         <circle cx="32" cy="32"></circle>
         <path></path>
@@ -127,7 +163,7 @@ embeddedAudios.forEach((audioL, i) => {
   audioL.parentNode.insertBefore(tempL.firstChild, audioL.nextSibling);
 
   //move audio tag outside
-  document.body.appendChild(audioL);
+  cardContF.appendChild(audioL);
   audioL.classList.add('off');
 });
 
@@ -278,9 +314,8 @@ document.onkeydown = function (e) {
 	}
 
 	if (isFrontSide && "1234567890".includes(ev.key) && (Qmode === "mchoice" || Qmode === "tapping")) {
-		const cardCont = document.querySelector(".card-content");
-		if (cardCont && !cardCont.classList.contains("nkeys")) {
-			cardCont.classList.add("nkeys");
+		if (cardContF && !cardContF.classList.contains("nkeys")) {
+			cardContF.classList.add("nkeys");
 		} else {
 			let numkey = parseInt(ev.key);
 			if (numkey == 0) {numkey = 10};
@@ -304,30 +339,23 @@ document.onkeydown = function (e) {
 
 <script>
 //Audio buttons animation
-audioButtonsFront = document.querySelectorAll('.card-content.front a.replay-button');
+audioButtonsFront = cardContF.querySelectorAll('a.replay-button');
+
 audioButtonsFront.forEach((a) => {
-	a.addEventListener("click", () => {
-		audioButtonsFront.forEach((b) => {
-			b.classList.remove('active');
-		});
-    a.classList.add('active');
-
-		a.classList.remove('pulse');
-		void a.offsetHeight;
-		a.classList.add('pulse');
-	});
+	if (a.classList.contains("embedded")) return;
+	a.addEventListener("click", ()=>audioAnimation(a));
 });
-if (audioButtonsFront && audioButtonsFront.length > 0) {
-	audioButtonsFront[0].classList.add('active');
-	audioButtonsFront[0].classList.add('pulse');
+
+//autoplay Q audio
+audioButtonsQ = cardContF.querySelectorAll('.mem-question a.replay-button');
+if (audioButtonsQ && audioButtonsQ.length > 0) {
+	//choose audio for Q
+	chosen_i = Math.floor(Math.random() * audioButtonsQ.length);
+	audioButtonsQ[chosen_i].classList.add("chosen");
+	audioButtonsQ[chosen_i].click();
 }
 </script>
 
-<script>
-if (embeddedAudios && embeddedAudios.length >= document.querySelectorAll('a.replay-button').length) {
-  setTimeout(replayAudio(Math.floor(Math.random() * embeddedAudios.length)), 100);
-}
-</script>
 
 <script>
 //on-screen keyboard | mult-choice buttons | tapping buttons

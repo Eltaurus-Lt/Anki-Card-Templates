@@ -350,18 +350,9 @@ function autorateGood() {
 
 <script>
 //Audio buttons animation
-audioButtons = document.querySelectorAll('.card-content.back a.replay-button');
-audioButtons.forEach((a) => {
-	a.addEventListener("click", () => {
-		audioButtons.forEach((b) => {
-			b.classList.remove('active');
-		});
-    a.classList.add('active');
-
-		a.classList.remove('pulse');
-		void a.offsetHeight;
-		a.classList.add('pulse');
-	});
+document.querySelectorAll('.card-content.back a.replay-button').forEach((a) => {
+	if (a.classList.contains("embedded")) return;
+	a.addEventListener("click", ()=>audioAnimation(a));
 });
 </script>
 <!-- End of code by Eltaurus -->

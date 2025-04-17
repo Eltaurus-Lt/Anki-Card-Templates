@@ -627,6 +627,9 @@ body.card {
   width: 100vw;
   overflow-x: hidden;
 }
+#qa_box#qa_box.card {
+  min-height: 75vh;
+}
 
 #Lt::after {
   content: 'by Lτ';
@@ -1057,7 +1060,9 @@ a.replay-button.soundLink > span { /* Android quirk */
 	display: block;
 }
 
-.mem-question a.replay-button:not(:first-child) {
+
+.mem-question:not(:has(.chosen)) a.replay-button:not(:first-child), /* legacy */
+.mem-question:has(.chosen) a.replay-button:not(.chosen) { 
   display: none;
 }
 
@@ -1201,6 +1206,26 @@ svg.playImage path {
   transition:	transform .1s linear;
   fill: var(--col-audio-fg);
   d: var(--path-play, var(--ank-play));
+}
+
+/* loading (for embedded) */
+a.replay-button.embedded.loading::after {
+  background: transparent;
+
+  scale: .85;
+  opacity: .5;
+
+  border: var(--col-audio-fg) solid .4rem;
+  border-radius: 100%;
+  clip-path: inset(0 50% 0 0);
+  animation: rotation 2s linear infinite;
+}
+@keyframes rotation {
+  to {rotate: 360deg}
+}
+
+a.replay-button.embedded.failed {
+	--col-audio-passive: red !important;
 }
 
 /* ーーーーーーーーーー IMAGES ーーーーーーーーーー */
@@ -1351,11 +1376,14 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
   margin-left: 2rem;
 }
 #scr-keyboard.large #HintButton {
- font-size: 1.25rem;
- width: 7rem;
-  
- padding: 0 1.5rem;
- width: max-content;
+  font-size: 1.25rem;
+  width: 7rem;
+
+  padding: 0 1.5rem;
+  width: max-content;
+}
+#HintButton:first-child {
+  margin-left: 0.5rem;
 }
 
 #HintButton svg {
@@ -1668,5 +1696,6 @@ mjx-merror {
 /*                 ⚙️ USER STYLES ⚙️                  */
 /*=====================================================*/
 /* place your styles and modifications below */
+
 
 
