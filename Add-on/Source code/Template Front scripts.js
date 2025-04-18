@@ -351,8 +351,14 @@ audioButtonsQ = cardContF.querySelectorAll('.mem-question a.replay-button');
 if (audioButtonsQ && audioButtonsQ.length > 0) {
 	//choose audio for Q
 	chosen_i = Math.floor(Math.random() * audioButtonsQ.length);
-	audioButtonsQ[chosen_i].classList.add("chosen");
-	audioButtonsQ[chosen_i].click();
+	const chosenAudio = audioButtonsQ[chosen_i];
+	chosenAudio.classList.add("chosen");
+	if (chosenAudio.onclick) {
+		chosenAudio.click();
+	} else { // AnkiDroid #18235 bug
+		window.open(chosenAudio.href);
+		audioAnimation(chosenAudio);
+	}
 }
 </script>
 
