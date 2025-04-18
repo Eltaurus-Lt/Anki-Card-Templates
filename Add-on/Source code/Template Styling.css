@@ -184,6 +184,9 @@ body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-passive);
 }
 body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-text: white;
@@ -262,6 +265,9 @@ body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
     --col-spell-bad: #ffa37e;
 
     --col-pressed-outline: #ebdfa990;
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-bg);
 }
 body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-text: #c1b68b;
@@ -1668,6 +1674,12 @@ body,
 .btn.btn-outline-primary {
     color: var(--col-button-border);
     border-color: var(--col-button-border);
+}
+
+.btn.btn-outline-primary:focus-visible {
+    outline: 3px solid var(--col-focus);
+    box-shadow: none;
+    background: transparent;
 }
 .btn.btn-outline-primary:hover,
 .btn.btn-outline-primary:active {
