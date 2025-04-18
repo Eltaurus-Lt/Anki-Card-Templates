@@ -676,13 +676,19 @@ button#mem-flip {
 	max-width: calc(60rem - 6.75rem);
 	margin: auto;
 	min-width: 13rem;
-	width: 100%; /* ankiweb */
 	box-sizing: content-box;
 }
 @media (min-width: 38.25rem) {
   #qa {
 		padding: 2rem;
-		width: calc(100% - 2 * 2rem); /* ankiweb */
+  }
+}
+#qa_box.card #qa { /* ankiweb */
+	width: calc(100% - 1 * 2rem); 
+}
+@media (min-width: 38.25rem) {
+  #qa_box.card #qa { /* ankiweb */
+		width: calc(100% - 2 * 2rem); 
   }
 }
 
@@ -1137,7 +1143,8 @@ a.replay-button.soundLink::before {
   border-radius: var(--border-r4);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  flex-wrap: wrap;
   padding: 0.5rem;
   width: fit-content;
 }

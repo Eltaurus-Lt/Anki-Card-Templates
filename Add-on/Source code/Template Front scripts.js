@@ -133,7 +133,7 @@ function replayEmbedded(i, aL, retry = 50) { //for embedded audio tags (ankiweb)
       });
 
     } else {
-      console.warn(`autoplay error (${err})`);
+      console.warn(`playback error (${err})`);
       aL.classList.add('loading');
       if (retry > 0) {
         setTimeout(()=>replayEmbedded(i, aL, retry - 1), 100); 
@@ -511,7 +511,7 @@ function updTappedAnswer() {
 function untapKey(N) {
   if (!tapAnsArea) return;
 
-  tapAnsArea.querySelector(`[origin="${N}"]`).onclick();
+  tapAnsArea.querySelector(`[origin="${N}"]`)?.onclick();
 }
 
 function tapKey(N, dynamic = false) {
