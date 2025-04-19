@@ -632,6 +632,8 @@ body.card {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+
+  line-height: normal; /* ankiweb */
 }
 #qa_box#qa_box.card {
   min-height: 75vh;
@@ -1243,6 +1245,10 @@ a.replay-button.embedded.failed {
 
 /* ーーーーーーーーーー IMAGES ーーーーーーーーーー */
 
+#qa_box.card img {
+    max-width: none;
+}
+
 .mem-question img {
     border: 0px;
     margin: 0 auto;
@@ -1260,7 +1266,7 @@ a.replay-button.embedded.failed {
     max-width: calc(21.5rem);
 }
 
-.mem-question > img { /* backward compatibility */
+.mem-question > img { /* legacy */
     margin: 1rem auto;
     min-height: 10rem;
     min-width: 10rem;
@@ -1272,15 +1278,18 @@ a.replay-button.embedded.failed {
   margin: 1rem 0 calc(0.5rem + 1rem);
 }
 
+#qa_box.card .mem-alert img, /* ankiweb (extra specificity) */
+#qa_box.card .mem-field :is(h2, h3, h4) img, /* ankiweb (extra specificity) */
 .mem-alert img,
-.mem-field.mem-field :is(h2, h3, h4) img { /* specificity for ankiweb */
+.mem-field :is(h2, h3, h4) img {
     border-radius: var(--border-r2);
     margin: 0px;
     max-width: 16rem;
     width: 100%;
 }
 
-.card-content.mch:not([mode]) .membtn img, /*legacy*/
+.card-content.mch:not([mode]) .membtn img, /* legacy */
+#qa_box.card .card-content[mode="mchoice"] .membtn img, /* ankiweb (extra specificity) */
 .card-content[mode="mchoice"] .membtn img {
     max-height: 200px;
     max-width: 200px;
@@ -1295,6 +1304,10 @@ a.replay-button.embedded.failed {
 }
 .front-extra:has(img) {
 	display: none !important;
+}
+
+#qa_box.card :is(img, svg) {
+  vertical-align: baseline; /* revert ankiweb setting */
 }
 
 /* ーーーーーーー Spelling diffs ーーーーーーー */
