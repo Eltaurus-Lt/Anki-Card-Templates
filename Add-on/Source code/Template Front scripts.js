@@ -67,8 +67,11 @@ if (platform === 'ankiweb' && !window.observer) {
 
 <script>
 //block key presses immediately after page loading
-ongcd = true;
-setTimeout(()=>{ongcd = false}, 100);
+function putOnCD() {
+  ongcd = true;
+  setTimeout(()=>{ongcd = false}, 150);
+}
+if (isFrontSide) putOnCD();
 </script>
 
 <script>

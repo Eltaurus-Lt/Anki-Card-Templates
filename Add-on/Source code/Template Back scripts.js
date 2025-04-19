@@ -266,6 +266,7 @@ function MemFlip(toInfo = false) {
 	if (wrap.classList.contains("correct") && !toInfo && !infoOnCorrect && platform !== 'ios') {
 		autorateGood();
 	} else {
+		putOnCD();
 		wrap.classList.add("backside");
 		wrap.classList.remove("frontside");
 		setTimeout(()=>window.scrollTo(0, 0), 1);
