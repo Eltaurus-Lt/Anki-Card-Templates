@@ -63,10 +63,13 @@ def alts_format(editor):
                 console.log(selection);
                 if (selection.rangeCount > 0) {
                     const range = selection.getRangeAt(0);
-                    const altDiv = document.createElement('div');
-                    altDiv.setAttribute("part", "alt");
                     const contents = range.extractContents();
+
+                    const altDiv = document.createElement('div');
+                    altDiv.classList.add("alt");
                     range.insertNode(altDiv);
+
+                    range.insertNode(document.createTextNode("\\n"));
 
                     if (contents.hasChildNodes()) {
                         altDiv.appendChild(contents);
@@ -93,7 +96,7 @@ def alts_format(editor):
     """
 
     def br_cleanup(): # remove stray <br>s inserted by Anki editor
-        count_after = count_brs(current_note.fields[current_field])
+        count_after = count_brs(current_note.fields[current_field]) # overwrite current contents with the returned result["fieldContents"] as an alternative
         count_diff = count_after - count_before
 
         # tooltip(f"{count_before} -> {count_after}")
@@ -135,7 +138,7 @@ def alts_erase(editor):
                 const field = shadowRoot.querySelector('[contenteditable="true"]');
                 // const fieldContent0 = field.innerHTML;
 
-                const altDivs = field.querySelectorAll('div[part="alt"]');
+                const altDivs = field.querySelectorAll('div[part="alt"], div.alt');
 
                 altDivs.forEach(altDiv => {
                     const parent = altDiv.parentNode;
