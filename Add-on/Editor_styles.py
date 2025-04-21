@@ -1,25 +1,41 @@
-import os
-from aqt import gui_hooks
+from aqt import gui_hooks, mw
 from aqt.editor import Editor
 
-# Path to your CSS file
-CSS_FILE_PATH = os.path.join(os.path.dirname(__file__), "custom_style.css")
+addon_package = mw.addonManager.addonFromModule(__name__)
+mw.addonManager.setWebExports(__name__, r"css/.*\.(css)$")
+field_css = f"/_addons/{addon_package}/css/field_styles.css"
 
-def inject_css_to_all_fields(editor: Editor) -> None:
-    """Inject the CSS file into the shadow DOM of all card fields in the editor."""
+field_selector = "div.editor-field .rich-text-editable"
+
+def inject_css_to_all_fields(editor):
     js_code = f"""
-    const fields = document.querySelectorAll("anki-editor-field");
-    fields.forEach(field => {{
-        const shadowRoot = field.shadowRoot;
-        if (shadowRoot) {{
-            const styleLink = document.createElement("link");
-            styleLink.rel = "stylesheet";
-            styleLink.href = "{CSS_FILE_PATH}";
-            shadowRoot.appendChild(styleLink);
-        }}
-    }});
+    function injectCSS() {{
+        fields = document.querySelectorAll("{field_selector}");
+        fields.forEach(field => {{
+            const shadowRoot = field.shadowRoot;
+            if (shadowRoot && !shadowRoot.getElementById("lt-field-style")) {{
+                const styleLink = document.createElement("link");
+                styleLink.id = "lt-field-style";
+                styleLink.rel = "stylesheet";
+                styleLink.href = "{field_css}";
+                shadowRoot.appendChild(styleLink);
+            }}
+        }});
+        return(fields.length);
+    }}
+    if (injectCSS() <= 0) {{
+        new MutationObserver((mutation, observer) => {{
+            if (document.querySelector("{field_selector}")) {{
+                injectCSS();
+                observer.disconnect();
+            }}
+        }}).observe(document.body, {{ childList: true, subtree: true }});
+    }}
+
     """
+
     editor.web.eval(js_code)
 
-# Hook into editor initialization to apply the changes
-gui_hooks.editor_did_init.append(inject_css_to_all_fields)
+
+# gui_hooks.editor_did_init.append(inject_css_to_all_fields)
+gui_hooks.editor_did_load_note.append(inject_css_to_all_fields)

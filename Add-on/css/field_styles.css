@@ -1,4 +1,5 @@
-[part=alt] {
+[part=alt], /* legacy */
+.alt {
     font-size: .75em;
     opacity: 0.5;
     line-height: 1.5;
