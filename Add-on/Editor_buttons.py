@@ -20,8 +20,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os, json
+import os, json, re
 from anki.hooks import addHook
+from aqt import mw
 from aqt.utils import tooltip
 from . import console
 
@@ -30,8 +31,15 @@ addon_path = os.path.dirname(__file__)
 def alts_format_legacy(editor):
     selection = editor.web.selectedText()
     if selection:
-        alt_section = '<span part="alt">' + selection + '</span>'
+        alt_section = '<span part="alt">' + selection + '</span>' # does not work when selection ends at a closnig tag + part gets immediately cleared in 25.02.1+
         editor.web.eval(f"document.execCommand('insertHTML', false, {repr(alt_section)});")
+
+
+def count_brs(html):
+    match = re.search(r'(<br\s*/?>)+\s*$', html)
+    if match:
+        return match.group(0).count('<br')
+    return 0
 
 
 def alts_format(editor):
@@ -39,6 +47,9 @@ def alts_format(editor):
     if current_field is None:
         tooltip('No field selected')
         return
+    current_note = editor.note
+
+    count_before = count_brs(current_note.fields[current_field])
 
     js_code = """
         (function() {
@@ -81,6 +92,18 @@ def alts_format(editor):
         })();
     """
 
+    def br_cleanup(): # remove stray <br>s inserted by Anki editor
+        count_after = count_brs(current_note.fields[current_field])
+        count_diff = count_after - count_before
+
+        # tooltip(f"{count_before} -> {count_after}")
+
+        if (count_diff > 0):
+            current_note.fields[current_field] = current_note.fields[current_field][:-4 * count_diff]
+            mw.col.update_note(current_note)
+            editor.loadNoteKeepingFocus()
+
+
     def callback(js_result):
         try:
             result = json.loads(js_result)
@@ -90,14 +113,7 @@ def alts_format(editor):
                     tooltip("formatted field content should be selected instead of html code")
                 return
 
-            # # clean editor's stray <br>
-            # fieldContent = result["fieldContent"][:-4] if result["fieldContent"].endswith("<br>") else result["fieldContent"]
-
-            # cf = ( fieldContent == editor.note.fields[current_field])
-            # if not cf:
-            #     console.log(editor.note.fields[current_field], editor)
-            #     console.log(fieldContent, editor)
-            #     tooltip("error comparing field content with editor's webview")
+            editor.saveNow(br_cleanup)
                 
 
         except json.JSONDecodeError:
