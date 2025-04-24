@@ -3,9 +3,9 @@ from . import Fill_Choices_menu
 from . import Editor_buttons
 from . import Editor_styles
 
-from aqt import gui_hooks, mw
-from aqt.editor import Editor
-from aqt.webview import AnkiWebView, WebContent
+# from aqt import gui_hooks, mw
+# from aqt.editor import Editor
+# from aqt.webview import AnkiWebView, WebContent
 
 
 # mw.addonManager.setWebExports(__name__, r"css/.*\.(css)$")
