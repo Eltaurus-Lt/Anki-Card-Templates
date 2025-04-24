@@ -246,7 +246,7 @@ corrAns = ansCleanUp(Qmode === "tapping" ? corrAnsL?.innerHTML.replaceAll("　",
 try {
 	const tempL = document.createElement('div');
 	tempL.innerHTML = corrAns;
-	tempL.querySelectorAll('[part="alt"]').forEach((L) => {L.remove();});
+	tempL.querySelectorAll('[part="alt"], .alt').forEach((L) => {L.remove();});
 	corrAns = (Qmode !== "mchoice") ? tempL.innerText : tempL.innerHTML;
 	corrAns = corrAns.trim();
 	tempL.remove();
@@ -265,7 +265,7 @@ if (isMathJax) {
 //determine alt answers
 partAlts = [];
 try {
-	const altsString = [...corrAnsL.querySelectorAll('[part="alt"]')].map(L => L.innerText).join('|');
+	const altsString = [...corrAnsL.querySelectorAll('[part="alt"], .alt')].map(L => L.innerText).join('|');
 	partAlts = altsString ? altsString.split('|').map(ansCleanUp) : [];
 } catch (err) {}
 
