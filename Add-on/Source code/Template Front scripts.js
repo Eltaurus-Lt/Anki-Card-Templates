@@ -104,6 +104,8 @@ embeddedAudios = [...document.querySelectorAll('audio')];
 <script>
 function audioAnimation(aL) {
 	if (!aL) return;
+	aL.classList.remove('loading');
+	aL.classList.remove('failed');
 	document.querySelectorAll('.card-content a.replay-button').forEach((b) => {
 		b.classList.remove('active');
 	});
@@ -118,8 +120,6 @@ function replayEmbedded(i, aL, retry = 50) { //for embedded audio tags (ankiweb)
   embeddedAudios.forEach(audioL => audioL.pause());
   embeddedAudios[i].currentTime = 0;
   embeddedAudios[i].play().then(()=>{
-    aL.classList.remove('loading');
-    aL.classList.remove('failed');
     audioAnimation(aL);
   }).catch((err) => {
     if (err.name === "NotAllowedError" || err.message.includes("user didn't interact")) {
@@ -341,6 +341,23 @@ document.onkeydown = function (e) {
 </script>
 
 <script>
+function androidAutoplay(chosenAudio, retry = 100) {
+	if (retry <= 0) {
+		chosenAudio.classList.add('failed');
+		return;
+	}
+	if (window.open(chosenAudio.href) !== null) { // audio played successfully
+		audioAnimation(chosenAudio);
+	} else { // audio is not yet available
+		chosenAudio.classList.add('loading');
+		setTimeout(()=>{
+			androidAutoplay(chosenAudio, retry - 1);
+		}, 10);
+	}
+}
+</script>
+
+<script>
 //Audio buttons animation
 audioButtonsFront = cardContF.querySelectorAll('a.replay-button');
 
@@ -359,8 +376,7 @@ if (audioButtonsQ && audioButtonsQ.length > 0) {
 	if (chosenAudio.onclick) {
 		chosenAudio.click();
 	} else { // AnkiDroid #18235 bug
-		window.open(chosenAudio.href);
-		audioAnimation(chosenAudio);
+		androidAutoplay(chosenAudio);
 	}
 }
 </script>

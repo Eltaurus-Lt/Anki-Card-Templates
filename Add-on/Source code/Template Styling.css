@@ -1224,7 +1224,7 @@ svg.playImage path {
 }
 
 /* loading (for embedded) */
-a.replay-button.embedded.loading::after {
+a.replay-button.loading::after {
   background: transparent;
 
   scale: .85;
@@ -1239,7 +1239,7 @@ a.replay-button.embedded.loading::after {
   to {rotate: 360deg}
 }
 
-a.replay-button.embedded.failed {
+a.replay-button.failed {
 	--col-audio-passive: red !important;
 }
 
