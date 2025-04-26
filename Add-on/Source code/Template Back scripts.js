@@ -267,6 +267,7 @@ function MemFlip(toInfo = false) {
 		autorateGood();
 	} else {
 		putOnCD();
+
 		wrap.classList.add("backside");
 		wrap.classList.remove("frontside");
 		setTimeout(()=>window.scrollTo(0, 0), 1);
@@ -322,12 +323,7 @@ function autorateAgain() {
 		} else if (platform === 'android') {
 			buttonAnswerEase1();
 		} else if (platform === 'ankiweb') {
-			const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
-			if (ankiwebButtons.length === 4) {
-				ankiwebButtons[0].click();
-			} else {
-				console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
-			}
+			awRate(1);
 		}
 		console.log("🔴 autorated 'again'");
 }
@@ -338,12 +334,7 @@ function autorateGood() {
 		} else if (platform === 'android') {
 			buttonAnswerEase3();
 		} else if (platform === 'ankiweb') {
-			const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
-			if (ankiwebButtons.length === 4) {
-				ankiwebButtons[2].click();
-			} else {
-				console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
-			}
+			awRate(3);
 		}
 		console.log("🟢 autorated 'good'");
 }

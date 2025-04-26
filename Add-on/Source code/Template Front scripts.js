@@ -52,6 +52,14 @@ console.log("platform: ", platform);
 </script>
 
 <script>
+//prevent ankiweb's default autorate with number keys
+if (platform === 'ankiweb' && !window.awKeyBlocker) {
+  awKeyBlocker = document.addEventListener("keyup", (event) => {
+    if (!"1234".includes(event.key)) return;
+    event.stopImmediatePropagation();
+    event.preventDefault();
+  }, true);
+}
 //prevent ankiweb from autofocusing "show answer" and rate buttons
 if (platform === 'ankiweb' && !window.observer) {
   window.observer = new MutationObserver(() => {
@@ -63,6 +71,16 @@ if (platform === 'ankiweb' && !window.observer) {
 
   observer.observe(document.body, { childList: true, subtree: true });
 };
+
+//ankiweb rate function
+function awRate(ease) {
+	const ankiwebButtons = document.querySelectorAll('.btn.btn-primary.btn-lg');
+	if (ankiwebButtons.length === 4) {
+		ankiwebButtons[ease - 1].click();
+	} else {
+		console.log(`incorrect number of answer buttons (&{ankiwebButtons.length})`);
+	}
+}
 </script>
 
 <script>
@@ -333,9 +351,11 @@ document.onkeydown = function (e) {
 	}
 
 	if (!isFrontSide && "1234".includes(ev.key)) {
-		try {
+		if (platform === "desk") {
 			pycmd('ease' + ev.key);
-		} catch(err) {}
+		} else if (platform === "ankiweb") {
+			awRate(ev.key);
+		}
 	}
 }
 </script>
