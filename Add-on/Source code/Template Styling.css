@@ -603,6 +603,7 @@ body.nightMode, body.night_mode {
 setting,
 data,
 .no-alts [part=alt],
+.no-alts .alt,
 .win .desk-off,
 .mac .desk-off,
 .linux:not(.android) .desk-off,
@@ -1045,7 +1046,8 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
 	line-height: 1.5;
 }
 
-[part=alt] {
+[part=alt], /* legacy */
+.alt {
     font-size: .5em;
     color: var(--col-text-faint) !important;
     font-weight: 500;
@@ -1053,13 +1055,16 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
     line-height: 1.5;
     overflow-wrap: anywhere;
 }
-h2 [part=alt] {
+h2 [part=alt], /* legacy */
+h2 .alt {
     font-size: 1.25rem;
 }
-h3 [part=alt] {
+h3 [part=alt], /* legacy */
+h3 .alt {
     font-size: 1rem;
 }
-h4 [part=alt] {
+h4 [part=alt], /* legacy */
+h4 .alt {
     font-size: .75rem;
 }
 
