@@ -350,10 +350,37 @@ function autorateGood() {
 </script>
 
 <script>
+//embedding backside audio buttons (android)
+embeddedAudiosBack = [...document.querySelectorAll('audio:not(.off)')];
+embeddedAudiosBack.forEach((audioL, i) => {
+  const replayButtonHTML = `
+    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i + embeddedAudios.length}, this)">
+      <svg class="playImage" viewBox="0 0 64 64" version="1.1">
+        <circle cx="32" cy="32"></circle>
+        <path></path>
+      </svg>
+    </a>
+  `;
+  
+  const tempL = document.createElement('div');
+  tempL.innerHTML = replayButtonHTML.trim();
+  
+  audioL.parentNode.insertBefore(tempL.firstChild, audioL.nextSibling);
+
+  //move audio tag outside
+  cardContF.appendChild(audioL);
+  audioL.classList.add('off');
+});
+embeddedAudios = embeddedAudios.concat(embeddedAudiosBack);
+
+</script>
+<script>
 //Audio buttons animation
 document.querySelectorAll('.card-content.back a.replay-button').forEach((a) => {
 	if (a.classList.contains("embedded")) return;
 	a.addEventListener("click", ()=>audioAnimation(a));
 });
 </script>
+
+
 <!-- End of code by Eltaurus -->
