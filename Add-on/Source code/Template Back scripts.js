@@ -354,7 +354,7 @@ function autorateGood() {
 embeddedAudiosBack = [...document.querySelectorAll('audio:not(.off)')];
 embeddedAudiosBack.forEach((audioL, i) => {
   const replayButtonHTML = `
-    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i + embeddedAudios.length}, this)">
+    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i + embeddedAudios.length}, this)" href="../#">
       <svg class="playImage" viewBox="0 0 64 64" version="1.1">
         <circle cx="32" cy="32"></circle>
         <path></path>
@@ -381,6 +381,5 @@ document.querySelectorAll('.card-content.back a.replay-button').forEach((a) => {
 	a.addEventListener("click", ()=>audioAnimation(a));
 });
 </script>
-
 
 <!-- End of code by Eltaurus -->

@@ -152,7 +152,7 @@ function replayEmbedded(i, aL, retry = 50) { //for embedded audio tags (ankiweb)
 //embedding audio buttons
 embeddedAudios.forEach((audioL, i) => {
   const replayButtonHTML = `
-    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i}, this)">
+    <a class="replay-button soundLink embedded" onclick="replayEmbedded(${i}, this)" href="../#">
       <svg class="playImage" viewBox="0 0 64 64" version="1.1">
         <circle cx="32" cy="32"></circle>
         <path></path>
