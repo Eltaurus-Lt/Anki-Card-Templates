@@ -104,7 +104,7 @@ function htmlUnEscape(string) {
 }
 
 function ansCleanUp(ansString) {
-  return ansString?.replaceAll("&nbsp;", " ")?.trim();
+  return ansString?.replaceAll("&nbsp;", " ")?.replaceAll(" \n", " ").replaceAll("\n ", " ").replaceAll("\n", " ")?.trim();
 }
 
 function preTokenize(ans) {
@@ -274,11 +274,11 @@ try {
 
 inlnAlts = corrAns.split(/[;；]/).map(ansCleanUp);
 
-hintAns = inlnAlts[0];
+hintAns = ansCleanUp(inlnAlts[0]);
 if (isMathJax) {
 	hintAns = MJunwrap(hintAns);
 	if (Qmode === "mchoice") {
-		inlnAlts = []; //otherwise is split at ';' in '&gt;', '&lt;', etc.
+		inlnAlts = [corrAns]; //otherwise is split at ';' in '&gt;', '&lt;', etc.
 	}
 }
 
@@ -444,6 +444,7 @@ if (screenKeyboard) {
 		screenKeyboard.innerHTML = '';
 	} else if (Qmode === "tapping") {
 		keys = keysString ? keysString.split(' ') : [];
+		keys = keys.map(key => key.replaceAll("　"," "));
 		screenKeyboard.innerHTML = '';
 	} else {
 		keys = [];
@@ -455,7 +456,7 @@ if (screenKeyboard) {
     if (Qmode === "mchoice") {
       keyButton.innerHTML = key;
     } else if (Qmode === "tapping") {
-      keyButton.innerText = key.replaceAll("　"," ");
+      keyButton.innerText = key;
     } else {
       keyButton.innerText = key; // (Qmode === "typing")
     }

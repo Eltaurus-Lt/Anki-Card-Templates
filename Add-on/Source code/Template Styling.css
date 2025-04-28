@@ -639,6 +639,9 @@ body.card {
 #qa_box#qa_box.card {
   min-height: 75vh;
 }
+.mobile body.card {
+  min-height: 95vh;
+}
 
 #Lt::after {
   content: 'by Lτ';
@@ -1336,6 +1339,7 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
   color: var(--col-input-text);
   font-weight: bold;
 	font-variant-ligatures: no-common-ligatures;
+  white-space: pre;
 }
 
 #spelldiff .typeGood {
@@ -1587,6 +1591,7 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
     margin: 0 1rem 1rem 0;
     min-width: 6rem;
     min-height: 3rem;
+    height: min-content;
     width: max-content;
     padding: 0 2rem;
 }
@@ -1625,8 +1630,9 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
   content: counter(choice-key);
 }
 
+.card-content[mode="tapping"] #scr-keyboard.large > .membtn,
 .card-content[mode="tapping"] .mem-typing.large > .membtn {
-  height: 4rem;
+  min-height: 4rem;
   
   font-size: 2.25rem;
   line-height: calc(4rem - 2 * var(--border-width));
