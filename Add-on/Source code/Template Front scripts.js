@@ -24,6 +24,8 @@ wrap = document.getElementById('backwrap');
 isFrontSide = !wrap;
 if (isFrontSide) {
   console.log("------------- card -------------");
+} else {
+  console.log(" - - - - - -  back  - - - - - - ");
 }
 </script>
 
@@ -87,7 +89,7 @@ function awRate(ease) {
 //block key presses immediately after page loading
 function putOnCD() {
   ongcd = true;
-  setTimeout(()=>{ongcd = false}, 150);
+  setTimeout(()=>{ongcd = false}, 400);
 }
 if (isFrontSide) putOnCD();
 </script>
@@ -247,7 +249,7 @@ corrAnsL = document.getElementById('correctAnswer');
 //cloze
 clozes = corrAnsL.querySelectorAll(".cloze");
 if (clozes.length > 0) {
-  corrAnsL.innerHTML = [...clozes].map(L => L.getAttribute("data-cloze")).join(", ");
+  corrAnsL.innerHTML = [...clozes].map(L => L.getAttribute("data-cloze")).join(Qmode !== "tapping" ? ", " : " ");
   let inactCloze = corrAnsL.querySelector("span.cloze-inactive");
   while (inactCloze) { // remove inactive nested clozes
     const frag = document.createDocumentFragment();
@@ -447,7 +449,8 @@ if (screenKeyboard) {
 		keys = [];
 		screenKeyboard.innerHTML = '';
 	}
-  keys.reverse().forEach((key)=>{
+
+  keys.slice().reverse().forEach((key)=>{
     const keyButton = document.createElement("div");
     if (Qmode === "mchoice") {
       keyButton.innerHTML = key;
@@ -566,7 +569,7 @@ function tapKey(N, dynamic = false) {
 
   const tappedWordL = document.createElement("div");
   tappedWordL.classList.add('membtn');
-  tappedWordL.innerText = keyboardButtons[N - 1].innerText;
+  tappedWordL.innerText = keys[N - 1];
   tappedWordL.setAttribute("origin", N);
   tapAnsArea.append(tappedWordL);
 

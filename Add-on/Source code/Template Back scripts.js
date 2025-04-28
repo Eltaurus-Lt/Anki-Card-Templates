@@ -105,7 +105,7 @@ if (userAns === null) {
 } else if (userAns.trim()) {
   if (Qmode === "tapping") {
     pressedSequence = userAns.split('|');
-    userAns = pressedSequence.map(N => keyboardButtons[N - 1].innerText).join(' ');
+    userAns = pressedSequence.map(N => keys[N - 1]).join(' ');
   }
   if (Qmode === "mchoice") {
 	  document.getElementsByClassName("mem-alert")[0].innerHTML = userAns; //text formatting, images and audio + latex in mcq
