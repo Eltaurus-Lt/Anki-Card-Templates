@@ -28,10 +28,16 @@ from aqt.utils import tooltip
 from bs4 import BeautifulSoup
 
 def removeAlts(fieldContents):
-    if fieldContents.find('part="alt"') == -1:
+    if fieldContents.find('alt') == -1:
+        return fieldContents
+
+    if fieldContents.find('class') == -1 and fieldContents.find('part') == -1:
         return fieldContents
 
     soup = BeautifulSoup(fieldContents, "html.parser")
+
+    for element in soup.find_all(attrs={"class": "alt"}):
+        element.decompose()
 
     for element in soup.find_all(attrs={"part": "alt"}):
         element.decompose()
@@ -41,6 +47,10 @@ def removeAlts(fieldContents):
 
 def fill_choices(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
+
+    if len(notes) < 2:
+        tooltip('at least two notes have to be selected')
+        return
 
     # Defining a set of all fields present in the selected notes
     unique_fields = []
