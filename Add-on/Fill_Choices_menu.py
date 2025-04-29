@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2023-2024 Eltaurus
+# Copyright © 2023-2025 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -25,6 +25,19 @@ from aqt import mw, gui_hooks
 from aqt.qt import *
 from aqt.utils import tooltip
 
+from bs4 import BeautifulSoup
+
+def removeAlts(fieldContents):
+    if fieldContents.find('part="alt"') == -1:
+        return fieldContents
+
+    soup = BeautifulSoup(fieldContents, "html.parser")
+
+    for element in soup.find_all(attrs={"part": "alt"}):
+        element.decompose()
+
+    return str(soup)
+
 
 def fill_choices(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
@@ -47,14 +60,14 @@ def fill_choices(browser):
     all_choices = set()
     for note in notes:
         if source_field in note.keys():
-            all_choices.add(note[source_field])
+            all_choices.add(removeAlts(note[source_field]))
 
     # Filling choices field on each note
     counter = 0
     for note in notes:
         if choices_field not in note.keys():
             continue
-        choices_filtered = {choice for choice in all_choices if (source_field not in note.keys() or choice != note[source_field])}
+        choices_filtered = {choice for choice in all_choices if (source_field not in note.keys() or choice != removeAlts(note[source_field]))}
 
         if append and note[choices_field]:
             choices_filtered.update([choice.strip() for choice in note[choices_field].split("|")])
