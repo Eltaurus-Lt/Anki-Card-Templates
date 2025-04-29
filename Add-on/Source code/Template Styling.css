@@ -142,7 +142,10 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card ::
     color: var(--mem-text);
     background-color: var(--mem-bg);
 }
-
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}
 
 /* Start of code by Eltaurus */
 body:has(div.card-content[theme="AnkiRise"]) {
@@ -218,6 +221,10 @@ body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-spell-missed: #226635;
     --col-spell-bad: #732c31dd;
 }
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}
 /* End of code by Eltaurus */
 
 
@@ -269,6 +276,10 @@ body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
     --col-intbtn-text: var(--col-input-text);
     --col-intbtn-bg: var(--col-audio-bg);
 }
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) .card .cloze {
+    color: var(--col-audio-container);
+}
 body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-text: #c1b68b;
     --col-focus: #557d3d;
@@ -307,6 +318,10 @@ body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-spell-bad: #612f40;
 
     --col-pressed-outline: #1c3a41;
+}
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-text-faint);
 }
 /* End of code by Eltaurus */
 
@@ -403,6 +418,10 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-ex
 }
 body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
     color: var(--col-sunset-focuspaleblue);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-passive);
 }
 /* End of code by Eltaurus */
 
@@ -1725,6 +1744,7 @@ body,
 .cloze {
     color: var(--col-audio-bg);
 }
+
 
 /* ーーーーーーーー MathJax ーーーーーーーー */
 
