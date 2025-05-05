@@ -1,8 +1,8 @@
 # Anki Card Templates
 
-## Memrise Template v4.2
+## Memrise Template v5.0
 
-This card template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone else, who finds default Anki cards too intimidating. The functionality includes **type-in** and **multiple-choice** questions (with plain and formatted text, **images**, animated gifs, etc.), **automatic answer grading** with card's **full-info screen** after answer submission, the option to specify **alternative answers** for each card, **audio** questions with interactive buttons, **on-screen keyboard** with the **hint button**, and [more](#themes). It works with every [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS***):
+This Anki [Note Type](https://docs.ankiweb.net/getting-started.html#note-types) template recreates Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had, on top of that. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account) while leaving the option to overwrite grades manually. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**) in **offline mode**, or can be used in **online mode** reviewing cards directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
 
 <sup>*there are some (non-breaking) differences in how the template looks and works on iOS</sup>
 
@@ -11,31 +11,43 @@ This card template recreates the Memrise interface to make Anki more accessible 
 ### 💡 Quick start
 
 >---
->1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v4.2) and open the `Memrise… .apkg` file with Anki
->2. Use `Memrise (Lτ) Preset […] v4.2` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
->3. On Android also enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**)
+>1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v5.0) and open the `Memrise… .apkg` file with Anki
+>2. Use `Memrise (Lτ) Preset […] v5.0` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
+>3. On Android, additionally enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**)
 >
->Enabling Multiple-Choice cards (Optional):
+>Generating Multiple-Choice cards (Optional):
 >
 >4. Install [the support addon](https://ankiweb.net/shared/info/884199977) on a desktop Anki:
      `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
->5. Open **`Browse`** window → Select multiple (**at least two**) Cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
->6. To make Multiple-Choice cards available on mobile: **`Sync`** in Anki desktop → **`Sync`** in your mobile Anki app
+>5. Open **`Browse`** window → Select several cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
+>6. To make Multiple-Choice cards available on mobile and AnkiWeb: **`Sync`** Anki desktop to AnkiWeb → **`Sync`** in your mobile Anki app
 >---
 
-If you require any help with this, please feel free to leave a comment in [this Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+If you require any help with any of the steps, please feel free to leave a comment in [the Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 Feedback and feature suggestions are also very much appreciated.
 
 ---
 
+### Question types
+
+Text, audio, images, and LaTeX equations can all be used as a question prompt with any of the basic template versions without any additional setup - the default template automatically adjusts itself to the type of data placed in the "Definition" field. However, to keep your collection organized and easily manageable (and also to add more card types with different directions of testing), it is a good idea to label things properly and place each piece of data into its dedicated field (the instructions for all the necessary steps are provided in the [customization](#Customization) section below).
+
+[Close deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) are a distinct sort of [Note Types](https://docs.ankiweb.net/getting-started.html#note-types) in Anki, used to generate an arbitrary number of cards from the same piece of text. They are made from a separate Note Type template ("Memrise (Lτ) Cloze Template v..." included in the shared deck):
+
+
+
+
+### Input modes
+
+
+
+
 ### Themes
 
-In addition to replicating the existing Memrise functionality listed at the beginning, the template also implements several features retired from Memrise, such as highlighting **answer corrections** (look for the "You wrote:" line on the screenshots above), or never supported by Memrise, such as **tab-navigation** over a card's interface, ability to view full card's info even when the submitted answer is correct (press `Space`), and a dedicated **Dark theme**. In addition to that, the template has several **other color schemes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
+**Dark mode**. In addition to that, the template has several **other color themes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
 <!-- fuzzy answer matching | timers, mems... -->
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
-
-<!-- provides easy ways of customizing a lot of interface attributes and review parameters -->
 
 ### LaTeX
 
@@ -43,6 +55,10 @@ One more feature to mention is the **LaTeX support** (in both **type-in** and **
 
 ![LaTeX](https://github.com/user-attachments/assets/e8831bf0-a43d-4d78-8b25-ed835c8e21d5)
 
+
+### Other
+
+**spelling diffs**, **tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
 
 
 &nbsp;  
@@ -87,7 +103,7 @@ This template does not use any of the original Memrise code and is written from 
 > 
 >> All screenshots and recordings are marked by the respective logos:
 >> 
->> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
+>>>> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
 >> 
 >> ![mem_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/f5fd82ba-c612-44a5-8f34-e10c946d680f) - **Memrise**
 >&nbsp;
