@@ -2,11 +2,14 @@
 
 ## Memrise Template v5.0
 
-This Anki [Note Type](https://docs.ankiweb.net/getting-started.html#note-types) template recreates Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had, on top of that. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account) while leaving the option to overwrite grades manually. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (all **desktop** apps, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**) in **offline mode**, or can be used in **online mode** reviewing cards directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
+This Anki [Note Type](https://docs.ankiweb.net/getting-started.html#note-types) template recreates Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account), keeping the option for manual grading as well. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (the **desktop** app, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**\*) in **offline mode** and can be used reviewing cards **online** directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
 
-<sup>*there are some (non-breaking) differences in how the template looks and works on iOS</sup>
+<sup>*There are some (non-breaking) differences in how the template looks and works on iOS. If anyone wishes to participate in testing to help iron out the remaining discrepancies, please get [in contact](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233)</sup>
+<br>
+<sup>**A desktop app will still be required for a one-time setup</sup>
 
-![General overview](https://github.com/user-attachments/assets/35bb4ea5-2e2d-42bd-88e5-bbc4207b38da)
+![main](https://github.com/user-attachments/assets/13d0b023-a26b-46b0-9485-224c10881e7e)
+
 
 ### 💡 Quick start
 
@@ -32,7 +35,7 @@ Feedback and feature suggestions are also very much appreciated.
 
 Text, audio, images, and LaTeX equations can all be used as a question prompt with any of the basic template versions without any additional setup - the default template automatically adjusts itself to the type of data placed in the "Definition" field. However, to keep your collection organized and easily manageable (and also to add more card types with different directions of testing), it is a good idea to label things properly and place each piece of data into its dedicated field (the instructions for all the necessary steps are provided in the [customization](#Customization) section below).
 
-[Close deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) are a distinct sort of [Note Types](https://docs.ankiweb.net/getting-started.html#note-types) in Anki, used to generate an arbitrary number of cards from the same piece of text. They are made from a separate Note Type template ("Memrise (Lτ) Cloze Template v..." included in the shared deck):
+[Close deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a distinct sort of [Note Types](https://docs.ankiweb.net/getting-started.html#note-types) in Anki, used to generate an arbitrary number of cards from the same piece of text. They are made from a separate Note Type template ("Memrise (Lτ) Cloze Template v..." included in the shared deck):
 
 
 
@@ -67,8 +70,9 @@ One more feature to mention is the **LaTeX support** (in both **type-in** and **
  
 ![Audio question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/58fe1cd2-02de-4e16-b5c2-ee5d240307ae)
 ![Multiple-choice question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/548a2f2a-ca68-41fd-94fa-150b90662552)
-![Images](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/e12a8648-8b2a-4af0-a4cb-93a29ad61a6b) 
 ![On-screen keyboard](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cfc7895a-4911-4e04-8084-7a65f3a555f5)
+![Images](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/e12a8648-8b2a-4af0-a4cb-93a29ad61a6b)
+![Multiple-choice question](https://github.com/user-attachments/assets/43e4be88-91f8-4575-881a-122bfcb62fa0)
 ![Spelling corrections](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9f30fdeb-57c8-4d04-b086-07d211b99ce0)
 ![Hint button](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/6dbd8da4-e322-4c4b-bd5a-4a744ba5e8e2)
 ![Dark theme (multiple-choice)](https://github.com/user-attachments/assets/7e918a3c-365d-4f05-917a-ee9066f37644)
@@ -103,70 +107,76 @@ This template does not use any of the original Memrise code and is written from 
 > 
 >> All screenshots and recordings are marked by the respective logos:
 >> 
->>>> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
+>> ![ank_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99799137-a232-42d0-8321-d11cacd00fcd) - **Anki**
 >> 
 >> ![mem_s](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/f5fd82ba-c612-44a5-8f34-e10c946d680f) - **Memrise**
 >&nbsp;
 > 
-> 1. Elements jumping on answer submission
+> 1. Elements jitter on the answer submission
 > 
-> ![Submit jitter (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
+>> ![Submit jitter (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7c6a4ff3-05f6-4c9a-83ec-288584e65697)
 >&nbsp;
 >
 > 2. Cropped text labels 
 >
-> ![Fonts cropping (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bec6453-353b-4c5c-9cef-b34592bb9457)
+>> ![Fonts cropping (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/2bec6453-353b-4c5c-9cef-b34592bb9457)
 >&nbsp;
 >
 >3. Audio icons blurring on hover
 >
-> ![Audio blurring (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7f04ce9e-3ec7-46f6-a418-21354b962c49)
+>> ![Audio blurring (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7f04ce9e-3ec7-46f6-a418-21354b962c49)
 >&nbsp;
 > 
 > 4. Added keyboard navigation for audio buttons
 >
-> ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
+>> ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
 >&nbsp;
 > 
-> 5. On-screen keyboard buttons response to clicks:
+> 5. On-screen keyboard buttons respond to clicks:
 >
-> ![Button clicks (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/954d1852-ca73-43b3-b188-5cc3ec701305)
+>> ![Button clicks (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/954d1852-ca73-43b3-b188-5cc3ec701305)
 >&nbsp;
 >
 > 6. Keyboard character alignment improved (text baseline instead of bounding box center):
 >
-> ![Keys centering (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/107f4c4f-7a81-4d77-b33b-f76fee53e213)
+>> ![Keys centering (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/107f4c4f-7a81-4d77-b33b-f76fee53e213)
 >&nbsp;
 >
 > 7. Aliasing artefacts in the corners of buttons:
 >
-> ![Aliasing (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/85f11f4e-c6ee-429d-b462-149b9d6c907b)
+>> ![Aliasing (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/85f11f4e-c6ee-429d-b462-149b9d6c907b)
 >&nbsp;
 >
 > 8. The pressed multiple-choice button stays pressed instead of jittering back:
 > 
-> ![Multiple-choice click (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/74e1c2f1-d4ae-4e13-9210-bc7b33705654)
+>> ![Multiple-choice click (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/74e1c2f1-d4ae-4e13-9210-bc7b33705654)
 >&nbsp;
 >
 > 9. Color scheme is consistent (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
 >
-> ![Color scheme (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/1ff3e975-98b7-4267-b492-eecbaa75f149)
->
-> ![Color scheme (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99f50d23-2d68-4715-b8af-846747b7a07c)
+>> ![Color scheme (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/1ff3e975-98b7-4267-b492-eecbaa75f149)
+>>
+>> ![Color scheme (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99f50d23-2d68-4715-b8af-846747b7a07c)
 >&nbsp;
 >
 > 10. Multiple-choice number labels centering:
 > 
-> ![Multiple-Choice labels (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/be7b7a63-71e5-429e-87f5-e54e34ba0c56)
+>> ![Multiple-Choice labels (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/be7b7a63-71e5-429e-87f5-e54e34ba0c56)
 >&nbsp;
 >
-> 11. Multiple-choice questions are ensured to have only unique options, unlike their implementation at Memrise:
+> 11. Multiple-choice questions are ensured to have unique options, unlike their implementation at Memrise:
 >
-> ![Choice is not an option (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/532d3665-5dce-4614-a119-9b8908ab3c46)
+>> ![Choice is not an option (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/532d3665-5dce-4614-a119-9b8908ab3c46)
+>&nbsp;
 >
 > 12. Audio buttons do not use raster assets, which reduces size, improves image sharpness, and keeps the code self-contained. Also, icons for audio questions do not scale up to comically large sizes on wide monitors.
 >
-> ![Audio button blurring](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/34a32bdc-e2c4-49c4-92c6-49af8fb71040)
+>> ![Audio button blurring](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/34a32bdc-e2c4-49c4-92c6-49af8fb71040)
+>&nbsp;
+>
+> 13. Keyboard in tapping questions does not jitter on the first input. Also, the tapping buttons visibly respond to key presses:
+> 
+>> ![Tapping buttons jitter and responsiveness](https://github.com/user-attachments/assets/e6816ff6-e2c6-45f4-a485-e777119c47b8)
 >
 ></details>
 
