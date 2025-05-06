@@ -242,7 +242,7 @@ The template can be used for Memrise courses imported into Anki with [this exten
 
 ### Copyright notice
 
-Copyright © 2023-2024 Eltaurus
+Copyright © 2023-2025 Eltaurus
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
