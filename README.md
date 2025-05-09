@@ -184,9 +184,20 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 ### Customization
 
-*Comprehensive instructions will be posted here when ready.*
+#### Basics
 
-Meanwhile, you can find tips on various customization aspects in the following posts:
+##### Notes vs Cards
+
+You can read more about it [here](https://docs.ankiweb.net/getting-started.html#key-concepts).
+
+##### Editing card templates
+
+#### 
+
+#####
+
+
+Additional tips on various customization aspects can be found in the following posts:
 
 1. [Setting up the on-screen keyboard, creating Multiple-choice cards](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/54?u=eltaurus) (alternatively: [disabling the on-screen keyboard](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/97?u=eltaurus))
 2. [Adding new fields and more card types (testing directions) per note, customizing displayed field labels](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/31?u=eltaurus) ([brief description of the default field roles](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/75?u=eltaurus))
