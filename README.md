@@ -182,11 +182,9 @@ This template does not use any of the original Memrise code and is written from 
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
-### Customization
+### Key concepts (Anki vs Memrise)
 
-#### Key concepts (Anki vs Memrise)
-
-When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise, it might be easier to understand those by analogy: 
+When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise (especially if you have edited a community course there), it might be easier to understand those by analogy: 
 
  - **Note Types = Databases**
 
@@ -219,83 +217,131 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
 As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings.
 
-
+### Customization
 
 #### Relevant Anki windows
 
-Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action see the further instructions down below.
-
-##### Browser
-
-To view Cards in your collection, click the `Browse` button in the top center menu. 
-<details>
-<summary>Details:</summary>   
-
-> Use `Cards`/`Notes` toggle to switch between displaying individual Cards, or showing them as a single Note as a whole.
-> Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
-</details>
-
-##### Note Editor
-
-Editor is a part of [the Browser](#browser), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
-
-##### Note Type manager
-
-<details>
-<summary>To open the Note Type manager window:</summary>     
-     
->click `Tools`→`Manage Note Types` in the top menu of the main Anki window
->
->OR
->
->click `Notes`→`Manage Note Types` in the top menu of the [Browser window](#browser)
-</details>
-
-##### Field editor
-
-<details>
-<summary>To edit Fields of a Note Type:</summary> 
-
-> select the Note Type in [the Note Type manager](#note-type-manager) and click `Fields` button on the right
->
-> OR 
->
-> with any Card of the Note Type selected in [the Browser](#browser), click the `Fields` button on [the Editor](#note-editor) toolbar
-</details>
-
-##### Card Type editor
-
-<details>
-<summary>To edit Card Types of a Note Type:</summary>     
-
-> select the Note Type in [the Note Type manager](#note-type-manager) and click `Cards` button on the right
+> Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action see the further instructions down below.
 > 
-> OR 
+> ##### Browser
 > 
-> with any Card of the Note Type selected in [the Browser](#browser), click the `Cards` button on [the Editor](#note-editor) toolbar
-</details>
-
-🚧🚧🚧
+> To view Cards in your collection, click the `Browse` button in the top center menu. 
+> <details>
+> <summary>Details:</summary>   
+> 
+> > Use `Cards`/`Notes` toggle to switch between displaying individual Cards, or showing them as a single Note as a whole.
+> > Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
+> </details>
+> 
+> ##### Note Editor
+> 
+> Editor is a part of [the Browser](#browser), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
+> 
+> ##### Note Type manager
+> 
+> <details>
+> <summary>To open the Note Type manager window:</summary>     
+>      
+> >click `Tools`→`Manage Note Types` in the top menu of the main Anki window
+> >
+> >OR
+> >
+> >click `Notes`→`Manage Note Types` in the top menu of the [Browser window](#browser)
+> </details>
+> 
+> ##### Field editor
+> 
+> <details>
+> <summary>To edit the Fields of a Note Type:</summary> 
+> 
+> > select the Note Type in [the Note Type manager](#note-type-manager) and click `Fields` button on the right
+> >
+> > OR 
+> >
+> > with any Card of the Note Type selected in [the Browser](#browser), click the `Fields` button on [the Editor](#note-editor) toolbar
+> </details>
+> 
+> ##### Card Type editor
+> 
+> <details>
+> <summary>To edit Card Types of a Note Type:</summary>     
+> 
+> > select the Note Type in [the Note Type manager](#note-type-manager) and click `Cards` button on the right
+> > 
+> > OR 
+> > 
+> > with any Card of the Note Type selected in [the Browser](#browser), click the `Cards` button on [the Editor](#note-editor) toolbar
+> >
+> > You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
+> </details>
 
 #### Editing Note Types
 
 ##### 1. Making a new Note Type based on the Memrise template
 
-  <details>
-    <summary>step-by-step</summary>
+  The Memrise template is designed to be cloned into different Note Types, each of which can then be further customized to better fit each Language and Discipline studied
 
-    1. Open the Note Type manager window (In the top menu: `Tools`→`Manage Note Types`)
-    2. Click `Add` button on the left side of the window
-    2. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
-    3. Click `Ok`
-    4. Enter the desired name for the new Note Type, e.g. `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
-    5. Click `Ok`
-    6. Go on to 
-  </details>
+<details>
+  <summary>step-by-step:</summary>
+     
+>   1. Open [the Note Type manager](#note-type-manager)
+>   2. Click `Add` button on the left side of the window
+>   3. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
+>   4. Click `Ok`
+>   5. Enter the desired name for the new Note Type, e.g. `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
+>   6. Click `Ok`
+>   7. Go on to customizing [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types] of the created Note Type
 
-##### 2. Converting Cards to a different Note Type
+</details>
 
-##### 3. Checking the template version
+##### 2. Renaming Fields and adding new Fields
+
+The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g. "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). New Fields can also be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
+
+<details>
+  <summary>step-by-step:</summary>
+     
+>   1. Open [the Field editor](#field-editor)
+>   2. The Fields can be renamed, reordered, or added using the buttons on the right side (reordering fields here only affects their displayed order in [the Editor](#field-editor), not how they are presented on the Cards during reviews!)
+>   3. Click 'Save'
+>   4. Open [the Card editor](#card-type-editor)
+>   5. If you renamed a preexisting Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename those text labels to match the new name of the Field
+>   6. If you added a new Field, it should also be inserted somewhere on the Card template to be visible when a Card is reviewed. For example, to add it as another extra Field on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to be displayed on:
+> 
+>       ```html
+> 		          {{#NewFieldName}}
+> 			          <div class="mem-field no-alts">
+> 			          	<label>NewFieldName</label>
+> 			          	<h4>{{NewFieldName}}</h4>      
+> 			          </div>
+> 		          {{/NewFieldName}}
+>       ```
+    
+</details>
+
+
+##### 3. Converting Notes to a different Type
+
+Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#4-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
+
+<details>
+  <summary>step-by-step:</summary>
+
+>   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
+>   1. Open [the Browser](#browser)
+>   2. Select the Notes that needed to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
+>   3. In the top menu, click `Notes`→`Change Note Type`
+>   4. Select the new Note Type in the top dropdown list
+>   5. Set up the mapping between the Fields and Card Types of the old Note Type into the new
+>   6. Click `Save`
+
+</details>
+
+##### 4. Checking the template version
+
+While the shared deck includes the version of the Memrise template in the names of each Note Type the templates and the presets, this part can be dropped when renaming a new Note Type or no longer correctly represent the contents of the Note Type if it got updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#card-type-editor), at the top of the Styling tab
+
+🚧🚧🚧
 
 #### Editing Card Types
 
@@ -357,17 +403,11 @@ Things like the on-screen keyboard, the hint button, spelling diffs, and anythin
   1. Open
 </details>
 
-##### Renaming Fields
 
-##### Adding Fields
 
 #### Advanced
 
 1. ##### 
-
-
-
-
 
 Additional tips on various customization aspects can be found in the following posts:
 
@@ -381,43 +421,7 @@ Additional tips on various customization aspects can be found in the following p
 
 Any questions regarding other ways of customization and requests for clarification of the above points are always welcome in [the same thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 
-*Please keep in mind, that all changes on the "Styling" tab, as well as the the ones made to JavaScript code, will have to be manually reimplemented when updating to future template versions*
 
-<details>
-<summary>🚧</summary>
-The main file is `Memrise Templates (Lτ) v2.3.apkg`. Opening it with Anki adds `Memrise Templates (Lτ) v2.3` Note Type, which can then be used to create new cards, change Note Type of existing ones, or import external spreadsheets.
-<br><sub>Both, the deck and the single card in it, which are imported with the Note Type, serve only as its holders and can be deleted right away.</sub>
-
-- Memrise vs Anki
-  -  Note vs Card
-  -  Note Type settings = course settings | Card Type settings = level settings)
-- Adding Note Type
-- Adding Card Type
-  - text and labels
-  - changing question | converting to Audio/image
-  - changing answer | converting to MCh
-  - conditions
-- Editing Note Fields (Memrise columns)
-  - Adding (New {{Extra}} | {{Notes}})
-  - Renaming 
-- keyboard
-- classes: off | memblob | large
-</details>
-
-- Converting from other Note Types
-
-If you have cards in your collection, that were previously created with other templates, and you want to convert them to this one, after downloading and importing the latest `.akpg` deck follow these steps:
-
-1. In your Anki open the Browser by clicking on **`Browse`** button in the top center menu
-2. In the left tab scroll down and open the `Note Types` category
-3. Click on the name of a Note Type you want to convert
-4. Click on any of the cards displayed in the table, then press `Ctrl + A` to select all of them
-5. In the top menu go to `Notes` -> `Change Note Type`
-6. In the top right dialog of Note Type conversion select the Memrise template you want to use
-7. Check the mapping of the Current fields to the New ones
-8. Press `Save`
-
-<sub>Same steps can be taken to update from older versions of the Memrise Template. In that case, fields on the left and on the right in step 7 should be identical.</sub>
 
 ### Downloading courses from Memrise
 
