@@ -174,7 +174,7 @@ This template does not use any of the original Memrise code and is written from 
 >> ![Audio button blurring](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/34a32bdc-e2c4-49c4-92c6-49af8fb71040)
 >&nbsp;
 >
-> 13. Keyboard in tapping questions does not jitter on the first input. Also, the tapping buttons visibly respond to key presses:
+> 13. The keyboard in tapping questions does not jitter on the first input. Also, the tapping buttons visibly respond to key presses:
 > 
 >> ![Tapping buttons jitter and responsiveness](https://github.com/user-attachments/assets/e6816ff6-e2c6-45f4-a485-e777119c47b8)
 >
@@ -182,19 +182,124 @@ This template does not use any of the original Memrise code and is written from 
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
-### Customization
+### 🚧 Customization 🚧
 
-#### Basics
+#### Key concepts (Anki vs Memrise)
 
-##### Notes vs Cards
+When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise, it might be easier to understand those by analogy: 
 
-You can read more about it [here](https://docs.ankiweb.net/getting-started.html#key-concepts).
+ - **Note Types = Databases**
 
-##### Editing card templates
+    This is the highest-order structure. Generally speaking, each Note Type corresponds to a different Language or a Discipline. To use [the provided template](#-quick-start) effectively, it's recommended to take one of its Note Types as a base, make a copy for each studied topic, and then customize all the specific properties described below (Fields, Card Types, etc.), adjusting the created Note Types to fit their intended purposes.
+   
+ - **Fields = Database (Level) columns**
 
-#### 
+    Like Databases on Memrise, each Note Type in Anki can be adjusted to have its own set of Fields ("Learnable", "Definition", "Audio", ...). On Memrise, each column had to be set up to one of the three types of content: Text, Audio, or Images. Anki Fields are more general in that regard, and do not inherently differ from each other — any field can contain any type of content: all kinds of text (plain/rich, bold/italic, colored, formatted, including lists, hyperlinks, etc.), media (audio, images, and also video), or any mix of the above. It is, nevertheless, still a good idea to keep things organized and split data into different Fields properly: this will keep even large collections of Notes manageable and make the Note Type flexible and easily customizable.
+  
+ - **Notes = Database words**
 
-#####
+    In Anki, after a Note Type is set up, new Notes can be [added manually](https://docs.ankiweb.net/editing.html#adding-cards-and-notes), [imported from a spreadsheet](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#3-importing-the-spreadsheet), or generated automatically from any web content, using such tools as [Yomitan](https://yomitan.wiki/). On Memrise, if your course was designed to test on the same database entries in different directions (e.g. "word"→"translation", "translation"→"word", etc.), you would have to split the tests into different levels and then manually add a new entry into each level every time the database gets updated. Anki generates all needed Cards (tests) automatically based on predefined rules (Card Types, see below) each time a new Note is added, so there is no need for any extra steps.
+
+ - **Cards = Level Words**
+ 
+    Memrise terminology might be confusing here because it refers to Database entries and Level entries both as "Words", even though a single Database Word can correspond to several Level "Words" (for tests in different directions). In this regard, Anki Cards serve the same role as Memrise Level Words: presenting separate questions generated (automatically) from the same data (stored as a single Note). This is not limited to testing directions, however, but also encompasses input selection (enabling Typing and Tapping tests in Memrise Level Column settings) and Audio cards (a global course setting on Memrise). Each card has its own review history, which means that if, for example, you recognize a word in text much better than by hearing it, the associated audio cards will start appearing during reviews more often than the text ones.
+
+ - **Cards Types**
+ 
+    As mentioned previously, Card Types are the Anki way of handling the generation of multiple questions per Note, which does not have a single Memrise analogue, but rather serves as a unification of several scattered Memrise settings and provides a level of automation unavailable on Memrise in the first place. Each Card Type represents a certain combination of testing direction, question type, input mode, and other similar settings (keyboard layout, theme, etc.), allowing for a detailed configuration of any such combination.
+   
+   Like Fields, Card Types are a property of Note Types: for each Note made using a certain Note Type, one Card of each Card Type specified in this Note Type's settings gets generated.
+ 
+ - **Decks = Categories/Courses/Levels**
+
+    On Memrise, Words are organized into three levels of hierarchy: the top one is Categories (dropdown menu on a course selection screen), which contain separate Courses, which, in turn, might (or might not) be subdivided into Levels containing individual Words. In Anki, Cards are gathered in Decks, with Decks and Cards acting practically the same way as Folders and Files in a filesystem. Decks can be nested inside each other to make any type of hierarchical structure, including the Memrise three-level system (and any other system with more/less/variable-number-of levels of subdivision). With nested decks, the reviews can be performed for a top-level deck as a whole or for any specific subdeck, if required.
+    
+    *Notes are not explicitly placed in any Deck or anywhere else in particular, instead they are being accessed only via their respective Cards (each Note always has at least one Card generated from it). Cards made from the same Note can be distributed over different Decks and vice-versa: one deck can contain Cards of different Card- and Note Types (in contrast to Memrise, where Levels can only contain Words with the same set of Fields and same testing direction).
+
+
+As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings.
+
+
+#### Editing Note Types
+
+##### 0. Note Type manager
+
+##### 1. Renaming a template
+
+##### 2. Making a new template
+
+##### 3. Checking template version
+
+#### Editing Card Types
+
+0. ##### Card template editor
+
+1. ##### Adding, Removing, and Renaming Card Types
+
+2. ##### Changing the prompt field
+
+3. ##### Changing the tested field
+
+4. ##### On-screen keyboard layout
+
+5. ##### Changing input method
+
+  <details>
+    <summary>Changing input method to Typing:</summary>
+
+    0. Open the [Card template editor] for the version of the template you are trying to modify
+  </details>
+  
+  <details>
+    <summary>Changing input method to Multiple-Choice:</summary>
+
+    0. Open the [Card template editor] for the version of the template you are trying to modify
+  </details>
+
+  <details>
+    <summary>Changing input method to Tapping:</summary>
+
+    0. Open the [Card template editor] for the version of the template you are trying to modify
+  </details>
+
+  <details>
+    <summary>Changing input method on a Cloze template:</summary>
+
+    0. Open the [Card template editor] for the version of the template you are trying to modify
+  </details>
+
+  <details>
+    <summary>Enabling Math mode:</summary>
+
+    0. Open the [Card template editor] for the version of the template you are trying to modify
+  </details>
+
+6. ##### Enabling and disabling specific elements
+
+Things like the on-screen keyboard, the hint button, spelling diffs, and anything else
+
+7. ##### Selecting a theme
+
+#### Editing Fields
+
+##### Field editor
+
+<details>
+  <summary>A general window for all operations in this section:</summary>
+
+  1. Open
+</details>
+
+##### Renaming Fields
+
+##### Adding Fields
+
+#### Advanced
+
+1. ##### 
+
+
+
 
 
 Additional tips on various customization aspects can be found in the following posts:
