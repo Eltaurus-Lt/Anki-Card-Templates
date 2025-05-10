@@ -182,7 +182,7 @@ This template does not use any of the original Memrise code and is written from 
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
-### 🚧 Customization 🚧
+### Customization
 
 #### Key concepts (Anki vs Memrise)
 
@@ -190,11 +190,11 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
  - **Note Types = Databases**
 
-    This is the highest-order structure. Generally speaking, each Note Type corresponds to a different Language or a Discipline. To use [the provided template](#-quick-start) effectively, it's recommended to take one of its Note Types as a base, make a copy for each studied topic, and then customize all the specific properties described below (Fields, Card Types, etc.), adjusting the created Note Types to fit their intended purposes.
+    Like Databases on Memrise, Note Types are the highest-order concept in Anki. Generally speaking, each Note Type corresponds to a different Language or a Discipline. To use [the provided template](#-quick-start) effectively, it's recommended to take one of its Note Types as a base, make a copy for each studied topic, and then customize all the specific properties described below (Fields, Card Types, etc.), adjusting the created Note Types to fit their intended purposes.
    
  - **Fields = Database (Level) columns**
 
-    Like Databases on Memrise, each Note Type in Anki can be adjusted to have its own set of Fields ("Learnable", "Definition", "Audio", ...). On Memrise, each column had to be set up to one of the three types of content: Text, Audio, or Images. Anki Fields are more general in that regard, and do not inherently differ from each other — any field can contain any type of content: all kinds of text (plain/rich, bold/italic, colored, formatted, including lists, hyperlinks, etc.), media (audio, images, and also video), or any mix of the above. It is, nevertheless, still a good idea to keep things organized and split data into different Fields properly: this will keep even large collections of Notes manageable and make the Note Type flexible and easily customizable.
+    Also like Databases on Memrise, each Note Type in Anki has its own set of Fields ("Learnable", "Definition", "Audio", ...). On Memrise, each column had to be set up to one of the three types of content: Text, Audio, or Images. Anki Fields are more general in that regard, and do not inherently differ from each other — any field can contain any type of content: all kinds of text (plain/rich, bold/italic, colored, formatted, including lists, hyperlinks, etc.), media (audio, images, and also video), or any mix of the above. It is, nevertheless, still a good idea to keep things organized and split data into different Fields properly: this will keep even large collections of Notes manageable and make the Note Type flexible and easily customizable.
   
  - **Notes = Database words**
 
@@ -219,6 +219,7 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
 As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings.
 
+🚧🚧🚧
 
 #### Editing Note Types
 
