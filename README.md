@@ -190,7 +190,7 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
  - **Note Types = Databases**
 
-    Like Databases on Memrise, Note Types are the highest-order concept in Anki. Generally speaking, each Note Type corresponds to a different Language or a Discipline. To use [the provided template](#-quick-start) effectively, it's recommended to take one of its Note Types as a base, make a copy for each studied topic, and then customize all the specific properties described below (Fields, Card Types, etc.), adjusting the created Note Types to fit their intended purposes.
+    Like Databases on Memrise, Note Types are the highest-order concept in Anki. Generally speaking, each Note Type corresponds to a different Language or a Discipline. To use [the provided Memrise template](#-quick-start) effectively, it's recommended to take one of its Note Types as a base, make a copy for each studied topic, and then customize all the specific properties described below (Fields, Card Types, etc.), adjusting the created Note Types to fit their intended purposes.
    
  - **Fields = Database (Level) columns**
 
@@ -214,26 +214,92 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
     On Memrise, Words are organized into three levels of hierarchy: the top one is Categories (dropdown menu on a course selection screen), which contain separate Courses, which, in turn, might (or might not) be subdivided into Levels containing individual Words. In Anki, Cards are gathered in Decks, with Decks and Cards acting practically the same way as Folders and Files in a filesystem. Decks can be nested inside each other to make any type of hierarchical structure, including the Memrise three-level system (and any other system with more/less/variable-number-of levels of subdivision). With nested decks, the reviews can be performed for a top-level deck as a whole or for any specific subdeck, if required.
     
-    *Notes are not explicitly placed in any Deck or anywhere else in particular, instead they are being accessed only via their respective Cards (each Note always has at least one Card generated from it). Cards made from the same Note can be distributed over different Decks and vice-versa: one deck can contain Cards of different Card- and Note Types (in contrast to Memrise, where Levels can only contain Words with the same set of Fields and same testing direction).
+    *Notes are not explicitly placed in any Deck or anywhere else in particular; instead, they are accessed only via their respective Cards (each Note always has at least one Card generated from it). Cards made from the same Note can be distributed over different Decks and vice-versa: one deck can contain Cards of different Card- and Note Types (in contrast to Memrise, where Levels can only contain Words with the same set of Fields and same testing direction).
 
 
 As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings.
+
+
+
+#### Relevant Anki windows
+
+Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action see the further instructions down below.
+
+##### Browser
+
+To view Cards in your collection, click the `Browse` button in the top center menu. 
+<details>
+<summary>Details:</summary>   
+
+> Use `Cards`/`Notes` toggle to switch between displaying individual Cards, or showing them as a single Note as a whole.
+> Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
+</details>
+
+##### Note Editor
+
+Editor is a part of [the Browser](#browser), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
+
+##### Note Type manager
+
+<details>
+<summary>To open the Note Type manager window:</summary>     
+     
+>click `Tools`→`Manage Note Types` in the top menu of the main Anki window
+>
+>OR
+>
+>click `Notes`→`Manage Note Types` in the top menu of the [Browser window](#browser)
+</details>
+
+##### Field editor
+
+<details>
+<summary>To edit Fields of a Note Type:</summary> 
+
+> select the Note Type in [the Note Type manager](#note-type-manager) and click `Fields` button on the right
+>
+> OR 
+>
+> with any Card of the Note Type selected in [the Browser](#browser), click the `Fields` button on [the Editor](#note-editor) toolbar
+</details>
+
+##### Card Type editor
+
+<details>
+<summary>To edit Card Types of a Note Type:</summary>     
+
+> select the Note Type in [the Note Type manager](#note-type-manager) and click `Cards` button on the right
+> 
+> OR 
+> 
+> with any Card of the Note Type selected in [the Browser](#browser), click the `Cards` button on [the Editor](#note-editor) toolbar
+</details>
 
 🚧🚧🚧
 
 #### Editing Note Types
 
-##### 0. Note Type manager
+##### 1. Making a new Note Type based on the Memrise template
 
-##### 1. Renaming a template
+  <details>
+    <summary>step-by-step</summary>
 
-##### 2. Making a new template
+    1. Open the Note Type manager window (In the top menu: `Tools`→`Manage Note Types`)
+    2. Click `Add` button on the left side of the window
+    2. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
+    3. Click `Ok`
+    4. Enter the desired name for the new Note Type, e.g. `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
+    5. Click `Ok`
+    6. Go on to 
+  </details>
 
-##### 3. Checking template version
+##### 2. Converting Cards to a different Note Type
+
+##### 3. Checking the template version
 
 #### Editing Card Types
 
-0. ##### Card template editor
+0. ##### Card Type editor
 
 1. ##### Adding, Removing, and Renaming Card Types
 
