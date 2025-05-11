@@ -215,7 +215,7 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
     *Notes are not explicitly placed in any Deck or anywhere else in particular; instead, they are accessed only via their respective Cards (each Note always has at least one Card generated from it). Cards made from the same Note can be distributed over different Decks and vice-versa: one deck can contain Cards of different Card- and Note Types (in contrast to Memrise, where Levels can only contain Words with the same set of Fields and same testing direction).
 
 
-As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings.
+As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings. If you have any further questions, feel free to drop them in [the template forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 
 ### Customization
 
@@ -344,71 +344,59 @@ While the shared deck includes the version of the Memrise template in the names 
 
 #### Editing Card Types
 
-0. ##### Card Type editor
+##### 1. Adding Card Types
 
-1. ##### Adding, Removing, and Renaming Card Types
 
-2. ##### Changing the prompt field
 
-3. ##### Changing the tested field
+##### 2. Removing and renaming Card Types
 
-4. ##### On-screen keyboard layout
+##### 3. Changing the question field
 
-5. ##### Changing input method
+##### 4. Changing the answer field
 
-  <details>
-    <summary>Changing input method to Typing:</summary>
+##### 5. Changing input method
 
-    0. Open the [Card template editor] for the version of the template you are trying to modify
-  </details>
+<details>
+  <summary>Changing input method to Typing:</summary>
+
+  0. Open the [Card template editor] for the version of the template you are trying to modify
+</details>
   
-  <details>
-    <summary>Changing input method to Multiple-Choice:</summary>
+<details>
+  <summary>Changing input method to Multiple-Choice:</summary>
 
-    0. Open the [Card template editor] for the version of the template you are trying to modify
-  </details>
+  0. Open the [Card template editor] for the version of the template you are trying to modify
+</details>
 
-  <details>
-    <summary>Changing input method to Tapping:</summary>
+<details>
+  <summary>Changing input method to Tapping:</summary>
 
-    0. Open the [Card template editor] for the version of the template you are trying to modify
-  </details>
+  0. Open the [Card template editor] for the version of the template you are trying to modify
+</details>
 
-  <details>
-    <summary>Changing input method on a Cloze template:</summary>
+<details>
+  <summary>Changing input method on a Cloze template:</summary>
 
-    0. Open the [Card template editor] for the version of the template you are trying to modify
-  </details>
+  0. Open the [Card template editor] for the version of the template you are trying to modify
+</details>
 
-  <details>
-    <summary>Enabling Math mode:</summary>
+<details>
+  <summary>Enabling Math mode:</summary>
 
-    0. Open the [Card template editor] for the version of the template you are trying to modify
-  </details>
+  0. Open the [Card template editor] for the version of the template you are trying to modify
+</details>
 
-6. ##### Enabling and disabling specific elements
+##### 6. On-screen keyboard layout  
+
+##### 7. Enabling and disabling specific elements
 
 Things like the on-screen keyboard, the hint button, spelling diffs, and anything else
 
-7. ##### Selecting a theme
-
-#### Editing Fields
-
-##### Field editor
-
-<details>
-  <summary>A general window for all operations in this section:</summary>
-
-  1. Open
-</details>
-
-
+##### 8. Selecting a theme
 
 #### Advanced
 
-1. ##### 
-
-Additional tips on various customization aspects can be found in the following posts:
+Additional tips on various customization aspects can be found in these older forum posts:
 
 1. [Setting up the on-screen keyboard, creating Multiple-choice cards](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/54?u=eltaurus) (alternatively: [disabling the on-screen keyboard](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/97?u=eltaurus))
 2. [Adding new fields and more card types (testing directions) per note, customizing displayed field labels](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/31?u=eltaurus) ([brief description of the default field roles](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/75?u=eltaurus))
