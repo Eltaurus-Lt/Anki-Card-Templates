@@ -2,7 +2,7 @@
 
 ## Memrise Template v5.0
 
-This Anki [Note Type](https://docs.ankiweb.net/getting-started.html#note-types) template recreates Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account), keeping the option for manual grading as well. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (the **desktop** app, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**\*) in **offline mode** and can be used reviewing cards **online** directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
+This Anki [Note Type](#key-concepts-anki-vs-memrise) template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account), keeping the option for manual grading as well. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (the **desktop** app, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**\*) in **offline mode** and can be used reviewing cards **online** directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
 
 <sup>*There are some (non-breaking) differences in how the template looks and works on iOS. If anyone wishes to participate in testing to help iron out the remaining discrepancies, please get [in contact](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233)</sup>
 <br>
@@ -192,7 +192,7 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
    
  - **Fields = Database (Level) columns**
 
-    Also like Databases on Memrise, each Note Type in Anki has its own set of Fields ("Learnable", "Definition", "Audio", ...). On Memrise, each Column had to be set up to one of the three types of content: Text, Audio, or Images. Anki Fields are more general in that regard, and do not inherently differ from each other — any Field can contain any type of content: all kinds of text (plain/rich, bold/italic, colored, formatted, including lists, hyperlinks, etc.), media (audio, images, and also video), or any mix of the above. It is, nevertheless, still a good idea to keep things organized and split data into different Fields properly: this will keep even large collections of Notes manageable and make the Note Type flexible and easily customizable.
+    Also like Databases on Memrise, each Note Type in Anki has its own set of Fields ("Learnable", "Definition", "Audio", ...). On Memrise, each Column had to be set up to one of the three types of content: Text, Audio, or Images. Anki Fields are more general in that regard, and do not inherently differ from each other — any Field can contain any type of content: all kinds of text (plain/rich, bold/italic, colored, formatted, including lists, hyperlinks, math equations, etc.), media (audio, images, and also video), or any mix of the above. It is, nevertheless, still a good idea to keep things organized and split data into different Fields properly: this will keep even large collections of Notes manageable and make the Note Type flexible and easily customizable.
   
  - **Notes = Database words**
 
@@ -221,59 +221,58 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 
 #### Relevant Anki windows
 
-> Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action see the further instructions down below.
-> 
-> ##### Browser
-> 
+Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action, see the further instructions below.
+ 
+<details>
+<summary>Card Browser:</summary>
+     
+>
 > To view Cards in your collection, click the `Browse` button in the top center menu. 
-> <details>
-> <summary>Details:</summary>   
 > 
-> > Use `Cards`/`Notes` toggle to switch between displaying individual Cards, or showing them as a single Note as a whole.
-> > Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
-> </details>
+> Use `Cards`/`Notes` toggle to switch between displaying individual Cards or showing them as a single Note as a whole.
+> Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
+</details>
+
+<details>
+<summary>Note Editor:</summary>
+ 
+> Editor is a part of [the Card Browser](#relevant-anki-windows), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
+
+</details>
+
+<details>
+<summary>Note Type manager:</summary> 
+
+>
+> click `Tools`→`Manage Note Types` in the top menu of the main Anki window
 > 
-> ##### Note Editor
+> OR
 > 
-> Editor is a part of [the Browser](#browser), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
+> click `Notes`→`Manage Note Types` in the top menu of [the Card Browser](#relevant-anki-windows) window
+>
+</details>
+
+<details>
+<summary>Field editor:</summary> 
+ 
+> select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Fields` button on the right
 > 
-> ##### Note Type manager
+> OR 
 > 
-> <details>
-> <summary>To open the Note Type manager window:</summary>     
->      
-> >click `Tools`→`Manage Note Types` in the top menu of the main Anki window
-> >
-> >OR
-> >
-> >click `Notes`→`Manage Note Types` in the top menu of the [Browser window](#browser)
-> </details>
+> with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Fields` button on [the Note Editor](#relevant-anki-windows) toolbar
+</details>
+ 
+<details>
+<summary>Card Type editor:</summary>     
+ 
+> select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Cards` button on the right
+>  
+> OR 
+>  
+> with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Cards` button on [the Note Editor](#relevant-anki-windows) toolbar
 > 
-> ##### Field editor
-> 
-> <details>
-> <summary>To edit the Fields of a Note Type:</summary> 
-> 
-> > select the Note Type in [the Note Type manager](#note-type-manager) and click `Fields` button on the right
-> >
-> > OR 
-> >
-> > with any Card of the Note Type selected in [the Browser](#browser), click the `Fields` button on [the Editor](#note-editor) toolbar
-> </details>
-> 
-> ##### Card Type editor
-> 
-> <details>
-> <summary>To edit Card Types of a Note Type:</summary>     
-> 
-> > select the Note Type in [the Note Type manager](#note-type-manager) and click `Cards` button on the right
-> > 
-> > OR 
-> > 
-> > with any Card of the Note Type selected in [the Browser](#browser), click the `Cards` button on [the Editor](#note-editor) toolbar
-> >
-> > You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
-> </details>
+> You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
+</details>
 
 #### Editing Note Types
 
@@ -284,7 +283,7 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 <details>
   <summary>step-by-step:</summary>
      
->   1. Open [the Note Type manager](#note-type-manager)
+>   1. Open [the Note Type manager](#relevant-anki-windows)
 >   2. Click `Add` button on the left side of the window
 >   3. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
 >   4. Click `Ok`
@@ -301,10 +300,10 @@ The default Field names of the Memrise template can be renamed to better reflect
 <details>
   <summary>step-by-step:</summary>
      
->   1. Open [the Field editor](#field-editor)
->   2. The Fields can be renamed, reordered, or added using the buttons on the right side (reordering fields here only affects their displayed order in [the Editor](#field-editor), not how they are presented on the Cards during reviews!)
+>   1. Open [the Field editor](#relevant-anki-windows)
+>   2. The Fields can be renamed, reordered, or added using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
 >   3. Click 'Save'
->   4. Open [the Card editor](#card-type-editor)
+>   4. Open [the Card Type editor](#relevant-anki-windows)
 >   5. If you renamed a preexisting Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename those text labels to match the new name of the Field
 >   6. If you added a new Field, it should also be inserted somewhere on the Card template to be visible when a Card is reviewed. For example, to add it as another extra Field on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to be displayed on:
 > 
@@ -328,8 +327,8 @@ Notes can be converted from one Note Type to another after creation. This can be
   <summary>step-by-step:</summary>
 
 >   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
->   1. Open [the Browser](#browser)
->   2. Select the Notes that needed to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
+>   1. Open [the Card Browser](#relevant-anki-windows)
+>   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
 >   3. In the top menu, click `Notes`→`Change Note Type`
 >   4. Select the new Note Type in the top dropdown list
 >   5. Set up the mapping between the Fields and Card Types of the old Note Type into the new
@@ -339,7 +338,7 @@ Notes can be converted from one Note Type to another after creation. This can be
 
 ##### 4. Checking the template version
 
-While the shared deck includes the version of the Memrise template in the names of each Note Type the templates and the presets, this part can be dropped when renaming a new Note Type or no longer correctly represent the contents of the Note Type if it got updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#card-type-editor), at the top of the Styling tab
+While the shared deck includes the version of the Memrise template in the names of each Note Type the templates and the presets, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab
 
 🚧🚧🚧
 
