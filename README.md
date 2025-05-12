@@ -225,56 +225,56 @@ This section provides detailed instructions for customizing the Memrise template
 
 Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action, see the further instructions below.
  
-<details>
-<summary>Card Browser:</summary>
-     
->
-> To view Cards in your collection, click the `Browse` button in the top center menu. 
+> <details>
+> <summary>Card Browser:</summary>
+>      
+> >
+> > To view Cards in your collection, click the `Browse` button in the top center menu. 
+> > 
+> > Use `Cards`/`Notes` toggle to switch between displaying individual Cards or showing them as a single Note as a whole.
+> > Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
+> </details>
 > 
-> Use `Cards`/`Notes` toggle to switch between displaying individual Cards or showing them as a single Note as a whole.
-> Subsets of Cards can be filtered out by using the [Search bar](https://docs.ankiweb.net/searching.html) at the top, or by clicking on any of the filters on the left side, which can be used to show all Cards from a certain Deck or Note Type; by Tag, Flag, or a review data (e.g., Cards that were learned today); or any combination of the above (use `Shift`, `Ctrl`, and `Alt` to combine, intersect, and negate queries).
-</details>
-
-<details>
-<summary>Note Editor:</summary>
- 
-> Editor is a part of [the Card Browser](#relevant-anki-windows), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
-
-</details>
-
-<details>
-<summary>Note Type manager:</summary> 
-
->
-> click `Tools`→`Manage Note Types` in the top menu of the main Anki window
-> 
-> OR
-> 
-> click `Notes`→`Manage Note Types` in the top menu of [the Card Browser](#relevant-anki-windows) window
->
-</details>
-
-<details>
-<summary>Field editor:</summary> 
- 
-> select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Fields` button on the right
-> 
-> OR 
-> 
-> with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Fields` button on [the Note Editor](#relevant-anki-windows) toolbar
-</details>
- 
-<details>
-<summary>Card Type editor:</summary>     
- 
-> select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Cards` button on the right
+> <details>
+> <summary>Note Editor:</summary>
 >  
-> OR 
->  
-> with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Cards` button on [the Note Editor](#relevant-anki-windows) toolbar
+> > Editor is a part of [the Card Browser](#relevant-anki-windows), displayed when a single Card or Note is selected in the table. It allows modifying the content of any of the Note's Fields and, above the Fields, it has a toolbar, providing some basic editing tools.
 > 
-> You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
-</details>
+> </details>
+> 
+> <details>
+> <summary>Note Type manager:</summary> 
+> 
+> >
+> > click `Tools`→`Manage Note Types` in the top menu of the main Anki window
+> > 
+> > OR
+> > 
+> > click `Notes`→`Manage Note Types` in the top menu of [the Card Browser](#relevant-anki-windows) window
+> >
+> </details>
+> 
+> <details>
+> <summary>Field editor:</summary> 
+>  
+> > select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Fields` button on the right
+> > 
+> > OR 
+> > 
+> > with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Fields` button on [the Note Editor](#relevant-anki-windows) toolbar
+> </details>
+>  
+> <details>
+> <summary>Card Type editor:</summary>     
+>  
+> > select the Note Type in [the Note Type manager](#relevant-anki-windows) and click `Cards` button on the right
+> >  
+> > OR 
+> >  
+> > with any Card of the Note Type selected in [the Card Browser](#relevant-anki-windows), click the `Cards` button on [the Note Editor](#relevant-anki-windows) toolbar
+> > 
+> > You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
+> </details>
 
 #### Editing Note Types
 
@@ -289,25 +289,46 @@ Basic ways of accessing the common Anki windows for various customization option
 >   2. Click `Add` button on the left side of the window
 >   3. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
 >   4. Click `Ok`
->   5. Enter the desired name for the new Note Type, e.g. `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
+>   5. Enter the desired name for the new Note Type, like `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
 >   6. Click `Ok`
 >   7. Go on to customizing [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types] of the created Note Type
 
 </details>
 
-##### 2. Renaming Fields and adding new Fields
+##### 2. Renaming and reordering Fields
 
-The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g. "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). New Fields can also be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
+The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g., "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). 
 
 <details>
   <summary>step-by-step:</summary>
      
 >   1. Open [the Field editor](#relevant-anki-windows)
->   2. The Fields can be renamed, reordered, or added using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
+>   2. The Fields can be renamed and reordered using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
+>   4. Click 'Save'
+>   5. Open [the Card Type editor](#relevant-anki-windows)
+>   6. If you renamed a Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename these text labels to match the new name of the Field
+>   7. Click 'Save'
+
+</details>
+
+##### 3. Adding new Fields
+
+New Fields can be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
+
+<details>
+  <summary>step-by-step:</summary>
+
+>   0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+>   1. Open [the Field editor](#relevant-anki-windows)
+>   2. Add new Fields using the buttons on the right side
+>      If you are adding a Field to store choices for Multiple-Choice Cards, make sure to tick the "Exclude from unqualified searches" checkbox on, and (optional) "Collapse by default" (if you don't plan on editing this Field manually often)
 >   3. Click 'Save'
->   4. Open [the Card Type editor](#relevant-anki-windows)
->   5. If you renamed a preexisting Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename those text labels to match the new name of the Field
->   6. If you added a new Field, it should also be inserted somewhere on the Card template to be visible when a Card is reviewed. For example, to add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to be displayed on:
+>   4. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
+>
+>   The newly added Fields will only be visible from [the Card Editor](#relevant-anki-windows) by default (which can be useful by itself for Fields like "Notes" and such). If you want the Cards to show the info from this Field during reviews, it should be inserted into the Card template in the respective place:
+> 
+>   5. Open [the Card Type editor](#relevant-anki-windows)
+>   6. To add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to appear on:
 > 
 >       ```html
 > 		          {{#NewFieldName}}
@@ -317,14 +338,16 @@ The default Field names of the Memrise template can be renamed to better reflect
 > 			          </div>
 > 		          {{/NewFieldName}}
 >       ```
+>
+>       For using a newly created Field as Card's [question](#4-changing-the-question-field) or [answer](#5-changing-the-answer-field), see the respective sections.
 >   7. Click 'Save'
     
 </details>
 
 
-##### 3. Converting Notes to a different Type
+##### 4. Converting Notes to a different Type
 
-Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#4-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
+Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#5-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
 
 <details>
   <summary>step-by-step:</summary>
@@ -339,7 +362,7 @@ Notes can be converted from one Note Type to another after creation. This can be
 
 </details>
 
-##### 4. Checking the template version
+##### 5. Checking the template version
 
 While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
@@ -422,28 +445,51 @@ While the shared deck includes the version in the names of each template and pre
 
 </details>
 
-🚧🚧🚧
-
 ##### 6. Changing the input method
 
 <details>
   <summary>Changing input method to Typing:</summary>
 
-  0. Open the [Card template editor] for the version of the template you are trying to modify
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Typing Card
+> 3. Change the mode to set on the Front side template to "typing" (you can look for "mode=" using the search bar)
+> 4. Adjust [the on-screen keyboard layout](7-on-screen-keyboard-layout) to match the kind of material being tested in the Card Type
+> 5. [Disable](#10-disabling-specific-elements) the Hint button (search for "HintButton") if needed
+> 6. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
+> 7. Click `Save`
+
 </details>
   
 <details>
   <summary>Changing input method to Multiple-Choice:</summary>
 
-  0. Open the [Card template editor] for the version of the template you are trying to modify
+> 1. Multiple-Choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
+> 2. The choices Fields can be filled manually in [the Card Editor](#relevant-anki-windows) (to make sure each Field contains only those choices that can be reasonably mistaken for the correct answer), or filled automatically (for much quicker setup). They can also be edited afterwards at any point. For filling automatically:
+> >     2.1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
+> >     2.2. Right-click
+> >     2.3. Select `Fill Choices`
+> >     2.4. Specify the Fields in the appeared window accordingly and press `Ok`
+> 4. Open [the Card Type editor](#relevant-anki-windows)
+> 5. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Multiple-Choice Cards
+> 6. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
+> 7. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
+> 8. Verify that the correct choice Field is specified in the "id=choices" element
+> 9. Click `Save`
+
 </details>
 
 <details>
   <summary>Changing input method to Tapping:</summary>
 
-  0. Open the [Card template editor] for the version of the template you are trying to modify
-</details>
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> 3. Change the mode to set on the Front side template to "tapping" (you can look for "mode=" using the search bar)
+> 4. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **not having** the "nkeys" class)
+> 5. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
+> 6. Click `Save`
 
+</details>
+🚧🚧🚧
 <details>
   <summary>Changing input method on a Cloze template:</summary>
 
