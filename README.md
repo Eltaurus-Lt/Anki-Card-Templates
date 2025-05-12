@@ -403,7 +403,7 @@ Notes can be converted from one Note Type to another after creation. This can be
 
 ##### 5. Checking the template version
 
-While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
+While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for [the support add-on](#the-support-add-on) as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
 #### Editing Card Types
 
@@ -502,10 +502,10 @@ While the shared deck includes the version in the names of each template and pre
 <details>
   <summary>Changing input method to Multiple-Choice:</summary>
 
-> 1. Multiple-Choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
-> 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#the-support-add-on) (for much quicker setup). They choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrect typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
+> 1. Multiple-choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
+> 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) (for a quick and easy setup). The choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrectly typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
 > 3. Open [the Card Type editor](#relevant-anki-windows)
-> 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Multiple-Choice Cards
+> 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into multiple-choice Cards
 > 5. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
 > 6. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
 > 7. Verify that the correct choice Field is specified in the "id=choices" element
