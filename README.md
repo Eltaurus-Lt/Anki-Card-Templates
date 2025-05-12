@@ -219,6 +219,8 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 
 ### Customization
 
+This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to make most of the adjustments in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sunc](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
+
 #### Relevant Anki windows
 
 Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action, see the further instructions below.
@@ -338,23 +340,62 @@ Notes can be converted from one Note Type to another after creation. This can be
 
 ##### 4. Checking the template version
 
-While the shared deck includes the version of the Memrise template in the names of each Note Type the templates and the presets, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab
+While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
 🚧🚧🚧
 
 #### Editing Card Types
 
-##### 1. Adding Card Types
+##### 1. Making new Card Types
 
+<details>
+  <summary>step-by-step:</summary>
 
+> 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Add Card Type`
+> 3. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
+> 4. [Rename](#3-renaming-card-types) the created Card Type using the same `Options` menu
+> 5. Set [the question](#4-changing-the-question-field), [the answer](#5-changing-the-answer-field), [the input method](#6-changing-the-input-method), etc.
+> 6. Click `Save`
+> 7. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
 
-##### 2. Removing and renaming Card Types
+</details>
 
-##### 3. Changing the question field
+##### 2. Removing existing Card Types
 
-##### 4. Changing the answer field
+<details>
+  <summary>step-by-step:</summary>
 
-##### 5. Changing input method
+> 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. Select the Type of Cards you wish to remove from the `Card Type: ` dropdown list at the top
+> 3. In the `Options` menu to the right of the `Card Type: ` dropdown list, select `Remove Card Type` (keep in mind that all Cards of this Type and their review history will be permanently deleted! If that is undesired, consider [suspending](https://docs.ankiweb.net/studying.html#editing-and-more) all Cards of this Type instead)
+> 4. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
+> 5. Click `Save`
+> 6. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
+
+</details>
+
+##### 3. Renaming Card Types
+
+<details>
+  <summary>step-by-step:</summary>
+
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Rename Card Type`
+> 3. Enter the desired name for this Type of Cards, e.g. "Translation" or "Listening Comprehension", and click `Ok`
+> 4. Click `Save`
+
+</details>
+
+##### 4. Changing the question Field
+
+##### 5. Changing the answer Field
+
+🚧🚧🚧
+
+##### 6. Changing the input method
 
 <details>
   <summary>Changing input method to Typing:</summary>
@@ -386,13 +427,15 @@ While the shared deck includes the version of the Memrise template in the names 
   0. Open the [Card template editor] for the version of the template you are trying to modify
 </details>
 
-##### 6. On-screen keyboard layout  
+##### 7. On-screen keyboard layout  
 
-##### 7. Enabling and disabling specific elements
+##### 8. Prompt and the front Extra field
+
+##### 9. Disabling specific elements
 
 Things like the on-screen keyboard, the hint button, spelling diffs, and anything else
 
-##### 8. Selecting a theme
+##### 10. Selecting a theme
 
 #### Advanced
 
