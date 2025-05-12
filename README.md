@@ -215,7 +215,7 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
     *Notes are not explicitly placed in any Deck or anywhere else in particular; instead, they are accessed only via their respective Cards (each Note always has at least one Card generated from it). Cards made from the same Note can be distributed over different Decks and vice-versa: one deck can contain Cards of different Card- and Note Types (in contrast to Memrise, where Levels can only contain Words with the same set of Fields and same testing direction).
 
 
-As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their representations located in Note Type settings. If you have any further questions, feel free to drop them in [the template forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their equivalents in the Note Type settings. If you have any further questions, feel free to drop them in [the template forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 
 ### Customization
 
@@ -307,7 +307,7 @@ The default Field names of the Memrise template can be renamed to better reflect
 >   3. Click 'Save'
 >   4. Open [the Card Type editor](#relevant-anki-windows)
 >   5. If you renamed a preexisting Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename those text labels to match the new name of the Field
->   6. If you added a new Field, it should also be inserted somewhere on the Card template to be visible when a Card is reviewed. For example, to add it as another extra Field on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to be displayed on:
+>   6. If you added a new Field, it should also be inserted somewhere on the Card template to be visible when a Card is reviewed. For example, to add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to be displayed on:
 > 
 >       ```html
 > 		          {{#NewFieldName}}
@@ -317,6 +317,7 @@ The default Field names of the Memrise template can be renamed to better reflect
 > 			          </div>
 > 		          {{/NewFieldName}}
 >       ```
+>   7. Click 'Save'
     
 </details>
 
@@ -384,12 +385,25 @@ While the shared deck includes the version in the names of each template and pre
 
 > 1. Open [the Card Type editor](#relevant-anki-windows)
 > 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Rename Card Type`
-> 3. Enter the desired name for this Type of Cards, e.g. "Translation" or "Listening Comprehension", and click `Ok`
+> 3. Enter the desired name for this Type of Cards (e.g., "Listening Comprehension" or "Pronunciation"), and click `Ok`
 > 4. Click `Save`
 
 </details>
 
 ##### 4. Changing the question Field
+
+<details>
+  <summary>step-by-step:</summary>
+
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
+> 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
+>     This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, would not have the respective Cards being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.
+> 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info] blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
+> 6. Click `Save`
+
+</details>
 
 ##### 5. Changing the answer Field
 
@@ -427,15 +441,17 @@ While the shared deck includes the version in the names of each template and pre
   0. Open the [Card template editor] for the version of the template you are trying to modify
 </details>
 
-##### 7. On-screen keyboard layout  
+##### 7. On-screen keyboard layout
 
-##### 8. Prompt and the front Extra field
+##### 8. Extra Fields displayed on the info screen
 
-##### 9. Disabling specific elements
+##### 9. Prompt and the frontside Extra field
+
+##### 10. Disabling specific elements
 
 Things like the on-screen keyboard, the hint button, spelling diffs, and anything else
 
-##### 10. Selecting a theme
+##### 11. Selecting a theme
 
 #### Advanced
 
