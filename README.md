@@ -464,11 +464,15 @@ While the shared deck includes the version in the names of each template and pre
   <summary>Changing input method to Multiple-Choice:</summary>
 
 > 1. Multiple-Choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
-> 2. The choices Fields can be filled manually in [the Card Editor](#relevant-anki-windows) (to make sure each Field contains only those choices that can be reasonably mistaken for the correct answer), or filled automatically (for much quicker setup). They can also be edited afterwards at any point. For filling automatically:
-> >     2.1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
-> >     2.2. Right-click
-> >     2.3. Select `Fill Choices`
-> >     2.4. Specify the Fields in the appeared window accordingly and press `Ok`
+> 2. The choices Fields can be filled manually in [the Card Editor](#relevant-anki-windows) (to make sure each Field contains only those choices that can be reasonably mistaken for the correct answer), or filled automatically (for much quicker setup). They can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrect typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it. To fill the choice Field automatically (using the support add-on):
+>
+>    &nbsp;&nbsp;2.1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
+>    
+>    &nbsp;&nbsp;2.2. Right-click
+>    
+>    &nbsp;&nbsp;2.3. Select `Fill Choices`
+>    
+>    &nbsp;&nbsp;2.4. Specify the Fields in the appeared window accordingly and press `Ok`
 > 4. Open [the Card Type editor](#relevant-anki-windows)
 > 5. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Multiple-Choice Cards
 > 6. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
