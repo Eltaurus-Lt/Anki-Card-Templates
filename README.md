@@ -40,7 +40,7 @@ Text, audio, images, and LaTeX equations can all be used as a question prompt wi
 
 
 
-### Input modes
+### Input methods
 
 
 
@@ -182,6 +182,45 @@ This template does not use any of the original Memrise code and is written from 
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
+### The support Add-on
+
+The support add-on provides functionality that makes it easier to set-up [multiple-choice cards](#automatically-filling-choice-fields-for-multiple-choice-cards), edit Notes with [alternative answers](#formatting-alternative-answers), and also enables using standard Memrise shortcuts when reviewing Cards on desktop.
+
+#### Installation
+
+The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start) guide. This is a recommended method, as it will also allow receiving the add-on updates automatically.
+<details>
+  <summary>If you wish to install the add-on manually instead (to make your adjustments to the add-on, without getting them overwritten by the auto-updates, for example):</summary>
+
+> 1. Open Anki "addons21" folder:
+> 
+>    &nbsp;&nbsp;1.1. In the main Anki window, click `Tools` → `Add-ons` in the menu at the top
+>
+>    &nbsp;&nbsp;1.2. Click `View Files` in the right bottom corner (without selecting any specific add-on!)
+>
+>    (or open it directly in explorer: e.g., default path on windows is `C:\Users\%username%\AppData\Roaming\Anki2\addons21`)
+>      
+> 2. Copy the "Add-on" folder from this repo into the "addons21" folder
+> 3. Rename the copied folder appropriately
+> 4. Restart Anki
+
+</details>
+
+#### Automatically filling choice fields for multiple-choice Cards
+
+> 1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
+> 2. Right-click (or go to either `Cards` or `Notes` menus at the top)
+> 3. Select `Fill Choices`   
+> 4. Specify the Fields in the appeared window accordingly and press `Ok`
+
+#### Formatting alternative answers
+
+🚧
+
+#### Configuring keyboard shortcuts
+
+🚧
+
 ### Key concepts (Anki vs Memrise)
 
 When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise (especially if you have edited a community course there), it might be easier to understand those by analogy: 
@@ -219,7 +258,7 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 
 ### Customization
 
-This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to make most of the adjustments in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sunc](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
+This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to all the adjustments (except the ones utilizing the support addon) in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sync](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
 
 #### Relevant Anki windows
 
@@ -464,21 +503,13 @@ While the shared deck includes the version in the names of each template and pre
   <summary>Changing input method to Multiple-Choice:</summary>
 
 > 1. Multiple-Choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
-> 2. The choices Fields can be filled manually in [the Card Editor](#relevant-anki-windows) (to make sure each Field contains only those choices that can be reasonably mistaken for the correct answer), or filled automatically (for much quicker setup). They can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrect typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it. To fill the choice Field automatically (using the support add-on):
->
->    &nbsp;&nbsp;2.1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
->    
->    &nbsp;&nbsp;2.2. Right-click
->    
->    &nbsp;&nbsp;2.3. Select `Fill Choices`
->    
->    &nbsp;&nbsp;2.4. Specify the Fields in the appeared window accordingly and press `Ok`
-> 4. Open [the Card Type editor](#relevant-anki-windows)
-> 5. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Multiple-Choice Cards
-> 6. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
-> 7. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
-> 8. Verify that the correct choice Field is specified in the "id=choices" element
-> 9. Click `Save`
+> 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#the-support-add-on) (for much quicker setup). They choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrect typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
+> 3. Open [the Card Type editor](#relevant-anki-windows)
+> 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Multiple-Choice Cards
+> 5. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
+> 6. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
+> 7. Verify that the correct choice Field is specified in the "id=choices" element
+> 8. Click `Save`
 
 </details>
 
