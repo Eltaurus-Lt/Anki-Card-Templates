@@ -343,8 +343,6 @@ Notes can be converted from one Note Type to another after creation. This can be
 
 While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for the support add-on as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
-🚧🚧🚧
-
 #### Editing Card Types
 
 ##### 1. Making new Card Types
@@ -399,13 +397,30 @@ While the shared deck includes the version in the names of each template and pre
 > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
 > 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
 > 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
->     This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, would not have the respective Cards being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.
-> 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info] blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
+> 
+>     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.</sub>
+> 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
 > 6. Click `Save`
 
 </details>
 
 ##### 5. Changing the answer Field
+
+<details>
+  <summary>step-by-step:</summary>
+
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> 3. On the Front side template, find the "id=correctAnswer" element and change the name of the Field inside to the Field you wish to use as the answer to the Card:
+> 4. For Multiple-choice Cards, replace, similarly, the Field specified in the "id=choices" element with the Field which will be used as [the source of incorrect choices](#6-changing-the-input-method)
+> 5. For Typing Cards, change the text label inside the "mem-typing" element to correctly reflect the expected input:
+> 6. Replace the name of the old answer Field at the beginning and the end of the HTML section with the new answer Field (keeping the preceding `#` and `/` characters). For Multiple-choice, do the same for the choices Field as well.
+> 
+>     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, the Notes with words spelled entirely in kana would not have anything to be learned from a Card Type that is supposed to test on kanji reading. The same goes for multiple-choice Cards, which do not have a single incorrect choice to make the test meaningful.</sub>
+> 7. On the Back side template, replace the old answer Field ("Learnable", by default) and its text label with the new one. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the answer from there, and putting the old answer Field as a new extra info block.
+> 8. Click `Save`
+
+</details>
 
 🚧🚧🚧
 
