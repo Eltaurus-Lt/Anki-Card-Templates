@@ -343,10 +343,10 @@ Basic ways of accessing the common Anki windows for various customization option
 >      
 > >   1. Open [the Field editor](#relevant-anki-windows)
 > >   2. The Fields can be renamed and reordered using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
-> >   4. Click 'Save'
+> >   4. Click `Save`
 > >   5. Open [the Card Type editor](#relevant-anki-windows)
 > >   6. If you renamed a Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename these text labels to match the new name of the Field
-> >   7. Click 'Save'
+> >   7. Click `Save`
 > 
 > </details>
 > 
@@ -361,7 +361,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > >   1. Open [the Field editor](#relevant-anki-windows)
 > >   2. Add new Fields using the buttons on the right side
 > >      If you are adding a Field to store choices for Multiple-Choice Cards, make sure to tick the "Exclude from unqualified searches" checkbox on, and (optional) "Collapse by default" (if you don't plan on editing this Field manually often)
-> >   3. Click 'Save'
+> >   3. Click `Save`
 > >   4. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
 > >
 > >   The newly added Fields will only be visible from [the Card Editor](#relevant-anki-windows) by default (which can be useful by itself for Fields like "Notes" and such). If you want the Cards to show the info from this Field during reviews, it should be inserted into the Card template in the respective place:
@@ -379,7 +379,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > >       ```
 > >
 > >       For using a newly created Field as Card's [question](#4-changing-the-question-field) or [answer](#5-changing-the-answer-field), see the respective sections.
-> >   7. Click 'Save'
+> >   7. Click `Save`
 >     
 > </details>
 > 
@@ -558,15 +558,21 @@ Basic ways of accessing the common Anki windows for various customization option
 >     This can be taken advantage of by preparing a Note Type which will contain templates for every possibly useful combination of parameters, and then, on each specific Note, only utilizing those cloze numbers that correspond to the types of questions the Note needs to have generated.
 </details>
 
-🚧🚧🚧
-
 <details>
-  <summary>Enabling Math mode:</summary>
+  <summary>Enabling LaTeX mode:</summary>
 
-  0. Open the [Card template editor] for the version of the template you are trying to modify
+> [This mode](#latex) changes how the answers in multiple-choice and typing Cards are evaluated. It checks the correctness of an answer based on the MathJax-converted output, allowing for inconsequential differences in equation typesetting (such as swapping the order of subscript and superscript of a variable, or omitting equation delimiters) to be ignored. Because LaTeX syntax is incompatible with the [Memrise syntax](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation) (the former is case-sensitive, interprets special characters, such as brackets, commas, and semi-colons differently, ignores spaces in certain places, etc.), this mode is not well-suited for regular answers, and should be reserved for Cards with equation answers only.
+>
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. Similarly to the "nkeys" attribute for multiple-choice and tapping inputs (see above), add "eq" to the list of classes for the front container element:
+>     ```
+>     <div class="card-content front eq" ...
+>     ```
+> 3. Click `Save`
+
 </details>
 
-
+🚧🚧🚧
 
 ##### 7. On-screen keyboard layout
 
