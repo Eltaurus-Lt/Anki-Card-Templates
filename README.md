@@ -561,10 +561,10 @@ Basic ways of accessing the common Anki windows for various customization option
 <details>
   <summary>Enabling LaTeX mode:</summary>
 
-> [This mode](#latex) changes how the answers in multiple-choice and typing Cards are evaluated. It checks the correctness of an answer based on the MathJax-converted output, allowing for inconsequential differences in equation typesetting (such as swapping the order of subscript and superscript of a variable, or omitting equation delimiters) to be ignored. Because LaTeX syntax is incompatible with the [Memrise syntax](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation) (the former is case-sensitive, interprets special characters, such as brackets, commas, and semi-colons differently, ignores spaces in certain places, etc.), this mode is not well-suited for regular answers, and should be reserved for Cards with equation answers only.
+> [This mode](#latex) changes how the answers in multiple-choice and typing Cards are evaluated. It checks the correctness based on the MathJax-converted output, allowing for inconsequential differences in equation typesetting (such as omitting delimiters or swapping the order of subscript and superscript of a variable) to be ignored. Because LaTeX syntax is incompatible with the [Memrise syntax](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation) (the former is case-sensitive, interprets special characters, such as brackets, commas, and semi-colons differently, ignores spaces in certain places, etc.), this mode is not well-suited for regular answers, and should be reserved for Cards with equation answers only.
 >
 > 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Similarly to the "nkeys" attribute for multiple-choice and tapping inputs (see above), add "eq" to the list of classes for the front container element:
+> 2. Add "eq" to the list of classes for the front container element (similarly to the "nkeys" attribute for multiple-choice and tapping inputs above):
 >     ```
 >     <div class="card-content front eq" ...
 >     ```
