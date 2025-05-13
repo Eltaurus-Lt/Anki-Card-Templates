@@ -258,7 +258,7 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 
 ### Customization
 
-This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to all the adjustments (except the ones utilizing the support addon) in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sync](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
+This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to make all the adjustments in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sync](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
 
 #### Relevant Anki windows
 
@@ -317,93 +317,93 @@ Basic ways of accessing the common Anki windows for various customization option
 
 #### Editing Note Types
 
-##### 1. Making a new Note Type based on the Memrise template
-
-  The Memrise template is designed to be cloned into different Note Types, each of which can then be further customized to better fit each Language and Discipline studied
-
-<details>
-  <summary>step-by-step:</summary>
-     
->   1. Open [the Note Type manager](#relevant-anki-windows)
->   2. Click `Add` button on the left side of the window
->   3. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
->   4. Click `Ok`
->   5. Enter the desired name for the new Note Type, like `Memrise (Lτ) Japanese`, or `Memrise (Lτ) History` (it is recommended to keep `Memrise (Lτ) ` as a prefix, for update purposes and full supporting add-on functionality)
->   6. Click `Ok`
->   7. Go on to customizing [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types] of the created Note Type
-
-</details>
-
-##### 2. Renaming and reordering Fields
-
-The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g., "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). 
-
-<details>
-  <summary>step-by-step:</summary>
-     
->   1. Open [the Field editor](#relevant-anki-windows)
->   2. The Fields can be renamed and reordered using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
->   4. Click 'Save'
->   5. Open [the Card Type editor](#relevant-anki-windows)
->   6. If you renamed a Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename these text labels to match the new name of the Field
->   7. Click 'Save'
-
-</details>
-
-##### 3. Adding new Fields
-
-New Fields can be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
-
-<details>
-  <summary>step-by-step:</summary>
-
->   0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
->   1. Open [the Field editor](#relevant-anki-windows)
->   2. Add new Fields using the buttons on the right side
->      If you are adding a Field to store choices for Multiple-Choice Cards, make sure to tick the "Exclude from unqualified searches" checkbox on, and (optional) "Collapse by default" (if you don't plan on editing this Field manually often)
->   3. Click 'Save'
->   4. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
->
->   The newly added Fields will only be visible from [the Card Editor](#relevant-anki-windows) by default (which can be useful by itself for Fields like "Notes" and such). If you want the Cards to show the info from this Field during reviews, it should be inserted into the Card template in the respective place:
+> ##### 1. Making a new Note Type based on the Memrise template
 > 
->   5. Open [the Card Type editor](#relevant-anki-windows)
->   6. To add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to appear on:
+>   The Memrise template is designed to be cloned into different Note Types, each of which can then be further customized to better fit each Language and Discipline studied
 > 
->       ```html
-> 		          {{#NewFieldName}}
-> 			          <div class="mem-field no-alts">
-> 			          	<label>NewFieldName</label>
-> 			          	<h4>{{NewFieldName}}</h4>      
-> 			          </div>
-> 		          {{/NewFieldName}}
->       ```
->
->       For using a newly created Field as Card's [question](#4-changing-the-question-field) or [answer](#5-changing-the-answer-field), see the respective sections.
->   7. Click 'Save'
-    
-</details>
-
-
-##### 4. Converting Notes to a different Type
-
-Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#5-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
-
-<details>
-  <summary>step-by-step:</summary>
-
->   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
->   1. Open [the Card Browser](#relevant-anki-windows)
->   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
->   3. In the top menu, click `Notes`→`Change Note Type`
->   4. Select the new Note Type in the top dropdown list
->   5. Set up the mapping between the Fields and Card Types of the old Note Type into the new
->   6. Click `Save`
-
-</details>
-
-##### 5. Checking the template version
-
-While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for [the support add-on](#the-support-add-on) as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
+> <details>
+>   <summary>step-by-step:</summary>
+>      
+> >   1. Open [the Note Type manager](#relevant-anki-windows)
+> >   2. Click `Add` button on the left side of the window
+> >   3. Select `Clone: Memrise (Lτ) Template v...` for making a standard Note Type or `Clone: Memrise (Lτ) Cloze Template v...` for Cloze Deletion (or any of the `...Preset...` Note Types, if fitting)
+> >   4. Click `Ok`
+> >   5. Enter the desired name for the new Note Type, like "Memrise (Lτ) Japanese", or "Memrise (Lτ) History" (it is recommended to keep "Memrise (Lτ) " as a prefix, for update purposes and full supporting add-on functionality)
+> >   6. Click `Ok`
+> >   7. Customize [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#editing-card-types) of the created Note Type
+> 
+> </details>
+> 
+> ##### 2. Renaming and reordering Fields
+> 
+> The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g., "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). 
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+>      
+> >   1. Open [the Field editor](#relevant-anki-windows)
+> >   2. The Fields can be renamed and reordered using the buttons on the right side (reordering fields here only affects their displayed order in [the Note Editor](#relevant-anki-windows), not how they are presented on the Cards during reviews!)
+> >   4. Click 'Save'
+> >   5. Open [the Card Type editor](#relevant-anki-windows)
+> >   6. If you renamed a Field, look for `<label>OldFieldName</label>` on the Front and the Back of each Card Type and rename these text labels to match the new name of the Field
+> >   7. Click 'Save'
+> 
+> </details>
+> 
+> ##### 3. Adding new Fields
+> 
+> New Fields can be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> >   0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+> >   1. Open [the Field editor](#relevant-anki-windows)
+> >   2. Add new Fields using the buttons on the right side
+> >      If you are adding a Field to store choices for Multiple-Choice Cards, make sure to tick the "Exclude from unqualified searches" checkbox on, and (optional) "Collapse by default" (if you don't plan on editing this Field manually often)
+> >   3. Click 'Save'
+> >   4. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
+> >
+> >   The newly added Fields will only be visible from [the Card Editor](#relevant-anki-windows) by default (which can be useful by itself for Fields like "Notes" and such). If you want the Cards to show the info from this Field during reviews, it should be inserted into the Card template in the respective place:
+> > 
+> >   5. Open [the Card Type editor](#relevant-anki-windows)
+> >   6. To add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to appear on:
+> > 
+> >       ```html
+> > 		          {{#NewFieldName}}
+> > 			          <div class="mem-field no-alts">
+> > 			          	<label>NewFieldName</label>
+> > 			          	<h4>{{NewFieldName}}</h4>      
+> > 			          </div>
+> > 		          {{/NewFieldName}}
+> >       ```
+> >
+> >       For using a newly created Field as Card's [question](#4-changing-the-question-field) or [answer](#5-changing-the-answer-field), see the respective sections.
+> >   7. Click 'Save'
+>     
+> </details>
+> 
+> 
+> ##### 4. Converting Notes to a different Type
+> 
+> Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#5-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> >   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
+> >   1. Open [the Card Browser](#relevant-anki-windows)
+> >   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
+> >   3. In the top menu, click `Notes`→`Change Note Type`
+> >   4. Select the new Note Type in the top dropdown list
+> >   5. Set up the mapping between the Fields and Card Types of the old Note Type into the new
+> >   6. Click `Save`
+> 
+> </details>
+> 
+> ##### 5. Checking the template version
+> 
+> While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for [the support add-on](#the-support-add-on) as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
 #### Editing Card Types
 
@@ -558,13 +558,15 @@ While the shared deck includes the version in the names of each template and pre
 >     This can be taken advantage of by preparing a Note Type which will contain templates for every possibly useful combination of parameters, and then, on each specific Note, only utilizing those cloze numbers that correspond to the types of questions the Note needs to have generated.
 </details>
 
+🚧🚧🚧
+
 <details>
   <summary>Enabling Math mode:</summary>
 
   0. Open the [Card template editor] for the version of the template you are trying to modify
 </details>
 
-🚧🚧🚧
+
 
 ##### 7. On-screen keyboard layout
 
