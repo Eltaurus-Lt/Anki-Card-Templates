@@ -645,7 +645,7 @@ There are two ways of customizing the keyboard layout (analogous to Memrise's "K
 <details>
   <summary>Static layout ("Keyboard Characters"):</summary>
 
-> All static characters will always appear on each Card of this type in the same order they are specified. This can be useful for adding special characters, such as letters with diacritics, to work as a supplement for a physical keyboard that doesn’t have them, or for emulating a whole keyboard for a language you don't have on your machine. To set it up:
+> All static characters will always appear on each Card of this type in the same order they are specified. This can be useful for adding special characters (such as letters with diacritics) to supplement a physical keyboard that doesn’t have them, or for emulating a whole keyboard for a language not installed on your machine. To set it up:
 > 
 > 1. Open [the Card Type editor](#relevant-anki-windows)
 > 2. Enter the desired characters into the "static_keys" setting element at the top of the Front Template, e.g.:
@@ -659,8 +659,8 @@ There are two ways of customizing the keyboard layout (analogous to Memrise's "K
 <details>
   <summary>Randomizing characters ("predefined keyboard"):</summary>
 
-> This settings is supposed to represent an alphabet (or a subset of the most frequently used characters) of a given language / digits (for numeric questions) / common LaTeX characters (for [typesetting formuli](#latex)) / etc. 
-> When at least a single character is defined in this setting, the on-screen keyboard layout will be populated with all characters necessary to spell the correct answer + several unique characters selected from this set (all mixed together and presented in a randomized order to spoil the answer as little as possible). This option can be used to make Cards self-sufficient – every expected answer will be possible to type using on-screen elements alone, which might be convenient for mobile devices. To set it up:
+> This setting is supposed to represent the alphabet (or a subset of the most frequently used characters) of a given language / digits (for numeric questions) / common LaTeX characters (for [typesetting formuli](#latex)) / etc. 
+> When at least a single character is defined in this setting, the on-screen keyboard layout will be populated with all characters necessary to spell the correct answer + several unique characters selected from this set (all mixed together and presented in a randomized order to spoil the answer as little as possible). This option can be used to make Cards self-sufficient – every expected answer will be possible to type using on-screen elements alone, without having redundant characters taking up screen space (might be convenient for mobile devices). To set it up:
 > 
 > 1. Open [the Card Type editor](#relevant-anki-windows)
 > 2. Enter the desired characters into the "random_keys" setting element at the top of the Front Template, e.g.:
@@ -671,7 +671,7 @@ There are two ways of customizing the keyboard layout (analogous to Memrise's "K
 
 </details>
 
-Clearing the both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future) use [special ".off" class](#10-disabling-individual-elements).
+Clearing both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future), use [special ".off" class](#10-disabling-individual-elements) instead.
 
 🚧🚧🚧
 
