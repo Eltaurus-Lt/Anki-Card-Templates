@@ -654,7 +654,7 @@ There are two ways of customizing the keyboard layout (analogous to Memrise's "K
 >    ```
 > 4. Click `Save`
 
-<details>
+</details>
 
 <details>
   <summary>Randomizing characters ("predefined keyboard"):</summary>
@@ -669,7 +669,7 @@ There are two ways of customizing the keyboard layout (analogous to Memrise's "K
 >    ```
 > 4. Click `Save`
 
-<details>
+</details>
 
 Clearing the both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future) use [special ".off" class](#10-disabling-individual-elements).
 
