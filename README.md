@@ -208,7 +208,7 @@ The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start
 
 #### Automatically filling choice fields for multiple-choice Cards
 
-> 1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers)
+> 1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers; if you need to cross-fill all Cards in a certain Deck, for example: click the name of the Deck on the left, then any Card in the appeared table and press `Ctrl + A` to select all)
 > 2. Right-click (or go to either `Cards` or `Notes` menus at the top)
 > 3. Select `Fill Choices`   
 > 4. Specify the Fields in the appeared window accordingly and press `Ok`
@@ -219,7 +219,71 @@ The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start
 
 #### Configuring keyboard shortcuts
 
-🚧
+By default, the desktop Anki app uses the number keys '1–4' to rate Cards from `Again` to `Easy`, while on Memrise, the numbers are used as hotkeys when answering multiple-choice and tapping questions. Anki also interprets both `Enter` and `Space` as rating a Card `Good`. In contrast, the template uses `Enter` for multiple purposes: to flip the Card to the info screen, to autorate a Card `Good` or `Again` and move to the next one (all depending on whether the submitted answer is correct and what is currently displayed on the screen, exactly like Memrise), or playback an audio (when it is selected using `Tab`). Meanwhile, the `Space` is used to show the Card's info screen regardless of whether the submitted answer is correct or not.
+
+To allow the template to use the shortcuts in the Memrise way, the original Anki shortcuts have to be unbound. If you only using Note Types made from the Memrise template, simply installing the support Add-on will make everything work by default — there is no need for any additional adjustments. However, if you are using other Note Types, losing the ability to use Anki shortcuts might be undesirable. There are two ways to deal with this issue:
+
+<details>
+  <summary>Modify all the other Note Types to handle key (recommended):</summary>
+
+> This is the recommended way because it preserves all the functionality for both Memrise and non-Memrise Note Types. On the downside, if you have many non-Memrise Card Types, initial setup (and also the modifications for each time a new Card Type is added, e.g., when importing a shared Deck from AnkiWeb) might require a lot of manual work. It also might not be as straightforward if a Note Type that requires modification already uses keyboard events (see instructions below).
+>
+> If you choose to follow this route:
+> 1. Open a non-Memrise Card in [the Card Type editor](#relevant-anki-windows)
+> 2. Verify that the Card doesn't define its own keyboard shortcuts by looking for "document.onkeydown" with the search bar in both the Front Template and the Back Template tabs. If nothing is found, it is safe to proceed (this should be true in most cases, in particular, it is for all the stock Anki Note Types). If, however, the function is detected, the code below should be carefully merged with the already present on the Card (feel free to leave a question in [the forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233) if you need help with such modification or are in doubt).
+> 3. Put the following piece of code at the end of the Front Template:
+> 
+>    ```
+>    <script>
+>    document.onkeydown = function (e) {
+>    	var ev = window.event || e;
+>    	if (ev.key === 'Enter' || (ev.code === 'Space' && document.activeElement.tagName.toLowerCase() !== 'input')) {
+>    		try {
+>    			pycmd("ans");
+>    		} catch(err) {}
+>    	}
+>    }
+>    </script>
+>    ```
+> 4. Similarly, put the following code at the end of the Back Template:
+> 
+>    ```
+>    <script>
+>    document.onkeydown = function (e) {
+>    	var ev = window.event || e;
+>    	if (ev.key === 'Enter' || ev.code === 'Space') {
+>    		try {
+>    			pycmd('ease3');
+>    		} catch(err) {}
+>    	}
+>    	if ("1234".includes(ev.key)) {
+>    		try {
+>    			pycmd('ease' + ev.key);
+>    		} catch(err) {}
+>    	}
+>    }
+>    </script>
+>    ```
+> 5. Repeat the steps for all Card Types
+> 6. Click `Save`
+> 7. Repeat all the previous steps for each non-Memrise Note Type that needs the Anki shortcuts to be restored
+
+</details>
+
+<details>
+  <summary>Revert to default Anki shortcuts:</summary>
+
+> This will restore the default Anki shortcut functionality for all Note Types at once (including the Memrise Note Types, thus rendering the Memrise shortcuts for answering and auto-rating unusable). This can be done for each key individually, so you can choose to revert the number keys to the default Anki behavior for all Cards, while keeping the `Enter` and `Space` keys for auto-rating answers on Memrise Cards, for example.
+>
+> To make the adjustment:
+> 1. Open Anki Add-on manager: click `Tools` in the top menu of the main window → `Add-ons`
+> 2. Select the `Memrise Cards Lt` add-on in the list
+> 3. Press `Config` in the bottom left (or double-click the name of the add-on)
+> 4. Delete the lines containing the keys you wish to restore
+> 5. Click `Ok` and close the Add-on manager
+> 6. Restart Anki
+
+</details>
 
 ### Key concepts (Anki vs Memrise)
 
@@ -393,7 +457,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > >   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
 > >   1. Open [the Card Browser](#relevant-anki-windows)
-> >   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck, click the name of the Deck on the left and press `Ctrl + A`)
+> >   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck: click the name of the Deck on the left, then any Card in the appeared table and press `Ctrl + A` to select all)
 > >   3. In the top menu, click `Notes`→`Change Note Type`
 > >   4. Select the new Note Type in the top dropdown list
 > >   5. Set up the mapping between the Fields and Card Types of the old Note Type into the new
