@@ -502,7 +502,7 @@ While the shared deck includes the version in the names of each template and pre
 <details>
   <summary>Changing input method to Multiple-Choice:</summary>
 
-> 1. Multiple-choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
+> 1. Multiple-choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](#3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
 > 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) (for a quick and easy setup). The choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrectly typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
 > 3. Open [the Card Type editor](#relevant-anki-windows)
 > 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into multiple-choice Cards
@@ -524,11 +524,38 @@ While the shared deck includes the version in the names of each template and pre
 > 6. Click `Save`
 
 </details>
-🚧🚧🚧
+
 <details>
   <summary>Changing input method on a Cloze template:</summary>
 
-  0. Open the [Card template editor] for the version of the template you are trying to modify
+> 1. Open [the Card Type editor](#relevant-anki-windows)
+> 2. Since cloze templates do not actually have separate Card Types (the number of Cards generated from a Note depends on the number of clozes it has), all the settings described previously should be implemented based on clozes' ordinal numbers. For example, to make the first card use multiple-choice input, the second one – typing input, the third – tapping, and the fourth – typing again, the following code should be put as the "mode" parameter:
+>     ```
+>     mode="{{#c1}}mchoice{{/c1}}{{#c2}}typing{{/c2}}{{#c3}}tapping{{/c3}}{{#c4}}typing{{/c4}}"
+>     ```
+> 3. If you are using multiple-choice for clozes with different types of content, make sure to make the appropriate number of [choices Fields](#3-adding-new-fields), and set them up in the ["choices" element](#5-changing-the-answer-field) accordingly. For example:
+>     ```
+>     <data id="choices">{{#c1}}{{Choices Years}}{{/c1}}{{#c3}}{{Choices Years}}{{/c3}}{{#c4}}{{Choices Personalities}}{{/c4}}{{#c6}}{{Choices Countries}}{{/c6}}</data>
+>     ```
+> 4. Other parameters, like "nkeys" (see changing input to multiple-choice and tapping), [keyboard](#7-on-screen-keyboard-layout), [theme](#11-selecting-a-theme), etc., can be set up similarly
+> 5. Click `Save`
+> 6. When making a Note with the Cloze Note Type, nested clozes can be used to generate several questions with different input methods for the same clozed parts. For example, putting the following into the cloze Field:
+>     ```
+>     {{c1::{{c2::word}}}} other text {{c3::{{c4::clozed phrase}}}}
+>     ```
+>     with the setup from step 2, will generate four Cards: a multiple-choice Card plus a typing Card for the "word" and a tapping Card plus a typing Card for the "clozed phrase".
+>
+>     Also, clozes do not necessarily have to be numbered sequentially: some can be skipped when needed, and the grouping can vary from Note to Note. For example, using
+>     ```
+>     {{c1:::word}} other text {{c4::clozed phrase}}
+>     ```
+>     will only generate a multiple-choice Card for the "word" and a typing Card for the "clozed phrase", while
+>     ```
+>     other text {{c1::{{c3::{{c4::clozed phrase}}}}}}}
+>     ```
+>     will generate a multiple-choice Card, a tapping Card, and a typing Card for the same "clozed phrase".
+>    
+>     This can be taken advantage of by preparing a Note Type which will contain templates for every possibly useful combination of parameters, and then, on each specific Note, only utilizing those cloze numbers that correspond to the types of questions the Note needs to have generated.
 </details>
 
 <details>
@@ -536,6 +563,8 @@ While the shared deck includes the version in the names of each template and pre
 
   0. Open the [Card template editor] for the version of the template you are trying to modify
 </details>
+
+🚧🚧🚧
 
 ##### 7. On-screen keyboard layout
 
