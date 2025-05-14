@@ -431,18 +431,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > >   The newly added Fields will only be visible from [the Card Editor](#relevant-anki-windows) by default (which can be useful by itself for Fields like "Notes" and such). If you want the Cards to show the info from this Field during reviews, it should be inserted into the Card template in the respective place:
 > > 
 > >   5. Open [the Card Type editor](#relevant-anki-windows)
-> >   6. To add it as another [extra Field] on the info screen, put the code below (changing the "NewFieldName" accordingly) next to the similar blocks on the Back of each Card Type you want the Field to appear on:
-> > 
-> >       ```html
-> > 		          {{#NewFieldName}}
-> > 			          <div class="mem-field no-alts">
-> > 			          	<label>NewFieldName</label>
-> > 			          	<h4>{{NewFieldName}}</h4>      
-> > 			          </div>
-> > 		          {{/NewFieldName}}
-> >       ```
-> >
-> >       For using a newly created Field as Card's [question](#4-changing-the-question-field) or [answer](#5-changing-the-answer-field), see the respective sections.
+> >   6. Add the new Field as one of the [extra Fields](#8-extra-fields) on the info screen, or use it as a [question](#4-changing-the-question-field) or an [answer](#5-changing-the-answer-field) on some of the Card Types.
 > >   7. Click `Save`
 >     
 > </details>
@@ -525,7 +514,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
 > > 
 > >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.</sub>
-> > 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
+> > 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly (Memrise does this for all question Fields except audio). You might also want to adjust the [Extra info](#8-extra-fields) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
 > > 6. Click `Save`
 > 
 > </details>
@@ -543,7 +532,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 6. Replace the name of the old answer Field at the beginning and the end of the HTML section with the new answer Field (keeping the preceding `#` and `/` characters). For Multiple-choice, do the same for the choices Field as well.
 > > 
 > >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, the Notes with words spelled entirely in kana would not have anything to be learned from a Card Type that is supposed to test on kanji reading. The same goes for multiple-choice Cards, which do not have a single incorrect choice to make the test meaningful.</sub>
-> > 7. On the Back side template, replace the old answer Field ("Learnable", by default) and its text label with the new one. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the answer from there, and putting the old answer Field as a new extra info block.
+> > 7. On the Back side template, replace the old answer Field ("Learnable", by default) and its text label with the new one. You might also want to adjust the [Extra info](#8-extra-fields) blocks, removing the Field that is now used as the answer from there, and putting the old answer Field as a new extra info block.
 > > 8. Click `Save`
 > 
 > </details>
@@ -629,7 +618,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > >
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Add "eq" to the list of classes for the front container element (similarly to the "nkeys" attribute for multiple-choice and tapping inputs above):
-> >     ```
+> >     ```html
 > >     <div class="card-content front eq" ...
 > >     ```
 > > 3. Repeat this for other Types of Cards if necessary
@@ -650,9 +639,10 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Enter the desired characters into the "static_keys" setting element at the top of the Front Template, e.g.:
-> >    ```
+> >    ```html
 > >    <setting id="static_keys">äéöüß</setting>
 > >    ```
+> > 3. Repeat this for other Types of Cards if necessary
 > > 4. Click `Save`
 > 
 > </details>
@@ -665,20 +655,60 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Enter the desired characters into the "random_keys" setting element at the top of the Front Template, e.g.:
-> >    ```
+> >    ```html
 > >    <setting id="random_keys">αβγδεζηθικλμνξοπρστυφχψω</setting>
 > >    ```
-> > 3. Click `Save`
+> > 3. Repeat this for other Types of Cards if necessary
+> > 4. Click `Save`
 > 
 > </details>
 > 
 > Clearing both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future), use [special "off" class](#10-disabling-individual-elements) instead.
 > 
-> ##### 8. Extra Fields displayed on the info screen
+> ##### 8. Extra Fields
 > 
-> 🚧🚧🚧
+> On Mermrise, Columns with the "Always Show" property are displayed on the info screen after incorrect answers. In the Anki template, this can be configured not just for each Field but also for each Card Type individually.
+>     
+> <details>
+>   <summary>Insert any Field as extra on the info screen:</summary>
+>
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Put the following block of code on the Back Template among other similar-looking blocks (replacing "ExtraField" in all four instances with the name of the Field you are inserting):
+> >       ```html
+> > 		          {{#ExtraField}}
+> > 			          <div class="mem-field no-alts">
+> > 			          	<label>ExtraField</label>
+> > 			          	<h4>{{ExtraField}}</h4>      
+> > 			          </div>
+> > 		          {{/ExtraField}}
+> >       ```
+> > 3. Repeat this for other Types of Cards if necessary
+> > 4. Click `Save`
+> </details>
+>
+> The extra Fields on the info screen can also be freely removed, reordered, or copied to the front side in a similar way.
 > 
-> ##### 9. Prompt and the frontside Extra field
+> Additionally, Memrise shows the first extra Field with the "Always Show" property on the front side after an answer is submitted. In this template, the Field for display can be picked independently of any other conditions (or, conversely, [disabled](#10-disabling-individual-elements)).
+>
+> <details>
+>   <summary>To set a Field as the Front extra field:</summary>
+>
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Find the following piece of code on the Front Template:
+> >       ```html
+> >       {{#Extra}}
+> >       	<div class="front-extra no-alts">
+> >       		<label>Extra</label>
+> >       		<span>{{Extra}}</span>
+> >       	</div>
+> >       {{/Extra}}
+> >       ```
+> >       (if the template was modified before, some other Field might be in place of "Extra" – the most reliable way to quickly identify the code is to look for "front-extra" using the search bar)
+> > 3. Change the "Extra" (or the other Field taking the role) to the name of the Field you would like to see in its place (in all four instances!)
+> > 4. Click `Save`
+> </details>
+> 
+> ##### 9. Prompt
 > 
 > 🚧🚧🚧
 > 
