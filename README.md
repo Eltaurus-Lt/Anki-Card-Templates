@@ -670,7 +670,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > On Mermrise, Columns with the "Always Show" property are displayed on the info screen after incorrect answers. In the Anki template, this can be configured not just for each Field but also for each Card Type individually.
 >     
 > <details>
->   <summary>Insert any Field as extra on the info screen:</summary>
+>   <summary>step-by-step:</summary>
 >
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Put the following block of code on the Back Template among other similar-looking blocks (replacing "ExtraField" in all four instances with the name of the Field you are inserting):
@@ -688,10 +688,10 @@ Basic ways of accessing the common Anki windows for various customization option
 >
 > The extra Fields on the info screen can also be freely removed, reordered, or copied to the front side in a similar way.
 > 
-> Additionally, Memrise shows the first extra Field with the "Always Show" property on the front side after an answer is submitted. In this template, the Field for display can be picked independently of any other conditions (or, conversely, [disabled](#10-disabling-individual-elements)).
+> Additionally, Memrise displays the first extra Field with the "Always Show" property on the front side after an answer is submitted (when viewed in a wide enough window). In this template, the displayed Field can be picked independently of any other conditions (or, conversely, [disabled](#10-disabling-individual-elements)).
 >
 > <details>
->   <summary>To set a Field as the Front extra field:</summary>
+>   <summary>step-by-step:</summary>
 >
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Find the following piece of code on the Front Template:
@@ -708,16 +708,26 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 4. Click `Save`
 > </details>
 > 
-> ##### 9. Prompt
+> ##### 9. Text prompt
 > 
-> 🚧🚧🚧
+> On Memrise, above each question, a bit of text is displayed to indicate what kind of action is expected from a user. Those prompts only depend on the input method of the test, and, as such, are repetitive and not helpful after the first couple of tests. While the template is set up to reproduce the Memrise behavior by default, it leaves a lot of room for customization. You can remove a text prompt altogether or make it more informative by providing instructions specific to each Card Type, such as "Type the pronunciation for the word" or "Pick the composer of the musical piece" (might be especially useful if your Cards are made to be [shared with other people](https://docs.ankiweb.net/contrib)). If your Notes contain very diverse material, the prompt can even be [made into a separate Field](3-adding-new-fields) and set on a Note-to-Note basis.
 > 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> > 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Look for the text of the current prompt on the Front Template ("Pick the correct answer", "Choose the answer you hear", etc.)
+> > 3. Rewrite the prompt as necessary (HTML can be used for rich text formatting)
+> > 4. Click `Save`
+> </details>
+>
 > ##### 10. Disabling individual elements
 > 
 > The layout for the template is designed to be as flexible as possible. All the elements on the Card can be freely rearranged, copied, and, if necessary, deleted. It is better to use the latter sparingly, however. If there are elements on the Card you don't need and would prefer not to be displayed during reviews, there is a simple non-disruptive way of removing them without losing the original code. This will preserve the opportunity to easily bring any element back at any moment, e.g., when you are cloning a Card Type and need a full template to customize it for the new role.
 >
 > <details>
->   <summary>To disable any element:</summary>
+>   <summary>step-by-step:</summary>
 > 
 > > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
@@ -743,7 +753,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > Each Card Type can be set to be displayed in a certain color theme. This can be used to color-code different types of questions, Note Types made for different subjects, or to select a more pleasing theme than the default "MemRise" for all Cards in general.
 > 
 > <details>
->   <summary>To set a theme:</summary>
+>   <summary>step-by-step:</summary>
 > 
 > > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
