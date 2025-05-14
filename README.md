@@ -471,219 +471,262 @@ Basic ways of accessing the common Anki windows for various customization option
 
 #### Editing Card Types
 
-##### 1. Making new Card Types
-
-<details>
-  <summary>step-by-step:</summary>
-
-> 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Add Card Type`
-> 3. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
-> 4. [Rename](#3-renaming-card-types) the created Card Type using the same `Options` menu
-> 5. Set [the question](#4-changing-the-question-field), [the answer](#5-changing-the-answer-field), [the input method](#6-changing-the-input-method), etc.
-> 6. Click `Save`
-> 7. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
-
-</details>
-
-##### 2. Removing existing Card Types
-
-<details>
-  <summary>step-by-step:</summary>
-
-> 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Select the Type of Cards you wish to remove from the `Card Type: ` dropdown list at the top
-> 3. In the `Options` menu to the right of the `Card Type: ` dropdown list, select `Remove Card Type` (keep in mind that all Cards of this Type and their review history will be permanently deleted! If that is undesired, consider [suspending](https://docs.ankiweb.net/studying.html#editing-and-more) all Cards of this Type instead)
-> 4. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
-> 5. Click `Save`
-> 6. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
-
-</details>
-
-##### 3. Renaming Card Types
-
-<details>
-  <summary>step-by-step:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Rename Card Type`
-> 3. Enter the desired name for this Type of Cards (e.g., "Listening Comprehension" or "Pronunciation"), and click `Ok`
-> 4. Click `Save`
-
-</details>
-
-##### 4. Changing the question Field
-
-<details>
-  <summary>step-by-step:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
-> 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
-> 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
+> ##### 1. Making new Card Types
 > 
->     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.</sub>
-> 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
-> 6. Click `Save`
-
-</details>
-
-##### 5. Changing the answer Field
-
-<details>
-  <summary>step-by-step:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
-> 3. On the Front side template, find the "id=correctAnswer" element and change the name of the Field inside to the Field you wish to use as the answer to the Card:
-> 4. For Multiple-choice Cards, replace, similarly, the Field specified in the "id=choices" element with the Field which will be used as [the source of incorrect choices](#6-changing-the-input-method)
-> 5. For Typing Cards, change the text label inside the "mem-typing" element to correctly reflect the expected input:
-> 6. Replace the name of the old answer Field at the beginning and the end of the HTML section with the new answer Field (keeping the preceding `#` and `/` characters). For Multiple-choice, do the same for the choices Field as well.
+> <details>
+>   <summary>step-by-step:</summary>
 > 
->     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, the Notes with words spelled entirely in kana would not have anything to be learned from a Card Type that is supposed to test on kanji reading. The same goes for multiple-choice Cards, which do not have a single incorrect choice to make the test meaningful.</sub>
-> 7. On the Back side template, replace the old answer Field ("Learnable", by default) and its text label with the new one. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the answer from there, and putting the old answer Field as a new extra info block.
-> 8. Click `Save`
-
-</details>
-
-##### 6. Changing the input method
-
-<details>
-  <summary>Changing input method to Typing:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Typing Card
-> 3. Change the mode to set on the Front side template to "typing" (you can look for "mode=" using the search bar)
-> 4. Adjust [the on-screen keyboard layout](7-on-screen-keyboard-layout) to match the kind of material being tested in the Card Type
-> 5. [Disable](#10-disabling-specific-elements) the Hint button (search for "HintButton") if needed
-> 6. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
-> 7. Click `Save`
-
-</details>
-  
-<details>
-  <summary>Changing input method to Multiple-Choice:</summary>
-
-> 1. Multiple-choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](#3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
-> 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) (for a quick and easy setup). The choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrectly typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
-> 3. Open [the Card Type editor](#relevant-anki-windows)
-> 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into multiple-choice Cards
-> 5. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
-> 6. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
-> 7. Verify that the correct choice Field is specified in the "id=choices" element
-> 8. Click `Save`
-
-</details>
-
-<details>
-  <summary>Changing input method to Tapping:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
-> 3. Change the mode to set on the Front side template to "tapping" (you can look for "mode=" using the search bar)
-> 4. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **not having** the "nkeys" class)
-> 5. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
-> 6. Click `Save`
-
-</details>
-
-<details>
-  <summary>Changing input method on a Cloze template:</summary>
-
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Since cloze templates do not actually have separate Card Types (the number of Cards generated from a Note depends on the number of clozes it has), all the settings described previously should be implemented based on clozes' ordinal numbers. For example, to make the first card use multiple-choice input, the second one – typing input, the third – tapping, and the fourth – typing again, the following code should be put as the "mode" parameter:
->     ```
->     mode="{{#c1}}mchoice{{/c1}}{{#c2}}typing{{/c2}}{{#c3}}tapping{{/c3}}{{#c4}}typing{{/c4}}"
->     ```
-> 3. If you are using multiple-choice for clozes with different types of content, make sure to make the appropriate number of [choices Fields](#3-adding-new-fields), and set them up in the ["choices" element](#5-changing-the-answer-field) accordingly. For example:
->     ```
->     <data id="choices">{{#c1}}{{Choices Years}}{{/c1}}{{#c3}}{{Choices Years}}{{/c3}}{{#c4}}{{Choices Personalities}}{{/c4}}{{#c6}}{{Choices Countries}}{{/c6}}</data>
->     ```
-> 4. Other parameters, like "nkeys" (see changing input to multiple-choice and tapping), [keyboard](#7-on-screen-keyboard-layout), [theme](#11-selecting-a-theme), etc., can be set up similarly
-> 5. Click `Save`
-> 6. When making a Note with the Cloze Note Type, nested clozes can be used to generate several questions with different input methods for the same clozed parts. For example, putting the following into the cloze Field:
->     ```
->     {{c1::{{c2::word}}}} other text {{c3::{{c4::clozed phrase}}}}
->     ```
->     with the setup from step 2, will generate four Cards: a multiple-choice Card plus a typing Card for the "word" and a tapping Card plus a typing Card for the "clozed phrase".
+> > 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Add Card Type`
+> > 3. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
+> > 4. [Rename](#3-renaming-card-types) the created Card Type using the same `Options` menu
+> > 5. Set [the question](#4-changing-the-question-field), [the answer](#5-changing-the-answer-field), [the input method](#6-changing-the-input-method), etc.
+> > 6. Click `Save`
+> > 7. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
+> 
+> </details>
+> 
+> ##### 2. Removing existing Card Types
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> > 0. [Sync](https://docs.ankiweb.net/syncing.html) all devices to make sure all reviews and other changes made their way to the desktop app (otherwise they will be overwritten by this edit)
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Select the Type of Cards you wish to remove from the `Card Type: ` dropdown list at the top
+> > 3. In the `Options` menu to the right of the `Card Type: ` dropdown list, select `Remove Card Type` (keep in mind that all Cards of this Type and their review history will be permanently deleted! If that is undesired, consider [suspending](https://docs.ankiweb.net/studying.html#editing-and-more) all Cards of this Type instead)
+> > 4. Click `Yes`, and then `Yes` again, to confirm there are no unsynced changes left on other devices
+> > 5. Click `Save`
+> > 6. [Sync](https://docs.ankiweb.net/syncing.html) in the desktop app, selecting `Upload to AnkiWeb`, then Sync on a mobile app, choosing to keep the `AnkiWeb` version of the collection
+> 
+> </details>
+> 
+> ##### 3. Renaming Card Types
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the `Options` menu at the very top right corner (next to the dropdown list of the Card Types), select `Rename Card Type`
+> > 3. Enter the desired name for this Type of Cards (e.g., "Listening Comprehension" or "Pronunciation"), and click `Ok`
+> > 4. Click `Save`
+> 
+> </details>
+> 
+> ##### 4. Changing the question Field
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> > 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
+> > 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
+> > 
+> >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.</sub>
+> > 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
+> > 6. Click `Save`
+> 
+> </details>
+> 
+> ##### 5. Changing the answer Field
+> 
+> <details>
+>   <summary>step-by-step:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> > 3. On the Front side template, find the "id=correctAnswer" element and change the name of the Field inside to the Field you wish to use as the answer to the Card:
+> > 4. For Multiple-choice Cards, replace, similarly, the Field specified in the "id=choices" element with the Field which will be used as [the source of incorrect choices](#6-changing-the-input-method)
+> > 5. For Typing Cards, change the text label inside the "mem-typing" element to correctly reflect the expected input:
+> > 6. Replace the name of the old answer Field at the beginning and the end of the HTML section with the new answer Field (keeping the preceding `#` and `/` characters). For Multiple-choice, do the same for the choices Field as well.
+> > 
+> >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, the Notes with words spelled entirely in kana would not have anything to be learned from a Card Type that is supposed to test on kanji reading. The same goes for multiple-choice Cards, which do not have a single incorrect choice to make the test meaningful.</sub>
+> > 7. On the Back side template, replace the old answer Field ("Learnable", by default) and its text label with the new one. You might also want to adjust the [Extra info](#8-extra-fields-displayed-on-the-info-screen) blocks, removing the Field that is now used as the answer from there, and putting the old answer Field as a new extra info block.
+> > 8. Click `Save`
+> 
+> </details>
+> 
+> ##### 6. Changing the input method
+> 
+> <details>
+>   <summary>Changing input method to Typing:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Typing Card
+> > 3. Change the mode to set on the Front side template to "typing" (you can look for "mode=" using the search bar)
+> > 4. Adjust [the on-screen keyboard layout](7-on-screen-keyboard-layout) to match the kind of material being tested in the Card Type
+> > 5. [Disable](#10-disabling-specific-elements) the Hint button (search for "HintButton") if needed
+> > 6. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
+> > 7. Click `Save`
+> 
+> </details>
+>   
+> <details>
+>   <summary>Changing input method to Multiple-Choice:</summary>
+> 
+> > 1. Multiple-choice cards require a source of words (images/equations/...) to be used as incorrect choices in the test. Those choices are stored in separate Fields on each Note (e.g., Field "Choices" in the default setup). If you want a Note Type to have several Multiple-Choice Card Types, first make sure to [create enough Choice Fields](#3-adding-new-fields) first (e.g., "Choices English", "Choices Deutsch", "Image Choices", etc.)
+> > 2. Populate the choices Fields. This can be done manually in [the Card Editor](#relevant-anki-windows) (to ensure each Field contains only those choices that can be reasonably mistaken for the correct answer, making the Cards more effective), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) (for a quick and easy setup). The choices can also be edited afterwards at any point, e.g., after you fail a typing Card during review, the incorrectly typed answer can be added to the list of choices to make the multiple-choice Card helpful in recognizing it.
+> > 3. Open [the Card Type editor](#relevant-anki-windows)
+> > 4. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into multiple-choice Cards
+> > 5. Change the mode to set on the Front side template to "mchoice" (you can look for "mode=" using the search bar)
+> > 6. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **having** the "nkeys" class)
+> > 7. Verify that the correct choice Field is specified in the "id=choices" element
+> > 8. Click `Save`
+> 
+> </details>
+> 
+> <details>
+>   <summary>Changing input method to Tapping:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> > 3. Change the mode to set on the Front side template to "tapping" (you can look for "mode=" using the search bar)
+> > 4. Add or remove "nkeys" from the class list in the same line, depending on whether you'd like the number labels on the buttons to be always shown (default Memrise behavior is achieved by **not having** the "nkeys" class)
+> > 5. On the Back side template, [disable](#10-disabling-specific-elements) the spelling diff element (search for "spelldiff") if needed
+> > 6. Click `Save`
+> 
+> </details>
+> 
+> <details>
+>   <summary>Changing input method on a Cloze template:</summary>
+> 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Since cloze templates do not actually have separate Card Types (the number of Cards generated from a Note depends on the number of clozes it has), all the settings described previously should be implemented based on clozes' ordinal numbers. For example, to make the first card use multiple-choice input, the second one – typing input, the third – tapping, and the fourth – typing again, the following code should be put as the "mode" parameter:
+> >     ```
+> >     mode="{{#c1}}mchoice{{/c1}}{{#c2}}typing{{/c2}}{{#c3}}tapping{{/c3}}{{#c4}}typing{{/c4}}"
+> >     ```
+> > 3. If you are using multiple-choice for clozes with different types of content, make sure to make the appropriate number of [choices Fields](#3-adding-new-fields), and set them up in the ["choices" element](#5-changing-the-answer-field) accordingly. For example:
+> >     ```
+> >     <data id="choices">{{#c1}}{{Choices Years}}{{/c1}}{{#c3}}{{Choices Years}}{{/c3}}{{#c4}}{{Choices Personalities}}{{/c4}}{{#c6}}{{Choices Countries}}{{/c6}}</data>
+> >     ```
+> > 4. Other parameters, like "nkeys" (see changing input to multiple-choice and tapping), [keyboard](#7-on-screen-keyboard-layout), [theme](#11-selecting-a-theme), etc., can be set up similarly
+> > 5. Click `Save`
+> > 6. When making a Note with the Cloze Note Type, nested clozes can be used to generate several questions with different input methods for the same clozed parts. For example, putting the following into the cloze Field:
+> >     ```
+> >     {{c1::{{c2::word}}}} other text {{c3::{{c4::clozed phrase}}}}
+> >     ```
+> >     with the setup from step 2, will generate four Cards: a multiple-choice Card plus a typing Card for the "word" and a tapping Card plus a typing Card for the "clozed phrase".
+> >
+> >     Also, clozes do not necessarily have to be numbered sequentially: some can be skipped when needed, and the grouping can vary from Note to Note. For example, using
+> >     ```
+> >     {{c1:::word}} other text {{c4::clozed phrase}}
+> >     ```
+> >     will only generate a multiple-choice Card for the "word" and a typing Card for the "clozed phrase", while
+> >     ```
+> >     other text {{c1::{{c3::{{c4::clozed phrase}}}}}}}
+> >     ```
+> >     will generate a multiple-choice Card, a tapping Card, and a typing Card for the same "clozed phrase".
+> >    
+> >     This can be taken advantage of by preparing a Note Type which will contain templates for every possibly useful combination of parameters, and then, on each specific Note, only utilizing those cloze numbers that correspond to the types of questions the Note needs to have generated.
+> </details>
+> 
+> <details>
+>   <summary>Enabling LaTeX mode:</summary>
+> 
+> > [This mode](#latex) changes how the answers in multiple-choice and typing Cards are evaluated. It checks the correctness based on the MathJax-converted output, allowing for inconsequential differences in equation typesetting (such as omitting delimiters or swapping the order of subscript and superscript of a variable) to be ignored. Because LaTeX syntax is incompatible with the [Memrise syntax](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation) (the former is case-sensitive, interprets special characters, such as brackets, commas, and semi-colons differently, ignores spaces in certain places, etc.), this mode is not well-suited for regular answers, and should be reserved for Cards with equation answers only.
+> >
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Add "eq" to the list of classes for the front container element (similarly to the "nkeys" attribute for multiple-choice and tapping inputs above):
+> >     ```
+> >     <div class="card-content front eq" ...
+> >     ```
+> > 3. Repeat this for other Types of Cards if necessary
+> > 4. Click `Save`
+> 
+> </details>
+> 
+> 
+> 
+> ##### 7. On-screen keyboard layout
+> 
+> There are two ways of customizing the keyboard layout (analogous to Memrise's "Keyboard Characters" and "predefined keyboard" settings). Either one can be used on its own, or the two can be combined for a more intricate setup. This is a per-Card-Type setting (similar to how on Memrise it is defined per Level Column) so that Cards testing the same Notes in different directions can have separate layouts.
+> 
+> <details>
+>   <summary>Static layout ("Keyboard Characters"):</summary>
+> 
+> > All static characters will always appear on each Card of this type in the same order they are specified. This can be useful for adding special characters (such as letters with diacritics) to supplement a physical keyboard that doesn’t have them, or for emulating a whole keyboard for a language not installed on your machine. To set it up:
+> > 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Enter the desired characters into the "static_keys" setting element at the top of the Front Template, e.g.:
+> >    ```
+> >    <setting id="static_keys">äéöüß</setting>
+> >    ```
+> > 4. Click `Save`
+> 
+> </details>
+> 
+> <details>
+>   <summary>Randomizing characters ("predefined keyboard"):</summary>
+> 
+> > This setting is supposed to represent the alphabet (or a subset of the most frequently used characters) of a given language / digits (for numeric questions) / common LaTeX characters (for [typesetting formuli](#latex)) / etc. 
+> > When at least a single character is defined in this setting, the on-screen keyboard layout will be populated with all characters necessary to spell the correct answer + several unique characters selected from this set (all mixed together and presented in a randomized order to spoil the answer as little as possible). This option can be used to make Cards self-sufficient – every expected answer will be possible to type using on-screen elements alone, without having redundant characters taking up screen space (might be convenient for mobile devices). To set it up:
+> > 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Enter the desired characters into the "random_keys" setting element at the top of the Front Template, e.g.:
+> >    ```
+> >    <setting id="random_keys">αβγδεζηθικλμνξοπρστυφχψω</setting>
+> >    ```
+> > 3. Click `Save`
+> 
+> </details>
+> 
+> Clearing both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future), use [special "off" class](#10-disabling-individual-elements) instead.
+> 
+> ##### 8. Extra Fields displayed on the info screen
+> 
+> 🚧🚧🚧
+> 
+> ##### 9. Prompt and the frontside Extra field
+> 
+> 🚧🚧🚧
+> 
+> ##### 10. Disabling individual elements
+> 
+> The layout for the template is designed to be as flexible as possible. All the elements on the Card can be freely rearranged, copied, and, if necessary, deleted. It is better to use the latter sparingly, however. If there are elements on the Card you don't need and would prefer not to be displayed during reviews, there is a simple non-disruptive way of removing them without losing the original code. This will preserve the opportunity to easily bring any element back at any moment, e.g., when you are cloning a Card Type and need a full template to customize it for the new role.
 >
->     Also, clozes do not necessarily have to be numbered sequentially: some can be skipped when needed, and the grouping can vary from Note to Note. For example, using
->     ```
->     {{c1:::word}} other text {{c4::clozed phrase}}
->     ```
->     will only generate a multiple-choice Card for the "word" and a typing Card for the "clozed phrase", while
->     ```
->     other text {{c1::{{c3::{{c4::clozed phrase}}}}}}}
->     ```
->     will generate a multiple-choice Card, a tapping Card, and a typing Card for the same "clozed phrase".
->    
->     This can be taken advantage of by preparing a Note Type which will contain templates for every possibly useful combination of parameters, and then, on each specific Note, only utilizing those cloze numbers that correspond to the types of questions the Note needs to have generated.
-</details>
-
-<details>
-  <summary>Enabling LaTeX mode:</summary>
-
-> [This mode](#latex) changes how the answers in multiple-choice and typing Cards are evaluated. It checks the correctness based on the MathJax-converted output, allowing for inconsequential differences in equation typesetting (such as omitting delimiters or swapping the order of subscript and superscript of a variable) to be ignored. Because LaTeX syntax is incompatible with the [Memrise syntax](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation) (the former is case-sensitive, interprets special characters, such as brackets, commas, and semi-colons differently, ignores spaces in certain places, etc.), this mode is not well-suited for regular answers, and should be reserved for Cards with equation answers only.
->
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Add "eq" to the list of classes for the front container element (similarly to the "nkeys" attribute for multiple-choice and tapping inputs above):
->     ```
->     <div class="card-content front eq" ...
->     ```
-> 3. Click `Save`
-
-</details>
-
-
-
-##### 7. On-screen keyboard layout
-
-There are two ways of customizing the keyboard layout (analogous to Memrise's "Keyboard Characters" and "predefined keyboard" settings). Either one can be used on its own, or the two can be combined for a more intricate setup. This is a per-Card-Type setting (similar to how on Memrise it is defined per Level Column) so that Cards testing the same Notes in different directions can have separate layouts.
-
-<details>
-  <summary>Static layout ("Keyboard Characters"):</summary>
-
-> All static characters will always appear on each Card of this type in the same order they are specified. This can be useful for adding special characters (such as letters with diacritics) to supplement a physical keyboard that doesn’t have them, or for emulating a whole keyboard for a language not installed on your machine. To set it up:
+> <details>
+>   <summary>To disable any element:</summary>
 > 
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Enter the desired characters into the "static_keys" setting element at the top of the Front Template, e.g.:
->    ```
->    <setting id="static_keys">äéöüß</setting>
->    ```
-> 4. Click `Save`
-
-</details>
-
-<details>
-  <summary>Randomizing characters ("predefined keyboard"):</summary>
-
-> This setting is supposed to represent the alphabet (or a subset of the most frequently used characters) of a given language / digits (for numeric questions) / common LaTeX characters (for [typesetting formuli](#latex)) / etc. 
-> When at least a single character is defined in this setting, the on-screen keyboard layout will be populated with all characters necessary to spell the correct answer + several unique characters selected from this set (all mixed together and presented in a randomized order to spoil the answer as little as possible). This option can be used to make Cards self-sufficient – every expected answer will be possible to type using on-screen elements alone, without having redundant characters taking up screen space (might be convenient for mobile devices). To set it up:
+> > 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Locate the element in the template and add "off" (all lowercase) to the list of its classes. For example, to disable the [on-screen keyboard](7-on-screen-keyboard-layout) as a whole:
+> >    ```
+> >    <div id="scr-keyboard" class="off">
+> >    ```
+> >    If the element already has other classes, separate "off" with spaces (order of classes does not matter). For example, to disable the Hint button:
+> >    ```
+> >    <div id="HintButton" class="membtn off">...
+> >    ```
+> >    The same goes for elements on the Back side, e.g., the spelling diff element:
+> >    ```
+> >    <span id="spelldiff" class="off"></span>
+> >    ```
+> > 3. Repeat this for other Types of Cards if necessary
+> > 4. Click `Save`
 > 
-> 1. Open [the Card Type editor](#relevant-anki-windows)
-> 2. Enter the desired characters into the "random_keys" setting element at the top of the Front Template, e.g.:
->    ```
->    <setting id="random_keys">αβγδεζηθικλμνξοπρστυφχψω</setting>
->    ```
-> 4. Click `Save`
-
-</details>
-
-Clearing both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future), use [special ".off" class](#10-disabling-individual-elements) instead.
-
-🚧🚧🚧
-
-##### 8. Extra Fields displayed on the info screen
-
-##### 9. Prompt and the frontside Extra field
-
-##### 10. Disabling individual elements
-
-Things like the on-screen keyboard, the hint button, spelling diffs, and anything else
-
-##### 11. Selecting a theme
+> </details>   
+> 
+> ##### 11. Selecting a theme
+> 
+> Each Card Type can be set to be displayed in a certain color theme. This can be used to color-code different types of questions, Note Types made for different subjects, or to select a more pleasing theme than the default "MemRise" for all Cards in general.
+> 
+> <details>
+>   <summary>To set a theme:</summary>
+> 
+> > 
+> > 1. Open [the Card Type editor](#relevant-anki-windows)
+> > 2. Similarly to [changing input method](6-changing-the-input-method), locate the front container element on the Front Template (look for "theme=" using the search bar), and put in the name of the selected [theme](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/163?u=eltaurus) as the value for the attribute. For example, to use the "AnkiRise" theme:
+> >    ```
+> >    <div class="card-content front" theme="AnkiRise" mode="typing">
+> >    ```
+> > 3. Repeat this for other Types of Cards if necessary
+> > 4. Click `Save`
+> 
+> The full list of available themes and instructions for composing a new one from scratch can be found in [this post](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/163?u=eltaurus). Every theme has both light and dark modes, which can be selected in the global Anki preferences.
+> 
+> </details>
 
 #### Advanced
 
