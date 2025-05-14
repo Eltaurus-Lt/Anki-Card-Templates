@@ -724,7 +724,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 3. Repeat this for other Types of Cards if necessary
 > > 4. Click `Save`
 > 
-> The full list of available themes and instructions for composing a new one from scratch can be found in [this post](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/163?u=eltaurus). Every theme has both light and dark modes, which can be selected in the global Anki preferences.
+> The full list of available themes and instructions for composing a new one from scratch can be found in [this post](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/163?u=eltaurus). Every theme has both light and dark modes, which are automatically selected depending on the global Anki preference.
 > 
 > </details>
 
