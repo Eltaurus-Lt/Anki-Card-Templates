@@ -63,40 +63,7 @@ One more feature to mention is the **LaTeX support** (in both **type-in** and **
 
 **spelling diffs**, **tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
 
-
 &nbsp;  
-<details>
-<summary>More screenshots</summary>
- 
-![Audio question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/58fe1cd2-02de-4e16-b5c2-ee5d240307ae)
-![Multiple-choice question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/548a2f2a-ca68-41fd-94fa-150b90662552)
-![On-screen keyboard](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cfc7895a-4911-4e04-8084-7a65f3a555f5)
-![Images](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/e12a8648-8b2a-4af0-a4cb-93a29ad61a6b)
-![Multiple-choice question](https://github.com/user-attachments/assets/43e4be88-91f8-4575-881a-122bfcb62fa0)
-![Spelling corrections](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9f30fdeb-57c8-4d04-b086-07d211b99ce0)
-![Hint button](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/6dbd8da4-e322-4c4b-bd5a-4a744ba5e8e2)
-![Dark theme (multiple-choice)](https://github.com/user-attachments/assets/7e918a3c-365d-4f05-917a-ee9066f37644)
-![Dark theme (type-in, audio)](https://github.com/user-attachments/assets/9340eff2-eb93-452f-8f5a-51abde3cb86e)
-
-</details>
-
-<details>
-<summary>Memrise vs Anki template (side-by-side comparison)</summary>
- <p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%; box-shadow: 10px 5px 5px black;">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
-</p>
-
-<p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cbe21000-4519-43ab-b74b-a1c35dd1a363" title="Anki" style="width: 43%">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7e0d7f4e-34e2-4db9-b034-07f0490ba5f4" title="Memrise" style="width: 48%">
-</p>
-
-<p align="middle">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/0aca8cd7-260c-4049-9bc5-1efe9a24e915" title="Anki" style="width: 43%">
-  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/c7446347-0b12-427d-97b8-bdc0b899a715" title="Memrise" style="width: 48%">
-</p>
-</details>
 
 ### Corrections and changes
 
@@ -182,6 +149,41 @@ This template does not use any of the original Memrise code and is written from 
 
 There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaMQby) to get a first-hand impression of the functionality before downloading anything (this demo is not updated as regularly as the template itself – only some of the oldest features of the template are represented).
 
+<details>
+<summary>More screenshots</summary>
+ 
+![Audio question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/58fe1cd2-02de-4e16-b5c2-ee5d240307ae)
+![Multiple-choice question](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/548a2f2a-ca68-41fd-94fa-150b90662552)
+![On-screen keyboard](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cfc7895a-4911-4e04-8084-7a65f3a555f5)
+![Images](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/e12a8648-8b2a-4af0-a4cb-93a29ad61a6b)
+![Multiple-choice question](https://github.com/user-attachments/assets/43e4be88-91f8-4575-881a-122bfcb62fa0)
+![Spelling corrections](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9f30fdeb-57c8-4d04-b086-07d211b99ce0)
+![Hint button](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/6dbd8da4-e322-4c4b-bd5a-4a744ba5e8e2)
+![Dark theme (multiple-choice)](https://github.com/user-attachments/assets/7e918a3c-365d-4f05-917a-ee9066f37644)
+![Dark theme (type-in, audio)](https://github.com/user-attachments/assets/9340eff2-eb93-452f-8f5a-51abde3cb86e)
+
+</details>
+
+<details>
+<summary>Memrise vs Anki template (side-by-side comparison)</summary>
+ <p align="middle">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/9c93a367-1ec6-4818-bb50-d84ccf543c0a" title="Anki" style="width: 43%; box-shadow: 10px 5px 5px black;">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/411a99b6-0e71-4dc5-91b7-cbb3008040a1" title="Memrise" style="width: 48%">
+</p>
+
+<p align="middle">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/cbe21000-4519-43ab-b74b-a1c35dd1a363" title="Anki" style="width: 43%">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7e0d7f4e-34e2-4db9-b034-07f0490ba5f4" title="Memrise" style="width: 48%">
+</p>
+
+<p align="middle">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/0aca8cd7-260c-4049-9bc5-1efe9a24e915" title="Anki" style="width: 43%">
+  <img src="https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/c7446347-0b12-427d-97b8-bdc0b899a715" title="Memrise" style="width: 48%">
+</p>
+</details>
+
+&nbsp;  
+
 ### The support Add-on
 
 The support add-on provides functionality that makes it easier to set-up [multiple-choice cards](#automatically-filling-choice-fields-for-multiple-choice-cards), edit Notes with [alternative answers](#formatting-alternative-answers), and also enables using standard Memrise shortcuts when reviewing Cards on desktop.
@@ -215,7 +217,47 @@ The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start
 
 #### Formatting alternative answers
 
-🚧
+Just like the original Memrise site, the template supports specifying multiple Alts (alternative translations, spellings, meanings, readings, etc.) for any Field. During reviews, when a Field with Alts is tested on, any one of them will be automatically accepted as an equally correct answer. To show the full range of potential answers, Alts for [the question Field](#question-types) are also displayed on the info screen with a smaller and fainter font, right below the main value (this can also be [enabled for any other Field](#advanced) on either the Front or the Back of a Card). While the add-on is not at all required for setting and using Alts, it makes working with them more convenient. With the add-on [installed](#installation), the Alts in [the Card Editor](#relevant-anki-windows) will be displayed in the same distinct style as they appear on the Cards, and the Editor itself is augmented with two additional tools for marking and clearing Alts, removing any need for editing HTML code manually.
+
+- To add an Alt to a Field which only has the main word:
+
+  &nbsp;1. Move the text cursor to the end of the Field's content
+  
+  &nbsp;2. Click the "Format as Alt" button on the toolbar (shortcut Alt+A)
+  
+  &nbsp;3. Proceed to typing Alts, separating them with the pipe character `|` (spaces can be added for readability)
+
+- To convert an existing part of a Field's content into an Alt:
+
+  &nbsp;1. Select the relevant text
+
+  &nbsp;2. Click the "Format as Alt" button on the toolbar (shortcut Alt+A)
+
+- To clean all Alt formatting from a Field:
+
+  &nbsp;1. Put the text cursor anywhere inside the field
+
+  &nbsp;2. Click the "Erase Alt formatting" button on the toolbar (shortcut Alt+X)
+
+The latter only removes the formatting, while keeping the content of Alt sections themselves and merging it back into the main part (this can be used to reset Alt formatting and redo it from scratch if anything goes wrong)
+
+<details>
+  <summary>Editing Alts manually:</summary>
+
+>
+> 1. In [the Card Editor](#relevant-anki-windows) open HTML code by pressing the `<>` icon in the top right corner of the Field
+> 2. To add an Alt section, make a `<div>` element with the "alt" class and the Alts typed put inside and separated with `|`:
+>     ```
+>     <div class="alt">
+>          alt1 | alt2 | alt3 ...
+>     </div>
+>     ```
+> 3. To remove an Alt, simply delete the `<div>`, moving the contents as necessary
+> 4. To hide an Alt section from presentation (similarly to how prefixing an Alt with `_` works on Memrise), add the ["off" class](#10-disabling-individual-elements) to the `<div>`
+>
+</details>
+
+Keep in mind that [Fill Choices](#automatically-filling-choice-fields-for-multiple-choice-cards) function ignores Alts and generates choices based on the main content only. Multiple-choice Cards themselves, however, do account for Alts in [the answer field](5-changing-the-answer-field), making it possible to create questions with several different correct choices.
 
 #### Configuring keyboard shortcuts
 
@@ -285,6 +327,8 @@ To allow the template to use the shortcuts in the Memrise way, the original Anki
 
 </details>
 
+&nbsp;  
+
 ### Key concepts (Anki vs Memrise)
 
 When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise (especially if you have edited a community course there), it might be easier to understand those by analogy: 
@@ -319,6 +363,8 @@ When starting with Anki, it is a good idea to get a hold of its key concepts fir
 
 
 As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Anki, with Level and Level Column settings typically being represented by Card Type settings, while global (Database and Course) settings have their equivalents in the Note Type settings. If you have any further questions, feel free to drop them in [the template forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
+
+&nbsp;  
 
 ### Customization
 
@@ -394,7 +440,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > >   4. Click `Ok`
 > >   5. Enter the desired name for the new Note Type, like "Memrise (Lτ) Japanese", or "Memrise (Lτ) History" (it is recommended to keep "Memrise (Lτ) " as a prefix, for update purposes and full supporting add-on functionality)
 > >   6. Click `Ok`
-> >   7. Customize [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#editing-card-types) of the created Note Type
+> >   7. Customize [Fields](#2-renaming-and-reordering-fields) and [Card Types](#editing-card-types) of the created Note Type
 > 
 > </details>
 > 
@@ -444,7 +490,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > <details>
 >   <summary>step-by-step:</summary>
 > 
-> >   0. Make sure the new Note Type has enough [Fields](#2-renaming-fields-and-adding-new-fields) and [Card Types](#adding-removing-and-renaming-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
+> >   0. Make sure the new Note Type has enough [Fields](#3-adding-new-fields) and [Card Types](#1-making-new-card-types) to keep all needed information from the old Note Type (if not, add them using the linked instructions first)
 > >   1. Open [the Card Browser](#relevant-anki-windows)
 > >   2. Select the Notes that need to be converted (e.g., if you need to convert all Notes from a certain Deck: click the name of the Deck on the left, then any Card in the appeared table and press `Ctrl + A` to select all)
 > >   3. In the top menu, click `Notes`→`Change Note Type`
@@ -784,9 +830,13 @@ Any questions regarding other ways of customization and requests for clarificati
 
 
 
+&nbsp;  
+
 ### Downloading courses from Memrise
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
+
+&nbsp;  
 
 ### Copyright notice
 
