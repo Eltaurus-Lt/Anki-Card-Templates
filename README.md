@@ -1,66 +1,77 @@
-# Anki Card Templates
+# Memrise Template v5.0
 
-## Memrise Template v5.0
-
-This Anki [Note Type](#key-concepts-anki-vs-memrise) template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone else who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds some that Memrise never had. The functionality covers all types of questions: **text** (including rich text and **cloze deletions**), **images** (including animated gifs), **audio** (with fully interactive buttons), as well as any type of input:  **type-in** (with an **on-screen keyboard**, the **hint button**, and **spelling diffs** shown on the info screen), **multiple-choice** (including images; options can be generated automatically or set up manually), and **tapping**. Answers are **graded automatically** (taking **alternative answers** and optional parts separated by `;` and `()` into account), keeping the option for manual grading as well. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/) (the **desktop** app, **Android's** [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki), and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**\*) in **offline mode** and can be used reviewing cards **online** directly from the **AnkiWeb** [website](https://ankiweb.net/decks) in **any browser** without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple **themes**, and a large variety of other customization options.
-
-<sup>*There are some (non-breaking) differences in how the template looks and works on iOS. If anyone wishes to participate in testing to help iron out the remaining discrepancies, please get [in contact](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233)</sup>
-<br>
-<sup>**A desktop app will still be required for a one-time setup</sup>
+This Anki template recreates the Memrise interface to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki cards too intimidating. It also restores several features retired from Memrise and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing** (with the **on-screen keyboard**, the **hint button**, and the **spelling diffs** after answering a Card), **multiple-choice** (including **images**; choices can be **generated automatically** and edited manually), and **tapping**. Answers are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on the [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple color **themes**, and a variety of [other customization options](#customization).
 
 ![main](https://github.com/user-attachments/assets/13d0b023-a26b-46b0-9485-224c10881e7e)
 
+<sup>*This includes the main **Desktop** app, [AnkiDroid](https://play.google.com/store/apps/details?id=com.ichi2.anki) for **Android**, and [AnkiMobile](https://apps.apple.com/us/app/ankimobile-flashcards/id373493387) for **iOS**. There are some (non-breaking) differences in how the template looks and works in the iPhone app — if anyone wishes to participate in testing to help in fixing the remaining discrepancies, please get [in contact](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233)</sup>
+<br>
+<sup>**A (desktop) app is required for the first-time setup</sup>
 
-### 💡 Quick start
+## 💡 Quick start
 
 >---
 >1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v5.0) and open the `Memrise… .apkg` file with Anki
 >2. Use `Memrise (Lτ) Preset […] v5.0` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
->3. On Android, additionally enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → switch **ON**)
+>3. On Android, enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → toggle **ON**)
 >
->Generating Multiple-Choice cards (Optional):
+>Generating Multiple-Choice Cards (Optional):
 >
->4. Install [the support addon](https://ankiweb.net/shared/info/884199977) on a desktop Anki:
-     `Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki
+>4. In the desktop Anki, install [the support addon](https://ankiweb.net/shared/info/884199977) (`Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki)
 >5. Open **`Browse`** window → Select several cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
->6. To make Multiple-Choice cards available on mobile and AnkiWeb: **`Sync`** Anki desktop to AnkiWeb → **`Sync`** in your mobile Anki app
+>6. To make the Multiple-Choice Cards available on mobile and AnkiWeb: **`Sync`** Anki desktop to AnkiWeb → **`Sync`** in your mobile Anki app
 >---
 
 If you require any help with any of the steps, please feel free to leave a comment in [the Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
 Feedback and feature suggestions are also very much appreciated.
 
----
 
-### Question types
+&nbsp;
+
+
+## Question types
+
+🚧🚧🚧
 
 Text, audio, images, and LaTeX equations can all be used as a question prompt with any of the basic template versions without any additional setup - the default template automatically adjusts itself to the type of data placed in the "Definition" field. However, to keep your collection organized and easily manageable (and also to add more card types with different directions of testing), it is a good idea to label things properly and place each piece of data into its dedicated field (the instructions for all the necessary steps are provided in the [customization](#Customization) section below).
 
 [Close deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a distinct sort of [Note Types](https://docs.ankiweb.net/getting-started.html#note-types) in Anki, used to generate an arbitrary number of cards from the same piece of text. They are made from a separate Note Type template ("Memrise (Lτ) Cloze Template v..." included in the shared deck):
 
+including rich text
+including animated gifs
+with fully interactive buttons
+
+## Input methods
+
+🚧🚧🚧
 
 
+## Themes
 
-### Input methods
-
-
-
-
-### Themes
-
+🚧🚧🚧
 **Dark mode**. In addition to that, the template has several **other color themes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
-<!-- fuzzy answer matching | timers, mems... -->
+
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
 
-### LaTeX
+## LaTeX
 
+🚧🚧🚧
 One more feature to mention is the **LaTeX support** (in both **type-in** and **multiple-choice** questions). It is enabled separately (LaTeX and Memrise syntax do not mix well), and in type-in questions shows both: the converted equations form of the typed answer and the corrections for typos in its source:
 
 ![LaTeX](https://github.com/user-attachments/assets/e8831bf0-a43d-4d78-8b25-ed835c8e21d5)
 
+## AnkiWeb
 
-### Other
+🚧🚧🚧
 
+ [website](https://ankiweb.net/decks)
+
+## Other
+
+<!-- fuzzy answer matching | timers, mems... -->
+
+🚧🚧🚧
 **spelling diffs**, **tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
 
 &nbsp;  
@@ -184,11 +195,11 @@ There is also an [interactive online demo](https://codepen.io/Eltaurus/full/mdaM
 
 &nbsp;  
 
-### The support Add-on
+## The support Add-on
 
 The support add-on provides functionality that makes it easier to set-up [multiple-choice cards](#automatically-filling-choice-fields-for-multiple-choice-cards), edit Notes with [alternative answers](#formatting-alternative-answers), and also enables using standard Memrise shortcuts when reviewing Cards on desktop.
 
-#### Installation
+### Installation
 
 The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start) guide. This is a recommended method, as it will also allow receiving the add-on updates automatically.
 <details>
@@ -208,14 +219,14 @@ The automatic install from AnkiWeb is covered in [the Quick Start](#-quick-start
 
 </details>
 
-#### Automatically filling choice fields for multiple-choice Cards
+### Automatically filling choice fields for multiple-choice Cards
 
 > 1. Select several Notes in [the Card Editor](#relevant-anki-windows) (to be used as each other's incorrect answers; if you need to cross-fill all Cards in a certain Deck, for example: click the name of the Deck on the left, then any Card in the appeared table and press `Ctrl + A` to select all)
 > 2. Right-click (or go to either `Cards` or `Notes` menus at the top)
 > 3. Select `Fill Choices`   
 > 4. Specify the Fields in the appeared window accordingly and press `Ok`
 
-#### Formatting alternative answers
+### Formatting alternative answers
 
 Just like the original Memrise site, the template supports specifying multiple Alts (alternative translations, spellings, meanings, readings, etc.) for any Field. During reviews, when a Field with Alts is tested on, any one of them will be automatically accepted as an equally correct answer. To show the full range of potential answers, Alts for [the question Field](#question-types) are also displayed on the info screen with a smaller and fainter font, right below the main value (this can also be [enabled for any other Field](#advanced) on either the Front or the Back of a Card). While the add-on is not at all required for setting and using Alts, it makes working with them more convenient. With the add-on [installed](#installation), the Alts in [the Card Editor](#relevant-anki-windows) will be displayed in the same distinct style as they appear on the Cards, and the Editor itself is augmented with two additional tools for marking and clearing Alts, removing any need for editing HTML code manually.
 
@@ -259,7 +270,7 @@ The latter only removes the formatting, while keeping the content of Alt section
 
 Keep in mind that [Fill Choices](#automatically-filling-choice-fields-for-multiple-choice-cards) function ignores Alts and generates choices based on the main content only. Multiple-choice Cards themselves, however, do account for Alts in [the answer field](5-changing-the-answer-field), making it possible to create questions with several different correct choices.
 
-#### Configuring keyboard shortcuts
+### Configuring keyboard shortcuts
 
 By default, the desktop Anki app uses the number keys '1–4' to rate Cards from `Again` to `Easy`, while on Memrise, the numbers are used as hotkeys when answering multiple-choice and tapping questions. Anki also interprets both `Enter` and `Space` as rating a Card `Good`. In contrast, the template uses `Enter` for multiple purposes: to flip the Card to the info screen, to autorate a Card `Good` or `Again` and move to the next one (all depending on whether the submitted answer is correct and what is currently displayed on the screen, exactly like Memrise), or playback an audio (when it is selected using `Tab`). Meanwhile, the `Space` is used to show the Card's info screen regardless of whether the submitted answer is correct or not.
 
@@ -329,7 +340,7 @@ To allow the template to use the shortcuts in the Memrise way, the original Anki
 
 &nbsp;  
 
-### Key concepts (Anki vs Memrise)
+## Key concepts (Anki vs Memrise)
 
 When starting with Anki, it is a good idea to get a hold of its key concepts first. You can read about them [in the manual](https://docs.ankiweb.net/getting-started.html#key-concepts), but if you are coming from Memrise (especially if you have edited a community course there), it might be easier to understand those by analogy: 
 
@@ -366,11 +377,11 @@ As a recap, and a rule of thumb: **each** Memrise setting has an analogue in Ank
 
 &nbsp;  
 
-### Customization
+## Customization
 
 This section provides detailed instructions for customizing the Memrise template using the desktop Anki app. While it is possible to make all the adjustments in a mobile app as well, the touchscreen interface is not well-suited for any elaborate editing. For this reason, the recommended way is to make all the changes from the desktop app and then [Sync](https://docs.ankiweb.net/syncing.html) to distribute them to mobile apps.
 
-#### Relevant Anki windows
+### Relevant Anki windows
 
 Basic ways of accessing the common Anki windows for various customization options. For detailed steps on each action, see the further instructions below.
  
@@ -425,9 +436,9 @@ Basic ways of accessing the common Anki windows for various customization option
 > > You can switch between different Card Types from the dropdown list at the top. Each Card Type consists of the templates for the Front and the Back sides of a card (switched by a radio button on the left, the Styling tab available there as the third radio button option is shared between all Card Types of the selected Note Type)
 > </details>
 
-#### Editing Note Types
+### Editing Note Types
 
-> ##### 1. Making a new Note Type based on the Memrise template
+> #### 1. Making a new Note Type based on the Memrise template
 > 
 >   The Memrise template is designed to be cloned into different Note Types, each of which can then be further customized to better fit each Language and Discipline studied
 > 
@@ -444,7 +455,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 2. Renaming and reordering Fields
+> #### 2. Renaming and reordering Fields
 > 
 > The default Field names of the Memrise template can be renamed to better reflect the content of each Note Type (e.g., "Learnable" might be renamed to "Japanese", "Definition" to "English", etc.). 
 > 
@@ -460,7 +471,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 3. Adding new Fields
+> #### 3. Adding new Fields
 > 
 > New Fields can be added to serve as auxiliary background information, or to be used in extra Card Types for more testing directions
 > 
@@ -483,7 +494,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > </details>
 > 
 > 
-> ##### 4. Converting Notes to a different Type
+> #### 4. Converting Notes to a different Type
 > 
 > Notes can be converted from one Note Type to another after creation. This can be used to upgrade from [older versions of the template](#5-checking-the-template-version) or to convert Notes initially made from a completely different template into the Memrise template (without recreating the Notes from scratch and without losing Card review history).
 > 
@@ -500,13 +511,13 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 5. Checking the template version
+> #### 5. Checking the template version
 > 
 > While the shared deck includes the version in the names of each template and preset Note Type, this part can be dropped when renaming a new Note Type or no longer correctly represents the contents of the Note Type if it has been updated. A more robust reference (important for [the support add-on](#the-support-add-on) as well) can be viewed when editing a Note Type in [the Card Type editor](#relevant-anki-windows), at the top of the Styling tab.
 
-#### Editing Card Types
+### Editing Card Types
 
-> ##### 1. Making new Card Types
+> #### 1. Making new Card Types
 > 
 > <details>
 >   <summary>step-by-step:</summary>
@@ -522,7 +533,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 2. Removing existing Card Types
+> #### 2. Removing existing Card Types
 > 
 > <details>
 >   <summary>step-by-step:</summary>
@@ -537,7 +548,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 3. Renaming Card Types
+> #### 3. Renaming Card Types
 > 
 > <details>
 >   <summary>step-by-step:</summary>
@@ -565,7 +576,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 5. Changing the answer Field
+> #### 5. Changing the answer Field
 > 
 > <details>
 >   <summary>step-by-step:</summary>
@@ -583,7 +594,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 > 
-> ##### 6. Changing the input method
+> #### 6. Changing the input method
 > 
 > <details>
 >   <summary>Changing input method to Typing:</summary>
@@ -674,7 +685,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > 
 > 
-> ##### 7. On-screen keyboard layout
+> #### 7. On-screen keyboard layout
 > 
 > There are two ways of customizing the keyboard layout (analogous to Memrise's "Keyboard Characters" and "predefined keyboard" settings). Either one can be used on its own, or the two can be combined for a more intricate setup. This is a per-Card-Type setting (similar to how on Memrise it is defined per Level Column) so that Cards testing the same Notes in different directions can have separate layouts.
 > 
@@ -711,7 +722,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > Clearing both sets of characters practically disables the on-screen keyboard. To turn the keyboard off without deleting these settings completely (in case they might become useful in the future), use [special "off" class](#10-disabling-individual-elements) instead.
 > 
-> ##### 8. Extra Fields
+> #### 8. Extra Fields
 > 
 > On Mermrise, Columns with the "Always Show" property are displayed on the info screen after incorrect answers. In the Anki template, this can be configured not just for each Field but also for each Card Type individually.
 >     
@@ -754,7 +765,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 4. Click `Save`
 > </details>
 > 
-> ##### 9. Text prompt
+> #### 9. Text prompt
 > 
 > On Memrise, above each question, a bit of text is displayed to indicate what kind of action is expected from a user. Those prompts only depend on the input method of the test, and, as such, are repetitive and not helpful after the first couple of tests. While the template is set up to reproduce the Memrise behavior by default, it leaves a lot of room for customization. You can remove a text prompt altogether or make it more informative by providing instructions specific to each Card Type, such as "Type the pronunciation for the word" or "Pick the composer of the musical piece" (might be especially useful if your Cards are made to be [shared with other people](https://docs.ankiweb.net/contrib)). If your Notes contain very diverse material, the prompt can even be [made into a separate Field](3-adding-new-fields) and set on a Note-to-Note basis.
 > 
@@ -768,7 +779,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 4. Click `Save`
 > </details>
 >
-> ##### 10. Disabling individual elements
+> #### 10. Disabling individual elements
 > 
 > The layout for the template is designed to be as flexible as possible. All the elements on the Card can be freely rearranged, copied, and, if necessary, deleted. It is better to use the latter sparingly, however. If there are elements on the Card you don't need and would prefer not to be displayed during reviews, there is a simple non-disruptive way of removing them without losing the original code. This will preserve the opportunity to easily bring any element back at any moment, e.g., when you are cloning a Card Type and need a full template to customize it for the new role.
 >
@@ -794,7 +805,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>   
 > 
-> ##### 11. Selecting a theme
+> #### 11. Selecting a theme
 > 
 > Each Card Type can be set to be displayed in a certain color theme. This can be used to color-code different types of questions, Note Types made for different subjects, or to select a more pleasing theme than the default "MemRise" for all Cards in general.
 > 
@@ -814,7 +825,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > 
 > </details>
 
-#### Advanced
+### Advanced
 
 Additional tips on various customization aspects can be found in these older forum posts:
 
@@ -832,13 +843,13 @@ Any questions regarding other ways of customization and requests for clarificati
 
 &nbsp;  
 
-### Downloading courses from Memrise
+## Downloading courses from Memrise
 
 The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
 
 &nbsp;  
 
-### Copyright notice
+## Copyright notice
 
 Copyright © 2023-2025 Eltaurus
 
@@ -855,7 +866,7 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-### Support
+## Support
 
 If you found this template useful, please consider supporting the development by rating it on AnkiWeb or buying a coffee:
 
