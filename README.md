@@ -1,6 +1,6 @@
 # Memrise Template v5.0
 
-This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#other) and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing** (with the **on-screen keyboard**, the **hint button**, and the **spelling diffs** after answering a Card), **multiple-choice** (including **images**; choices can be **generated automatically** and edited manually), and **tapping**. Answers are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports **LaTeX** (MathJax) equations, **Dark mode**, multiple color **themes**, and a variety of [other customization options](#customization).
+This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#other) and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing** (with the **on-screen keyboard**, the **hint button**, and the **spelling diffs** after answering a Card), **multiple-choice** (including **images**; choices can be **generated automatically** and edited manually), and **tapping**. Answers are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#themes), multiple color [**themes**](#themes), and a variety of [other customization options](#customization).
 
 ![main](https://github.com/user-attachments/assets/13d0b023-a26b-46b0-9485-224c10881e7e)
 
@@ -31,15 +31,26 @@ Feedback and feature suggestions are also very much appreciated.
 
 ## Question types
 
-🚧🚧🚧
+The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — Text, Audio, and Images — to be used in place of questions. They will look and function in the familiar way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise formatted text, lists, hyperlinks, [math equations](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
 
-Text, audio, images, and LaTeX equations can all be used as a question prompt with any of the basic template versions without any additional setup - the default template automatically adjusts itself to the type of data placed in the "Definition" field. However, to keep your collection organized and easily manageable (and also to add more card types with different directions of testing), it is a good idea to label things properly and place each piece of data into its dedicated field (the instructions for all the necessary steps are provided in the [customization](#Customization) section below).
+All the options can be used without any additional setup — the template auto-adjusts to the type of data placed in the [question Field](#4-changing-the-question-field). However, to keep the collection organized and easily manageable and to simplify [adding new Card Types](#1-making-new-card-types) for more directions of testing, it is a good idea to label data properly and place each piece into its dedicated [Field](#3-adding-new-fields).
 
-[Close deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a distinct sort of [Note Types](https://docs.ankiweb.net/getting-started.html#note-types) in Anki, used to generate an arbitrary number of cards from the same piece of text. They are made from a separate Note Type template ("Memrise (Lτ) Cloze Template v..." included in the shared deck):
+### Cloze deletion
 
-including rich text
-including animated gifs
-with fully interactive buttons
+[Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a fill-in-the-gaps type of question made from text, in which a certain fragment is omitted and expected as the answer. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note](#key-concepts-anki-vs-memrise).
+
+Because of the differences from regular Notes in Card generation conditions (Cards are created based on the number of clozes instead of a predefined set of [Card Types](#1-making-new-card-types)), cloze deletion in Anki requires using special cloze [Note Types](#key-concepts-anki-vs-memrise). The cloze version of the template is called "Memrise (Lτ) Cloze Template v..." and is included in the [shared deck](https://ankiweb.net/shared/info/510199145).
+
+<details>
+  <summary>Usage tips:</summary>
+
+> 1. cloze
+> 2. hint
+> 3. multiple clozes
+> 4. same clozes
+> 5. nested clozes
+
+</details>
 
 ## Input methods
 
@@ -270,7 +281,7 @@ The latter only removes the formatting, while keeping the content of Alt section
 
 Keep in mind that [Fill Choices](#automatically-filling-choice-fields-for-multiple-choice-cards) function ignores Alts and generates choices based on the main content only. Multiple-choice Cards themselves, however, do account for Alts in [the answer field](5-changing-the-answer-field), making it possible to create questions with several different correct choices.
 
-### Configuring keyboard shortcuts
+### Memrise keyboard shortcuts
 
 By default, the desktop Anki app uses the number keys '1–4' to rate Cards from `Again` to `Easy`, while on Memrise, the numbers are used as hotkeys when answering multiple-choice and tapping questions. Anki also interprets both `Enter` and `Space` as rating a Card `Good`. In contrast, the template uses `Enter` for multiple purposes: to flip the Card to the info screen, to autorate a Card `Good` or `Again` and move to the next one (all depending on whether the submitted answer is correct and what is currently displayed on the screen, exactly like Memrise), or playback an audio (when it is selected using `Tab`). Meanwhile, the `Space` is used to show the Card's info screen regardless of whether the submitted answer is correct or not.
 
@@ -326,7 +337,7 @@ To allow the template to use the shortcuts in the Memrise way, the original Anki
 <details>
   <summary>Revert to default Anki shortcuts:</summary>
 
-> This will restore the default Anki shortcut functionality for all Note Types at once (including the Memrise Note Types, thus rendering the Memrise shortcuts for answering and auto-rating unusable). This can be done for each key individually, so you can choose to revert the number keys to the default Anki behavior for all Cards, while keeping the `Enter` and `Space` keys for auto-rating answers on Memrise Cards, for example.
+> This will restore the default Anki shortcut functionality for all Note Types at once (including the Memrise Note Types, rendering the Memrise shortcuts for answering and auto-rating unusable). This can be done for each key individually, so you can choose to revert the number keys to the default Anki behavior for all Cards, while keeping the `Enter` and `Space` keys for auto-rating answers on Memrise Cards, for example.
 >
 > To make the adjustment:
 > 1. Open Anki Add-on manager: click `Tools` in the top menu of the main window → `Add-ons`
@@ -570,7 +581,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > > 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
 > > 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
 > > 
-> >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty if it were not for this setting.</sub>
+> >     <sub>This tells Anki that the specified Field is essential for the current Type of Cards, so that the Notes, that do not have the required data, will not have Cards of this Type being generated. For example, if you use {{Audio}} Field as the question, some Notes might not have audio recordings, which would make their audio Cards appear empty were it not for this setting.</sub>
 > > 5. (Optional) In the same way, replace the old question Field and its text label where they appear on the Back template, if you want the info screen to display it accordingly (Memrise does this for all question Fields except audio). You might also want to adjust the [Extra info](#8-extra-fields) blocks, removing the Field that is now used as the question from there, and making a new extra info block from the old question Field.
 > > 6. Click `Save`
 > 
