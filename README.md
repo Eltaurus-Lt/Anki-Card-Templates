@@ -1,6 +1,6 @@
 # Memrise Template v5.0
 
-This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#other) and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing** (with the **on-screen keyboard**, the **hint button**, and the **spelling diffs** after answering a Card), **multiple-choice** (including **images**; choices can be **generated automatically** and edited manually), and **tapping**. Answers are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#themes), multiple color [**themes**](#themes), and a variety of [other customization options](#customization).
+This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#other) and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be **generated automatically** and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
 
 ![main](https://github.com/user-attachments/assets/13d0b023-a26b-46b0-9485-224c10881e7e)
 
@@ -31,15 +31,21 @@ Feedback and feature suggestions are also very much appreciated.
 
 ## Question types
 
-The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — Text, Audio, and Images — to be used in place of questions. They will look and function in the familiar way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise formatted text, lists, hyperlinks, [math equations](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
+The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — **Text**, **Audio**, and **Images** — to be used in place of questions. They will look and function in the same way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise **formatted text**, **lists**, **hyperlinks**, [**math equations**](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
 
-All the options can be used without any additional setup — the template auto-adjusts to the type of data placed in the [question Field](#4-changing-the-question-field). However, to keep the collection organized and easily manageable and to simplify [adding new Card Types](#1-making-new-card-types) for more directions of testing, it is a good idea to label data properly and place each piece into its dedicated [Field](#3-adding-new-fields).
+🖼️🖼️🖼️
+
+All the options can be used without any additional setup — the template auto-adjusts to the type of data placed in the [question Field](#4-changing-the-question-field). However, to keep the collection organized and easily manageable and to simplify [adding new Card Types](#1-making-new-card-types) for more directions of testing, it is a good idea to label data properly and place each piece into its dedicated [Field](#3-adding-new-fields). To change which Field will be presented as a prompt on questions, refer [to the instructions in this section](#4-changing-the-question-field).
 
 ### Cloze deletion
 
-[Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a fill-in-the-gaps type of question made from text, in which a certain fragment is omitted and expected as the answer. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note](#key-concepts-anki-vs-memrise).
+[Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a fill-in-the-gaps type of question made from text, in which a certain fragment is omitted and expected as the answer. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note/Sentence](#key-concepts-anki-vs-memrise).
+
+🖼️🖼️
 
 Because of the differences from regular Notes in Card generation conditions (Cards are created based on the number of clozes instead of a predefined set of [Card Types](#1-making-new-card-types)), cloze deletion in Anki requires using special cloze [Note Types](#key-concepts-anki-vs-memrise). The cloze version of the template is called "Memrise (Lτ) Cloze Template v..." and is included in the [shared deck](https://ankiweb.net/shared/info/510199145).
+
+Cloze deletion questions are compatible with all the [input methods](#-input-methods).
 
 <details>
   <summary>Usage tips:</summary>
@@ -54,10 +60,19 @@ Because of the differences from regular Notes in Card generation conditions (Car
 
 ## Input methods
 
-🚧🚧🚧
+The template allows making all three types of tests available on Memrise: Typing, Multiple-Choice, and Tapping. Cards with each method are [added](#1-making-new-card-types) and [removed](#2-removing-existing-card-types) independently, making any combination of enabled input methods and [testing directions](#5-changing-the-answer-field) possible (in contrast to Memrise, where multiple-choice tests cannot be avoided).
 
+🖼️🖼️🖼️
 
-## Themes
+**Typing** method includes [customizable on-screen keyboard](#7-on-screen-keyboard-layout) to make it easier to type on mobile devices or use languages not installed on the system. The keyboard contains the Memrise hint button, which removes incorrectly typed parts of the answer and reveals the correct answer one character at a time. If it is not needed, the hint button (or the on-screen keyboard as a whole) can be [disabled](#10-disabling-individual-elements).
+**Multiple-choice** tests are generated based on the contents of [the specified choices Field](#5-changing-the-answer-field). For maximum effectiveness, the choices can be edited manually (e.g., by appending the typed answer each time a sibling Typing Card is answered incorrectly), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) using [the support Add-on](#the-support-add-on). In the current version, multiple-choice Cards will not function properly with Audio choices (this feature is in [the prototype phase](https://github.com/Eltaurus-Lt/Anki-Card-Templates/issues/20#issuecomment-2846107995) and will be implemented if people keep requesting it). All other kinds of choices — Text, **Images**, **Formatted HTML**, **[LaTeX Equations](#latex)**, etc. — are fully supported.
+**Tapping** tests are generated from [the specified sentence Field](#5-changing-the-answer-field), splitting the contents into individual buttons at each `space` character. To force several words into a single button, non-breaking space (HTML code `&nbsp;`) can be used to separate them in the Field's contents instead (this will not affect the other input methods).
+
+Cards with typing and tapping inputs, when answered incorrectly, will also show **spelling diffs** — the exact places where something is missing or input redundantly in the submitted answer (the "You wrote: ..." feature no longer present on Memrise):
+
+🖼️
+
+## Dark mode and Themes
 
 🚧🚧🚧
 **Dark mode**. In addition to that, the template has several **other color themes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
@@ -80,14 +95,15 @@ One more feature to mention is the **LaTeX support** (in both **type-in** and **
 
 ## Other
 
-<!-- fuzzy answer matching | timers, mems... -->
+<!-- fuzzy answer matching | timers -->
 
 🚧🚧🚧
-**spelling diffs**, **tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
+**tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
+Mems
 
 &nbsp;  
 
-### Corrections and changes
+### Improvements
 
 This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also helps avoid many visual bugs and other issues present in the original Memrise layout:
 
@@ -577,7 +593,7 @@ Basic ways of accessing the common Anki windows for various customization option
 >   <summary>step-by-step:</summary>
 > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
-> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify (you can [add a new Card Type](#-1-making-new-card-types) for this purpose)
 > > 3. On the Front side template, find the question section (you can search for "mem-question" using the search bar), and change the name of the Field in double curly brackets to the Field you wish to use as a question instead:
 > > 4. Likewise, replace the name of the old question Field at the beginning and the end of the HTML section with the new question Field (keeping the preceding `#` and `/` characters)
 > > 
@@ -593,7 +609,7 @@ Basic ways of accessing the common Anki windows for various customization option
 >   <summary>step-by-step:</summary>
 > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
-> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to modify (you can [add a new Card Type](#-1-making-new-card-types) for this purpose)
 > > 3. On the Front side template, find the "id=correctAnswer" element and change the name of the Field inside to the Field you wish to use as the answer to the Card:
 > > 4. For Multiple-choice Cards, replace, similarly, the Field specified in the "id=choices" element with the Field which will be used as [the source of incorrect choices](#6-changing-the-input-method)
 > > 5. For Typing Cards, change the text label inside the "mem-typing" element to correctly reflect the expected input:
@@ -611,7 +627,7 @@ Basic ways of accessing the common Anki windows for various customization option
 >   <summary>Changing input method to Typing:</summary>
 > 
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
-> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Typing Card
+> > 2. In the dropdown `Card Type: ` list at the top, select the Type of Cards you wish to convert into Typing Card (you can [add a new Card Type](#-1-making-new-card-types) for this purpose)
 > > 3. Change the mode to set on the Front side template to "typing" (you can look for "mode=" using the search bar)
 > > 4. Adjust [the on-screen keyboard layout](7-on-screen-keyboard-layout) to match the kind of material being tested in the Card Type
 > > 5. [Disable](#10-disabling-specific-elements) the Hint button (search for "HintButton") if needed
