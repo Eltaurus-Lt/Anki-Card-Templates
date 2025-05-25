@@ -68,6 +68,8 @@ The template allows making all three types of tests available on Memrise: Typing
 **Multiple-choice** tests are generated based on the contents of [the specified choices Field](#5-changing-the-answer-field). For maximum effectiveness, the choices can be edited manually (e.g., by appending the typed answer each time a sibling Typing Card is answered incorrectly), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) using [the support Add-on](#the-support-add-on). In the current version, multiple-choice Cards will not function properly with Audio choices (this feature is in [the prototype phase](https://github.com/Eltaurus-Lt/Anki-Card-Templates/issues/20#issuecomment-2846107995) and will be implemented if people keep requesting it). All other kinds of choices — Text, **Images**, **Formatted HTML**, **[LaTeX Equations](#latex)**, etc. — are fully supported.
 **Tapping** tests are generated from [the specified sentence Field](#5-changing-the-answer-field), splitting the contents into individual buttons at each `space` character. To force several words into a single button, non-breaking space (HTML code `&nbsp;`) can be used to separate them in the Field's contents instead (this will not affect the other input methods).
 
+### Spelling diffs
+
 Cards with typing and tapping inputs, when answered incorrectly, will also show **spelling diffs** — the exact places where something is missing or input redundantly in the submitted answer (the "You wrote: ..." feature no longer present on Memrise):
 
 🖼️
@@ -89,9 +91,18 @@ One more feature to mention is the **LaTeX support** (in both **type-in** and **
 
 ## AnkiWeb
 
-🚧🚧🚧
+[AnkiWeb](https://ankiweb.net/decks) is a companion site for Anki apps. By itself, it provides only the rudimentary functionality for reviews: there are no buttons for audio (it is embedded as bare HTML tags), no audio autoplay, even basic typing, offered by stock Anki Cards, is not supported.
 
- [website](https://ankiweb.net/decks)
+This template patches all these issues, having the necessary Anki methods reimplemented within itself. It makes the **Cards fully cross-platform**, with all the [input methods](#input-methods) (including typing), interactive audio buttons, autoplay, [spelling diffs](#spelling-diffs), the on-screen keyboard, and everything else, available in any web browser on any operating system:
+
+🖼️🖼️🖼️
+
+With AnkiWeb as a full-fledged option for reviewing Cards, you can study on a device without an installed Anki app, like a school machine, by simply logging into the site [AnkiWeb](https://ankiweb.net/decks).
+On mobile, using AnkiWeb instead of an app can serve as a means to save storage (at the expense of internet traffic and loading times). For iPhones, it provides a way to avoid the limitations of the AnkiMobile app, such as the [inability to auto-submit multiple-choice answers](https://forums.ankiweb.net/t/trigger-show-answer-fliptoback-in-javascript/36643/4?u=eltaurus), or the slight layout and styling differences. AnkiWeb can also serve as a free substitute for the paid AnkiMobile.
+
+When reviewing Cards in a browser, the exterior interface will be adjusted using the template styles. In particular, the `Show Answer` and the rate buttons will have the Memrise look (similar to the `Next` / `I don't know` / `Check Answer` button), with the rate button suggested by the template's auto-rating algorithm highlighted:
+
+🖼️
 
 ## Other
 
