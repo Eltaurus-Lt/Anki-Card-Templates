@@ -76,13 +76,19 @@ Cards with typing and tapping inputs, when answered incorrectly, will also show 
 
 ## Dark mode and Themes
 
-The template provides a dedicated **Dark mode**, which the original Memrise site does not have. In addition, there are several completely **new color themes** designed as alternatives for the Memrise's yellowish palette. Each comes with both light and dark variants:
+The template provides a dedicated **Dark mode**, which the original Memrise site does not have. In addition, there are several completely **new color themes** [designed as alternatives](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233/163#p-147991-h-1-template-themes-2) for the Memrise's yellowish palette. Each comes with both light and dark variants:
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
+<details>
+<summary><b>Full table</b></summary>
+
+  ![atlas](https://github.com/user-attachments/assets/f40f7834-ed8b-4eb8-936f-6aff874680d5)
+
+</details>
 
 The choice between the light and dark modes is defined by the respective Anki app setting, while a color theme is [selected individually for each Card Type](#11-selecting-a-theme). The latter can be used to color-code different types of questions within the same Deck/Course, or to distinguish between different Courses, Languages, Topics, etc.
 To make Cards even more personalized, [more themes can be created](#advanced) using a set of rules defined in the template.
- 
+
 ## LaTeX
 
 🚧🚧🚧
