@@ -39,7 +39,7 @@ All the options can be used without any additional setup — the template auto-a
 
 ### Cloze deletion
 
-[Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a fill-in-the-gaps type of question made from text, in which a certain fragment is omitted and expected as the answer. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note/Sentence](#key-concepts-anki-vs-memrise).
+[Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a special type of question made from text, in which a certain fragment is omitted and the answer is expected to fill the gap. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note/Sentence](#key-concepts-anki-vs-memrise).
 
 🖼️🖼️
 
