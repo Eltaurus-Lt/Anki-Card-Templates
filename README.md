@@ -60,7 +60,7 @@ Cloze deletion questions are compatible with all the [input methods](#-input-met
 
 ## Input methods
 
-The template allows making all three types of tests available on Memrise: Typing, Multiple-Choice, and Tapping. Cards with each method are [added](#1-making-new-card-types) and [removed](#2-removing-existing-card-types) independently, making any combination of enabled input methods and [testing directions](#5-changing-the-answer-field) possible (in contrast to Memrise, where multiple-choice tests cannot be avoided).
+The template allows making Anki Cards with all three types of tests available on Memrise: Typing, Multiple-Choice, and Tapping. Cards with each method are [added](#1-making-new-card-types) and [removed](#2-removing-existing-card-types) independently, making any combination of enabled input methods and [testing directions](#5-changing-the-answer-field) possible (in contrast to Memrise, where multiple-choice tests cannot be avoided).
 
 🖼️🖼️🖼️
 
@@ -76,12 +76,13 @@ Cards with typing and tapping inputs, when answered incorrectly, will also show 
 
 ## Dark mode and Themes
 
-🚧🚧🚧
-**Dark mode**. In addition to that, the template has several **other color themes** to control the appearance of the cards (they are also easily customizable, so everyone can create their personal color scheme):
-
+The template provides a dedicated **Dark mode**, which the original Memrise site does not have. In addition, there are several completely **new color themes** designed as alternatives for the Memrise's yellowish palette. Each comes with both light and dark variants:
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
 
+The choice between the light and dark modes is defined by the respective Anki app setting, while a color theme is [selected individually for each Card Type](#11-selecting-a-theme). The latter can be used to color-code different types of questions within the same Deck/Course, or to distinguish between different Courses, Languages, Topics, etc.
+To make Cards even more personalized, [more themes can be created](#advanced) using a set of rules defined in the template.
+ 
 ## LaTeX
 
 🚧🚧🚧
