@@ -115,6 +115,9 @@ When reviewing Cards in a browser, the exterior interface will be adjusted using
 
 <!-- fuzzy answer matching | timers -->
 
+keyboard navigation for audio buttons
+![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
+
 🚧🚧🚧
 **tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
 Mems
@@ -150,54 +153,49 @@ This template does not use any of the original Memrise code and is written from 
 >> ![Audio blurring (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/7f04ce9e-3ec7-46f6-a418-21354b962c49)
 >&nbsp;
 > 
-> 4. Added keyboard navigation for audio buttons
->
->> ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
->&nbsp;
-> 
-> 5. On-screen keyboard buttons respond to clicks:
+> 4. On-screen keyboard buttons respond to clicks:
 >
 >> ![Button clicks (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/954d1852-ca73-43b3-b188-5cc3ec701305)
 >&nbsp;
 >
-> 6. Keyboard character alignment improved (text baseline instead of bounding box center):
+> 5. Keyboard character alignment improved (text baseline instead of bounding box center):
 >
 >> ![Keys centering (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/107f4c4f-7a81-4d77-b33b-f76fee53e213)
 >&nbsp;
 >
-> 7. Aliasing artefacts in the corners of buttons:
+> 6. Aliasing artefacts in the corners of buttons:
 >
 >> ![Aliasing (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/85f11f4e-c6ee-429d-b462-149b9d6c907b)
 >&nbsp;
 >
-> 8. The pressed multiple-choice button stays pressed instead of jittering back:
+> 7. The pressed multiple-choice button stays pressed instead of jittering back:
 > 
 >> ![Multiple-choice click (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/74e1c2f1-d4ae-4e13-9210-bc7b33705654)
 >&nbsp;
 >
-> 9. Color scheme is consistent (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
+> 8. Color scheme is consistent (the graying-out effect is removed, the correct and pressed buttons are recolored to match the good and bad answers in typing questions):
 >
 >> ![Color scheme (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/1ff3e975-98b7-4267-b492-eecbaa75f149)
 >>
 >> ![Color scheme (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/99f50d23-2d68-4715-b8af-846747b7a07c)
 >&nbsp;
 >
-> 10. Multiple-choice number labels centering:
+> 9. Multiple-choice number labels centering:
 > 
 >> ![Multiple-Choice labels (Anki vs Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/be7b7a63-71e5-429e-87f5-e54e34ba0c56)
 >&nbsp;
 >
-> 11. Multiple-choice questions are ensured to have unique options, unlike their implementation at Memrise:
+> 10. Multiple-choice questions are ensured to have unique options, unlike their implementation at Memrise:
 >
 >> ![Choice is not an option (Memrise)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/532d3665-5dce-4614-a119-9b8908ab3c46)
 >&nbsp;
 >
-> 12. Audio buttons do not use raster assets, which reduces size, improves image sharpness, and keeps the code self-contained. Also, icons for audio questions do not scale up to comically large sizes on wide monitors.
+> 11. Audio buttons do not use raster assets, which reduces size, improves image sharpness, and keeps the code self-contained. Also, icons for audio questions do not scale up to comically large sizes on wide monitors.
 >
 >> ![Audio button blurring](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/34a32bdc-e2c4-49c4-92c6-49af8fb71040)
 >&nbsp;
 >
-> 13. The keyboard in tapping questions does not jitter on the first input. Also, the tapping buttons visibly respond to key presses:
+> 12. The keyboard in tapping questions does not jitter on the first input. Also, the tapping buttons visibly respond to key presses:
 > 
 >> ![Tapping buttons jitter and responsiveness](https://github.com/user-attachments/assets/e6816ff6-e2c6-45f4-a485-e777119c47b8)
 >
