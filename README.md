@@ -888,9 +888,10 @@ Any questions regarding other ways of customization and requests for clarificati
 
 &nbsp;  
 
-## Downloading courses from Memrise
+## Converting Courses from Memrise
 
-The template can be used for Memrise courses imported into Anki with [this extension](https://github.com/Eltaurus-Lt/CourseDump2022)
+The template is designed to work well with Memrise community Courses downloaded using [this extension](https://github.com/Eltaurus-Lt/CourseDump2022).
+Instructions for importing the downloaded data into Anki using the Memrise template can be found in [this section](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki).
 
 &nbsp;  
 
