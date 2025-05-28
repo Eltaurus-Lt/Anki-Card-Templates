@@ -91,11 +91,11 @@ To make Cards even more personalized, [more themes can be created](#advanced) us
 
 ## LaTeX
 
-Anki provides the ability to use [LaTeX (MathJax) equations](https://docs.ankiweb.net/math.html) in Card Fields out of the box. The template builds upon this feature, enabling the input of mathematical expressions with [each of the input methods](#input-methods), automatically converting and rating submitted answers. For typing and tapping Cards, the info screen shows both: the typeset equation and the [spelling diff](#spelling-diffs) for LaTeX source code:
+Anki [provides](https://docs.ankiweb.net/math.html) the ability to use LaTeX (MathJax) equations in Card Fields out of the box. The template builds upon this feature, allowing users to enter mathematical expressions with [each of the input methods](#input-methods), automatically converting and rating submitted answers. For typing and tapping Cards, the info screen shows both: the typeset equation and the [spelling diff](#spelling-diffs) for LaTeX source code:
 
 ![LaTeX](https://github.com/user-attachments/assets/e8831bf0-a43d-4d78-8b25-ed835c8e21d5)
 
-LaTeX evaluation is a [**separate mode activated in Card settings**](#6-changing-the-input-method). It allows correctness of formulaic answers to be decided based on the MathJax-converted result, permitting inconsequential differences in equation typesetting, such as omitting delimiters or swapping the order of subscript and superscript of a variable. Because LaTeX syntax implies the use of brackets, commas, semicolons, and other special characters, which is different from the [Memrise punctuation rules](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation), this mode is not well-suited for evaluating regular answers and should be reserved for Cards with equation answers only.
+LaTeX evaluation is a [**separate mode enabled in Card settings**](#6-changing-the-input-method). In this mode, the template decides the correctness of formulaic answers based on the MathJax-converted result, permitting inconsequential differences in equation typesetting, such as omitting delimiters or swapping the order of subscript and superscript of a variable. Because LaTeX syntax implies the use of brackets, commas, semicolons, and other special characters, which is different from the [Memrise punctuation rules](https://memrise.zendesk.com/hc/en-us/articles/360015886897-A-Guide-to-Typing-Tests-Tapping-Tests-and-Memrise-Punctuation), this mode is not suited for evaluating regular answers and should be reserved for Cards with equation answers only.
 
 ## AnkiWeb
 
@@ -715,7 +715,7 @@ Basic ways of accessing the common Anki windows for various customization option
 > <details>
 >   <summary>Enabling LaTeX mode:</summary>
 > 
-> > [This mode](#latex) should be used whenever the [**answer Field**](#5-changing-the-answer-field) for a Card contains a LaTeX expression (not when the equation is presented as a [question](#question-types) and the Card expects you to answer with the plain-text name of the formula, for example). It functions as a complementary setting to any of [the answer input methods](#input-methods). When the LaTeX mode is enabled on a typing Card, the LaTeX source code will be expected to be entered during reviews (enclosing `\(` and `\)` can be omitted). The typed answer is then automatically converted and compared to the original equation in the Card's answer Field.
+> > [This mode](#latex) should be used whenever the [**answer Field**](#5-changing-the-answer-field) for a Card contains a LaTeX expression (not when the equation is presented as a [question](#question-types) and the Card expects you to answer with the plain-text name of the formula, for example). It functions as a complementary setting to any of the [answer input methods](#input-methods). A typing Card in the LaTeX mode expects the equation source code to be entered during reviews (enclosing `\(` and `\)` can be freely omitted). The typed answer is then automatically converted and compared to the original formula in the Card's answer Field. To enable the LaTeX mode:
 > >
 > > 1. Open [the Card Type editor](#relevant-anki-windows)
 > > 2. Add "eq" to the list of classes for the front container element (similarly to the "nkeys" attribute for multiple-choice and tapping inputs above):
