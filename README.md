@@ -1,6 +1,6 @@
 # Memrise Template v5.0
 
-This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#other) and adds many that Memrise never had. The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be **generated automatically** and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be manually overruled in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
+This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#spelling-diffs) and adds many that [Memrise never had](#other). The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be [**generated automatically**](#automatically-filling-choice-fields-for-multiple-choice-cards) and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be [manually overruled](#keyboard-navigation) in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
 
 ![main](https://github.com/user-attachments/assets/13d0b023-a26b-46b0-9485-224c10881e7e)
 
@@ -116,21 +116,32 @@ When reviewing Cards in a browser, the exterior interface will be adjusted using
 
 <!-- fuzzy answer matching | timers -->
 
-keyboard navigation for audio buttons
+In addition to introducing the [Dark mode, color Themes](#dark-mode-and-themes), [LaTeX support](#latex), and restoring the [spelling diffs feature](#spelling-diffs), the template has a few other improvements over the Memrise site.
+
+### Keyboard navigation
+
+With the help of the [complementary Add-on](#the-support-add-on), the template supports Memrise keyboard shortcuts, combining them with the Anki ones and adding a few shortcuts of its own, to make all the features accessible on desktop without a mouse. Depending on the context, `Enter` is used to submit an answer, flip to the info screen, or flip to the next Card, automatically rating the submitted answer either "Again" or "Good" (Memrise shortcut replacing Anki's default `Enter` = rate "Good"). On the front side of a Card, number keys `1`–`0` can be used to answer multiple-choice and tapping questions (Memrise shortcuts), while on the back, the numbers `1`–`4` manually rate a Card "Again", "Hard", "Good", or "Easy", overruling any automatically assigned rating (Anki shortcut). If a Card, by accident, is rated incorrectly, `Ctrl+Z`\*\*\* can be used to go back and redo the Card (Anki shortcut). When a correct answer is submitted, the default Memrise behaviour would be to automatically flip to the next Card, skipping the info screen. In the template, the `Space` key can be used to show the info screen regardless of the answer correctness (original Template shortcut replacing Anki's default `Space` = rate "Good"). `Tab` can be used to cycle through audio buttons on the info screen (Anki shortcut). When an audio button is selected using `Tab` (marked by a circular outline), pressing `Enter` replays the audio (original Template shortcut), instead of invoking any of the Memrise actions described previously:
+
 ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
 
-🚧🚧🚧
-**tab-navigation**, ability to view full card's info even when the submitted answer is correct (press `Space`), provides ways of customizing interface attributes and review parameters (such as adjusting the maximum number of choices on a multiple-choice card).
-Mems
+Alternatively, `R` can be used to replay all audio (Anki shortcut). Also, `D` (Anki shortcut) can be used to get from reviewing back to the main Deck selection screen (if no typing input is active), while `Tab` and `Enter` (Anki shortcuts) can be used to navigate between the Decks.
 
-&nbsp;  
+<sup>***Note that `Ctrl+Z`, as well as the `R` and `D` shortcuts, are listed here for general information. They are provided by the Anki desktop app, and not by the template itself. As such, they will not work on [AnkiWeb](#AnkiWeb). But all the other listed shortcuts, including the number keys, will</sup>
 
-### Improvements
+### Custom parameters
 
-This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also helps avoid many visual bugs and other issues present in the original Memrise layout:
+Several parameters, which on Memrise were strictly dictated by the site, are exposed and available for manual adjustments. This includes the number of columns and maximum number of choices in multiple-choice Cards, the ability to avoid multiple-choice questions altogether, the number of keys in a randomly-selected on-screen keyboard, the option to enable/disable the Hint button, the option to display the Audio question button in a reasonable size (active in the template by default, but can be reverted back to the original Memrise behavior), and the delay between submitting an answer and the automatic Card flip. There is also an option to display the info screen after each Card by default, without having to [press `Space`](#keyboard-navigation) after correct answers.
+
+### Mems
+
+Not exactly a feature of the template itself, but with Anki's ability to [store any kind of data in any Field](#key-concepts-anki-vs-memrise), it is easy to put images and story mnemonics (formerly known as "Mems" on Memrise), as well as notes of any other kind, into your Cards. Instructions for adding more Fields to the template (for any purpose) are presented in the [respective customization section](#3-adding-new-fields).
+
+### Layout without visual bugs
+
+This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also allows for avoiding visual bugs and layout issues, of which there are plenty in the original Memrise interface:
 
 ><details>
-><summary><b>List of fixed Memrise interface issues</b></summary>
+><summary><b>List of fixed issues</b></summary>
 > 
 >> All screenshots and recordings are marked by the respective logos:
 >> 
