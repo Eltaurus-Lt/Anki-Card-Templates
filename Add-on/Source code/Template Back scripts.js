@@ -177,6 +177,7 @@ diff = "";
 console.log(`altertnatives: ${allAlts.join(' | ')}`);
 
 async function setCorrectClass() {
+  if (!userAns.trim()) return;
   if (Qmode === "tapping") {
 	//tapping (any kind)
     if (preTokenize(corrAns).replaceAll("　"," ") === userAns) {
