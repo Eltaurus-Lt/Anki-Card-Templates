@@ -1,4 +1,4 @@
-/*  v5.0  */
+/*  v5.1  */
 /*
     HELP and other template-related RESOURCES ℹ️:
         AnkiWeb:
@@ -1655,6 +1655,14 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
   
   font-size: 2.25rem;
   line-height: calc(4rem - 2 * var(--border-width));
+}
+
+.card-content[mode="tapping"]:has(.mem-typing.rtl) #scr-keyboard,
+.card-content[mode="tapping"] .mem-typing.rtl,
+.card-content[mode="tapping"]:has(.mem-typing input[dir="rtl"]) #scr-keyboard,
+.card-content[mode="tapping"] .mem-typing:has(input[dir="rtl"]) {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
 }
 
 /* iOS */

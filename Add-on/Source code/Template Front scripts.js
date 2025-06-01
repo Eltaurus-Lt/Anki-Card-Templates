@@ -624,4 +624,15 @@ if (isFrontSide) {
 	}
 }
 </script>
+
+<script>
+//iOS AnkiWeb + embedded audio svg paths
+
+rootStyles = getComputedStyle(document.documentElement);
+memPlayPath = rootStyles.getPropertyValue('--mem-play').trim().replace(/^path\(["']?|["']?\)$/g, '');
+document.querySelectorAll('svg.playImage path').forEach(path =>{
+if (path.getAttribute('d')) return;
+  path.setAttribute('d', memPlayPath);
+});
+</script>
 <!-- End of code by Eltaurus -->
