@@ -41,7 +41,7 @@ All the options can be used without any additional setup — the template auto-a
 
 [Cloze deletion](https://docs.ankiweb.net/editing.html#cloze-deletion) is a special type of question made from text, in which a certain fragment is omitted and the answer is expected to fill the gap. A piece of text can have multiple parts clozed and turned into individual questions. This makes cloze deletion well-suited for creating an unlimited number of [Cards](#key-concepts-anki-vs-memrise) from a single [Note/Sentence](#key-concepts-anki-vs-memrise).
 
-![Cloze deletion](https://github.com/user-attachments/assets/3237192f-f533-44b8-b914-ce6c143b3028)
+![Cloze deletion](https://github.com/user-attachments/assets/fedb78fe-1032-46c1-b8b8-8e19850b4f7b)
 
 Because of the differences from regular Notes in Card generation conditions (Cards are created based on the number of clozes instead of a predefined set of [Card Types](#1-making-new-card-types)), cloze deletion in Anki requires using special cloze [Note Types](#key-concepts-anki-vs-memrise). The cloze version of the template is called "Memrise (Lτ) Cloze Template v..." and is included in the [shared deck](https://ankiweb.net/shared/info/510199145).
 
