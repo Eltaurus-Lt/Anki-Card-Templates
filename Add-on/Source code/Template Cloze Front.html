@@ -1,14 +1,14 @@
-{{#Learnable}}{{#Definition}}
 <setting id="static_keys"></setting>
 <setting id="random_keys"></setting>
-<data id="correctAnswer">{{Learnable}}</data>
+<data id="correctAnswer">{{cloze:Text}}</data>
 <data id="choices">{{Choices}}</data>
 
-<div class="card-content front" theme="MemRise" mode="typing">
+<div class="card-content front {{^c2}}{{^c4}}{{^c6}}{{^c8}}{{^c10}}nkeys{{/c10}}{{/c8}}{{/c6}}{{/c4}}{{/c2}}" theme="MemRise" mode="{{^c1}}{{^c3}}{{^c5}}{{^c7}}{{^c9}}typing{{/c9}}{{/c7}}{{/c5}}{{/c3}}{{/c1}}{{^c2}}{{^c4}}{{^c6}}{{^c8}}{{^c10}}mchoice{{/c10}}{{/c8}}{{/c6}}{{/c4}}{{/c2}}">
 
 	<div class="overhead">
 		<div class="mem-instruction">
-			Type the correct answer
+			{{^c1}}{{^c3}}{{^c5}}{{^c7}}{{^c9}}Type the omitted part{{/c9}}{{/c7}}{{/c5}}{{/c3}}{{/c1}}
+			{{^c2}}{{^c4}}{{^c6}}{{^c8}}{{^c10}}Pick the omitted part{{/c10}}{{/c8}}{{/c6}}{{/c4}}{{/c2}}
 		</div>
 		{{#Extra}}
 			<div class="front-extra no-alts">
@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="mem-question no-alts memblob">
-		<div>{{Definition}}</div>
+		<div>{{cloze:Text}}</div>
 	</div>
 
 	<div class="mem-typing">
@@ -35,4 +35,3 @@
 
 </div>
 <a id="Lt" href="https://github.com/Eltaurus-Lt/Anki-Card-Templates" target="_blank"></a>
-{{/Definition}}{{/Learnable}}

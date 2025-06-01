@@ -1,0 +1,6 @@
+div.rich-text-editable::part(alt) {
+    font-size: .75em;
+    opacity: 0.5;
+    line-height: 1.5;
+    font-weight: 500;
+}

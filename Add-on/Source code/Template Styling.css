@@ -1,4 +1,4 @@
-/*  v4.2  */
+/*  v5.1  */
 /*
     HELP and other template-related RESOURCES ℹ️:
         AnkiWeb:
@@ -7,7 +7,7 @@
             Forum discussion: forums.ankiweb.net/t/memrise-card-template-support-thread/34233
         Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 
-        Support the development: buymeacoffee.com/eltaurus
+        Support the development ☕: buymeacoffee.com/eltaurus
 */
 
 
@@ -17,7 +17,7 @@ This CSS file (Styling screen) is part of the Anki Card Type template. It may co
 
 Original card template copyright:
 
-Copyright © 2023-2024 Eltaurus
+Copyright © 2023-2025 Eltaurus
 Contact: 
     Email: Eltaurus@inbox.lt
     GitHub: github.com/Eltaurus-Lt
@@ -89,6 +89,10 @@ body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
     --col-spell-bad: var(--mem-spell-bad);
 
     --col-pressed-outline: #dbd2bdaa;
+
+    --col-intbtn-text: var(--mem-next);
+    --col-intbtn-bg: var(--mem-primary);
+    /* --col-intbtn-hover: var(--mem-secondary); */
 }
 body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-text: var(--mem-bg);
@@ -128,12 +132,20 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-spell-bad: #732c31bb;
 
     --col-pressed-outline: #ffbb0025;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: #161616;
+    --col-intbtn-border: black;
 }
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) ::selection {
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card ::selection,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card ::selection {
     color: var(--mem-text);
     background-color: var(--mem-bg);
 }
-
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}
 
 /* Start of code by Eltaurus */
 body:has(div.card-content[theme="AnkiRise"]) {
@@ -143,7 +155,8 @@ body:has(div.card-content[theme="AnkiRise"]) {
 
     --path-blob: var(--ank-blob);
 }
-body:has(div.card-content[theme="AnkiRise"]) ::selection {
+body:has(div.card-content[theme="AnkiRise"]).card ::selection,
+body:has(div.card-content[theme="AnkiRise"]) .card ::selection {
     color: white;
     background-color: var(--button-primary-disabled);
 }
@@ -174,6 +187,9 @@ body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
     --col-spell-good: transparent;
     --col-spell-missed: var(--ank-spell-good);
     --col-spell-bad: var(--ank-spell-bad);
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-passive);
 }
 body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-text: white;
@@ -205,11 +221,16 @@ body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-spell-missed: #226635;
     --col-spell-bad: #732c31dd;
 }
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}
 /* End of code by Eltaurus */
 
 
 /* Start of code by Eltaurus */
-body:has(div.card-content[theme="Forest"]) ::selection {
+body:has(div.card-content[theme="Forest"]).card ::selection,
+body:has(div.card-content[theme="Forest"]) .card ::selection {
     color: white;
     background-color: #277c1d;
 }
@@ -251,6 +272,13 @@ body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
     --col-spell-bad: #ffa37e;
 
     --col-pressed-outline: #ebdfa990;
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-bg);
+}
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) .card .cloze {
+    color: var(--col-audio-container);
 }
 body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
     --col-text: #c1b68b;
@@ -291,6 +319,10 @@ body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
 
     --col-pressed-outline: #1c3a41;
 }
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-text-faint);
+}
 /* End of code by Eltaurus */
 
 
@@ -320,8 +352,14 @@ body:has(div.card-content[theme="Sunset"]) {
     --col-spell-bad: #f55b5088;
 
     --col-pressed-outline: #6e80ad;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: var(--col-audio-bg);
+    --col-intbtn-border: #f6777d20;
+    --col-intbtn-hover: var(--col-sunset-focuspaleblue);
 }
-body:has(div.card-content[theme="Sunset"]) ::selection {
+body:has(div.card-content[theme="Sunset"]).card ::selection,
+body:has(div.card-content[theme="Sunset"]) .card ::selection {
     color: white;
     background-color: var(--col-sunset-focusblue);
 }
@@ -346,7 +384,7 @@ body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
     --col-wrong-border: #a5202a;
     --col-wrong-bg: #f55b50;
 }
-body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
   color: var(--col-text);
 }
 body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) .membtn {
@@ -378,8 +416,12 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
 body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
     color: var(--col-sunset-darkerblue);
 }
-body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
     color: var(--col-sunset-focuspaleblue);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-passive);
 }
 /* End of code by Eltaurus */
 
@@ -395,6 +437,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --mem-lightblue: #b9d7e3;
 
     --mem-primary: rgb(255, 187, 0);
+    --mem-secondary: rgb(255, 193, 25);
+    --mem-next: rgb(0, 17, 34);
     --mem-focus: rgb(0, 159, 187);
 
     --mem-text: rgb(49, 48, 51);
@@ -434,6 +478,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --ank-play: path("M56.502,32.301l-37.502,20.101l0.329,-40.804l37.173,20.703Z");
 }
 
+
+html:is(.win, .mac, .linux):has(body:not(.card)), /* ankiweb */
 .mobile {
     --border-radius: 5px;
     --border-radius-medium: 12px;
@@ -458,6 +504,8 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     --highlight-bg: rgba(37, 99, 235, 0.5);
     --selected-bg: rgba(214, 214, 214, 0.5);
 }
+
+html:is(.win, .mac, .linux):has(body.nightMode, body.night_mode):has(body:not(.card)), /* ankiweb */
 .mobile:has(body.nightMode, body.night_mode) {
     --fg: #fcfcfc;
     --fg-faint: #545454;
@@ -541,6 +589,12 @@ body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spellche
     /* iOS */
     --col-pressed-outline: var(--highlight-bg);
     --pressed-outline-width: 6px;
+
+    /* AnkiWeb exterior */
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-bg);
+    --col-intbtn-hover: white;#ffff26;
+    --col-intbtn-border: rgba(0, 0, 0, 0.1);
 }
 
 body.nightMode, body.night_mode {
@@ -568,6 +622,7 @@ body.nightMode, body.night_mode {
 setting,
 data,
 .no-alts [part=alt],
+.no-alts .alt,
 .win .desk-off,
 .mac .desk-off,
 .linux:not(.android) .desk-off,
@@ -587,6 +642,7 @@ div code#typeans {
     font-family: var(--fonts) !important;
 }
 
+#qa_box.card, /* ankiweb */
 body.card {
   background: var(--col-bg);
   color: var(--col-text);
@@ -596,6 +652,14 @@ body.card {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+
+  line-height: normal; /* ankiweb */
+}
+#qa_box#qa_box.card {
+  min-height: 75vh;
+}
+.mobile body.card {
+  min-height: 95vh;
 }
 
 #Lt::after {
@@ -607,6 +671,7 @@ body.card {
   bottom: 1em;	
   opacity: 0;
   color: var(--col-text);
+  z-index: 42;
 }
 #Lt:hover {
   opacity: .25;
@@ -633,16 +698,28 @@ button#mem-flip {
 	left: 0;
 }
 
+#qa_box.card {  /* ankiweb */
+	width: 100%;
+}
+
 #qa {
-  padding: 1rem;
-  max-width: calc(60rem - 6.75rem);
-  margin: auto;
-  min-width: 13rem;
-  box-sizing: content-box;
+	padding: 1rem;
+	max-width: calc(60rem - 6.75rem);
+	margin: auto;
+	min-width: 13rem;
+	box-sizing: content-box;
 }
 @media (min-width: 38.25rem) {
   #qa {
-    padding: 2rem;
+		padding: 2rem;
+  }
+}
+#qa_box.card #qa { /* ankiweb */
+	width: calc(100% - 1 * 2rem); 
+}
+@media (min-width: 38.25rem) {
+  #qa_box.card #qa { /* ankiweb */
+		width: calc(100% - 2 * 2rem); 
   }
 }
 
@@ -688,6 +765,8 @@ button#mem-flip {
   --elevation: var(--elevation-pressed);
 }
 
+.frontside .mem-typing .membtn:hover, /* tapping */
+.frontside .mem-typing .membtn:active, /* tapping */
 .frontside #scr-keyboard .membtn:hover,
 .frontside #scr-keyboard .membtn:active {
   --elevation: var(--elevation-idle);
@@ -709,6 +788,9 @@ button#mem-flip {
 	.card-content {  
 	  padding-top: 2rem;
 	}
+	#qa_box .card-content { /* ankiweb */
+	  padding-top: 0rem;
+	}
 }
 
 @media (min-width: 53.25rem) {
@@ -717,6 +799,9 @@ button#mem-flip {
   }
 	.card-content {  
 	  padding-top: 4rem;
+	}
+	#qa_box .card-content { /* ankiweb */
+	  padding-top: 0rem;
 	}
 }
 
@@ -853,13 +938,12 @@ code#typeans {
   align-items: center;
 	white-space: pre-wrap;
 }
-body::after {
+.card::after {
   content: "\0062" "y \004C"'\03C4';
   opacity: 0.2;
   position: absolute;
   right: 1em;
   bottom: 1em;
-  z-index: -1;
 }
   /*change typed ans in preview*/
   /*code#typeans * {display: none;}*/
@@ -881,6 +965,7 @@ body::after {
   margin-bottom: 1rem;
 	position: relative;
 	overflow: hidden;
+  z-index: 10;
 }
 .mem-alert:empty {
   display: none;
@@ -983,7 +1068,8 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
 	line-height: 1.5;
 }
 
-[part=alt] {
+[part=alt], /* legacy */
+.alt {
     font-size: .5em;
     color: var(--col-text-faint) !important;
     font-weight: 500;
@@ -991,13 +1077,16 @@ body:is(.nightMode, .night_mode) .correct .mem-alert {
     line-height: 1.5;
     overflow-wrap: anywhere;
 }
-h2 [part=alt] {
+h2 [part=alt], /* legacy */
+h2 .alt {
     font-size: 1.25rem;
 }
-h3 [part=alt] {
+h3 [part=alt], /* legacy */
+h3 .alt {
     font-size: 1rem;
 }
-h4 [part=alt] {
+h4 [part=alt], /* legacy */
+h4 .alt {
     font-size: .75rem;
 }
 
@@ -1012,7 +1101,9 @@ a.replay-button.soundLink > span { /* Android quirk */
 	display: block;
 }
 
-.mem-question a.replay-button:not(:first-child) {
+
+.mem-question:not(:has(.chosen)) a.replay-button:not(:first-child), /* legacy */
+.mem-question:has(.chosen) a.replay-button:not(.chosen) { 
   display: none;
 }
 
@@ -1087,7 +1178,8 @@ a.replay-button.soundLink::before {
   border-radius: var(--border-r4);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  flex-wrap: wrap;
   padding: 0.5rem;
   width: fit-content;
 }
@@ -1102,6 +1194,7 @@ a.replay-button.soundLink {
   cursor: pointer;
   position: relative;
   z-index: 100;
+  display: inline-flex; /* ankiweb */
 }
 
 svg.playImage {
@@ -1157,7 +1250,31 @@ svg.playImage path {
   d: var(--path-play, var(--ank-play));
 }
 
+/* loading (for embedded) */
+a.replay-button.loading::after {
+  background: transparent;
+
+  scale: .85;
+  opacity: .5;
+
+  border: var(--col-audio-fg) solid .4rem;
+  border-radius: 100%;
+  clip-path: inset(0 50% 0 0);
+  animation: rotation 2s linear infinite;
+}
+@keyframes rotation {
+  to {rotate: 360deg}
+}
+
+a.replay-button.failed {
+	--col-audio-passive: red !important;
+}
+
 /* ーーーーーーーーーー IMAGES ーーーーーーーーーー */
+
+#qa_box.card img {
+    max-width: none;
+}
 
 .mem-question img {
     border: 0px;
@@ -1176,7 +1293,7 @@ svg.playImage path {
     max-width: calc(21.5rem);
 }
 
-.mem-question > img { /* backward compatibility */
+.mem-question > img { /* legacy */
     margin: 1rem auto;
     min-height: 10rem;
     min-width: 10rem;
@@ -1188,6 +1305,8 @@ svg.playImage path {
   margin: 1rem 0 calc(0.5rem + 1rem);
 }
 
+#qa_box.card .mem-alert img, /* ankiweb (extra specificity) */
+#qa_box.card .mem-field :is(h2, h3, h4) img, /* ankiweb (extra specificity) */
 .mem-alert img,
 .mem-field :is(h2, h3, h4) img {
     border-radius: var(--border-r2);
@@ -1196,7 +1315,9 @@ svg.playImage path {
     width: 100%;
 }
 
-.card-content.mch .membtn img {
+.card-content.mch:not([mode]) .membtn img, /* legacy */
+#qa_box.card .card-content[mode="mchoice"] .membtn img, /* ankiweb (extra specificity) */
+.card-content[mode="mchoice"] .membtn img {
     max-height: 200px;
     max-width: 200px;
     object-fit: contain;
@@ -1212,31 +1333,41 @@ svg.playImage path {
 	display: none !important;
 }
 
-/* ーーーーーーー Spellcheck highlights ーーーーーーー */
-#spellcheck {
+#qa_box.card :is(img, svg) {
+  vertical-align: baseline; /* revert ankiweb setting */
+}
+
+/* ーーーーーーー Spelling diffs ーーーーーーー */
+#spelldiff {
   font-size: 14px;
 }
-#spellcheck.large {
+#spelldiff.large {
   font-size: 18px;
 }
 
-#spellcheck:not(:empty)::before {
+#spelldiff:not(:empty)::before {
   content: 'You wrote: ';
 }
+/*
+body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
+  content: 'You tapped: ';
+}
+*/
 
-#spellcheck :is(.typeGood, .typeBad, .typeMissed) {
+#spelldiff :is(.typeGood, .typeBad, .typeMissed) {
   color: var(--col-input-text);
   font-weight: bold;
 	font-variant-ligatures: no-common-ligatures;
+  white-space: pre;
 }
 
-#spellcheck .typeGood {
+#spelldiff .typeGood {
   background: var(--col-spell-good);
 }
-#spellcheck .typeMissed {
+#spelldiff .typeMissed {
   background: var(--col-spell-missed);
 }
-#spellcheck .typeBad {
+#spelldiff .typeBad {
   background: var(--col-spell-bad);
   text-decoration: line-through;
 }
@@ -1264,7 +1395,7 @@ svg.playImage path {
 	}
 }
 
-#scr-keyboard > * {
+.membtn {
   margin: 0.5rem;
   width: 3rem;
   height: 3rem;
@@ -1274,7 +1405,7 @@ svg.playImage path {
   text-align: center;
   vertical-align: baseline;
 }
-#scr-keyboard.large > * {
+#scr-keyboard.large > .membtn {
   width: 4rem;
   height: 4rem;
   
@@ -1282,10 +1413,10 @@ svg.playImage path {
   line-height: calc(4rem - 2 * var(--border-width));
 }
 
-#scr-keyboard > *.space {
+#scr-keyboard > .membtn.space {
   width: 7rem;
 }
-#scr-keyboard.large > *.space {
+#scr-keyboard.large > .membtn.space {
   width: 9rem;
 }
 
@@ -1299,11 +1430,14 @@ svg.playImage path {
   margin-left: 2rem;
 }
 #scr-keyboard.large #HintButton {
- font-size: 1.25rem;
- width: 7rem;
-  
- padding: 0 1.5rem;
- width: max-content;
+  font-size: 1.25rem;
+  width: 7rem;
+
+  padding: 0 1.5rem;
+  width: max-content;
+}
+#HintButton:first-child {
+  margin-left: 0.5rem;
 }
 
 #HintButton svg {
@@ -1319,10 +1453,18 @@ svg.playImage path {
 	d: var(--path-hint);
 }
 
+#scr-keyboard {
+  list-style-type: none;
+  counter-reset: choice-key 0;
+}
+#scr-keyboard > .membtn {
+  counter-increment: choice-key 1;
+}
 
 /* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
 
-.card-content.mch #scr-keyboard {
+.card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard {
   margin-top: 0.5rem;
   width: 100%;
   display: grid;
@@ -1331,25 +1473,30 @@ svg.playImage path {
   grid-template-columns: 1fr;
 }
 @media (min-width: 38.25rem) {
-  .card-content.mch #scr-keyboard {
+  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard {
     gap: 1rem;
   }
 }
 @media (min-width: 23.25rem) {
-  .card-content.mch #scr-keyboard {
+  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.card-content.mch .mem-typing {
+.card-content.mch:not([mode]) .mem-typing, /*legacy*/
+.card-content[mode="mchoice"] .mem-typing {
   display: none;
   opacity: .2;
 }
-.card-content.mch input#typeans {
+.card-content.mch:not([mode]) input#typeans, /*legacy*/
+.card-content[mode="mchoice"] input#typeans {
   pointer-events: none;
 }
 
-.card-content.mch #scr-keyboard > * {
+.card-content.mch:not([mode]) #scr-keyboard > .membtn, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard > .membtn {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -1365,23 +1512,19 @@ svg.playImage path {
   overflow-wrap: anywhere;
   hyphens: auto;
 }
-.card-content.mch #scr-keyboard.large > * {
+.card-content.mch:not([mode]) #scr-keyboard.large > .membtn, /*legacy*/
+.card-content[mode="mchoice"] #scr-keyboard.large > .membtn {
     font-size: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 @media (min-width: 33.25rem) {
-  .card-content.mch #scr-keyboard > * {
+  .card-content.mch:not([mode]) #scr-keyboard > .membtn, /*legacy*/
+  .card-content[mode="mchoice"] #scr-keyboard > .membtn {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
   }
-  .card-content.mch #scr-keyboard {
-    list-style-type: none;
-    counter-reset: choice-key 0;
-  }
-  .card-content.mch #scr-keyboard > * {
-    counter-increment: choice-key 1;
-  }
-  .card-content.mch #scr-keyboard > *:before {
+  .card-content.mch:not([mode]).nkeys #scr-keyboard > .membtn::before, /*legacy*/
+  .card-content[mode="mchoice"].nkeys #scr-keyboard > .membtn::before {
     content: counter(choice-key);
 
     position: absolute;
@@ -1400,6 +1543,7 @@ svg.playImage path {
   }
 }
 
+.frontside.correct .card-content[mode="tapping"] .mem-typing .membtn,
 .frontside #scr-keyboard .membtn.correct {
     --col-button-text: var(--col-correct-text);
     --col-button-border: var(--col-correct-border);
@@ -1407,7 +1551,16 @@ svg.playImage path {
     --col-text: var(--col-correct-border);
 }
 
-.frontside #scr-keyboard .membtn.pressed:not(.correct) {
+.frontside.soclose .card-content[mode="tapping"] .mem-typing .membtn {
+    --col-button-text: var(--col-close-text);
+    --col-button-border: var(--col-close-border);
+    --col-button-bg: var(--col-close-bg);
+    --col-text: var(--col-close-border);
+}
+
+.frontside.wrong .card-content[mode="tapping"] .mem-typing .membtn,
+.frontside .card-content.mch:not([mode]) #scr-keyboard .membtn.pressed:not(.correct), /*legacy*/
+.frontside .card-content[mode="mchoice"] #scr-keyboard .membtn.pressed:not(.correct) {
     --col-button-text: var(--col-wrong-text);
     --col-button-border: var(--col-wrong-border);
     --col-button-bg: var(--col-wrong-bg);
@@ -1421,6 +1574,97 @@ svg.playImage path {
 #backwrap #scr-keyboard .membtn.pressed {
     outline: none;
 }
+
+/* ーーーーーーーー TAPPING QUESTIONS ーーーーーーーー */
+
+.card-content[mode="tapping"] .mem-typing :is(input, label) {
+    display: none;
+}
+
+.card-content[mode="tapping"] .mem-typing,
+.card-content[mode="tapping"] #scr-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    position: relative;
+    width: 100%;
+    min-height: calc(4rem + var(--border-width));
+    margin-bottom: 2rem;
+    padding: 0px 1rem;
+    margin-top: 0px;
+    justify-content: left;
+
+    flex-direction: row;
+}
+.card-content[mode="tapping"] .mem-typing.mem-typing { /* double selector for higher specificity */
+    margin-top: 0.5rem;
+    border-bottom: var(--border-width) solid var(--col-input-border);
+    /* box-sizing: content-box; */
+}
+.card-content[mode="tapping"] .mem-typing.large {
+    min-height: calc(5em + var(--border-width));
+}
+
+.card-content[mode="tapping"] .mem-typing .membtn,
+.card-content[mode="tapping"] #scr-keyboard .membtn {
+    margin: 0 1rem 1rem 0;
+    min-width: 6rem;
+    min-height: 3rem;
+    height: min-content;
+    width: max-content;
+    padding: 0 2rem;
+}
+
+.card-content[mode="tapping"] #scr-keyboard .membtn.pressed {
+    --col-button-text: var(--col-button-border);
+    --col-button-bg: var(--col-button-border);
+}
+
+.card-content[mode="tapping"].nkeys .mem-typing .membtn::before,
+.card-content[mode="tapping"].nkeys #scr-keyboard .membtn:not(.pressed)::before {
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+
+  left: 0.5rem;
+  top: 0.5rem;
+  padding: 0px 0.125rem;
+  min-width: 1rem;
+  height: 1rem;
+
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+
+  background-color: var(--col-text);
+  border-radius: var(--border-r1);
+  color: var(--col-button-bg);
+}
+.card-content[mode="tapping"].nkeys .mem-typing .membtn::before {
+  content: attr(origin);
+}
+.card-content[mode="tapping"].nkeys #scr-keyboard .membtn:not(.pressed)::before {
+  content: counter(choice-key);
+}
+
+.card-content[mode="tapping"] #scr-keyboard.large > .membtn,
+.card-content[mode="tapping"] .mem-typing.large > .membtn {
+  min-height: 4rem;
+  
+  font-size: 2.25rem;
+  line-height: calc(4rem - 2 * var(--border-width));
+}
+
+.card-content[mode="tapping"]:has(.mem-typing.rtl) #scr-keyboard,
+.card-content[mode="tapping"] .mem-typing.rtl,
+.card-content[mode="tapping"]:has(.mem-typing input[dir="rtl"]) #scr-keyboard,
+.card-content[mode="tapping"] .mem-typing:has(input[dir="rtl"]) {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
 /* iOS */
 html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
     outline: var(--col-pressed-outline) var(--pressed-outline-width) solid;
@@ -1433,6 +1677,82 @@ html:is(.iphone, ipad) #scr-keyboard .membtn.pressed {
 html:is(.iphone, ipad) .card-content.back { /* experimental */
     align-items: start !important;
 }
+
+
+/* AnkiWeb exterior */
+body,
+#ansarea#ansarea {
+  background: var(--col-bg);
+}
+
+.btn.btn-primary:active,
+.btn.btn-primary {
+    font-family: var(--fonts);
+    font-weight: 700;
+    font-size: 0.875rem;
+    position: relative;
+    border: none;
+    z-index: 10;
+
+    border-radius: var(--border-r2);
+
+    color: var(--col-intbtn-text);
+    background: var(--col-intbtn-bg);
+
+    box-shadow: var(--col-intbtn-border) 0px calc(-1 * var(--elevation-idle)) 0px inset;
+}
+.btn.btn-primary:active {
+    box-shadow: var(--col-intbtn-border) 0px -1000px 0px inset;
+}
+.btn.btn-primary:hover::after,
+.btn.btn-primary:focus::after,
+.btn.btn-primary:hover:visited::after {
+    display: block;
+    content: '';
+    inset: 0;
+    background: var(--col-intbtn-hover);
+    opacity: .1;
+    position: absolute;
+    z-index: -1;
+    mix-blend-mode: screen;
+}
+/*.btn.btn-primary:focus,*/
+.btn.btn-primary:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--col-focus);
+}
+
+.btn.btn-outline-primary {
+    color: var(--col-button-border);
+    border-color: var(--col-button-border);
+}
+
+.btn.btn-outline-primary:focus-visible {
+    outline: 3px solid var(--col-focus);
+    box-shadow: none;
+    background: transparent;
+}
+.btn.btn-outline-primary:hover,
+.btn.btn-outline-primary:active {
+    color: var(--col-button-text);
+    background: var(--col-button-border);
+    border-color: var(--col-button-border);
+}
+
+#ansarea > div div:nth-child(1):nth-last-child(4) .btn.btn-primary.preselected {
+    background: var(--col-wrong-border);
+    color: var(--col-wrong-text);
+}
+#ansarea > div div:nth-child(3):nth-last-child(2) .btn.btn-primary.preselected  {
+    background: var(--col-correct-border);
+    color: var(--col-correct-text);
+}
+
+/* ーーーーーーーーー Cloze ーーーーーーーーー */
+.cloze {
+    color: var(--col-audio-bg);
+}
+
 
 /* ーーーーーーーー MathJax ーーーーーーーー */
 
