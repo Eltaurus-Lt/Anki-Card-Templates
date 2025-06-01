@@ -33,7 +33,7 @@ Feedback and feature suggestions are also very much appreciated.
 
 The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — **Text**, **Audio**, and **Images** — to be used as questions. They will look and function in the same way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise **formatted text**, **lists**, **hyperlinks**, [**math equations**](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
 
-![Qs](https://github.com/user-attachments/assets/ea24ce57-8613-442c-a66b-2e8c8c7c62e2)
+![Questions](https://github.com/user-attachments/assets/cc5597b6-996c-4768-9ffc-f3d0b26c352d)
 
 All the options can be used without any additional setup — the template auto-adjusts to the type of data placed in the [question Field](#4-changing-the-question-field). However, to keep the collection organized and easily manageable and to simplify [adding new Card Types](#1-making-new-card-types) for more directions of testing, it is a good idea to label data properly and place each piece into its dedicated [Field](#3-adding-new-fields). To change which Field will be presented as a prompt on questions, refer [to the instructions in this section](#4-changing-the-question-field).
 
@@ -62,7 +62,7 @@ Cloze deletion questions are compatible with all the [input methods](#-input-met
 
 The template allows making Anki Cards with all three types of tests available on Memrise: Typing, Multiple-Choice, and Tapping. Cards with each method are [added](#1-making-new-card-types) and [removed](#2-removing-existing-card-types) independently, making any combination of enabled input methods and [testing directions](#5-changing-the-answer-field) possible (in contrast to Memrise, where multiple-choice tests cannot be avoided).
 
-🖼️🖼️🖼️
+![Inputs](https://github.com/user-attachments/assets/1748bb8c-55e5-49a8-a199-9cd5f98056ff)
 
 **Typing** method includes [customizable on-screen keyboard](#7-on-screen-keyboard-layout) to make it easier to type on mobile devices or use languages not installed on the system. The keyboard contains the Memrise hint button, which removes incorrectly typed parts of the answer and reveals the correct answer one character at a time. If it is not needed, the hint button (or the on-screen keyboard as a whole) can be [disabled](#10-disabling-individual-elements).
 **Multiple-choice** tests are generated based on the contents of [the specified choices Field](#5-changing-the-answer-field). For maximum effectiveness, the choices can be edited manually (e.g., by appending the typed answer each time a sibling Typing Card is answered incorrectly), or [filled automatically](#automatically-filling-choice-fields-for-multiple-choice-cards) using [the support Add-on](#the-support-add-on). In the current version, multiple-choice Cards will not function properly with Audio choices (this feature is in [the prototype phase](https://github.com/Eltaurus-Lt/Anki-Card-Templates/issues/20#issuecomment-2846107995) and will be implemented if people keep requesting it). All other kinds of choices — Text, **Images**, **Formatted HTML**, **[LaTeX Equations](#latex)**, etc. — are fully supported.
@@ -72,7 +72,7 @@ The template allows making Anki Cards with all three types of tests available on
 
 Cards with typing and tapping inputs, when answered incorrectly, will also show **spelling diffs** — the exact places where something is missing or input redundantly in the submitted answer (the "You wrote: ..." feature no longer present on Memrise):
 
-🖼️
+![spelldiff](https://github.com/user-attachments/assets/b4de830a-38cf-47f2-887f-0f4014aacc00)
 
 ## Dark mode and Themes
 
