@@ -1,4 +1,4 @@
-# Memrise Template v5.0
+# Memrise Template v5.1
 
 This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#spelling-diffs) and adds many that [Memrise never had](#other). The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be [**generated automatically**](#automatically-filling-choice-fields-for-multiple-choice-cards) and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be [manually overruled](#keyboard-navigation) in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
 
@@ -11,8 +11,8 @@ This template recreates the Memrise experience to make Anki more accessible for 
 ## 💡 Quick start
 
 >---
->1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v5.0) and open the `Memrise… .apkg` file with Anki
->2. Use `Memrise (Lτ) Preset […] v5.0` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
+>1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v5.1) and open the `Memrise… .apkg` file with Anki
+>2. Use `Memrise (Lτ) Preset […] v5.1` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
 >3. On Android, enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → toggle **ON**)
 >
 >Generating Multiple-Choice Cards (Optional):
