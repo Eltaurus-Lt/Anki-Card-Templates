@@ -1,6 +1,6 @@
 # Memrise Template v5.0
 
-This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#spelling-diffs) and adds many that [Memrise never had](#other). The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be [**generated automatically**](#automatically-filling-choice-fields-for-multiple-choice-cards) and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be [manually overruled](#keyboard-navigation) in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
+This template recreates the Memrise experience to make Anki more accessible for ex-Memrise users and everyone who finds the default Anki Cards too intimidating. It also restores several features [retired from Memrise](#spelling-diffs) and adds many that [Memrise never had](#other). The functionality covers all [types of questions](#question-types): **text**, **images**, **audio**, and **cloze deletions**; as well as all the [input methods](#input-methods): **typing**, **multiple-choice**, and **tapping**. Typing includes the **on-screen keyboard**, the **hint button**, and the **spelling diffs** (Memrise's "You wrote: ...") after answering a Card. Multiple-choice supports **images**, choices can be [**generated automatically**](#automatically-filling-choice-fields-for-multiple-choice-cards), and edited manually. Answers for either input method are **graded automatically**, taking **alternative answers** and optional parts separated by `;` and `()` into account. Automatic ratings can be [manually overruled](#keyboard-navigation) in case of an erroneous question or an inconsequential typo in the answer. The template works with **every** [Anki app on each platform](https://apps.ankiweb.net/)\* in **offline mode** and can also be used **online** in **any web browser** to review cards directly on [**AnkiWeb**](#ankiweb) without an installed app\*\* (all listed functions work the same way, no exceptions). The template additionally supports [**LaTeX**](#latex) (MathJax) equations, [**Dark mode**](#dark-mode-and-themes), multiple color [**themes**](#dark-mode-and-themes), and a variety of [other customization options](#customization).
 
 ![Overview](https://github.com/user-attachments/assets/67a6462c-a6b0-4da3-8d3c-7fbc9308e777)
 
@@ -31,9 +31,9 @@ Feedback and feature suggestions are also very much appreciated.
 
 ## Question types
 
-The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — **Text**, **Audio**, and **Images** — to be used in place of questions. They will look and function in the same way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise **formatted text**, **lists**, **hyperlinks**, [**math equations**](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
+The template allows all three types of [Fields](#3-adding-new-fields) from Memrise — **Text**, **Audio**, and **Images** — to be used as questions. They will look and function in the same way, including the audio button animations. On top of that, the template supports all the standard Anki features: using bold, italic, colored, and otherwise **formatted text**, **lists**, **hyperlinks**, [**math equations**](https://docs.ankiweb.net/math.html), any [combination of the above](https://us1.discourse-cdn.com/flex002/uploads/anki2/original/3X/7/9/79c9034fcf01c01225bb2ec3fff6d0180babc395.png), and also making [cloze-deletion questions](#cloze-deletion).
 
-🖼️🖼️🖼️
+![Qs](https://github.com/user-attachments/assets/ea24ce57-8613-442c-a66b-2e8c8c7c62e2)
 
 All the options can be used without any additional setup — the template auto-adjusts to the type of data placed in the [question Field](#4-changing-the-question-field). However, to keep the collection organized and easily manageable and to simplify [adding new Card Types](#1-making-new-card-types) for more directions of testing, it is a good idea to label data properly and place each piece into its dedicated [Field](#3-adding-new-fields). To change which Field will be presented as a prompt on questions, refer [to the instructions in this section](#4-changing-the-question-field).
 
@@ -50,11 +50,11 @@ Cloze deletion questions are compatible with all the [input methods](#-input-met
 <details>
   <summary>Usage tips:</summary>
 
-> 1. cloze
-> 2. hint
-> 3. multiple clozes
-> 4. same clozes
-> 5. nested clozes
+> 1. cloze 🚧
+> 2. hint 🚧
+> 3. multiple clozes 🚧
+> 4. same clozes 🚧
+> 5. nested clozes 🚧
 
 </details>
 
@@ -110,7 +110,7 @@ On mobile, using AnkiWeb instead of an app can serve as a means to save storage 
 
 When reviewing Cards in a browser, the exterior interface will be adjusted using the template styles. In particular, the `Show Answer` and the rate buttons will have the Memrise look (similar to the `Next` / `I don't know` / `Check Answer` button), with the rate button suggested by the template's auto-rating algorithm highlighted:
 
-🖼️
+![auto rating](https://github.com/user-attachments/assets/a4638db3-4774-4baf-879a-adf133c06168)
 
 ## Other
 
@@ -901,7 +901,7 @@ Any questions regarding other ways of customization and requests for clarificati
 
 ## Converting Courses from Memrise
 
-The template is designed to work well with Memrise community Courses downloaded using [this extension](https://github.com/Eltaurus-Lt/CourseDump2022).
+The template is designed to work well with the Memrise community Courses downloaded using [this extension](https://github.com/Eltaurus-Lt/CourseDump2022).
 Instructions for importing the downloaded data into Anki using the Memrise template can be found in [this section](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki).
 
 &nbsp;  
