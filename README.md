@@ -103,7 +103,7 @@ LaTeX evaluation is a [**separate mode enabled in Card settings**](#6-changing-t
 
 This template patches all these issues, having the necessary Anki methods reimplemented within itself. It makes the **Cards fully cross-platform**, with all the [input methods](#input-methods) (including typing), interactive audio buttons, autoplay, [spelling diffs](#spelling-diffs), the on-screen keyboard, and everything else, available in any web browser on any operating system:
 
-🖼️🖼️🖼️
+![AnkiWeb in desktop and mobile browsers (Firefox, Chrome, and Safari)](https://github.com/user-attachments/assets/20ce6f93-bb86-4ef6-b3eb-60019ff36e6f)
 
 With AnkiWeb as a full-fledged option for reviewing Cards, you can study on a device without an installed Anki app, like a school machine, by simply logging into the site [AnkiWeb](https://ankiweb.net/decks).
 On mobile, using AnkiWeb instead of an app can serve as a means to save storage (at the expense of internet traffic and loading times). For iPhones, it provides a way to avoid the limitations of the AnkiMobile app, such as the [inability to auto-submit multiple-choice answers](https://forums.ankiweb.net/t/trigger-show-answer-fliptoback-in-javascript/36643/4?u=eltaurus), or the slight layout and styling differences. AnkiWeb can also serve as a free substitute for the paid AnkiMobile.
