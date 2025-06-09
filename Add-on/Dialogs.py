@@ -110,48 +110,94 @@ class FillChoices(QDialog):
 
 ### 
 
-# onhover tooltips
-# initial window sizes/stretch table to full width
+# theme list
+# preset saving
+# preset loading
+# preset renaming
+# stretch table to full width
 # columns styles: bold/transparent/widths/...
 # narrow buttons/ center +field
 # bold table headers + 'cards' top margin
-# top table auto height
 
-
-# remove .show ?
 # refactor private/public variables
+# onhover tooltips
 
 
 class NoteTypeDesigner(QDialog):
     def __init__(self):
         super().__init__()
 
+        theme_list = ['Memrise', 'Anki', 'Forest', 'Sunset', '—']
+        self.preset_list = ['—', 'default', 'Japanese', 'Arabic']
+        layout = QVBoxLayout()
         self.setWindowTitle("Note Type Creator")
 
         self.noteType = QLineEdit("Memrise (Lτ) Note Type")
-        self.noteType.setToolTip("Name of the created Note Type<br><i>e.g.</i> \"Memrise (Lτ) Japanese\"<br><sub>It is recommended to keep 'Memrise (Lτ)' at the start of the name for the future add-on versions to be able to track the respective note types</sub>")
+        self.noteType.setToolTip("Name of the created Note Type<br><i>e.g.</i> \"Memrise (Lτ) Japanese\"<br><sub>It is recommended to keep 'Memrise (Lτ)' at the start of the name for the add-on functionality</sub>")
         self.noteType.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.noteType)
+
+        font_metrics = QFontMetrics(self.noteType.font())
+        line_height = font_metrics.lineSpacing()
+
+        # Presets
+        preset_layout = QHBoxLayout()
+
+        preset_layout.addWidget(QLabel("Theme:"))
+        self.theme = QComboBox()
+        self.theme.addItems(theme_list)
+        self.theme.setFixedWidth(7 * line_height)
+        preset_layout.addWidget(self.theme)
+
+        preset_layout.addStretch()
+
+        preset_layout.addWidget(QLabel("Preset:"))
+        self.preset = QComboBox()
+        self.preset.addItems(self.preset_list)
+        self.preset.setFixedWidth(10 * line_height)
+        preset_layout.addWidget(self.preset)
+
+        button_presave = QPushButton("Save")
+        preset_layout.addWidget(button_presave)
+
+        layout.addLayout(preset_layout)
 
 
-        fields_label = QLabel("Fields")
-        self.fields = QTableWidget()
-        self.fields.setColumnCount(6)
-        self.fields.setHorizontalHeaderLabels(["Field Label", "Show Bigger", "Show after tests", "Static Keys", "Random Keys", ""])
+        # Fields setup
+        fields_group = QGroupBox("Fields")
+        fields_layout = QVBoxLayout()
+        fields_group.setLayout(fields_layout)        
+        self.fieldsTable = QTableWidget()
+        self.fieldsTable.setColumnCount(6)
+        self.fieldsTable.setHorizontalHeaderLabels(["Field Label", "Show Bigger", "Show after tests", "Static Keys", "Random Keys", ""])
+        fields_layout.addWidget(self.fieldsTable)
 
         self.addField_button = QPushButton("+")
         self.addField_button.clicked.connect(lambda: self.add_field({}))
+        fields_layout.addWidget(self.addField_button)
+        self.addField_button.setToolTip("Add new Field")
 
-        cardTypes_label = QLabel("Cards")
+        layout.addWidget(fields_group)
+
+        # Card Types setup
+        cardTypes_group = QGroupBox("Card Types")
+        cardTypes_layout = QVBoxLayout()
+        cardTypes_group.setLayout(cardTypes_layout)
         self.cardTypes = QTableWidget()
         self.cardTypes.setColumnCount(8)
         self.cardTypes.setHorizontalHeaderLabels(["Card Type", "Question", "Answer", "Input", "Prompt", "Front Extra", "", ""])
+        cardTypes_layout.addWidget(self.cardTypes)
 
+        layout.addWidget(cardTypes_group)
+
+        # load default
         self.add_field({"Name": "Learnable"})
         self.add_field({"Name": "Definition"})
         self.add_field({"Name": "Audio"})
         self.add_cardType({"Name": "Translation", "prompt": "Type the correct translation"})       
 
-        button_ok = QPushButton("OK")
+        # Ok/Cancel
+        button_ok = QPushButton("Create")
         button_ok.clicked.connect(self.accept)
         button_cancel = QPushButton("Cancel")
         button_cancel.clicked.connect(self.reject)
@@ -160,43 +206,35 @@ class NoteTypeDesigner(QDialog):
         button_layout.addWidget(button_ok)
         button_layout.addWidget(button_cancel)
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.noteType)        
-        layout.addWidget(fields_label)        
-        layout.addWidget(self.fields)
-        layout.addWidget(self.addField_button)
-        layout.addWidget(cardTypes_label)        
-        layout.addWidget(self.cardTypes)
         layout.addLayout(button_layout)
-        self.setLayout(layout)
 
+        self.setLayout(layout)
+        self.resize(50 * line_height, self.sizeHint().height())
 
         # Styling
-        #self.fields.setShowGrid(False)
+        #self.fieldsTable.setShowGrid(False)
         self.cardTypes.setShowGrid(False)
         #self.cardTypes.setStyleSheet("QTableWidget { background-color: transparent; }")
         self.cardTypes.resizeColumnsToContents()
-
-#        self.show()
 
 
     def field_row2dic(self, row):
 
         return {
-            "Name": self.fields.cellWidget(row, 0).text(),
-            "large": self.fields.cellWidget(row, 1).layout().itemAt(0).widget().isChecked(),
-            "back": self.fields.cellWidget(row, 2).layout().itemAt(0).widget().isChecked(),
-            "static": self.fields.cellWidget(row, 3).text(),
-            "random": self.fields.cellWidget(row, 4).text(),
+            "Name": self.fieldsTable.cellWidget(row, 0).text(),
+            "large": self.fieldsTable.cellWidget(row, 1).layout().itemAt(0).widget().isChecked(),
+            "back": self.fieldsTable.cellWidget(row, 2).layout().itemAt(0).widget().isChecked(),
+            "static": self.fieldsTable.cellWidget(row, 3).text(),
+            "random": self.fieldsTable.cellWidget(row, 4).text(),
         }
 
     def add_field(self, params):
-        row = self.fields.rowCount()
-        self.fields.setRowCount(row + 1)
+        row = self.fieldsTable.rowCount()
+        self.fieldsTable.setRowCount(row + 1)
 
         field_name = params.get("Name", f"Field {row+1}")
         name = QLineEdit(field_name)
-        self.fields.setCellWidget(row, 0, name)
+        self.fieldsTable.setCellWidget(row, 0, name)
         name.textChanged.connect(self.rename_field)
 
         large = QCheckBox()
@@ -207,7 +245,7 @@ class NoteTypeDesigner(QDialog):
         checkbox_layout.setContentsMargins(0, 0, 0, 0)
         checkbox_cell.setLayout(checkbox_layout)
         checkbox_layout.addWidget(large)
-        self.fields.setCellWidget(row, 1, checkbox_cell)
+        self.fieldsTable.setCellWidget(row, 1, checkbox_cell)
 
         back = QCheckBox()
         back.setChecked(params.get("back", True))
@@ -217,18 +255,18 @@ class NoteTypeDesigner(QDialog):
         checkbox_layout.setContentsMargins(0, 0, 0, 0)
         checkbox_cell.setLayout(checkbox_layout)
         checkbox_layout.addWidget(back)
-        self.fields.setCellWidget(row, 2, checkbox_cell)
+        self.fieldsTable.setCellWidget(row, 2, checkbox_cell)
 
         static = QLineEdit(params.get("static", ""))
-        self.fields.setCellWidget(row, 3, static)
+        self.fieldsTable.setCellWidget(row, 3, static)
 
         random = QLineEdit(params.get("random", ""))
-        self.fields.setCellWidget(row, 4, random)
+        self.fieldsTable.setCellWidget(row, 4, random)
 
         # Add remove button
         remove_button = QPushButton("-")
         remove_button.clicked.connect(self.remove_field)
-        self.fields.setCellWidget(row, self.fields.columnCount()-1, remove_button)
+        self.fieldsTable.setCellWidget(row, self.fieldsTable.columnCount()-1, remove_button)
 
         # Add the respective item to qboxes for each card type
         for r in range(self.cardTypes.rowCount()):
@@ -239,10 +277,10 @@ class NoteTypeDesigner(QDialog):
     def rename_field(self):
         sender_field = self.sender()
 
-        for r in range(self.fields.rowCount()):
-            if self.fields.cellWidget(r, 0) == sender_field:
+        for r in range(self.fieldsTable.rowCount()):
+            if self.fieldsTable.cellWidget(r, 0) == sender_field:
                 break
-        new_name = self.fields.cellWidget(r, 0).text()
+        new_name = self.fieldsTable.cellWidget(r, 0).text()
 
         # Rename the respective item in qboxes for each card type
         for rC in range(self.cardTypes.rowCount()):
@@ -253,15 +291,15 @@ class NoteTypeDesigner(QDialog):
     def remove_field(self):
         sender_button = self.sender()
 
-        if self.fields.rowCount() <= 2:
+        if self.fieldsTable.rowCount() <= 2:
             return
 
-        for r in range(self.fields.rowCount()):
-            if self.fields.cellWidget(r, self.fields.columnCount()-1) == sender_button:
+        for r in range(self.fieldsTable.rowCount()):
+            if self.fieldsTable.cellWidget(r, self.fieldsTable.columnCount()-1) == sender_button:
                 break
 
         tooltip(f'removed row {r}')                
-        self.fields.removeRow(r)
+        self.fieldsTable.removeRow(r)
 
         # Remove the respective item from qboxes for each card type
         for rC in range(self.cardTypes.rowCount()):
@@ -277,7 +315,7 @@ class NoteTypeDesigner(QDialog):
         name = QLineEdit(params.get("Name", f"Card {row+1}"))
         self.cardTypes.setCellWidget(row, 0, name)
 
-        current_fields = [self.fields.cellWidget(r, 0).text() for r in range(self.fields.rowCount())]
+        current_fields = [self.fieldsTable.cellWidget(r, 0).text() for r in range(self.fieldsTable.rowCount())]
 
         question = QComboBox()
         question.addItems(current_fields)
@@ -292,7 +330,7 @@ class NoteTypeDesigner(QDialog):
         self.cardTypes.setCellWidget(row, 2, answer)
 
 
-        input_methods = ["Type-in","Multiple-Choice"]
+        input_methods = ["Typing","Multiple-Choice", "Tapping"]
         inputMethod = QComboBox()
         inputMethod.addItems(input_methods)
         current_method = indexOf(input_methods, params.get("in"))
@@ -358,7 +396,7 @@ class NoteTypeDesigner(QDialog):
 
     def get_selected_options(self):
 
-        fields = [self.field_row2dic(r) for r in range(self.fields.rowCount())]
+        fields = [self.field_row2dic(r) for r in range(self.fieldsTable.rowCount())]
         card_types = [self.card_row2dic(r) for r in range(self.cardTypes.rowCount())]
 
         return {"Note Type": self.noteType.text(), "Fields": fields, "Cart Types": card_types}
