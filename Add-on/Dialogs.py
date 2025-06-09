@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2023-2024 Eltaurus
+# Copyright © 2023-2025 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -114,22 +114,42 @@ class FillChoices(QDialog):
 # preset saving
 # preset loading
 # preset renaming
-# stretch table to full width
-# columns styles: bold/transparent/widths/...
-# narrow buttons/ center +field
-# bold table headers + 'cards' top margin
 
 # refactor private/public variables
-# onhover tooltips
+# onhover tooltips (+column headers)
 
 
 class NoteTypeDesigner(QDialog):
+    def getThemeList(self):
+        return ['Memrise', 'Anki', 'Forest', 'Sunset', '—']
+
+    def getPresetList(self):
+        return ['—', 'default', 'Japanese', 'Arabic']
+
+    def renamePreset(self):
+        tooltip("preset renamed")
+
+
+    def toggleCellCheckbox(self, cellWidget):
+        if cellWidget:
+            checkbox = cellWidget.findChild(QCheckBox)
+            if checkbox:
+                checkbox.setChecked(not checkbox.isChecked())
+
     def __init__(self):
         super().__init__()
 
-        theme_list = ['Memrise', 'Anki', 'Forest', 'Sunset', '—']
-        self.preset_list = ['—', 'default', 'Japanese', 'Arabic']
+        tableStyle = """
+            QHeaderView::section:horizontal { padding: 0; }
+            QHeaderView::section:vertical { padding: 7px; }
+            QHeaderView::section { color: white; background: #73c7f4; font-weight: bold; font-size: 15px; }
+            QTableCornerButton::section { background: #73c7f4; }
+            QTableWidget::item {  }
+            QCheckBox { padding-left: 7px; }
+        """
+
         layout = QVBoxLayout()
+        self.setLayout(layout)
         self.setWindowTitle("Note Type Creator")
 
         self.noteType = QLineEdit("Memrise (Lτ) Note Type")
@@ -138,23 +158,28 @@ class NoteTypeDesigner(QDialog):
         layout.addWidget(self.noteType)
 
         font_metrics = QFontMetrics(self.noteType.font())
-        line_height = font_metrics.lineSpacing()
+        lh = font_metrics.lineSpacing()
+
+        self.resize(50 * lh, 35 * lh)
+        self.setMinimumWidth(35 * lh)
 
         # Presets
         preset_layout = QHBoxLayout()
 
         preset_layout.addWidget(QLabel("Theme:"))
         self.theme = QComboBox()
-        self.theme.addItems(theme_list)
-        self.theme.setFixedWidth(7 * line_height)
+        self.theme.addItems(self.getThemeList())
+        self.theme.setFixedWidth(7 * lh)
         preset_layout.addWidget(self.theme)
 
         preset_layout.addStretch()
 
         preset_layout.addWidget(QLabel("Preset:"))
         self.preset = QComboBox()
-        self.preset.addItems(self.preset_list)
-        self.preset.setFixedWidth(10 * line_height)
+        self.preset.addItems(self.getPresetList())
+        self.preset.setFixedWidth(10 * lh)
+        self.preset.setEditable(True)
+        self.preset.lineEdit().editingFinished.connect(self.renamePreset)
         preset_layout.addWidget(self.preset)
 
         button_presave = QPushButton("Save")
@@ -167,14 +192,22 @@ class NoteTypeDesigner(QDialog):
         fields_group = QGroupBox("Fields")
         fields_layout = QVBoxLayout()
         fields_group.setLayout(fields_layout)        
-        self.fieldsTable = QTableWidget()
-        self.fieldsTable.setColumnCount(6)
-        self.fieldsTable.setHorizontalHeaderLabels(["Field Label", "Show Bigger", "Show after tests", "Static Keys", "Random Keys", ""])
+        self.fieldsTable = QTableWidget(0, 6)
+        self.fieldsTable.setHorizontalHeaderLabels(["Field Label", "Big", "Back", "Static Keys", "Random Keys", ""])
+        self.fieldsTable.horizontalHeader().setMinimumSectionSize(2 * lh)
+        self.fieldsTable.setStyleSheet(tableStyle)
+        self.fieldsTable.setSelectionMode(QtWidgets.QTableWidget.SelectionMode.NoSelection)
+        self.fieldsTable.cellClicked.connect(lambda r, c: self.toggleCellCheckbox(self.fieldsTable.cellWidget(r, c)))
+        self.fieldsTable.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.fieldsTable.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
+        self.fieldsTable.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
         fields_layout.addWidget(self.fieldsTable)
-
+        underfields_layout = QHBoxLayout()
+        underfields_layout.addStretch()
         self.addField_button = QPushButton("+")
         self.addField_button.clicked.connect(lambda: self.add_field({}))
-        fields_layout.addWidget(self.addField_button)
+        underfields_layout.addWidget(self.addField_button)
+        fields_layout.addLayout(underfields_layout)
         self.addField_button.setToolTip("Add new Field")
 
         layout.addWidget(fields_group)
@@ -183,9 +216,13 @@ class NoteTypeDesigner(QDialog):
         cardTypes_group = QGroupBox("Card Types")
         cardTypes_layout = QVBoxLayout()
         cardTypes_group.setLayout(cardTypes_layout)
-        self.cardTypes = QTableWidget()
-        self.cardTypes.setColumnCount(8)
+        self.cardTypes = QTableWidget(0, 8)
         self.cardTypes.setHorizontalHeaderLabels(["Card Type", "Question", "Answer", "Input", "Prompt", "Front Extra", "", ""])
+        self.cardTypes.horizontalHeader().setMinimumSectionSize(2 * lh)
+        self.cardTypes.setStyleSheet(tableStyle)
+        self.cardTypes.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.cardTypes.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
+        self.cardTypes.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
         cardTypes_layout.addWidget(self.cardTypes)
 
         layout.addWidget(cardTypes_group)
@@ -195,6 +232,33 @@ class NoteTypeDesigner(QDialog):
         self.add_field({"Name": "Definition"})
         self.add_field({"Name": "Audio"})
         self.add_cardType({"Name": "Translation", "prompt": "Type the correct translation"})       
+
+        # set table columns
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.fieldsTable.setColumnWidth(0, 10 * lh)
+        self.fieldsTable.setColumnWidth(1, 2.5 * lh)
+        self.fieldsTable.setColumnWidth(2, 2.5 * lh)
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.fieldsTable.setColumnWidth(5, 2 * lh)
+
+        self.cardTypes.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.cardTypes.setColumnWidth(0, 8 * lh)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.cardTypes.setColumnWidth(1, 6 * lh)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.cardTypes.setColumnWidth(2, 6 * lh)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.cardTypes.setColumnWidth(3, 6 * lh)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        self.cardTypes.setColumnWidth(5, 6 * lh)        
+        self.cardTypes.horizontalHeader().setSectionResizeMode(6, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.cardTypes.setColumnWidth(6, 2 * lh)
+        self.cardTypes.horizontalHeader().setSectionResizeMode(7, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.cardTypes.setColumnWidth(7, 2 * lh)
+
 
         # Ok/Cancel
         button_ok = QPushButton("Create")
@@ -208,15 +272,11 @@ class NoteTypeDesigner(QDialog):
 
         layout.addLayout(button_layout)
 
-        self.setLayout(layout)
-        self.resize(50 * line_height, self.sizeHint().height())
-
         # Styling
         #self.fieldsTable.setShowGrid(False)
         self.cardTypes.setShowGrid(False)
         #self.cardTypes.setStyleSheet("QTableWidget { background-color: transparent; }")
-        self.cardTypes.resizeColumnsToContents()
-
+        # self.cardTypes.resizeColumnsToContents()
 
     def field_row2dic(self, row):
 
@@ -251,8 +311,11 @@ class NoteTypeDesigner(QDialog):
         back.setChecked(params.get("back", True))
         checkbox_cell = QWidget()
         checkbox_layout = QHBoxLayout()
+        # back.setStyleSheet("QCheckBox { margin-left: 10px; }")
         checkbox_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         checkbox_layout.setContentsMargins(0, 0, 0, 0)
+        # checkbox_cell.setStyleSheet("margin-left: 10px")
+        # checkbox_layout.setSpacing(0)
         checkbox_cell.setLayout(checkbox_layout)
         checkbox_layout.addWidget(back)
         self.fieldsTable.setCellWidget(row, 2, checkbox_cell)
