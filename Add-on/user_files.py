@@ -35,6 +35,18 @@ def save(path, data):
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(data)
 
+def load(file_path):
+    user_path = os.path.join(addon_path, "user_files", os.path.normpath(file_path))
+    if os.path.exists(user_path):
+        with open(user_path, 'r', encoding='utf-8') as file:
+            return file.read()
+
+    stock_path = os.path.join(addon_path, "stock_files", os.path.normpath(file_path))
+    if os.path.exists(stock_path):
+        with open(stock_path, 'r', encoding='utf-8') as file:
+            return file.read()
+
+
 def location(subfolder, file):
     return "user_files"
 

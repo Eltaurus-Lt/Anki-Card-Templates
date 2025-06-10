@@ -28,7 +28,7 @@
             "Q": "German",
             "A": "English",
             "in": "Tapping",
-            "prompt": "Pick the correct translation",
+            "prompt": "Tap the correct translation",
             "Extra": "\u30fc"
         },
         {
@@ -44,7 +44,7 @@
             "Q": "English",
             "A": "German",
             "in": "Tapping",
-            "prompt": "Pick the correct translation",
+            "prompt": "Tap the correct translation",
             "Extra": "\u30fc"
         },
         {
@@ -60,7 +60,7 @@
             "Q": "Audio",
             "A": "German",
             "in": "Tapping",
-            "prompt": "Pick what you hear",
+            "prompt": "Tap what you hear",
             "Extra": "English"
         },
         {
@@ -76,7 +76,7 @@
             "Q": "Audio",
             "A": "English",
             "in": "Tapping",
-            "prompt": "Pick the correct translation for what you hear",
+            "prompt": "Tap the correct translation for what you hear",
             "Extra": "German"
         },
         {

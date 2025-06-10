@@ -40,8 +40,7 @@ def create():
 
 ###  DIALOG
 
-# preset loading
-# preset renaming
+# preset renaming and saving
 # TeX checkbox + preset
 
 # refactor private/public variables
@@ -62,12 +61,34 @@ class NoteTypeCreator(QDialog):
     def renamePreset(self):
         tooltip("preset renamed")
 
-    def loadPreset(self):
+    def setAsModified(self):
+        return
+
+    def setAsSaved(self):
         return
 
     def savePreset(self):
         preset_json = json.dumps(self.get_preset_options(), indent=4)
         user_files.save(f"Note Presets/{self.preset.currentText()}.json", preset_json)
+
+    def loadPreset(self):
+        preset_json = user_files.load(f"Note Presets/{self.preset.currentText()}.json")
+        if preset_json is None:
+            tooltip(f"error loading {preset} file")
+            return
+
+        preset = json.loads(preset_json)
+
+        for r in range(self.fieldsTable.rowCount()):
+            self.fieldsTable.removeRow(0)
+        for r in range(self.cardTypes.rowCount()):
+            self.cardTypes.removeRow(0)
+
+        for field in preset["Fields"]:
+            self.add_field(field)
+        for cardType in preset["Card Types"]:
+            self.add_cardType(cardType)
+        
 
     def indexOf(self, array, el, default = 0):
         try:
@@ -127,7 +148,9 @@ class NoteTypeCreator(QDialog):
         self.preset.addItems(self.getPresetList())
         self.preset.setFixedWidth(10 * lh)
         self.preset.setEditable(True)
-        self.preset.lineEdit().editingFinished.connect(self.renamePreset)
+        # self.preset.lineEdit().editingFinished.connect(self.renamePreset)
+        self.preset.currentIndexChanged.connect(self.loadPreset)
+        self.preset.editTextChanged.connect(self.renamePreset)
         preset_layout.addWidget(self.preset)
 
         button_presave = QPushButton("Save")
@@ -177,11 +200,7 @@ class NoteTypeCreator(QDialog):
 
         layout.addWidget(cardTypes_group)
 
-        # load default
-        self.add_field({"Name": "Learnable"})
-        self.add_field({"Name": "Definition"})
-        self.add_field({"Name": "Audio"})
-        self.add_cardType({"Name": "Translation", "prompt": "Type the correct translation"})       
+        self.loadPreset()   
 
         # set table columns
         self.fieldsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
