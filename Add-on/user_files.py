@@ -25,8 +25,6 @@ import os
 
 addon_path = os.path.dirname(__file__)
 
-import os
-
 def save(path, data):
     file_path = os.path.join(addon_path, "user_files", os.path.normpath(path))
 

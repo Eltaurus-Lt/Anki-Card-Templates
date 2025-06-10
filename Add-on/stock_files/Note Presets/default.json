@@ -1,0 +1,80 @@
+{
+    "Fields": [
+        {
+            "Name": "Learnable",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Definition",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Extra",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Extra 2",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Mems",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Translation",
+            "Q": "Definition",
+            "A": "Learnable",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation",
+            "Extra": "Extra"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "Learnable",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what you hear",
+            "Extra": "Definition"
+        },
+        {
+            "Name": "Translation",
+            "Q": "Definition",
+            "A": "Learnable",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Extra"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "Learnable",
+            "in": "Typing",
+            "prompt": "Type what you hear",
+            "Extra": "Definition"
+        }
+    ]
+}

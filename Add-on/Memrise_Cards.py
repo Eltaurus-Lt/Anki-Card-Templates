@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2025 Eltaurus
+# Copyright © 2024-2025 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -42,7 +42,6 @@ def create():
 ###  DIALOG
 
 # theme list
-# preset saving
 # preset loading
 # preset renaming
 

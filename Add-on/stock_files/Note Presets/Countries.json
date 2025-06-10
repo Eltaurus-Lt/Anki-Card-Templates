@@ -1,0 +1,120 @@
+{
+    "Fields": [
+        {
+            "Name": "Country",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Capital",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Language",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Flag",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Map",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Currency",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Capital",
+            "Q": "Country",
+            "A": "Capital",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the Capital of the Country",
+            "Extra": "Language"
+        },
+        {
+            "Name": "Language",
+            "Q": "Country",
+            "A": "Language",
+            "in": "Multiple-Choice",
+            "prompt": "Pick a Language of the Country",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Flag",
+            "Q": "Country",
+            "A": "Flag",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct Country Flag",
+            "Extra": "Capital"
+        },
+        {
+            "Name": "Currency",
+            "Q": "Country",
+            "A": "Currency",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the Currency of the Country",
+            "Extra": "Flag"
+        },
+        {
+            "Name": "Location",
+            "Q": "Country",
+            "A": "Map",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the Map showing Country Location",
+            "Extra": "Currency"
+        },
+        {
+            "Name": "Capital Match",
+            "Q": "Capital",
+            "A": "Country",
+            "in": "Multiple-Choice",
+            "prompt": "Match the Captial to its Country",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Affiliation",
+            "Q": "Flag",
+            "A": "Country",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the Country the Flag belongs to",
+            "Extra": "Map"
+        },
+        {
+            "Name": "Identification",
+            "Q": "Map",
+            "A": "Country",
+            "in": "Multiple-Choice",
+            "prompt": "Identify the Country shown on the Map",
+            "Extra": "Capital"
+        },
+        {
+            "Name": "Flag Location",
+            "Q": "Map",
+            "A": "Flag",
+            "in": "Multiple-Choice",
+            "prompt": "Match the Flag to its Country Map",
+            "Extra": "Country"
+        }
+    ]
+}

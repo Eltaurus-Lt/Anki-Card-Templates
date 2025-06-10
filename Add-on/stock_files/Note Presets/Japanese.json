@@ -1,0 +1,105 @@
+{
+    "Fields": [
+        {
+            "Name": "Japanese",
+            "large": true,
+            "back": true,
+            "static": "",
+            "random": "\u65e5\u4e00\u56fd\u4f1a\u4eba\u5e74\u5927\u5341\u4e8c\u672c\u4e2d\u9577\u51fa\u4e09\u540c\u6642\u653f\u4e8b\u81ea\u884c\u793e\u898b\u6708\u5206\u8b70\u5f8c\u524d\u6c11\u751f\u9023\u4e94\u767a\u9593\u5bfe\u4e0a\u90e8\u6771\u8005\u515a\u5730\u5408\u5e02\u696d\u5185\u76f8\u65b9\u56db\u5b9a\u4eca\u56de\u65b0\u5834\u91d1\u54e1\u4e5d\u5165\u9078\u7acb\u958b\u624b\u7c73\u529b\u5b66\u554f\u9ad8\u4ee3\u660e\u5b9f\u5186\\\n\u95a2\u6c7a\u5b50\u52d5\u4eac\u5168\u76ee\u8868\u6226\u7d4c\u901a\u5916\u6700\u8a00\u6c0f\u73fe\u7406\u8abf\u4f53\u5316\u7530\u5f53\u516b\u516d\u7d04\u4e3b\u984c\u4e0b\u9996\u610f\u6cd5\u4e0d\u6765\u4f5c\u6027\u7684\u8981\u7528\u5236\u6cbb\u5ea6\u52d9\u5f37\u6c17\u5c0f\u4e03\u6210\u671f\u516c\u6301\u91ce\u5354\u53d6\u90fd\u548c\u7d71\u4ee5\u6a5f\u5e73\u7dcf\u52a0\u5c71\u601d\u5bb6\u8a71\u4e16\u53d7\u533a\u9818\u591a\\\n\u770c\u7d9a\u9032\u6b63\u5b89\u8a2d\u4fdd\u6539\u6570\u8a18\u9662\u5973\u521d\u5317\u5348\u6307\u6a29\u5fc3\u754c\u652f\u7b2c\u7523\u7d50\u767e\u6d3e\u70b9\u6559\u5831\u6e08\u66f8\u5e9c\u6d3b\u539f\u5148\u5171\u5f97\u89e3\u540d\u4ea4\u8cc7\u4e88\u5ddd\u5411\u969b\u67fb\u52dd\u9762\u59d4\u544a\u8ecd\u6587\u53cd\u5143\u91cd\u8fd1\u5343\u8003\u5224\u8a8d\u753b\u6d77\u53c2\u58f2\u5229\u7d44\u77e5\u6848\u9053\u4fe1\u7b56\\\n\u96c6\u5728\u4ef6\u56e3\u5225\u7269\u5074\u4efb\u5f15\u4f7f\u6c42\u6240\u6b21\u6c34\u534a\u54c1\u6628\u8ad6\u8a08\u6b7b\u5b98\u5897\u4fc2\u611f\u7279\u60c5\u6295\u793a\u5909\u6253\u7537\u57fa\u79c1\u5404\u59cb\u5cf6\u76f4\u4e21\u671d\u9769\u4fa1\u5f0f\u78ba\u6751\u63d0\u904b\u7d42\u6319\u679c\u897f\u52e2\u6e1b\u53f0\u5e83\u5bb9\u5fc5\u5fdc\u6f14\u96fb\u6b73\u4f4f\u4e89\u8ac7\u80fd\u7121\u518d\u4f4d\u7f6e\u4f01\u771f\\\n\u6d41\u683c\u6709\u7591\u53e3\u904e\u5c40\u5c11\u653e\u7a0e\u691c\u85e4\u753a\u5e38\u6821\u6599\u6ca2\u88c1\u72b6\u5de5\u5efa\u3042\u3044\u3046\u3048\u304a\u304b\u304d\u304f\u3051\u3053\u3055\u3057\u3059\u305b\u305d\u305f\u3061\u3064\u3066\u3068\u306a\u306b\u306c\u306d\u306e\u306f\u3072\u3075\u3078\u307b\u307e\u307f\u3080\u3081\u3082\u3084\u3086\u3088\u3089\u308a\u308b\u308c\u308d\u308f\u3092\u3093"
+        },
+        {
+            "Name": "Kana",
+            "large": true,
+            "back": true,
+            "static": "",
+            "random": "\u3042\u3044\u3046\u3048\u304a\u304b\u304d\u304f\u3051\u3053\u3055\u3057\u3059\u305b\u305d\u305f\u3061\u3064\u3066\u3068\u306a\u306b\u306c\u306d\u306e\u306f\u3072\u3075\u3078\u307b\u307e\u307f\u3080\u3081\u3082\u3084\u3086\u3088\u3089\u308a\u308b\u308c\u308d\u308f\u3092\u3093\u304c\u304e\u3050\u3052\u3054\u3056\u3058\u305a\u305c\u305e\u3060\u3062\u3065\u3067\u3069\u3070\u3073\u3076\u3079\u307c\u3071\u3074\u3077\u307a\u307d\u3083\u3085\u3087"
+        },
+        {
+            "Name": "English",
+            "large": false,
+            "back": true,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz "
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Mems",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Recognition",
+            "Q": "Japanese",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Recognition",
+            "Q": "Japanese",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "Japanese",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "Japanese",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Reading",
+            "Q": "Japanese",
+            "A": "Kana",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct reading",
+            "Extra": "English"
+        },
+        {
+            "Name": "Reading",
+            "Q": "Japanese",
+            "A": "Kana",
+            "in": "Typing",
+            "prompt": "Type the correct reading",
+            "Extra": "English"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation for what you hear",
+            "Extra": "Japanese"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation for what you hear",
+            "Extra": "Japanese"
+        }
+    ]
+}

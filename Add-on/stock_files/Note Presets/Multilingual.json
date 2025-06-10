@@ -1,0 +1,165 @@
+{
+    "Fields": [
+        {
+            "Name": "English",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz"
+        },
+        {
+            "Name": "Deutsch",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz\u00e4\u00f6\u00fc\u00df"
+        },
+        {
+            "Name": "Fran\u00e7ais",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz\u00e0\u00e2\u00e6\u00e7\u00e9\u00e8\u00ea\u00eb\u00ee\u00ef\u00f4\u0153\u00f9\u00fb\u00fc\u00ff"
+        },
+        {
+            "Name": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "\u0430\u0431\u0432\u0433\u0434\u0435\u0451\u0436\u0437\u0438\u0439\u043a\u043b\u043c\u043d\u043e\u043f\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044a\u044b\u044c\u044d\u044e\u044f"
+        },
+        {
+            "Name": "Voice",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Stimme",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Voix",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "\u0413\u043e\u043b\u043e\u0441",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Image",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Description (en)",
+            "Q": "Image",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Voice"
+        },
+        {
+            "Name": "Description (de)",
+            "Q": "Image",
+            "A": "Deutsch",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Description (fr)",
+            "Q": "Image",
+            "A": "Fran\u00e7ais",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the ImagePick what's depicted in the Image",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Description (ru)",
+            "Q": "Image",
+            "A": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "\u0413\u043e\u043b\u043e\u0441"
+        },
+        {
+            "Name": "Translation (en\u2192de)",
+            "Q": "English",
+            "A": "Deutsch",
+            "in": "Typing",
+            "prompt": "Type the correct translation to German",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Translation (de\u2192fr)",
+            "Q": "Deutsch",
+            "A": "Fran\u00e7ais",
+            "in": "Typing",
+            "prompt": "Type the correct translation to French",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Translation (fr\u2192ru)",
+            "Q": "Fran\u00e7ais",
+            "A": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439",
+            "in": "Typing",
+            "prompt": "Type the correct translation to Russian",
+            "Extra": "\u0413\u043e\u043b\u043e\u0441"
+        },
+        {
+            "Name": "Translation (ru\u2192en)",
+            "Q": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation to English",
+            "Extra": "Voice"
+        },
+        {
+            "Name": "Listening (en\u2192ru)",
+            "Q": "Voice",
+            "A": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439",
+            "in": "Typing",
+            "prompt": "Translate what you hear to Russian",
+            "Extra": "\u0413\u043e\u043b\u043e\u0441"
+        },
+        {
+            "Name": "Listening (ru\u2192fr)",
+            "Q": "\u0413\u043e\u043b\u043e\u0441",
+            "A": "Fran\u00e7ais",
+            "in": "Typing",
+            "prompt": "Translate what you hear to French",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Listening (fr\u2192de)",
+            "Q": "Voix",
+            "A": "Deutsch",
+            "in": "Typing",
+            "prompt": "Translate what you hear to German",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Listening (de\u2192en)",
+            "Q": "Stimme",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Translate what you hear to English",
+            "Extra": "Voice"
+        }
+    ]
+}
