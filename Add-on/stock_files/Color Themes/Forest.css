@@ -1,0 +1,96 @@
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="Forest"]).card ::selection,
+body:has(div.card-content[theme="Forest"]) .card ::selection {
+    color: white;
+    background-color: #277c1d;
+}
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) {
+    --col-text: #443323;
+    --col-focus: #277c1d;
+    --col-bg: #e9ffe0;
+
+    --col-input-text: #493729;
+    --col-input-border: #7d971e;
+    --col-input-bg: #f4eee5;
+
+    --col-audio-fg: #fffbe0;
+    --col-audio-bg: #24561e88;
+    --col-audio-passive: #6c950a99;
+    --op-audio-passive: 1;
+    --col-audio-container: #6c950a90;
+
+    --col-button-text: #ebdfa9; 
+    --col-button-border: #5c4f3c;
+    --col-button-bg: #917854;
+
+    --col-text-faint: #80913eaa;
+    --col-sep: #c1b68b;
+    --col-inset-bg: #d6e2badd;
+
+    --col-correct-text: #053d17;
+    --col-correct-border: #147d10;
+    --col-correct-bg: #83cf6b;
+    --col-close-text: #7e270a;
+    --col-close-border: #c8671c;
+    --col-close-bg: #f9bb83;
+    --col-wrong-text: #5f0a00;
+    --col-wrong-border: #a62715;
+    --col-wrong-bg: #fd9370;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #aae53c;
+    --col-spell-bad: #ffa37e;
+
+    --col-pressed-outline: #ebdfa990;
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-bg);
+}
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):not(.nightMode):not(.night_mode) .card .cloze {
+    color: var(--col-audio-container);
+}
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) {
+    --col-text: #c1b68b;
+    --col-focus: #557d3d;
+    --col-bg: #0b2a25;
+
+    --col-input-text: #d3e9d6;
+    --col-input-border: #233d34;
+    --col-input-bg: #0a1723;
+
+    --col-audio-fg: #c5c5a1;
+    --col-audio-bg: #00623670;
+    --col-audio-passive: #092412bb;
+    --op-audio-passive: 1;
+    --col-audio-container: #092412dd;
+
+    --col-button-text: #c5c5a1;
+    --col-button-border: #001c15;
+    --col-button-bg: #0b271a;
+
+    --col-text-faint: #006236;
+    --col-sep: #29472e;
+    --col-inset-bg: #1c3a41;
+
+    --col-correct-text: #90e090;
+    --col-correct-border: #053d17;
+    --col-correct-bg: #066735;
+    --col-close-text: #f9bb83;
+    --col-close-border: #691913;
+    --col-close-bg: #964127;
+    --col-wrong-text: #eb8f9e;
+    --col-wrong-border: #55091f;
+    --col-wrong-bg: #972343;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #3e655caa;
+    --col-spell-bad: #612f40;
+
+    --col-pressed-outline: #1c3a41;
+}
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Forest"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-text-faint);
+}
+/* End of code by Eltaurus */

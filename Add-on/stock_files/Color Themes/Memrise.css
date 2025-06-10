@@ -1,0 +1,105 @@
+body:has(div.card-content[theme="MemRise"]) {
+    --border-r1: 0.25rem;
+    --border-r2: 0.5rem;
+    --border-r3: 0.75rem;
+    --border-r4: 1rem;
+
+    --path-play: var(--mem-play);
+    --path-blob: var(--mem-blob);
+    --path-hint: var(--mem-hint);
+}
+body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
+    --col-text: var(--mem-text);
+    --col-focus: var(--mem-focus);
+    --col-bg: var(--mem-bg);
+
+    --col-input-text: var(--mem-input-text);
+    --col-input-border: var(--mem-border);
+    --col-input-bg: var(--mem-input-bg);
+
+    --col-audio-fg: var(--mem-text);
+    --col-audio-bg: var(--mem-primary);
+    --col-audio-passive: var(--col-audio-bg);
+    --op-audio-passive: 0.2;
+    --col-audio-container: var(--mem-audio-container);
+
+    --col-button-text: var(--col-input-text); 
+    --col-button-border: var(--col-input-border);
+    --col-button-bg: var(--col-bg);
+
+    --col-text-faint: var(--mem-textlabel);
+    --col-sep: var(--mem-sep);
+    --col-inset-bg: var(--col-input-bg);
+
+    --col-correct-text: var(--mem-correct-text);
+    --col-correct-border: var(--mem-correct-border);
+    --col-correct-bg: var(--mem-correct-bg);
+    --col-close-text: var(--mem-close-text);
+    --col-close-border: var(--mem-close-border);
+    --col-close-bg: var(--mem-close-bg);
+    --col-wrong-text: var(--mem-wrong-text);
+    --col-wrong-border: var(--mem-wrong-border);
+    --col-wrong-bg: var(--mem-wrong-bg);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--mem-spell-missed);
+    --col-spell-bad: var(--mem-spell-bad);
+
+    --col-pressed-outline: #dbd2bdaa;
+
+    --col-intbtn-text: var(--mem-next);
+    --col-intbtn-bg: var(--mem-primary);
+    /* --col-intbtn-hover: var(--mem-secondary); */
+}
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
+    --col-text: var(--mem-bg);
+    --col-focus: #3b82f6;
+    --col-bg: #2c2c2c;
+
+    --col-input-text: white;
+    --col-input-border: #020202;
+    --col-input-bg: #252525;
+
+    --col-audio-fg: var(--mem-primary);
+    --col-audio-bg: black;
+    --col-audio-passive: black;
+    --op-audio-passive: 0.5;
+    --col-audio-container: #141414;
+
+    --col-button-text: white;
+    --col-button-border: #202020;
+    --col-button-bg: #404040;
+
+    --col-text-faint: #545454;
+    --col-sep: #202020;
+    --col-inset-bg: #363636;
+
+    --col-correct-text: var(--mem-correct-bg);
+    --col-correct-border: var(--mem-correct-text);
+    --col-correct-bg: var(--mem-correct-border);
+    --col-close-text: var(--mem-close-bg);
+    --col-close-border: var(--mem-close-text);
+    --col-close-bg: var(--mem-close-border);
+    --col-wrong-text: var(--mem-wrong-bg);
+    --col-wrong-border: var(--mem-wrong-text);
+    --col-wrong-bg: var(--mem-wrong-border);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #22663588;
+    --col-spell-bad: #732c31bb;
+
+    --col-pressed-outline: #ffbb0025;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: #161616;
+    --col-intbtn-border: black;
+}
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card ::selection,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card ::selection {
+    color: var(--mem-text);
+    background-color: var(--mem-bg);
+}
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}

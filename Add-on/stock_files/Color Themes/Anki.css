@@ -1,0 +1,79 @@
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="AnkiRise"]) {
+    --col-focus: var(--border-focus);
+    
+    --col-button-border: var(--button-hover-border);
+
+    --path-blob: var(--ank-blob);
+}
+body:has(div.card-content[theme="AnkiRise"]).card ::selection,
+body:has(div.card-content[theme="AnkiRise"]) .card ::selection {
+    color: white;
+    background-color: var(--button-primary-disabled);
+}
+body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
+    --col-bg: var(--canvas-elevated);
+
+    --col-input-border: var(--border-strong);
+    --col-input-bg: var(--canvas);
+
+    --col-audio-fg: var(--fg);
+    --col-audio-bg: var(--button-primary-gradient-start);
+    --col-audio-passive: var(--border-subtle);
+    --op-audio-passive: 1;
+    --col-audio-container: var(--selected-bg);
+
+    --col-inset-bg: var(--border-subtle);
+
+    --col-correct-text: #053d17;
+    --col-correct-border: #0a9d56;
+    --col-correct-bg: #64d787;
+    --col-close-text: #a12e03;
+    --col-close-border: #df9800;
+    --col-close-bg: #f9ce5c;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #99101b;
+    --col-wrong-bg: #f66761;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--ank-spell-good);
+    --col-spell-bad: var(--ank-spell-bad);
+
+    --col-intbtn-text: var(--col-input-text);
+    --col-intbtn-bg: var(--col-audio-passive);
+}
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
+    --col-text: white;
+    --col-bg: var(--canvas-code);
+
+    --col-audio-fg: var(--button-primary-gradient-start);
+    --col-audio-bg: black;
+    --col-audio-passive: black;
+    --op-audio-passive: 0.5;
+    --col-audio-container: var(--shadow);
+
+    --col-button-text: var(--fg); 
+    --col-button-border: var(--button-hover-border);
+    --col-button-bg: var(--canvas);
+
+    --col-sep: var(--button-hover-border);
+
+    --col-correct-text: #64d787;
+    --col-correct-border: #1c4729;
+    --col-correct-bg: #188c4f;
+    --col-close-text: #f9ce5c;
+    --col-close-border: #5e2f1e;
+    --col-close-bg: #d08e08;
+    --col-wrong-text: #f66761;
+    --col-wrong-border: #54070c;
+    --col-wrong-bg: #99101b;
+
+    --col-spell-good: transparent;
+    --col-spell-missed: #226635;
+    --col-spell-bad: #732c31dd;
+}
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-fg);
+}
+/* End of code by Eltaurus */

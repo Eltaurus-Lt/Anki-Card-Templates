@@ -40,9 +40,15 @@ def location(subfolder, file):
 
 def list(subfolder, ext = ""):
     folder_path = os.path.join(addon_path, "user_files", os.path.normpath(subfolder))
-    files_user = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+    if os.path.exists(folder_path):
+        files_user = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+    else:
+        files_user = set()
 
     folder_path = os.path.join(addon_path, "stock_files", os.path.normpath(subfolder))
-    files_stock = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+    if os.path.exists(folder_path):
+        files_stock = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+    else:
+        files_stock = set()
 
     return sorted(files_user | files_stock)

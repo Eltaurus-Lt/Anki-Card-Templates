@@ -28,7 +28,6 @@ from aqt.utils import tooltip
 from . import user_files
     
 def create():
-
     dialog = NoteTypeCreator()
     if not dialog.exec():
         return
@@ -41,19 +40,18 @@ def create():
 
 ###  DIALOG
 
-# themes css
-# TeX checkbox + preset
-# theme list
-
 # preset loading
 # preset renaming
+# TeX checkbox + preset
 
 # refactor private/public variables
 # onhover tooltips (+column headers)
 
 class NoteTypeCreator(QDialog):
     def getThemeList(self):
-        return ['Memrise', 'Anki', 'Forest', 'Sunset', '—']
+        theme_list = user_files.list("Color Themes", ".css")
+        theme_list.insert(0, "ー")
+        return theme_list
 
     def getPresetList(self):
         preset_list = user_files.list("Note Presets", ".json")
@@ -113,9 +111,12 @@ class NoteTypeCreator(QDialog):
         # Presets
         preset_layout = QHBoxLayout()
 
-        preset_layout.addWidget(QLabel("Theme:"))
+        preset_layout.addWidget(QLabel("Color Theme:"))
         self.theme = QComboBox()
-        self.theme.addItems(self.getThemeList())
+        theme_list = self.getThemeList()
+        self.theme.addItems(theme_list)
+        theme_index = self.indexOf(theme_list, "Memrise", self.indexOf(theme_list, "Anki", 1))
+        self.theme.setCurrentIndex(theme_index)
         self.theme.setFixedWidth(7 * lh)
         preset_layout.addWidget(self.theme)
 
@@ -390,8 +391,8 @@ class NoteTypeCreator(QDialog):
                 tooltip(f'cloned row {r}')
 
                 params = self.card_row2dic(r)
-                params.pop("Name", None)
-                params.pop("prompt", None)
+                # params.pop("Name", None)
+                # params.pop("prompt", None)
 
                 self.add_cardType(params)
                 break        
