@@ -41,7 +41,10 @@ def create():
 
 ###  DIALOG
 
+# themes css
+# TeX checkbox + preset
 # theme list
+
 # preset loading
 # preset renaming
 
@@ -53,7 +56,10 @@ class NoteTypeCreator(QDialog):
         return ['Memrise', 'Anki', 'Forest', 'Sunset', '—']
 
     def getPresetList(self):
-        return ['—', 'default', 'Japanese', 'Arabic']
+        preset_list = user_files.list("Note Presets", ".json")
+        if "default" in preset_list:
+            preset_list.insert(0, preset_list.pop(preset_list.index("default")))
+        return preset_list
 
     def renamePreset(self):
         tooltip("preset renamed")
@@ -93,8 +99,8 @@ class NoteTypeCreator(QDialog):
         self.setLayout(layout)
         self.setWindowTitle("Note Type Creator")
 
-        self.noteType = QLineEdit("Memrise (Lτ) Note Type")
-        self.noteType.setToolTip("Name of the created Note Type<br><i>e.g.</i> \"Memrise (Lτ) Japanese\"<br><sub>It is recommended to keep 'Memrise (Lτ)' at the start of the name for the add-on functionality</sub>")
+        self.noteType = QLineEdit("New Note Type") #Memrise (Lτ) 
+        self.noteType.setToolTip("Name of the created Note Type<br><i>e.g.</i> \"Chinese (typing only)\", or \"Geography\"")
         self.noteType.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.noteType)
 

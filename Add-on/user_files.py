@@ -34,3 +34,15 @@ def save(path, data):
 
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(data)
+
+def location(subfolder, file):
+    return "user_files"
+
+def list(subfolder, ext = ""):
+    folder_path = os.path.join(addon_path, "user_files", os.path.normpath(subfolder))
+    files_user = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+
+    folder_path = os.path.join(addon_path, "stock_files", os.path.normpath(subfolder))
+    files_stock = {os.path.splitext(f)[0] for f in os.listdir(folder_path) if f.endswith(ext)}
+
+    return sorted(files_user | files_stock)
