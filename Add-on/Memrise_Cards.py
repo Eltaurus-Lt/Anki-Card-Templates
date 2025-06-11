@@ -40,7 +40,9 @@ def create():
 
 ###  DIALOG
 
-# preset renaming and saving
+# upd presetList after save
+# set as modified and saved methods
+# set as modified after any Field or NT widget edit
 # TeX checkbox + preset
 
 # refactor private/public variables
@@ -48,18 +50,23 @@ def create():
 
 class NoteTypeCreator(QDialog):
     def getThemeList(self):
-        theme_list = user_files.list("Color Themes", ".css")
-        theme_list.insert(0, "ー")
-        return theme_list
+        themeList = user_files.list("Color Themes", ".css")
+        themeList.insert(0, "ー")
+        return themeList
 
     def getPresetList(self):
-        preset_list = user_files.list("Note Presets", ".json")
-        if "default" in preset_list:
-            preset_list.insert(0, preset_list.pop(preset_list.index("default")))
-        return preset_list
+        presetList = user_files.list("Note Presets", ".json")
+        if "default" in presetList:
+            presetList.insert(0, presetList.pop(presetList.index("default")))
+        return presetList
 
-    def renamePreset(self):
-        tooltip("preset renamed")
+    def presetNamechange(self):
+        if self.preset.currentText() in self.presetList:
+            self.loadPreset()
+            return
+
+        # tooltip("preset renamed")
+        self.setAsModified()
 
     def setAsModified(self):
         return
@@ -71,7 +78,12 @@ class NoteTypeCreator(QDialog):
         preset_json = json.dumps(self.get_preset_options(), indent=4)
         user_files.save(f"Note Presets/{self.preset.currentText()}.json", preset_json)
 
+        # if self.preset.currentText() not in self.presetList:
+
+        self.setAsSaved()
+
     def loadPreset(self):
+        # if modified: ...
         preset_json = user_files.load(f"Note Presets/{self.preset.currentText()}.json")
         if preset_json is None:
             tooltip(f"error loading {preset} file")
@@ -88,6 +100,8 @@ class NoteTypeCreator(QDialog):
             self.add_field(field)
         for cardType in preset["Card Types"]:
             self.add_cardType(cardType)
+
+        self.setAsSaved()
         
 
     def indexOf(self, array, el, default = 0):
@@ -101,6 +115,7 @@ class NoteTypeCreator(QDialog):
             checkbox = cellWidget.findChild(QCheckBox)
             if checkbox:
                 checkbox.setChecked(not checkbox.isChecked())
+
 
     def __init__(self):
         super().__init__()
@@ -134,9 +149,9 @@ class NoteTypeCreator(QDialog):
 
         preset_layout.addWidget(QLabel("Color Theme:"))
         self.theme = QComboBox()
-        theme_list = self.getThemeList()
-        self.theme.addItems(theme_list)
-        theme_index = self.indexOf(theme_list, "Memrise", self.indexOf(theme_list, "Anki", 1))
+        themeList = self.getThemeList()
+        self.theme.addItems(themeList)
+        theme_index = self.indexOf(themeList, "Memrise", self.indexOf(themeList, "Anki", 1))
         self.theme.setCurrentIndex(theme_index)
         self.theme.setFixedWidth(7 * lh)
         preset_layout.addWidget(self.theme)
@@ -145,12 +160,13 @@ class NoteTypeCreator(QDialog):
 
         preset_layout.addWidget(QLabel("Preset:"))
         self.preset = QComboBox()
-        self.preset.addItems(self.getPresetList())
+        self.presetList = self.getPresetList()
+        self.preset.addItems(self.presetList)
         self.preset.setFixedWidth(10 * lh)
         self.preset.setEditable(True)
-        # self.preset.lineEdit().editingFinished.connect(self.renamePreset)
-        self.preset.currentIndexChanged.connect(self.loadPreset)
-        self.preset.editTextChanged.connect(self.renamePreset)
+        self.preset.lineEdit().editingFinished.connect(self.presetNamechange)
+        self.preset.currentIndexChanged.connect(lambda: self.preset.clearFocus())
+        # self.preset.editTextChanged.connect(self.renamePreset)
         preset_layout.addWidget(self.preset)
 
         button_presave = QPushButton("Save")
@@ -262,6 +278,7 @@ class NoteTypeCreator(QDialog):
 
         field_name = params.get("Name", f"Field {row+1}")
         name = QLineEdit(field_name)
+        name.setCursorPosition(0)
         self.fieldsTable.setCellWidget(row, 0, name)
         name.textChanged.connect(self.rename_field)
 
@@ -289,9 +306,11 @@ class NoteTypeCreator(QDialog):
         self.fieldsTable.setCellWidget(row, 2, checkbox_cell)
 
         static = QLineEdit(params.get("static", ""))
+        static.setCursorPosition(0)
         self.fieldsTable.setCellWidget(row, 3, static)
 
         random = QLineEdit(params.get("random", ""))
+        random.setCursorPosition(0)
         self.fieldsTable.setCellWidget(row, 4, random)
 
         # Add remove button
@@ -329,7 +348,7 @@ class NoteTypeCreator(QDialog):
             if self.fieldsTable.cellWidget(r, self.fieldsTable.columnCount()-1) == sender_button:
                 break
 
-        tooltip(f'removed row {r}')                
+        # tooltip(f'removed row {r}')                
         self.fieldsTable.removeRow(r)
 
         # Remove the respective item from qboxes for each card type
@@ -344,6 +363,7 @@ class NoteTypeCreator(QDialog):
         self.cardTypes.setRowCount(row + 1)
 
         name = QLineEdit(params.get("Name", f"Card {row+1}"))
+        name.setCursorPosition(0)
         self.cardTypes.setCellWidget(row, 0, name)
 
         current_fields = [self.fieldsTable.cellWidget(r, 0).text() for r in range(self.fieldsTable.rowCount())]
@@ -369,6 +389,7 @@ class NoteTypeCreator(QDialog):
         self.cardTypes.setCellWidget(row, 3, inputMethod)
 
         prompt = QLineEdit(params.get("prompt", ""))
+        prompt.setCursorPosition(0)
         prompt_opacity = QGraphicsOpacityEffect()
         prompt_opacity.setOpacity(0.5)
         prompt.setGraphicsEffect(prompt_opacity)
@@ -407,7 +428,7 @@ class NoteTypeCreator(QDialog):
 
         for r in range(self.cardTypes.rowCount()):
             if self.cardTypes.cellWidget(r, self.cardTypes.columnCount()-1) == sender_button:
-                tooltip(f'cloned row {r}')
+                # tooltip(f'cloned row {r}')
 
                 params = self.card_row2dic(r)
                 # params.pop("Name", None)
@@ -424,7 +445,7 @@ class NoteTypeCreator(QDialog):
 
         for r in range(self.cardTypes.rowCount()):
             if self.cardTypes.cellWidget(r, self.cardTypes.columnCount()-2) == sender_button:
-                tooltip(f'removed row {r}')
+                # tooltip(f'removed row {r}')
                 self.cardTypes.removeRow(r)
                 break
 

@@ -1,17 +1,17 @@
 /* Start of code by Eltaurus */
-body:has(div.card-content[theme="AnkiRise"]) {
+body:has(div.card-content[theme="Anki"]) {
     --col-focus: var(--border-focus);
     
     --col-button-border: var(--button-hover-border);
 
     --path-blob: var(--ank-blob);
 }
-body:has(div.card-content[theme="AnkiRise"]).card ::selection,
-body:has(div.card-content[theme="AnkiRise"]) .card ::selection {
+body:has(div.card-content[theme="Anki"]).card ::selection,
+body:has(div.card-content[theme="Anki"]) .card ::selection {
     color: white;
     background-color: var(--button-primary-disabled);
 }
-body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
+body:has(div.card-content[theme="Anki"]):not(.nightMode):not(.night_mode) {
     --col-bg: var(--canvas-elevated);
 
     --col-input-border: var(--border-strong);
@@ -42,7 +42,7 @@ body:has(div.card-content[theme="AnkiRise"]):not(.nightMode):not(.night_mode) {
     --col-intbtn-text: var(--col-input-text);
     --col-intbtn-bg: var(--col-audio-passive);
 }
-body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
+body:has(div.card-content[theme="Anki"]):is(.nightMode, .night_mode) {
     --col-text: white;
     --col-bg: var(--canvas-code);
 
@@ -72,8 +72,8 @@ body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) {
     --col-spell-missed: #226635;
     --col-spell-bad: #732c31dd;
 }
-body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode).card .cloze,
-body:has(div.card-content[theme="AnkiRise"]):is(.nightMode, .night_mode) .card .cloze {
+body:has(div.card-content[theme="Anki"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Anki"]):is(.nightMode, .night_mode) .card .cloze {
     color: var(--col-audio-fg);
 }
 /* End of code by Eltaurus */

@@ -1,4 +1,4 @@
-body:has(div.card-content[theme="MemRise"]) {
+body:has(div.card-content[theme="Memrise"]) {
     --border-r1: 0.25rem;
     --border-r2: 0.5rem;
     --border-r3: 0.75rem;
@@ -8,7 +8,7 @@ body:has(div.card-content[theme="MemRise"]) {
     --path-blob: var(--mem-blob);
     --path-hint: var(--mem-hint);
 }
-body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
+body:has(div.card-content[theme="Memrise"]):not(.nightMode):not(.night_mode) {
     --col-text: var(--mem-text);
     --col-focus: var(--mem-focus);
     --col-bg: var(--mem-bg);
@@ -51,7 +51,7 @@ body:has(div.card-content[theme="MemRise"]):not(.nightMode):not(.night_mode) {
     --col-intbtn-bg: var(--mem-primary);
     /* --col-intbtn-hover: var(--mem-secondary); */
 }
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
+body:has(div.card-content[theme="Memrise"]):is(.nightMode, .night_mode) {
     --col-text: var(--mem-bg);
     --col-focus: #3b82f6;
     --col-bg: #2c2c2c;
@@ -94,12 +94,12 @@ body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) {
     --col-intbtn-bg: #161616;
     --col-intbtn-border: black;
 }
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card ::selection,
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card ::selection {
+body:has(div.card-content[theme="Memrise"]):is(.nightMode, .night_mode).card ::selection,
+body:has(div.card-content[theme="Memrise"]):is(.nightMode, .night_mode) .card ::selection {
     color: var(--mem-text);
     background-color: var(--mem-bg);
 }
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode).card .cloze,
-body:has(div.card-content[theme="MemRise"]):is(.nightMode, .night_mode) .card .cloze {
+body:has(div.card-content[theme="Memrise"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Memrise"]):is(.nightMode, .night_mode) .card .cloze {
     color: var(--col-audio-fg);
 }
