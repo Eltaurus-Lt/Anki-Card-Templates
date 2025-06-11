@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import re
 from . import Dialogs
 from aqt import mw, gui_hooks
 from aqt.qt import *
@@ -44,6 +45,46 @@ def removeAlts(fieldContents):
 
     return str(soup)
 
+def clozeChoices(fieldContents):
+    # does not interpret clozed hints the same way as Anki and does not order nested clozes with same number the same way
+    clozes_stack = []
+    clozes_closed = {}
+    
+    i = 0
+    while i < len(fieldContents):
+        remaining_str = fieldContents[i:]
+
+        matchOP = re.match(r'^\{\{c(\d+)::', remaining_str)
+        if matchOP:
+            cN = matchOP.group(1)
+            # print(i, ':', cN)
+            clozes_stack.append((cN, []))
+            # print(clozes_stack)
+            i += 5 + len(cN)
+            continue
+        
+        if remaining_str.startswith('::') and clozes_stack:
+            # hint inside cloze => skip to the next closing brackets
+            while not fieldContents[i:].startswith('}}') and i < len(fieldContents):
+                i += 1
+            continue
+
+        if remaining_str.startswith('}}') and clozes_stack:
+            closed_cloze = clozes_stack.pop()
+            cN = closed_cloze[0]
+            if cN in clozes_closed:
+                clozes_closed[cN] += ", " + "".join(closed_cloze[1])
+            else:
+                clozes_closed[cN] = "".join(closed_cloze[1])
+            i += 2
+            continue
+
+        # content character => add to each open cloze
+        for cloze in clozes_stack:
+            cloze[1].append(remaining_str[0])
+        i += 1
+
+    return set(clozes_closed.values())
 
 def fill_choices(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
@@ -70,7 +111,12 @@ def fill_choices(browser):
     all_choices = set()
     for note in notes:
         if source_field in note.keys():
-            all_choices.add(removeAlts(note[source_field]))
+            mainAns = removeAlts(note[source_field])
+            cloze_choices = clozeChoices(mainAns)
+            if cloze_choices:
+                all_choices.update(cloze_choices)
+            else:
+                all_choices.add(mainAns)
 
     # Filling choices field on each note
     counter = 0
