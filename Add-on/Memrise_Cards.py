@@ -40,13 +40,16 @@ def create():
 
 ###  DIALOG
 
-# upd presetList after save
 # set as modified and saved methods
 # set as modified after any Field or NT widget edit
-# TeX checkbox + preset
 
+# TeX checkbox + preset
 # refactor private/public variables
 # onhover tooltips (+column headers)
+
+class NoScrollComboBox(QComboBox):
+    def wheelEvent(self, event):
+        event.ignore()
 
 class NoteTypeCreator(QDialog):
     def getThemeList(self):
@@ -54,11 +57,13 @@ class NoteTypeCreator(QDialog):
         themeList.insert(0, "ー")
         return themeList
 
-    def getPresetList(self):
-        presetList = user_files.list("Note Presets", ".json")
-        if "default" in presetList:
-            presetList.insert(0, presetList.pop(presetList.index("default")))
-        return presetList
+    def updPresetList(self):
+        self.presetList = user_files.list("Note Presets", ".json")
+        if "default" in self.presetList:
+            self.presetList.insert(0, self.presetList.pop(self.presetList.index("default")))
+
+        self.preset.clear()
+        self.preset.addItems(self.presetList)
 
     def presetNamechange(self):
         if self.preset.currentText() in self.presetList:
@@ -66,24 +71,37 @@ class NoteTypeCreator(QDialog):
             return
 
         # tooltip("preset renamed")
-        self.setAsModified()
+        self.markAsModified()
 
-    def setAsModified(self):
+    def markAsModified(self):
         return
 
-    def setAsSaved(self):
+    def markAsSaved(self):
         return
 
     def savePreset(self):
         preset_json = json.dumps(self.get_preset_options(), indent=4)
         user_files.save(f"Note Presets/{self.preset.currentText()}.json", preset_json)
 
-        # if self.preset.currentText() not in self.presetList:
+        currentPreset = self.preset.currentText() 
+        if currentPreset not in self.presetList:
+            self.updPresetList()
+            ind = self.indexOf(self.presetList, currentPreset)
+            if ind == 0:
+                tooltip('error saving the preset')
+            else:
+                tooltip('New preset saved')
+            self.preset.setCurrentIndex(ind)
+        else:
+            tooltip('Preset saved')
 
-        self.setAsSaved()
+        self.markAsSaved()
+
+    def deletePreset(self):
+        return
 
     def loadPreset(self):
-        # if modified: ...
+        # if modified: warning...
         preset_json = user_files.load(f"Note Presets/{self.preset.currentText()}.json")
         if preset_json is None:
             tooltip(f"error loading {preset} file")
@@ -101,7 +119,7 @@ class NoteTypeCreator(QDialog):
         for cardType in preset["Card Types"]:
             self.add_cardType(cardType)
 
-        self.setAsSaved()
+        self.markAsSaved()
         
 
     def indexOf(self, array, el, default = 0):
@@ -159,9 +177,8 @@ class NoteTypeCreator(QDialog):
         preset_layout.addStretch()
 
         preset_layout.addWidget(QLabel("Preset:"))
-        self.preset = QComboBox()
-        self.presetList = self.getPresetList()
-        self.preset.addItems(self.presetList)
+        self.preset = NoScrollComboBox()
+        self.updPresetList()
         self.preset.setFixedWidth(10 * lh)
         self.preset.setEditable(True)
         self.preset.lineEdit().editingFinished.connect(self.presetNamechange)
@@ -169,9 +186,10 @@ class NoteTypeCreator(QDialog):
         # self.preset.editTextChanged.connect(self.renamePreset)
         preset_layout.addWidget(self.preset)
 
-        button_presave = QPushButton("Save")
-        button_presave.clicked.connect(self.savePreset)
-        preset_layout.addWidget(button_presave)
+        presave_button = QPushButton("Save")
+        presave_button.setAutoDefault(False)
+        presave_button.clicked.connect(self.savePreset)
+        preset_layout.addWidget(presave_button)
 
         layout.addLayout(preset_layout)
 
@@ -368,13 +386,13 @@ class NoteTypeCreator(QDialog):
 
         current_fields = [self.fieldsTable.cellWidget(r, 0).text() for r in range(self.fieldsTable.rowCount())]
 
-        question = QComboBox()
+        question = NoScrollComboBox()
         question.addItems(current_fields)
         question_index = self.indexOf(current_fields, params.get("Q"), 1)
         question.setCurrentIndex(question_index)        
         self.cardTypes.setCellWidget(row, 1, question)
 
-        answer = QComboBox()
+        answer = NoScrollComboBox()
         answer.addItems(current_fields)
         answer_index = self.indexOf(current_fields, params.get("A"), 0)
         answer.setCurrentIndex(answer_index)      
@@ -382,7 +400,7 @@ class NoteTypeCreator(QDialog):
 
 
         input_methods = ["Typing","Multiple-Choice", "Tapping"]
-        inputMethod = QComboBox()
+        inputMethod = NoScrollComboBox()
         inputMethod.addItems(input_methods)
         current_method = self.indexOf(input_methods, params.get("in"))
         inputMethod.setCurrentIndex(current_method)
@@ -396,7 +414,7 @@ class NoteTypeCreator(QDialog):
         self.cardTypes.setCellWidget(row, 4, prompt)
 
         extra_options = ["ー"] + current_fields
-        front_extra = QComboBox()
+        front_extra = NoScrollComboBox()
         front_extra.addItems(extra_options)
         extra_index = self.indexOf(extra_options, params.get("Extra"))
         front_extra.setCurrentIndex(extra_index)
