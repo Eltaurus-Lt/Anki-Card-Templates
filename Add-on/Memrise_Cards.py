@@ -42,10 +42,9 @@ def create():
 
 # set as modified and saved methods
 # set as modified after any Field or NT widget edit
-
 # TeX checkbox + preset
 # refactor private/public variables
-# onhover tooltips (+column headers)
+
 
 class NoScrollComboBox(QComboBox):
     def wheelEvent(self, event):
@@ -134,25 +133,44 @@ class NoteTypeCreator(QDialog):
             if checkbox:
                 checkbox.setChecked(not checkbox.isChecked())
 
+    def setHeadersWithTooltips(self, table, headersWithTooltips):
+        for i, (header, tooltip) in enumerate(headersWithTooltips):
+            header_widget = QTableWidgetItem(header)
+            if tooltip is not None:
+                header_widget.setToolTip(tooltip)
+            table.setHorizontalHeaderItem(i, header_widget)
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() in (16777220, 16777221): # 'Enter' codes
+            event.ignore()
+        else:
+            super().keyPressEvent(event)
+
 
     def __init__(self):
         super().__init__()
 
-        tableStyle = """
+        self.setStyleSheet("""
             QHeaderView::section:horizontal { padding: 0; }
             QHeaderView::section:vertical { padding: 7px; }
-            QHeaderView::section { color: white; background: #73c7f4; font-weight: bold; font-size: 15px; }
             QTableCornerButton::section { background: #73c7f4; }
             QTableWidget::item {  }
             QCheckBox { padding-left: 7px; }
-        """
+            QToolTip {  }
+            QHeaderView::section { 
+                color: white; 
+                background: #73c7f4; 
+                font-weight: bold; 
+                font-size: 15px; 
+            }
+        """)
 
         layout = QVBoxLayout()
         self.setLayout(layout)
         self.setWindowTitle("Note Type Creator")
 
         self.noteType = QLineEdit("New Note Type") #Memrise (Lτ) 
-        self.noteType.setToolTip("Name of the created Note Type<br><i>e.g.</i> \"Chinese (typing only)\", or \"Geography\"")
+        self.noteType.setToolTip("<nobr>Name for the created Note Type</nobr><br><i>e.g.</i> \"Greek\", \"History\", <nobr>\"Spanish (no audio)\", or</nobr><br>\"Geography (multiple-choice)\"")
         self.noteType.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.noteType)
 
@@ -167,6 +185,7 @@ class NoteTypeCreator(QDialog):
 
         preset_layout.addWidget(QLabel("Color Theme:"))
         self.theme = QComboBox()
+        self.theme.setToolTip("Color theme for all Card Types")
         themeList = self.getThemeList()
         self.theme.addItems(themeList)
         theme_index = self.indexOf(themeList, "Memrise", self.indexOf(themeList, "Anki", 1))
@@ -178,6 +197,7 @@ class NoteTypeCreator(QDialog):
 
         preset_layout.addWidget(QLabel("Preset:"))
         self.preset = NoScrollComboBox()
+        self.preset.setToolTip("Note Type preset<hr><nobr>Select from the dropdown menu to load</nobr><br><i>or</i><br>Type in a new name and click 'Save' to create a new one")
         self.updPresetList()
         self.preset.setFixedWidth(10 * lh)
         self.preset.setEditable(True)
@@ -187,7 +207,8 @@ class NoteTypeCreator(QDialog):
         preset_layout.addWidget(self.preset)
 
         presave_button = QPushButton("Save")
-        presave_button.setAutoDefault(False)
+        presave_button.setToolTip("Save current profile under the currently selected preset name<hr>⚠️ overwrites profile with the same name if it already exist")
+        # presave_button.setAutoDefault(False)
         presave_button.clicked.connect(self.savePreset)
         preset_layout.addWidget(presave_button)
 
@@ -199,9 +220,14 @@ class NoteTypeCreator(QDialog):
         fields_layout = QVBoxLayout()
         fields_group.setLayout(fields_layout)        
         self.fieldsTable = QTableWidget(0, 6)
-        self.fieldsTable.setHorizontalHeaderLabels(["Field Label", "Big", "Back", "Static Keys", "Random Keys", ""])
+        self.setHeadersWithTooltips(self.fieldsTable, [
+            ("Field Label",'<nobr>Memrise\'s "(Column) <b>Name</b>" and "(Column) <b>Label</b>"</nobr><hr>An informative, short name for the Field to be labeled as in the Anki Editor and on the Cards'),
+            ("Big",'<nobr>Memrise\'s "<b>Show Bigger</b>"</nobr><hr>This will make the text a bit bigger in the learning experience. Useful for <i>e.g.</i> Chinese. For Audio this will increase the size of the button when used as Question.'),
+            ("Back",'<nobr>Memrise\'s "<b>Always Show</b>"</nobr><hr>This Field will always be displayed on the back, even when not being set as Question, Answer, or Front Extra, without the learner needing to click \'Browse\'.'),
+            ("Static Keys",'<nobr>Memrise\'s "<b>Keyboard Characters</b>"</nobr><hr>If this contains characters, they will form the <nobr>on-screen</nobr> keyboard used in the learning experience.'),
+            ("Random Keys",'<nobr>Memrise\'s "<b>predefined keyboard</b>"</nobr><hr>An alphabet or similar list of most-used characters to randomize the <nobr>on-screen</nobr> keyboard\'s set of keys'),
+            ("", None)])
         self.fieldsTable.horizontalHeader().setMinimumSectionSize(2 * lh)
-        self.fieldsTable.setStyleSheet(tableStyle)
         self.fieldsTable.setSelectionMode(QtWidgets.QTableWidget.SelectionMode.NoSelection)
         self.fieldsTable.cellClicked.connect(lambda r, c: self.toggleCellCheckbox(self.fieldsTable.cellWidget(r, c)))
         self.fieldsTable.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
@@ -224,9 +250,15 @@ class NoteTypeCreator(QDialog):
         cardTypes_layout = QVBoxLayout()
         cardTypes_group.setLayout(cardTypes_layout)
         self.cardTypes = QTableWidget(0, 8)
-        self.cardTypes.setHorizontalHeaderLabels(["Card Type", "Question", "Answer", "Input", "Prompt", "Front Extra", "", ""])
+        self.setHeadersWithTooltips(self.cardTypes, [
+            ("Card Type","An informative, short name<br> for identifying the Card Type in Anki Browser and Card Template Editor"),
+            ("Question",'<nobr>Memrise\'s "<b>Prompt With</b>"</nobr><hr>This is the Field that will be presented as the Card\'s question. Using a Field containing audio as the Question will turn the Card into a Listening Card'),
+            ("Answer",'<nobr>Memrise\'s "<b>Test On</b>"</nobr><hr>This is the Field that learners will have to answer with on tests'),
+            ("Input","<nobr>The method for the Answer to be input with</nobr><hr>Memrise's <b>enabling Typing and Tapping Tests</b> is equivalent to cloning a Card Type and changing its Input method<br><b>Disabling</b> either of the Tests is equivalent to deleting the respective Card Type"),
+            ("Prompt","A short text instruction that will<br> be shown above the Question<br>(not customizable on Memrise)"),
+            ("Front Extra",'<nobr>Memrise\'s "<b>first always&#8209;show text column</b>"</nobr><hr>This is a Field that will appear as extra information after a test, replacing the Prompt when answer is submitted'),
+            ("", None), ("", None)])
         self.cardTypes.horizontalHeader().setMinimumSectionSize(2 * lh)
-        self.cardTypes.setStyleSheet(tableStyle)
         self.cardTypes.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.cardTypes.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
         self.cardTypes.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
@@ -333,6 +365,7 @@ class NoteTypeCreator(QDialog):
 
         # Add remove button
         remove_button = QPushButton("-")
+        remove_button.setToolTip("Delete the Field")
         remove_button.clicked.connect(self.remove_field)
         self.fieldsTable.setCellWidget(row, self.fieldsTable.columnCount()-1, remove_button)
 
@@ -399,9 +432,17 @@ class NoteTypeCreator(QDialog):
         self.cardTypes.setCellWidget(row, 2, answer)
 
 
-        input_methods = ["Typing","Multiple-Choice", "Tapping"]
+        input_methods = ["Typing", "Multiple-Choice", "Tapping"]
+        input_tooltips = [
+            "Type the answer using physical, mobile or the template's on-screen keyboard<hr>The most rigorous form of testing, effective for building strong memory", 
+            "Select the correct answer out of several suggested options<hr>Good for introductory testing, tests with image answers, or for disambiguating between commonly confused words (if Choices are added manually)", 
+            "Arrange words in the correct order by tapping them<hr><nobr>Good for getting used to Language</nobr> grammar with sentence Cards"
+            ]
         inputMethod = NoScrollComboBox()
-        inputMethod.addItems(input_methods)
+        # inputMethod.addItems(input_methods)
+        for i, input_method in enumerate(input_methods):
+            inputMethod.addItem(input_method)
+            inputMethod.setItemData(i, input_tooltips[i], QtCore.Qt.ItemDataRole.ToolTipRole)
         current_method = self.indexOf(input_methods, params.get("in"))
         inputMethod.setCurrentIndex(current_method)
         self.cardTypes.setCellWidget(row, 3, inputMethod)
@@ -422,11 +463,13 @@ class NoteTypeCreator(QDialog):
 
         # Add remove button
         remove_button = QPushButton("-")
+        remove_button.setToolTip("Delete the Card Type")
         remove_button.clicked.connect(self.remove_cardType)
         self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-2, remove_button)
 
         # Add clone button
         clone_button = QPushButton("↓+")
+        clone_button.setToolTip("Clone the Card Type")
         clone_button.clicked.connect(self.clone_cardType)
         self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-1, clone_button)        
 
