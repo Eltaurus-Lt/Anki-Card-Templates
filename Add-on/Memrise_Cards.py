@@ -42,7 +42,6 @@ def create():
 
 # set as modified and saved methods
 # set as modified after any Field or NT widget edit
-# TeX checkbox + preset
 # refactor private/public variables
 
 
@@ -219,11 +218,12 @@ class NoteTypeCreator(QDialog):
         fields_group = QGroupBox("Fields")
         fields_layout = QVBoxLayout()
         fields_group.setLayout(fields_layout)        
-        self.fieldsTable = QTableWidget(0, 6)
+        self.fieldsTable = QTableWidget(0, 7)
         self.setHeadersWithTooltips(self.fieldsTable, [
             ("Field Label",'<nobr>Memrise\'s "(Column) <b>Name</b>" and "(Column) <b>Label</b>"</nobr><hr>An informative, short name for the Field to be labeled as in the Anki Editor and on the Cards'),
             ("Big",'<nobr>Memrise\'s "<b>Show Bigger</b>"</nobr><hr>This will make the text a bit bigger in the learning experience. Useful for <i>e.g.</i> Chinese. For Audio this will increase the size of the button when used as Question.'),
             ("Back",'<nobr>Memrise\'s "<b>Always Show</b>"</nobr><hr>This Field will always be displayed on the back, even when not being set as Question, Answer, or Front Extra, without the learner needing to click \'Browse\'.'),
+            ("Math",'<nobr>non-Memrise setting</nobr><hr>Enable for Fields intended to contain LaTeX (MathJax) equations so that they can be properly autorated when used as Answers'),
             ("Static Keys",'<nobr>Memrise\'s "<b>Keyboard Characters</b>"</nobr><hr>If this contains characters, they will form the <nobr>on-screen</nobr> keyboard used in the learning experience.'),
             ("Random Keys",'<nobr>Memrise\'s "<b>predefined keyboard</b>"</nobr><hr>An alphabet or similar list of most-used characters to randomize the <nobr>on-screen</nobr> keyboard\'s set of keys'),
             ("", None)])
@@ -273,10 +273,11 @@ class NoteTypeCreator(QDialog):
         self.fieldsTable.setColumnWidth(0, 10 * lh)
         self.fieldsTable.setColumnWidth(1, 2.5 * lh)
         self.fieldsTable.setColumnWidth(2, 2.5 * lh)
-        self.fieldsTable.horizontalHeader().setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.fieldsTable.setColumnWidth(3, 2.5 * lh)
         self.fieldsTable.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.fieldsTable.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Fixed)
-        self.fieldsTable.setColumnWidth(5, 2 * lh)
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.fieldsTable.horizontalHeader().setSectionResizeMode(6, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.fieldsTable.setColumnWidth(6, 2 * lh)
 
         self.cardTypes.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
         self.cardTypes.setColumnWidth(0, 8 * lh)
@@ -318,8 +319,9 @@ class NoteTypeCreator(QDialog):
             "Name": self.fieldsTable.cellWidget(row, 0).text(),
             "large": self.fieldsTable.cellWidget(row, 1).layout().itemAt(0).widget().isChecked(),
             "back": self.fieldsTable.cellWidget(row, 2).layout().itemAt(0).widget().isChecked(),
-            "static": self.fieldsTable.cellWidget(row, 3).text(),
-            "random": self.fieldsTable.cellWidget(row, 4).text(),
+            "math": self.fieldsTable.cellWidget(row, 3).layout().itemAt(0).widget().isChecked(),
+            "static": self.fieldsTable.cellWidget(row, 4).text(),
+            "random": self.fieldsTable.cellWidget(row, 5).text(),
         }
 
     def add_field(self, params):
@@ -355,13 +357,23 @@ class NoteTypeCreator(QDialog):
         checkbox_layout.addWidget(back)
         self.fieldsTable.setCellWidget(row, 2, checkbox_cell)
 
+        math = QCheckBox()
+        math.setChecked(params.get("math", False))
+        checkbox_cell = QWidget()
+        checkbox_layout = QHBoxLayout()
+        checkbox_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        checkbox_layout.setContentsMargins(0, 0, 0, 0)
+        checkbox_cell.setLayout(checkbox_layout)
+        checkbox_layout.addWidget(math)
+        self.fieldsTable.setCellWidget(row, 3, checkbox_cell)
+
         static = QLineEdit(params.get("static", ""))
         static.setCursorPosition(0)
-        self.fieldsTable.setCellWidget(row, 3, static)
+        self.fieldsTable.setCellWidget(row, 4, static)
 
         random = QLineEdit(params.get("random", ""))
         random.setCursorPosition(0)
-        self.fieldsTable.setCellWidget(row, 4, random)
+        self.fieldsTable.setCellWidget(row, 5, random)
 
         # Add remove button
         remove_button = QPushButton("-")

@@ -1,0 +1,54 @@
+{
+    "Fields": [
+        {
+            "Name": "Manifold",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Expression",
+            "large": false,
+            "back": true,
+            "math": true,
+            "static": "-+*/^_\\{}()[]<>=",
+            "random": "xyzabc234"
+        },
+        {
+            "Name": "Plot",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Recognition",
+            "Q": "Manifold",
+            "A": "Expression",
+            "in": "Multiple-Choice",
+            "prompt": "Choose a correct expression for",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Typesetting",
+            "Q": "Manifold",
+            "A": "Expression",
+            "in": "Typing",
+            "prompt": "Type a LaTeX expression for",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Plotting",
+            "Q": "Expression",
+            "A": "Plot",
+            "in": "Multiple-Choice",
+            "prompt": "Select the plot of",
+            "Extra": "Manifold"
+        }
+    ]
+}
