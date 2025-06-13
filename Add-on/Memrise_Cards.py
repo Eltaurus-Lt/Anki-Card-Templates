@@ -40,8 +40,6 @@ def create():
 
 ###  DIALOG
 
-# set as modified and saved methods
-# set as modified after any Field or NT widget edit
 # refactor private/public variables
 
 
@@ -72,10 +70,34 @@ class NoteTypeCreator(QDialog):
         self.markAsModified()
 
     def markAsModified(self):
+        self.presave_button.setStyleSheet("""
+            QPushButton { 
+                border: 2px solid #FFA500;
+            }
+        """)
         return
 
     def markAsSaved(self):
+        self.presave_button.setStyleSheet("""
+            QPushButton { 
+                border: 2px solid #0078D7;
+            }
+        """)
         return
+
+    def modificationListener(self, table, row):
+        for col in range(table.columnCount()):
+            widget = table.cellWidget(row, col)
+            if isinstance(widget, QWidget) and widget.layout():
+                item = widget.layout().itemAt(0)
+                if item is not None:
+                    widget = item.widget()
+            if isinstance(widget, QLineEdit):
+                widget.textChanged.connect(self.markAsModified)
+            elif isinstance(widget, QCheckBox):
+                widget.stateChanged.connect(self.markAsModified)
+            elif isinstance(widget, NoScrollComboBox):
+                widget.currentIndexChanged.connect(self.markAsModified)
 
     def savePreset(self):
         preset_json = json.dumps(self.get_preset_options(), indent=4)
@@ -205,11 +227,11 @@ class NoteTypeCreator(QDialog):
         # self.preset.editTextChanged.connect(self.renamePreset)
         preset_layout.addWidget(self.preset)
 
-        presave_button = QPushButton("Save")
-        presave_button.setToolTip("Save current profile under the currently selected preset name<hr>⚠️ overwrites profile with the same name if it already exist")
-        # presave_button.setAutoDefault(False)
-        presave_button.clicked.connect(self.savePreset)
-        preset_layout.addWidget(presave_button)
+        self.presave_button = QPushButton("Save")
+        self.presave_button.setToolTip("Save current profile under the currently selected preset name<hr>⚠️ overwrites profile with the same name if it already exist")
+        # self.presave_button.setAutoDefault(False)
+        self.presave_button.clicked.connect(self.savePreset)
+        preset_layout.addWidget(self.presave_button)
 
         layout.addLayout(preset_layout)
 
@@ -387,6 +409,9 @@ class NoteTypeCreator(QDialog):
             self.cardTypes.cellWidget(r, 2).addItem(field_name) #answer
             self.cardTypes.cellWidget(r, 5).addItem(field_name) #extra
 
+        self.modificationListener(self.fieldsTable, row)
+        self.markAsModified()
+
     def rename_field(self):
         sender_field = self.sender()
 
@@ -419,6 +444,8 @@ class NoteTypeCreator(QDialog):
             self.cardTypes.cellWidget(rC, 1).removeItem(r) #question
             self.cardTypes.cellWidget(rC, 2).removeItem(r) #answer
             self.cardTypes.cellWidget(rC, 5).removeItem(r+1) #extra
+
+        self.markAsModified()
 
 
     def add_cardType(self, params):
@@ -483,7 +510,9 @@ class NoteTypeCreator(QDialog):
         clone_button = QPushButton("↓+")
         clone_button.setToolTip("Clone the Card Type")
         clone_button.clicked.connect(self.clone_cardType)
-        self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-1, clone_button)        
+        self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-1, clone_button)
+
+        self.modificationListener(self.cardTypes, row)
 
     def card_row2dic(self, row):
 
@@ -508,7 +537,9 @@ class NoteTypeCreator(QDialog):
                 # params.pop("prompt", None)
 
                 self.add_cardType(params)
-                break        
+                break
+
+        self.markAsModified()
 
     def remove_cardType(self):
         sender_button = self.sender()
@@ -521,6 +552,8 @@ class NoteTypeCreator(QDialog):
                 # tooltip(f'removed row {r}')
                 self.cardTypes.removeRow(r)
                 break
+
+        self.markAsModified()
 
     def get_preset_options(self):
         fields = [self.field_row2dic(r) for r in range(self.fieldsTable.rowCount())]
