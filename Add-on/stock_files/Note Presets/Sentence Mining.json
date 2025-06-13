@@ -1,0 +1,142 @@
+{
+    "Fields": [
+        {
+            "Name": "Word",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Translation",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Sentence",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Sentence translation",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Screenshot",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Notes",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Sentence recognition",
+            "Q": "Sentence",
+            "A": "Sentence translation",
+            "in": "Multiple-Choice",
+            "prompt": "Type the correct translation",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Sentence recognition",
+            "Q": "Sentence",
+            "A": "Sentence translation",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Word recognition",
+            "Q": "Sentence",
+            "A": "Translation",
+            "in": "Multiple-Choice",
+            "prompt": "Type the correct translation",
+            "Extra": "Sentence translation"
+        },
+        {
+            "Name": "Word recognition",
+            "Q": "Sentence",
+            "A": "Translation",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Sentence translation"
+        },
+        {
+            "Name": "Sentence translation",
+            "Q": "Sentence translation",
+            "A": "Sentence",
+            "in": "Tapping",
+            "prompt": "Type the correct translation",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Sentence translation",
+            "Q": "Sentence translation",
+            "A": "Sentence",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "\u30fc"
+        },
+        {
+            "Name": "Listening skills",
+            "Q": "Audio",
+            "A": "Translation",
+            "in": "Multiple-Choice",
+            "prompt": "Type the correct translation",
+            "Extra": "Word"
+        },
+        {
+            "Name": "Listening skills",
+            "Q": "Audio",
+            "A": "Translation",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Word"
+        },
+        {
+            "Name": "Word translation",
+            "Q": "Translation",
+            "A": "Word",
+            "in": "Multiple-Choice",
+            "prompt": "Type the correct translation",
+            "Extra": "Sentence"
+        },
+        {
+            "Name": "Word translation",
+            "Q": "Translation",
+            "A": "Word",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Sentence"
+        }
+    ]
+}

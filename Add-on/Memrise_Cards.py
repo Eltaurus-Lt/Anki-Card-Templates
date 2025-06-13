@@ -62,6 +62,9 @@ class NoteTypeCreator(QDialog):
         self.preset.addItems(self.presetList)
 
     def presetNamechange(self):
+        if self.preset.ignore_first:
+            self.preset.ignore_first = False
+            return
         if self.preset.currentText() in self.presetList:
             self.loadPreset()
             return
@@ -222,6 +225,11 @@ class NoteTypeCreator(QDialog):
         self.updPresetList()
         self.preset.setFixedWidth(10 * lh)
         self.preset.setEditable(True)
+        # self.preset.setCurrentIndex(0)
+        # self.preset.lineEdit().setText(self.preset.currentText())
+        # self.preset.clearFocus()
+        # self.preset.lineEdit().clearFocus()
+        self.preset.ignore_first = True
         self.preset.lineEdit().editingFinished.connect(self.presetNamechange)
         self.preset.currentIndexChanged.connect(lambda: self.preset.clearFocus())
         # self.preset.editTextChanged.connect(self.renamePreset)
@@ -288,7 +296,8 @@ class NoteTypeCreator(QDialog):
 
         layout.addWidget(cardTypes_group)
 
-        self.loadPreset()   
+        self.loadPreset()
+
 
         # set table columns
         self.fieldsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
@@ -334,6 +343,7 @@ class NoteTypeCreator(QDialog):
         self.cardTypes.setShowGrid(False)
         #self.cardTypes.setStyleSheet("QTableWidget { background-color: transparent; }")
         # self.cardTypes.resizeColumnsToContents()
+        
 
     def field_row2dic(self, row):
 
