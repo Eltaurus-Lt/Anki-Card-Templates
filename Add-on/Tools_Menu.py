@@ -1,7 +1,7 @@
 import aqt
 from . import Memrise_Cards
 
-create_MemriseNT = aqt.qt.QAction("New Memrise (Lτ) Note Type", aqt.mw)
+create_MemriseNT = aqt.qt.QAction("New Memrise (Lτ) Note Typeᵝ", aqt.mw)
 create_MemriseNT.triggered.connect(Memrise_Cards.create)
 aqt.mw.form.menuTools.addAction(create_MemriseNT)
 

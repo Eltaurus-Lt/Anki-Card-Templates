@@ -32,7 +32,7 @@
             "A": "Expression",
             "in": "Multiple-Choice",
             "prompt": "Choose a correct expression for",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Typesetting",
@@ -40,7 +40,7 @@
             "A": "Expression",
             "in": "Typing",
             "prompt": "Type a LaTeX expression for",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Plotting",

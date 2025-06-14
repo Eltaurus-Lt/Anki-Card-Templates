@@ -63,23 +63,23 @@
             "Q": "Sentence",
             "A": "Sentence translation",
             "in": "Multiple-Choice",
-            "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "prompt": "Select the translation for the sentence",
+            "Extra": "ー"
         },
         {
             "Name": "Sentence recognition",
             "Q": "Sentence",
             "A": "Sentence translation",
             "in": "Typing",
-            "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "prompt": "Translate the sentence",
+            "Extra": "ー"
         },
         {
             "Name": "Word recognition",
             "Q": "Sentence",
             "A": "Translation",
             "in": "Multiple-Choice",
-            "prompt": "Type the correct translation",
+            "prompt": "Select the translation for the highlighted word",
             "Extra": "Sentence translation"
         },
         {
@@ -87,7 +87,7 @@
             "Q": "Sentence",
             "A": "Translation",
             "in": "Typing",
-            "prompt": "Type the correct translation",
+            "prompt": "Translate the highlighted word",
             "Extra": "Sentence translation"
         },
         {
@@ -95,23 +95,23 @@
             "Q": "Sentence translation",
             "A": "Sentence",
             "in": "Tapping",
-            "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "prompt": "Assemble the sentence translation from the words",
+            "Extra": "ー"
         },
         {
             "Name": "Sentence translation",
             "Q": "Sentence translation",
             "A": "Sentence",
             "in": "Typing",
-            "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "prompt": "Translate the sentence",
+            "Extra": "ー"
         },
         {
             "Name": "Listening skills",
             "Q": "Audio",
             "A": "Translation",
             "in": "Multiple-Choice",
-            "prompt": "Type the correct translation",
+            "prompt": "Pick the translation for what you hear",
             "Extra": "Word"
         },
         {
@@ -119,7 +119,7 @@
             "Q": "Audio",
             "A": "Translation",
             "in": "Typing",
-            "prompt": "Type the correct translation",
+            "prompt": "Translate what you hear",
             "Extra": "Word"
         },
         {
@@ -127,7 +127,7 @@
             "Q": "Translation",
             "A": "Word",
             "in": "Multiple-Choice",
-            "prompt": "Type the correct translation",
+            "prompt": "Select the translation for the word",
             "Extra": "Sentence"
         },
         {
@@ -135,7 +135,7 @@
             "Q": "Translation",
             "A": "Word",
             "in": "Typing",
-            "prompt": "Type the correct translation",
+            "prompt": "Translate the word",
             "Extra": "Sentence"
         }
     ]

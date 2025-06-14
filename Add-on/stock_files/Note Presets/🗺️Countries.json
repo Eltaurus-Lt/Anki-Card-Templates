@@ -58,7 +58,7 @@
             "A": "Language",
             "in": "Multiple-Choice",
             "prompt": "Pick a Language of the Country",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Flag",
@@ -90,7 +90,7 @@
             "A": "Country",
             "in": "Multiple-Choice",
             "prompt": "Match the Captial to its Country",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Affiliation",

@@ -1,42 +1,44 @@
 <hr id="answer" class="sys">
 <div id="backwrap" class="frontside">
-	{{FrontSide}}
-	<button id="mem-flip" class="sys">flip</button>
-	<div class="card-content back">  
+    {{FrontSide}}
+    <button id="mem-flip" class="sys">flip</button>
+    <div class="card-content back">  
 
-		<div class="mem-alert"></div>   
+        <div class="mem-alert"></div>   
 
-		<div class="mem-field">
-			<label>Learnable</label>
-			<h2>{{Learnable}}</h2>
-			<span id="spelldiff" class=""></span>
-		</div>
+        <div class="mem-field">
+            <label>Learnable</label>
+            <h2>{{Learnable}}</h2>
+            <span id="spelldiff" class=""></span>
+        </div>
 
-		<div class="mem-field no-alts">
-			<label>Definition</label>
-			<h3>{{Definition}}</h3>
-		</div>
+        <div class="mem-field no-alts">
+            <label>Definition</label>
+            <h3>{{Definition}}</h3>
+        </div>
 
-		<div class="sep"></div>
+        <div class="sep"></div>
 
-		{{#Extra}}
-			<div class="mem-field no-alts">
-				<label>Extra</label>
-				<h4>{{Extra}}</h4>      
-			</div>
-		{{/Extra}}
-		{{#Extra 2}}
-			<div class="mem-field no-alts">
-				<label>Extra 2</label>
-				<h4>{{Extra 2}}</h4>
-			</div>
-		{{/Extra 2}}
-		{{#Audio}}
-			<div class="mem-field no-alts">
-				<label>Audio</label>
-				<h4>{{Audio}}</h4>
-			</div>
-		{{/Audio}}
+        {{#Extra}}
+            <div class="mem-field no-alts">
+                <label>Extra</label>
+                <h4>{{Extra}}</h4>      
+            </div>
+        {{/Extra}}
 
-	</div>	
+        {{#Extra 2}}
+            <div class="mem-field no-alts">
+                <label>Extra 2</label>
+                <h4>{{Extra 2}}</h4>
+            </div>
+        {{/Extra 2}}
+
+        {{#Audio}}
+            <div class="mem-field no-alts">
+                <label>Audio</label>
+                <h4>{{Audio}}</h4>
+            </div>
+        {{/Audio}}
+
+    </div>	
 </div>

@@ -4,7 +4,7 @@
             "Name": "German",
             "large": false,
             "back": true,
-            "static": "\u00e4\u00f6\u00fc\u00df",
+            "static": "äöüß",
             "random": ""
         },
         {
@@ -29,7 +29,7 @@
             "A": "English",
             "in": "Tapping",
             "prompt": "Tap the correct translation",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Recognition",
@@ -37,7 +37,7 @@
             "A": "English",
             "in": "Typing",
             "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Translation",
@@ -45,7 +45,7 @@
             "A": "German",
             "in": "Tapping",
             "prompt": "Tap the correct translation",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Translation",
@@ -53,7 +53,7 @@
             "A": "German",
             "in": "Typing",
             "prompt": "Type the correct translation",
-            "Extra": "\u30fc"
+            "Extra": "ー"
         },
         {
             "Name": "Spelling",
