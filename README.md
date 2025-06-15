@@ -80,7 +80,7 @@ The template provides a dedicated **Dark mode**, which the original Memrise site
 
 ![Color Schemes](https://github.com/user-attachments/assets/5bedf070-0002-405b-bcf3-6210f6321917)
 <details>
-<summary><b>Full table</b></summary>
+<summary><b>Full comparison table</b></summary>
 
   ![atlas](https://github.com/user-attachments/assets/f40f7834-ed8b-4eb8-936f-6aff874680d5)
 
