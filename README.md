@@ -332,7 +332,7 @@ By default, the desktop Anki app uses the number keys '1–4' to rate Cards from
 To allow the template to use the shortcuts in the Memrise way, the original Anki shortcuts have to be unbound. If you only using Note Types made from the Memrise template, simply installing the support Add-on will make everything work by default — there is no need for any additional adjustments. However, if you are using other Note Types, losing the ability to use Anki shortcuts might be undesirable. There are two ways to deal with this issue:
 
 <details>
-  <summary>Modify all the other Note Types to handle key (recommended):</summary>
+  <summary>Modify all the other Note Types to handle key events (recommended):</summary>
 
 > This is the recommended way because it preserves all the functionality for both Memrise and non-Memrise Note Types. On the downside, if you have many non-Memrise Card Types, initial setup (and also the modifications for each time a new Card Type is added, e.g., when importing a shared Deck from AnkiWeb) might require a lot of manual work. It also might not be as straightforward if a Note Type that requires modification already uses keyboard events (see instructions below).
 >
