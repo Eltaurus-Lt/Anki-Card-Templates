@@ -140,7 +140,7 @@ Several parameters, which on Memrise were strictly dictated by the site, are ava
 
 ### Mems
 
-Not exactly a feature of the template itself, but with Anki's ability to [store any kind of data in any Field](#key-concepts-anki-vs-memrise), it is easy to put images and story mnemonics (formerly known as "Mems" on Memrise), as well as notes and comments of any other kind, into the Cards. Instructions for adding more Fields to the template (for any purpose) are presented in the [respective customization section](#3-adding-new-fields).
+Not exactly a feature of the template itself, but with Anki's ability to [store any kind of data in any Field](#key-concepts-anki-vs-memrise), it is easy to put images and story mnemonics (formerly known as "Mems" on Memrise), as well as notes and comments of any other kind, into the Cards. Instructions for adding more Fields to the template (for this purpose or other) are presented in the [respective customization section](#3-adding-new-fields).
 
 ### Layout without visual bugs
 
