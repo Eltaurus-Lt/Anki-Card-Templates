@@ -144,7 +144,7 @@ Not exactly a feature of the template itself, but with Anki's ability to [store 
 
 ### Layout without visual bugs
 
-This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also helps prevent the numerous visual bugs and layout issues present in the original Memrise interface:
+This template does not use any of the original Memrise code and is written from scratch with only references to such things as measurements, colors, and fonts. It is designed to have the simplest possible HTML code in order to facilitate further [customization](#Customization). This simplicity also helps avoid the numerous visual bugs and layout issues present in the original Memrise interface:
 
 ><details>
 ><summary><b>List of fixed issues</b></summary>
