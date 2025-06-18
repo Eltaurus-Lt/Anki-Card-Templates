@@ -124,7 +124,7 @@ With the help of the [complementary Add-on](#the-support-add-on), the template s
 
 ![Keyboard navigation (Anki)](https://github.com/Eltaurus-Lt/Anki-Card-Templates/assets/93875472/ff7cb131-a234-4b40-b01c-5d7894c382c7)
 
-Alternatively, all audio can be replayed by pressing `R` (Anki shortcut). Also, `D` (Anki shortcut) can be used to get from reviewing back to the main Deck selection screen (if no typing input is active), while `Tab` and `Enter` (Anki shortcuts) allow navigating between the Decks.
+Alternatively, all audio can be replayed at once by pressing `R` (Anki shortcut). Also, `D` (Anki shortcut) can be used to get from reviewing back to the main Deck selection screen (if no typing input is active), while `Tab` and `Enter` (Anki shortcuts) allow navigating between the Decks.
 
 <sup>***Note that `Ctrl+Z`, as well as the `R` and `D` shortcuts, are listed here for general information. They are provided by the Anki desktop app, and not by the template itself. As such, they will not work on [AnkiWeb](#AnkiWeb) (all the other listed shortcuts, including the number keys, will)</sup>
 
