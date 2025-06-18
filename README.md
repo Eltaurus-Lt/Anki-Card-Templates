@@ -130,7 +130,7 @@ Alternatively, all audio can be replayed at once by pressing `R` (Anki shortcut)
 
 ### Custom parameters
 
-Several parameters, which on Memrise were strictly dictated by the site, are exposed and available for manual adjustments. This includes the number of columns and maximum number of choices in multiple-choice Cards, the ability to disable all multiple-choice questions altogether, the number of character keys in a randomly-selected on-screen keyboard, the option to enable/disable the Hint button, the option to display the Audio question button in a reasonable size (active in the template by default, but can be reverted back to the original Memrise behavior), and the delay between submitting an answer and the automatic Card flip. There is also an option to display the info screen after each Card by default, without having to [press `Space`](#keyboard-navigation) after correct answers.
+Several parameters, which on Memrise were strictly dictated by the site, are available for manual adjustments. This includes the number of columns and maximum number of choices in multiple-choice Cards, the ability to disable all multiple-choice questions altogether, the number of character keys in a randomly-selected on-screen keyboard, the option to enable/disable the Hint button, the option to display the Audio question button in a reasonable size (active in the template by default, but can be reverted back to the original Memrise behavior), and the delay between submitting an answer and the automatic Card flip. There is also an option to display the info screen after each Card by default, without having to [press `Space`](#keyboard-navigation) after correct answers.
 
 ### Mems
 
