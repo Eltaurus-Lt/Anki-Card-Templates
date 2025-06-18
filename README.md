@@ -126,7 +126,7 @@ With the help of the [complementary Add-on](#the-support-add-on), the template s
 
 Alternatively, all audio can be replayed at once by pressing `R` (Anki shortcut). Also, `D` (Anki shortcut) can be used to get from reviewing back to the main Deck selection screen (if no typing input is active), while `Tab` and `Enter` (Anki shortcuts) allow navigating between the Decks.
 
-<sup>***Note that `Ctrl+Z`, as well as the `R` and `D` shortcuts, are listed here for general information. They are provided by the Anki desktop app, and not by the template itself. As such, they will not work on [AnkiWeb](#AnkiWeb) (all the other listed shortcuts, including the number keys, will)</sup>
+<sup>***Note that `Ctrl+Z`, as well as the `R` and `D` shortcuts, are listed here for general information. They are provided by the Anki desktop app, and not by the template itself. As such, they will not work on [AnkiWeb](#AnkiWeb) (while all the other listed shortcuts, including the number keys, will)</sup>
 
 ### Custom parameters
 
