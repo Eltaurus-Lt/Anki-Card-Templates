@@ -13,13 +13,14 @@ This template recreates the Memrise experience to make Anki more accessible for 
 >---
 >1. Download the template from [AnkiWeb](https://ankiweb.net/shared/info/510199145) or [release page](https://github.com/Eltaurus-Lt/Anki-Card-Templates/releases/tag/v5.1) and open the `Memrise… .apkg` file with Anki
 >2. Use `Memrise (Lτ) Preset […] v5.1` Note Type when making new cards (via **`Add`** → …) or importing a spreadsheet (`File`→`Import` → … [full guide](https://github.com/Eltaurus-Lt/CourseDump2022?tab=readme-ov-file#-importing-into-anki))
->3. On Android, enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → toggle **ON**)
+>3. Turn off Anki audio autoplay for the decks containing the template Cards (deck settings ⚙️ → Audio → `Don't play audio automatically` → toggle **OFF** → `Save`)
+>4. On Android, enable `Type answer into the card` (app settings ⚙️ → `Advanced` → `Type answer into the card` → toggle **ON**)
 >
 >Generating Multiple-Choice Cards (Optional):
 >
->4. In the desktop Anki, install [the support addon](https://ankiweb.net/shared/info/884199977) (`Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki)
->5. Open **`Browse`** window → Select several cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
->6. To make the Multiple-Choice Cards available on mobile and AnkiWeb: **`Sync`** Anki desktop to AnkiWeb → **`Sync`** in your mobile Anki app
+>5. In the desktop Anki, install [the support addon](https://ankiweb.net/shared/info/884199977) (`Tools` → `Add-ons` → `Get Add-ons` → Paste "884199977" → `Ok` → Restart Anki)
+>6. Open **`Browse`** window → Select several cards in the table 🖱️ → Right Click 🖱️ → `Fill Choices` → `Ok`
+>7. To make the Multiple-Choice Cards available on mobile and AnkiWeb: **`Sync`** Anki desktop to AnkiWeb → **`Sync`** in your mobile Anki app
 >---
 
 If you require any help with any of the steps, please feel free to leave a comment in [the Anki Forum thread](https://forums.ankiweb.net/t/memrise-card-template-support-thread/34233).
