@@ -1463,27 +1463,55 @@ body:has(.card-content[mode="tapping"]) #spelldiff:not(:empty)::before {
 
 /* ーーーーーーーー MULTIPLE CHOICE ーーーーーーーー */
 
-.card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+.card-content.mch:not([mode]) #scr-keyboard,
 .card-content[mode="mchoice"] #scr-keyboard {
   margin-top: 0.5rem;
   width: 100%;
-  display: grid;
-  
-  gap: 0.75rem;
-  grid-template-columns: 1fr;
+  display: grid;                  /* Use CSS Grid for flexible layout */
+  gap: 0.75rem;                   /* Space between buttons */
+  grid-template-columns: 1fr;     /* Default: single column (stacked) */
 }
+
+/* Medium screen: two columns */
 @media (min-width: 38.25rem) {
-  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+  .card-content.mch:not([mode]) #scr-keyboard,
   .card-content[mode="mchoice"] #scr-keyboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 equal columns */
     gap: 1rem;
   }
 }
-@media (min-width: 23.25rem) {
-  .card-content.mch:not([mode]) #scr-keyboard, /*legacy*/
+
+/* Large screen: three columns */
+@media (min-width: 62rem) {
+  .card-content.mch:not([mode]) #scr-keyboard,
   .card-content[mode="mchoice"] #scr-keyboard {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 equal columns */
   }
 }
+
+/* ----------------------------
+   Flexible button styling
+---------------------------- */
+.card-content.mch:not([mode]) #scr-keyboard > .membtn,
+.card-content[mode="mchoice"] #scr-keyboard > .membtn {
+  display: inline-flex;           /* Button size depends on content */
+  align-items: center;            /* Vertically center text */
+  justify-content: center;        /* Horizontally center text */
+  padding: 0.6rem 1rem;           /* Inner spacing */
+  font-size: 1.2rem;              /* Text size */
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: normal;            /* Allow line breaks */
+  word-break: break-word;         /* Break long words if needed */
+  height: auto;                   /* Button height adapts to content */
+  border-radius: 8px;
+  border: 1px solid var(--col-button-border);
+  background-color: var(--col-button-bg);
+  color: var(--col-button-text);
+  min-width: 120px;               /* Prevent buttons from being too narrow */
+
+
+	
 
 .card-content.mch:not([mode]) .mem-typing, /*legacy*/
 .card-content[mode="mchoice"] .mem-typing {
