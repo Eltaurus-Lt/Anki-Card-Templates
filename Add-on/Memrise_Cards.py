@@ -421,10 +421,10 @@ class NoteTypeCreator(QDialog):
 
         layout = QVBoxLayout()
         self.setLayout(layout)
-        self.setWindowTitle("Note Type Creator")
+        self.setWindowTitle("Memrise Note Type Creator")
 
         self.noteType = QLineEdit("New Note Type") #Memrise (Lτ) 
-        self.noteType.setToolTip("<nobr>Name for the created Note Type</nobr><br><i>e.g.</i> \"Greek\", \"History\", <nobr>\"Spanish (no audio)\", or</nobr><br>\"Geography (multiple-choice)\"")
+        self.noteType.setToolTip("<nobr>Name for the Note Type being created:</nobr><br><nobr>\"Greek\", \"History\", \"Spanish (no audio)\",</nobr><br>\"Geography (multiple-choice)\", etc.")
         self.noteType.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.noteType)
 
@@ -466,7 +466,7 @@ class NoteTypeCreator(QDialog):
         preset_layout.addWidget(self.preset)
 
         self.presave_button = QPushButton("Save")
-        self.presave_button.setToolTip("Save current profile under the currently selected preset name<hr>⚠️ overwrites profile with the same name if it already exist")
+        self.presave_button.setToolTip("Save the profile under the currently selected preset name<hr>⚠️ overwrites the preset with the same name if it already exists")
         # self.presave_button.setAutoDefault(False)
         self.presave_button.clicked.connect(self.savePreset)
         preset_layout.addWidget(self.presave_button)
@@ -480,12 +480,12 @@ class NoteTypeCreator(QDialog):
         fields_group.setLayout(fields_layout)        
         self.fieldsTable = QTableWidget(0, 7)
         self.setHeadersWithTooltips(self.fieldsTable, [
-            ("Field Label",'<nobr>Memrise\'s "(Column) <b>Name</b>" and "(Column) <b>Label</b>"</nobr><hr>An informative, short name for the Field to be labeled as in the Anki Editor and on the Cards'),
-            ("Big",'<nobr>Memrise\'s "<b>Show Bigger</b>"</nobr><hr>This will make the text a bit bigger in the learning experience. Useful for <i>e.g.</i> Chinese. For Audio this will increase the size of the button when used as Question.'),
-            ("Back",'<nobr>Memrise\'s "<b>Always Show</b>"</nobr><hr>This Field will always be displayed on the back, even when not being set as Question, Answer, or Front Extra, without the learner needing to click \'Browse\'.'),
+            ("Field Label",'=<nobr>Memrise\'s "(Column) <b>Name</b>" and "(Column) <b>Label</b>"</nobr><hr>An informative, short name for the Field to be labeled as in the Anki Editor and on the Cards'),
+            ("Big",'=<nobr>Memrise\'s "<b>Show Bigger</b>"</nobr><hr>This will make the text a bit bigger in the learning experience. Useful for <i>e.g.</i> Chinese. For Audio this will increase the size of the button when used as the Question.'),
+            ("Back",'=<nobr>Memrise\'s "<b>Always Show</b>"</nobr><hr>This Field will always be displayed on the back, even when not set as the Question, the Answer, or Front Extra (otherwise will only be visible by clicking \'Browse\').'),
             ("Math",'<nobr>non-Memrise feature</nobr><hr>Enable for Fields intended to contain LaTeX (MathJax) equations so that they can be properly autorated when used as Answers'),
-            ("Static Keys",'<nobr>Memrise\'s "<b>Keyboard Characters</b>"</nobr><hr>If this contains characters, they will form the <nobr>on-screen</nobr> keyboard used in the learning experience.'),
-            ("Random Keys",'<nobr>Memrise\'s "<b>predefined keyboard</b>"</nobr><hr>An alphabet or similar list of most-used characters to randomize the <nobr>on-screen</nobr> keyboard\'s set of keys'),
+            ("Static Keys",'=<nobr>Memrise\'s "<b>Keyboard Characters</b>"</nobr><hr>If this contains characters, they will form the <nobr>on-screen</nobr> keyboard used in the learning experience.'),
+            ("Random Keys",'=<nobr>Memrise\'s "<b>predefined keyboard</b>"</nobr><hr>An alphabet or similar list of most-used characters to randomize the set of keys for the <nobr>on-screen</nobr> keyboard'),
             ("", None)])
         self.fieldsTable.horizontalHeader().setMinimumSectionSize(2 * lh)
         self.fieldsTable.setSelectionMode(QtWidgets.QTableWidget.SelectionMode.NoSelection)
@@ -512,12 +512,12 @@ class NoteTypeCreator(QDialog):
         cardTypes_group.setLayout(cardTypes_layout)
         self.cardTypes = QTableWidget(0, 8)
         self.setHeadersWithTooltips(self.cardTypes, [
-            ("Card Type","An informative, short name<br> for identifying the Card Type in Anki Browser and Card Template Editor"),
-            ("Question",'<nobr>Memrise\'s "<b>Prompt With</b>"</nobr><hr>This is the Field that will be presented as the Card\'s question. Using a Field containing audio as the Question will turn the Card into a Listening Card'),
-            ("Answer",'<nobr>Memrise\'s "<b>Test On</b>"</nobr><hr>This is the Field that learners will have to answer with on tests'),
-            ("Input","<nobr>The method for the Answer to be input with</nobr><hr>Memrise's <b>enabling Typing and Tapping Tests</b> is equivalent to cloning a Card Type and changing its Input method<br><b>Disabling</b> either of the Tests is equivalent to deleting the respective Card Type"),
+            ("Card Type","An informative, short name<br> for identifying the Card Type<br> in the Anki Browser and<br>in the Card Template Editor"),
+            ("Question",'=<nobr>Memrise\'s "<b>Prompt With</b>"</nobr><hr>This is the Field that will be presented as the Card\'s Question. Using a Field containing audio as the Question will turn the Card into a Listening Card'),
+            ("Answer",'=<nobr>Memrise\'s "<b>Test On</b>"</nobr><hr>This is the Field that will be expected as the Answer'),
+            ("Input","<nobr>The method for entering the Card's Answer</nobr><hr>Memrise's <b>enabling Typing and Tapping Tests</b> is equivalent to cloning a Card Type and changing its Input method.<br><b>Disabling</b> either of the Tests on Memrise is equivalent to deleting the respective Card Type"),
             ("Prompt","A short text instruction that will<br> be shown above the Question<br>(not customizable on Memrise)"),
-            ("Front Extra",'<nobr>Memrise\'s "<b>first always&#8209;show text column</b>"</nobr><hr>This is a Field that will appear as extra information after a test, replacing the Prompt when answer is submitted'),
+            ("Front Extra",'=<nobr>Memrise\'s <b>first "always&#8209;show"</b> text column</nobr><hr>This is the Field that will appear as extra information immediately after an answer is submitted (replacing the Prompt)'),
             ("", None), ("", None)])
         self.cardTypes.horizontalHeader().setMinimumSectionSize(2 * lh)
         self.cardTypes.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
@@ -716,7 +716,7 @@ class NoteTypeCreator(QDialog):
         input_methods = ["Typing", "Multiple-Choice", "Tapping"]
         input_tooltips = [
             "Type the answer using physical, mobile or the template's on-screen keyboard<hr>The most rigorous form of testing, effective for building strong memory", 
-            "Select the correct answer out of several suggested options<hr>Good for introductory testing, tests with image answers, or for disambiguating between commonly confused words (if Choices are added manually)", 
+            "Select the correct answer out of several suggested options<hr>Good for introductory testing, tests with image answers, or for disambiguating between commonly confused words (when the Choices Field is filled manually)", 
             "Arrange words in the correct order by tapping them<hr>Similar to Duolingo's \"<b>Word Bank</b>\"</nobr><br>Good for getting used to Language grammar with sentence Cards"
             ]
         inputMethod = NoScrollComboBox()
