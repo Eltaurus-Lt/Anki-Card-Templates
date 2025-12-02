@@ -34,6 +34,7 @@ from . import user_files
 # large class (all places) + audio
 # all templates
 # cf all resulting texts with ankiweb variants
+# theme none
 
 mode_aliases = {
     "Typing": "typing",
@@ -97,8 +98,8 @@ def FrontHTML(cardType_data, fields_dict, theme = ""):
         {{{{#{Q}}}}}{{{{#{A}}}}}{ "{{#"+choices+"}}" if mch else "" }
         <setting id="static_keys">{static_keys}</setting>
         <setting id="random_keys">{random_keys}</setting>
-        <data id="correctAnswer">{{{{{A}}}}}</data>
         <data id="choices">{"{{"+choices+"}}" if mch else ""}</data>
+        <data id="correctAnswer">{{{{{A}}}}}</data>
 
         <div class="card-content front{" nkeys" if mch else ""}{" eq" if eq else ""}" theme="{theme}" mode="{mode}">
 
@@ -268,7 +269,7 @@ def create():
 
 ###  DIALOG
 
-# refactor private/public variables
+# review private/public variables
 
 
 class NoScrollComboBox(QComboBox):
@@ -713,7 +714,7 @@ class NoteTypeCreator(QDialog):
         input_tooltips = [
             "Type the answer using physical, mobile or the template's on-screen keyboard<hr>The most rigorous form of testing, effective for building strong memory", 
             "Select the correct answer out of several suggested options<hr>Good for introductory testing, tests with image answers, or for disambiguating between commonly confused words (if Choices are added manually)", 
-            "Arrange words in the correct order by tapping them<hr><nobr>Good for getting used to Language</nobr> grammar with sentence Cards"
+            "Arrange words in the correct order by tapping them<hr>Similar to Duolingo's \"<b>Word Bank</b>\"</nobr><br>Good for getting used to Language grammar with sentence Cards"
             ]
         inputMethod = NoScrollComboBox()
         # inputMethod.addItems(input_methods)

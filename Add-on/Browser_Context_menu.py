@@ -49,7 +49,7 @@ def clozeChoices(fieldContents):
     # does not interpret clozed hints the same way as Anki and does not order nested clozes with same number the same way
     clozes_stack = []
     clozes_closed = {}
-    
+
     i = 0
     while i < len(fieldContents):
         remaining_str = fieldContents[i:]
@@ -62,7 +62,7 @@ def clozeChoices(fieldContents):
             # print(clozes_stack)
             i += 5 + len(cN)
             continue
-        
+
         if remaining_str.startswith('::') and clozes_stack:
             # hint inside cloze => skip to the next closing brackets
             while not fieldContents[i:].startswith('}}') and i < len(fieldContents):
