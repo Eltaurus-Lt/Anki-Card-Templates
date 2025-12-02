@@ -412,6 +412,13 @@ class NoteTypeCreator(QDialog):
             }
         """)
 
+        self.tableButtonStyleSheet = """
+            QPushButton {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+        """
+
         layout = QVBoxLayout()
         self.setLayout(layout)
         self.setWindowTitle("Note Type Creator")
@@ -476,7 +483,7 @@ class NoteTypeCreator(QDialog):
             ("Field Label",'<nobr>Memrise\'s "(Column) <b>Name</b>" and "(Column) <b>Label</b>"</nobr><hr>An informative, short name for the Field to be labeled as in the Anki Editor and on the Cards'),
             ("Big",'<nobr>Memrise\'s "<b>Show Bigger</b>"</nobr><hr>This will make the text a bit bigger in the learning experience. Useful for <i>e.g.</i> Chinese. For Audio this will increase the size of the button when used as Question.'),
             ("Back",'<nobr>Memrise\'s "<b>Always Show</b>"</nobr><hr>This Field will always be displayed on the back, even when not being set as Question, Answer, or Front Extra, without the learner needing to click \'Browse\'.'),
-            ("Math",'<nobr>non-Memrise setting</nobr><hr>Enable for Fields intended to contain LaTeX (MathJax) equations so that they can be properly autorated when used as Answers'),
+            ("Math",'<nobr>non-Memrise feature</nobr><hr>Enable for Fields intended to contain LaTeX (MathJax) equations so that they can be properly autorated when used as Answers'),
             ("Static Keys",'<nobr>Memrise\'s "<b>Keyboard Characters</b>"</nobr><hr>If this contains characters, they will form the <nobr>on-screen</nobr> keyboard used in the learning experience.'),
             ("Random Keys",'<nobr>Memrise\'s "<b>predefined keyboard</b>"</nobr><hr>An alphabet or similar list of most-used characters to randomize the <nobr>on-screen</nobr> keyboard\'s set of keys'),
             ("", None)])
@@ -490,7 +497,8 @@ class NoteTypeCreator(QDialog):
         underfields_layout = QHBoxLayout()
         underfields_layout.addStretch()
         self.addField_button = QPushButton("+")
-        self.addField_button.setFixedWidth(3 * lh)
+        self.addField_button.setStyleSheet(self.tableButtonStyleSheet)
+        self.addField_button.setFixedWidth(int(3.5 * lh))
         self.addField_button.clicked.connect(lambda: self.add_field({}))
         underfields_layout.addWidget(self.addField_button)
         fields_layout.addLayout(underfields_layout)
@@ -525,9 +533,9 @@ class NoteTypeCreator(QDialog):
         # set table columns
         self.fieldsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
         self.fieldsTable.setColumnWidth(0, 10 * lh)
-        self.fieldsTable.setColumnWidth(1, int(2.5 * lh))
-        self.fieldsTable.setColumnWidth(2, int(2.5 * lh))
-        self.fieldsTable.setColumnWidth(3, int(2.5 * lh))
+        self.fieldsTable.setColumnWidth(1, int(3 * lh))
+        self.fieldsTable.setColumnWidth(2, int(3 * lh))
+        self.fieldsTable.setColumnWidth(3, int(3 * lh))
         self.fieldsTable.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.fieldsTable.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.fieldsTable.horizontalHeader().setSectionResizeMode(6, QtWidgets.QHeaderView.ResizeMode.Fixed)
@@ -632,6 +640,7 @@ class NoteTypeCreator(QDialog):
 
         # Add remove button
         remove_button = QPushButton("-")
+        remove_button.setStyleSheet(self.tableButtonStyleSheet)
         remove_button.setToolTip("Delete the Field")
         remove_button.clicked.connect(self.remove_field)
         self.fieldsTable.setCellWidget(row, self.fieldsTable.columnCount()-1, remove_button)
@@ -735,12 +744,14 @@ class NoteTypeCreator(QDialog):
 
         # Add remove button
         remove_button = QPushButton("-")
+        remove_button.setStyleSheet(self.tableButtonStyleSheet)
         remove_button.setToolTip("Delete the Card Type")
         remove_button.clicked.connect(self.remove_cardType)
         self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-2, remove_button)
 
         # Add clone button
         clone_button = QPushButton("↓+")
+        clone_button.setStyleSheet(self.tableButtonStyleSheet)
         clone_button.setToolTip("Clone the Card Type")
         clone_button.clicked.connect(self.clone_cardType)
         self.cardTypes.setCellWidget(row, self.cardTypes.columnCount()-1, clone_button)
