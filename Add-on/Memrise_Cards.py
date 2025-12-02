@@ -30,12 +30,6 @@ from aqt.utils import tooltip
 from . import user_files
 
 
-### test
-# large class (all places) + audio
-# all templates
-# cf all resulting texts with ankiweb variants
-# theme none
-
 mode_aliases = {
     "Typing": "typing",
     "Multiple-Choice": "mchoice",
@@ -531,9 +525,9 @@ class NoteTypeCreator(QDialog):
         # set table columns
         self.fieldsTable.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Interactive)
         self.fieldsTable.setColumnWidth(0, 10 * lh)
-        self.fieldsTable.setColumnWidth(1, 2.5 * lh)
-        self.fieldsTable.setColumnWidth(2, 2.5 * lh)
-        self.fieldsTable.setColumnWidth(3, 2.5 * lh)
+        self.fieldsTable.setColumnWidth(1, int(2.5 * lh))
+        self.fieldsTable.setColumnWidth(2, int(2.5 * lh))
+        self.fieldsTable.setColumnWidth(3, int(2.5 * lh))
         self.fieldsTable.horizontalHeader().setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.fieldsTable.horizontalHeader().setSectionResizeMode(5, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.fieldsTable.horizontalHeader().setSectionResizeMode(6, QtWidgets.QHeaderView.ResizeMode.Fixed)
