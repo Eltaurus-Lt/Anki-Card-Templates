@@ -423,7 +423,7 @@ class NoteTypeCreator(QDialog):
         self.setLayout(layout)
         self.setWindowTitle("Memrise Note Type Creator")
 
-        self.noteType = QLineEdit("New Note Type") #Memrise (Lτ) 
+        self.noteType = QLineEdit("New Note Type")
         self.noteType.setToolTip("<nobr>Name for the Note Type being created:</nobr><br><nobr>\"Greek\", \"History\", \"Spanish (no audio)\",</nobr><br>\"Geography (multiple-choice)\", etc.")
         self.noteType.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.noteType)
@@ -513,7 +513,7 @@ class NoteTypeCreator(QDialog):
         self.cardTypes = QTableWidget(0, 8)
         self.setHeadersWithTooltips(self.cardTypes, [
             ("Card Type","An informative, short name<br> for identifying the Card Type<br> in the Anki Browser and<br>in the Card Template Editor"),
-            ("Question",'=<nobr>Memrise\'s "<b>Prompt With</b>"</nobr><hr>This is the Field that will be presented as the Card\'s Question. Using a Field containing audio as the Question will turn the Card into a Listening Card'),
+            ("Question",'=<nobr>Memrise\'s "<b>Prompt With</b>"</nobr><hr>This is the Field that will be presented as the Card\'s Question. Using a Field that contains audio as the Question will turn the Card into a Listening Card'),
             ("Answer",'=<nobr>Memrise\'s "<b>Test On</b>"</nobr><hr>This is the Field that will be expected as the Answer'),
             ("Input","<nobr>The method for entering the Card's Answer</nobr><hr>Memrise's <b>enabling Typing and Tapping Tests</b> is equivalent to cloning a Card Type and changing its Input method.<br><b>Disabling</b> either of the Tests on Memrise is equivalent to deleting the respective Card Type"),
             ("Prompt","A short text instruction that will<br> be shown above the Question<br>(not customizable on Memrise)"),
@@ -807,7 +807,7 @@ class NoteTypeCreator(QDialog):
 
     def get_full_options(self):
         options = self.get_preset_options()
-        options["Note Type"] = "ᵝMemrise (Lτ) " + self.noteType.text().strip()
+        options["Note Type"] = "Memrise (Lτ) v5.2 | " + self.noteType.text().strip()
         options["Theme"] = self.theme.currentText()
 
         return options
