@@ -421,7 +421,7 @@ class NoteTypeCreator(QDialog):
 
         layout = QVBoxLayout()
         self.setLayout(layout)
-        self.setWindowTitle("Memrise Note Type Creator")
+        self.setWindowTitle("Memrise Note Type Constructor")
 
         self.noteType = QLineEdit("New Note Type")
         self.noteType.setToolTip("<nobr>Name for the Note Type being created:</nobr><br><nobr>\"Greek\", \"History\", \"Spanish (no audio)\",</nobr><br>\"Geography (multiple-choice)\", etc.")
