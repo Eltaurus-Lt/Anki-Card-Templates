@@ -1,3 +1,5 @@
-body {
-    background: royalblue;
+body[data-notetype^="Memrise (Lτ)"] div.label-container {
+    background: #73c7f4;
+    color: white;
+    font-weight: bold;
 }

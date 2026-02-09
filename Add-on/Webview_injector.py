@@ -50,6 +50,9 @@ def to_id(string: str):
     return re.sub(r"[^a-zA-Z0-9\-]", "", re.sub(r"[_\.\s\\/]", "-", "ltcards-" + string))
 
 def field_injector(editor):
+    # set notetype attribute for selective styles
+    editor.web.eval("document.body.setAttribute('data-notetype', '{}')".format(editor.note.model()["name"]))
+
     inj_list = ["field_styles.css"]
     css_list = []
     js_list = []
