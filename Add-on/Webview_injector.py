@@ -27,11 +27,14 @@ def general_injector(inj_filename, css_target, js_target):
         target.append(f"/_addons/{addon_name}/{inj_type}/{inj_filename}")
     if os.path.exists(os.path.join(addons_folder, addon_name, "user_files", inj_filename)):
         target.append(f"/_addons/{addon_name}/user_files/{inj_filename}")
-
+        
 
 def window_injector(web_content: WebContent, context: None):
     def inject(inj_filename):
         return general_injector(inj_filename, web_content.css, web_content.js)
+
+    inject("common_styles.css")
+    inject("common_scripts.js")
 
     if isinstance(context, (DeckBrowser, Overview)):
         inject("deck_styles.css")
