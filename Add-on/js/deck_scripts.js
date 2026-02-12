@@ -7,14 +7,17 @@ function stripNumbering(namestring) {
 }
 
 function retry(imgL) {
-  if (imgL.src.endsWith('.jpg')) {
-    imgL.src = imgL.src.slice(0,-4) + '.png';
+  const extList = ['jpg', 'png', 'jpeg', 'gif'];
+  const currentExt = imgL.src.split('.').pop();
+  const i = extList.indexOf(currentExt) + 1;
+  if (i < extList.length) {
+    imgL.src = imgL.src.slice(0, -currentExt.length) + extList[i];
   } else {
     imgL.remove();
   }
 }
 function thumbHTML(deckname) {
-  return `<img src='_thumb_${deckname}.jpg' class="deckthumb" onerror="retry(this)"\>`;
+  return `<img src='_thumb_${deckname}.jpg' height="0" width="0" onload="this.classList.add('deckthumb');this.removeAttribute('height');this.removeAttribute('width')" onerror="retry(this)"\>`;
 }
 
 window.addEventListener('load', function () {
