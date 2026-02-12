@@ -1,3 +1,164 @@
-body {
-    background: coral;
+table:has(a.deck img.deckthumb) {
+    border-spacing: 0 5px;
+}
+tbody:has(a.deck img.deckthumb) {
+    position: relative;
+    top: -15px;
+}
+tbody:has(a.deck img.deckthumb) > tr:first-child {
+    position: relative;
+    top: 10px;
+}
+
+a.deck:has(img.deckthumb) {
+    font-size: x-large;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.deckthumb {
+    vertical-align: middle; 
+    height: 80px;
+    border-radius: calc(80px / 2);
+}
+a.deck .deckthumb {
+     margin-right: 30px;
+}
+
+span.sublevel,
+.deckthumb,
+a.deck.mem-level {
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .15);
+}
+
+span.sublevel,
+a.deck.mem-level {
+    display: inline-block;
+    position: relative;
+
+    background: white;
+    border-radius: 5px;
+
+    width: 80px;
+    height: 80px;
+
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+span.sublevel::before,
+a.deck.mem-level::before {
+    vertical-align: middle; 
+    display: inline-block;
+    
+    width: calc(80px - 2 * 8px);
+    height: calc(80px - 2 * 8px);
+    margin: 8px;
+    border-radius: 3px;
+    box-sizing: border-box;
+
+    background: #f5f5f5;
+    overflow: hidden;
+
+    padding-left: 9px;
+    margin-right: 20px;
+}
+span.sublevel::before {
+    height: calc(100px - 2 * 8px);
+}
+
+a.deck.mem-level::after {
+    content: attr(data-leveln);
+    display: block;
+    position: absolute;
+    left: 2px;
+    top: 0px;
+
+    min-width: 14px;
+    height: 14px;
+    padding: 5px;
+
+    line-height: 14px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ccc;
+
+    border-radius: 5px 0 10px 0;
+    background: white;
+}
+span.sublevel::before {
+    padding-top: 3px;
+    padding-left: 0px;
+    padding-right: 1px;
+}
+span.sublevel::after {
+    content: "Level " attr(data-leveln);
+    position: absolute;
+    display: block;
+    left: calc(80px + 20px - 8px);
+    top: 20px;
+}
+
+body > center > h3:has(img.deckthumb, span.sublevel) > span.subdeck,
+body > center > h3:has(img.deckthumb, span.sublevel) > span.divider {
+    display: none;
+}
+
+body > center > h3:has(img.deckthumb, span.sublevel) > span {
+    display: inline-block;
+}
+
+body > center > h3:has(img.deckthumb, span.sublevel) > span.subdeck:is(:has( + span.divider + span.sublevel), :last-child) {
+    display: inline-flex;
+    //white-space: nowrap;
+    align-items: center;
+    text-align: left;
+    font-size: x-large;
+
+    width: 400px;
+    max-width: max-content;
+    //line-height: 80px;
+    height: 80px;
+    padding-left: 70px;
+    position: relative;
+    bottom: 20px;
+}
+body > center > h3:has(img.deckthumb, span.sublevel) > img.deckthumb:has( + span.subdeck:last-child) {
+    transform: translateX(calc(-100% + 80px));
+}
+
+body > center > h3:has(img.deckthumb, span.sublevel) > * {
+    rotate: -45deg;
+    transform-origin: left center;
+}
+body > center > h3:has(img.deckthumb, span.sublevel) {
+    rotate: 45deg;
+    transform-origin: 0 calc(80px / 2);
+    left: -200px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: -1;
+    width: 0;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 20px;
+}
+body > center > h3:has(span.sublevel) {
+    margin-bottom: 120px;
+}
+
+span.sublevel::before {
+    vertical-align: -35px;
+}
+span.sublevel {
+    height: 100px;
+    top: 21px;
+    left: 28px;
+}
+
+span.sublevel::before,
+a.deck.mem-level::before {
+    content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='47px' viewBox='0 0 108.494 175.019'><path fill='%238b6139' d='M84.3,127.364c-.019-7.187-6.281-13.008-14.005-13.008-.598,0-1.184.047-1.763.114-.863-6.098-7.01-10.829-14.478-10.829s-13.669,4.769-14.492,10.904c-.714-.114-1.442-.189-2.189-.189-7.388,0-13.381,5.808-13.485,13.008h60.41Z'/><polygon fill='%235f3813' points='78.483 163.636 30.012 163.636 23.953 129.346 84.542 129.346 78.483 163.636'/><rect fill='%2342200a' x='17.056' y='123.545' width='74.383' height='7.864' rx='.752' ry='.752'/><path fill='none' stroke='%235f3813' stroke-width='9px' stroke-linecap='round' d='M54.413,108.102c3.603-7.317,3.325-13.726,2.536-33.142'/><path fill='%238ac541' d='M65.153,94.777c-.016-3.995,1.821-12.147,8.996-15.53,9.091-4.287,16.575-1.19,19.318-.095-1.205,4.306-4.623,9.983-9.886,13.455-6.533,4.31-14.146,3.359-18.429,2.17Z'/><path fill='%238ac541' d='M28.57,80.803c4.266-.292,11.203-.312,15.694,3.436,5.902,4.924,5.654,12.088,5.419,14.666-3.918.063-10.748-.975-14.978-4.53-5.251-4.412-6.064-9.677-6.135-13.572Z'/><path fill='%23faae1a' d='M69.571,22.02l.017.059.847-.212c14.081-3.53,23.973,13.603,13.875,24.033l-.607.627.607.627c10.097,10.43.206,27.562-13.875,24.033l-.847-.212-.017.059c-4.048,14.183-24.148,14.183-28.196,0l-.017-.059-.847.212c-14.081,3.53-23.973-13.603-13.875-24.033l.607-.627-.607-.627c-10.097-10.43-.206-27.562,13.875-24.033l.847.212.017-.059c4.048-14.183,24.148-14.183,28.196,0Z'/><circle fill='white' cx='55.473' cy='46.527' r='10.906'/></svg>");
 }
