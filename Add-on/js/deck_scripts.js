@@ -29,7 +29,6 @@ function stripNumbering(namestring) {
 }
 
 function retry(imgL) {
-  const extList = configLt["thumbnail extensions"] || ['jpg', 'png', 'jpeg'];
   const currentExt = imgL.src.split('.').pop();
   const i = extList.indexOf(currentExt) + 1;
   if (i < extList.length) {
@@ -39,26 +38,35 @@ function retry(imgL) {
   }
 }
 function thumbHTML(deckname) {
-  return `<img src='_thumb_${deckname}.jpg' height="0" width="0" onload="this.classList.add('deckthumb');this.removeAttribute('height');this.removeAttribute('width')" onerror="retry(this)"\>`;
+  if (typeof(extList) === 'undefined' || !extList[0]) return ``;
+  return `<img src='_thumb_${deckname}.{extList[0]}' height="0" width="0" onload="this.classList.add('deckthumb');this.removeAttribute('height');this.removeAttribute('width')" onerror="retry(this)"\>`;
 }
 
 // get add-on config
 const configLt = JSON.parse(document.getElementById('lt-config')?.getAttribute('data-config') || "{}");
+const extList = configLt["thumbnail extensions"] || ['jpg', 'png', 'jpeg'];
+
 window.addEventListener('DOMContentLoaded', function () {
 
   // main deck screen
   document.querySelectorAll('a.deck').forEach(deckL => {
     const deckname = deckL.innerText;
     const strippedName = stripNumbering(deckname);
+    if ((configLt["numbered decks"] || configLt["deck styling"]) && strippedName !== deckname) {
+      deckL.classList.add('numbered');
+    }
     const levelN = extractLevelN(deckname);
+    if (!configLt["deck styling"]) {
+      if (deckL.classList.contains('numbered')) {
+        deckL.innerHTML = strippedName;
+      }
+      return;
+    }
     if (levelN) {
       deckL.classList.add('mem-level');
       deckL.setAttribute("data-levelN", levelN);
       deckL.innerHTML = strippedName;
     } else {
-      if (strippedName !== deckname) {
-        deckL.classList.add('numbered');
-      }
       deckL.innerHTML = thumbHTML(strippedName) + strippedName;
     }
   });
@@ -67,18 +75,23 @@ window.addEventListener('DOMContentLoaded', function () {
   const headerL = document.querySelector('body > center > h3');
   if (headerL) {
     let isNumbered = false;
-     headerL.innerHTML = headerL.innerText.split("::").map(subname => {
+    const subNames = headerL.innerText.split("::").map(subname => {
       const levelN = extractLevelN(subname);
       const strippedName = stripNumbering(subname);
-      isNumbered = isNumbered || (strippedName !== subname);
+      isNumbered = isNumbered || strippedName !== subname;
+      if (!configLt["deck styling"]) {
+        return strippedName;
+      }
       if (levelN) {
         return `<span class='sublevel' data-levelN="${levelN}">${strippedName}</span>`;
-      } else {
-        return `${thumbHTML(strippedName)}<span class='subdeck'>${strippedName}</span>`;
       }
+      return `${thumbHTML(strippedName)}<span class='subdeck'>${strippedName}</span>`;
     }).join('<span class="divider">::</span>');
-    if (isNumbered) {
+    if ((configLt["numbered decks"] || configLt["deck styling"]) && isNumbered) {
       headerL.classList.add('numbered');
+      headerL.innerHTML = subNames;
+    } else if (configLt["deck styling"]) {
+      headerL.innerHTML = subNames;
     }
   }
 });

@@ -10,7 +10,7 @@ tbody:has(a.deck img.deckthumb) > tr:first-child {
     top: 10px;
 }
 
-a.deck:has(img.deckthumb) {
+a.deck:is(:has(img.deckthumb), .numbered:not(.mem-level)) {
     font-size: x-large;
     font-weight: bold;
     margin: 5px 0;
@@ -109,6 +109,9 @@ body > center > h3:has(img.deckthumb, span.sublevel) > span {
     display: inline-block;
 }
 
+body > center > h3.numbered > span:not(.sublevel) {
+    font-size: x-large;
+}
 body > center > h3:has(img.deckthumb, span.sublevel) > span.subdeck:is(:has( + span.divider + span.sublevel), :last-child) {
     display: inline-flex;
     //white-space: nowrap;
