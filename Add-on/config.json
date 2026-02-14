@@ -1,3 +1,6 @@
 {
-    "reserved keys": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Enter/Space"]
+    "reserved keys": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Enter/Space"],
+    "deck styling": true,
+    "thumbnail extensions": ["jpg", "png", "jpeg"],
+    "numbered decks": true 
 }

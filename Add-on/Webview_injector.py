@@ -1,3 +1,25 @@
+# This script is part of the Lt-Cards Add-on for Anki.
+# Source: github.com/Eltaurus-Lt/Anki-Card-Templates
+# 
+# Copyright © 2025-2026 Eltaurus
+# Contact: 
+#     Email: Eltaurus@inbox.lt
+#     GitHub: github.com/Eltaurus-Lt
+#     Anki Forums: forums.ankiweb.net/u/Eltaurus
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 from aqt import gui_hooks, mw
 from aqt.webview import WebContent
 from aqt.deckbrowser import DeckBrowser
@@ -6,12 +28,13 @@ from aqt.editor import Editor
 from aqt.reviewer import Reviewer
 from aqt.browser.previewer import Previewer
 from aqt.clayout import CardLayout
-import os, re
+import os, re, json
 
-
+config = mw.addonManager.getConfig(__name__)
 mw.addonManager.setWebExports(__name__, r"css/.*\.css|js/.*\.js|user_files/(.*\.(css|js))$")
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
+
 
 def general_injector(inj_filename, css_target, js_target):
     inj_type = os.path.splitext(inj_filename)[1].lstrip(".").lower()
@@ -30,6 +53,9 @@ def general_injector(inj_filename, css_target, js_target):
         
 
 def window_injector(web_content: WebContent, context: None):
+    # passing add-on config
+    web_content.head +=f"<setting id='lt-config' data-config='{json.dumps(config)}'></setting>"
+
     def inject(inj_filename):
         return general_injector(inj_filename, web_content.css, web_content.js)
 
