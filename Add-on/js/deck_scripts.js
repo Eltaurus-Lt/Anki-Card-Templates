@@ -52,22 +52,23 @@ window.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('a.deck').forEach(deckL => {
     const deckname = deckL.innerText;
     const strippedName = stripNumbering(deckname);
-    if ((configLt["numbered decks"] || configLt["deck styling"]) && strippedName !== deckname) {
-      deckL.classList.add('numbered');
-    }
     const levelN = extractLevelN(deckname);
-    if (!configLt["deck styling"]) {
-      if (deckL.classList.contains('numbered')) {
+
+    if (configLt["numbered decks"] && strippedName !== deckname) {
+      if (configLt["deck styling"]) {
+        deckL.classList.add('numbered');
+      } else {
         deckL.innerHTML = strippedName;
       }
-      return;
     }
-    if (levelN) {
-      deckL.classList.add('mem-level');
-      deckL.setAttribute("data-levelN", levelN);
-      deckL.innerHTML = strippedName;
-    } else {
-      deckL.innerHTML = thumbHTML(strippedName) + strippedName;
+    if (configLt["deck styling"]) {
+      if (levelN) {
+        deckL.classList.add('mem-level');
+        deckL.setAttribute("data-levelN", levelN);
+        deckL.innerHTML = strippedName;
+      } else {
+        deckL.innerHTML = thumbHTML(strippedName) + strippedName;
+      }
     }
   });
 
