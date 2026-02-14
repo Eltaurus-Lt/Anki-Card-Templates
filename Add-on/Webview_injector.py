@@ -108,6 +108,7 @@ def field_injector(editor):
             shadowRoot.appendChild(scriptL);
         }}
     """ # not recommended as the scripts are hoisted to the same level as editor_scripts
+    nlch = "\n"
 
     injector_js = f"""
     function injector() {{
@@ -115,14 +116,10 @@ def field_injector(editor):
         fields.forEach(field => {{
             const shadowRoot = field.shadowRoot;
             {
-                "\n".join(css_inject_template.format(
+                nlch.join(css_inject_template.format(
                     css_id=to_id(css_filepath), 
                     css_filepath=css_filepath
                 ) for css_filepath in css_list)
-                # + "\n".join(js_inject_template.format(
-                #     js_id=to_id(js_filepath), 
-                #     js_filepath=js_filepath
-                # ) for js_filepath in js_list)
             }
         }});
         return(fields.length);
