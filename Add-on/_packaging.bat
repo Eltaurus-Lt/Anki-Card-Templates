@@ -1,15 +1,20 @@
 @echo off
 
+:: upd epoch
+python -c "import time,json,re; f=open('manifest.json','r+'); text=f.read(); man=json.loads(text); man['mod']=int(time.time()); f.seek(0); ind=re.search(r'\n(\s+)\"',text); json.dump(man,f,indent=len(ind.group(1)) if ind else None,ensure_ascii=False); f.truncate(); f.close()"
+
 set zipped="temp.zip"
 set "script_name=%~nx0"
 set "script_path=%~dp0"
 
-:: remove garbage
+:: remove garbage files
 if exist "__pycache__" rd /s /q "__pycache__"
 REM if exist "meta.json" del /f /q "meta.json"
 if exist "%zipped%" del /f /q "%zipped%"
 if exist "%~dp0*.ankiaddon" del "%~dp0*.ankiaddon" /q
 
+:: zip
 dir /b "%script_path%" | findstr /v /i "%script_name% __pycache__ meta.json %zipped%"' | tar -caf %zipped% --files-from -
 
-python -c "import os, sys; script_path = sys.argv[1].strip('\"'); os.rename(os.path.join(script_path, 'temp.zip'), os.path.join(script_path, 'temp.ankiaddon'))" "%script_path%"
+:: proper add-on name
+python -c "import os, json; os.rename('temp.zip', json.load(open('manifest.json',encoding='utf-8'))['name']+'.ankiaddon')"
