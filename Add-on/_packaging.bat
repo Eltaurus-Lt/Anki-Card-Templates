@@ -14,7 +14,8 @@ if exist "%zipped%" del /f /q "%zipped%"
 if exist "%~dp0*.ankiaddon" del "%~dp0*.ankiaddon" /q
 
 :: zip
-dir /b "%script_path%" | findstr /v /i "%script_name% __pycache__ meta.json %zipped%"' | tar -caf %zipped% --files-from -
+python -c "import os, zipfile; excl={'meta.json','%script_name%', '%zipped%'}; z=zipfile.ZipFile('%zipped%','w',zipfile.ZIP_DEFLATED); [z.write(p,os.path.relpath(p,'.')) for r,_,fs in os.walk('.') for f in fs if f not in excl for p in [os.path.join(r,f)]]; z.close()"
+REM dir /b "%script_path%" | findstr /v /i "%script_name% __pycache__ meta.json %zipped%"' | tar -caf %zipped% --files-from -
 
 :: proper add-on name
-python -c "import os, json; os.rename('temp.zip', json.load(open('manifest.json',encoding='utf-8'))['name']+'.ankiaddon')"
+python -c "import os, json; os.rename('%zipped%', json.load(open('manifest.json',encoding='utf-8'))['name']+'.ankiaddon')"
