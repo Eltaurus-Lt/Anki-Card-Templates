@@ -1,0 +1,46 @@
+body:has(#qa_box),
+#qa_box.card {
+  background: unset;
+  line-height: normal;
+  width: 100%;
+}
+#qa_box.card #qa {
+  width: 100%;
+}
+
+html:is(.iphone, ipad) img,
+#qa_box.card img {
+  max-width: none;
+}
+
+#qa_box.card :is(img, svg) {
+  vertical-align: baseline;
+}
+
+a.replay-button.soundLink {
+  display: inline-flex;
+}
+
+html:is(.iphone, ipad) body {
+  text-align: start;
+}
+
+
+/*
+
+#qa_box#qa_box.card {
+  min-height: 75vh;
+}
+
+@media (min-width: 33.25rem) {
+  #qa_box .card-content {
+    padding-top: 0rem;
+  }
+}
+@media (min-width: 53.25rem) {
+  #qa_box .card-content {
+    padding-top: 0rem;
+  }
+}
+
+*/
