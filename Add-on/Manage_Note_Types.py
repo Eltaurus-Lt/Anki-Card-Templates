@@ -1,0 +1,38 @@
+from anki import stdmodels
+from anki.models import ModelManager
+
+basic_notetype_name = "Basic (Lτ)"
+
+def basic_universal_model(col):
+    mm = col.models
+
+    noteType = mm.new(basic_notetype_name)
+
+    # Fields
+    mm.addField(noteType, mm.newField("Front"))
+    mm.addField(noteType, mm.newField("Back"))
+    mm.addField(noteType, mm.newField("Audio"))
+
+    # Card Type
+    cardType = mm.newTemplate("Card 1")
+    cardType["qfmt"] = "<data>{{Back}}</data>{{Front}}"
+    cardType["afmt"] = "{{Front}}<hr id=answer>{{Back}}"
+    mm.addTemplate(noteType, cardType)
+
+    # Add to the collection
+    mm.add(noteType)
+    mm.save(noteType)
+
+    return noteType
+
+
+# monkey-patch to the note manager
+orig_get_stock_notetypes = stdmodels.get_stock_notetypes
+
+def patched_get_stock_notetypes(*args, **kwargs):
+    models = orig_get_stock_notetypes(*args, **kwargs)
+    col = args[0]
+    models.insert(4, (basic_notetype_name, basic_universal_model))
+    return models
+
+stdmodels.get_stock_notetypes = patched_get_stock_notetypes
