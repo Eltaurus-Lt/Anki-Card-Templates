@@ -61,26 +61,21 @@
         }
         return {
           diffTyped,
-          diffExpected,
-          CSlength: 0
+          diffExpected
         };
       } else { // recursive case
         const [n0, m0] = LCS.pos;
         const D1 = Diff2( [n1, n0-length0], [m1, m0-length0] ); // recursive calls
         const D2 = Diff2( [n0+1, n2], [m0+1, m2] );
-        const diff0 = '<span class="typeGood">' + htmlEscape(s1.substring(n0 - length0, n0)) + '</span>'; // common part
+        const diffCommon = '<span class="typeGood">' + htmlEscape(s1.substring(n0 - length0, n0)) + '</span>'; // common part
         return {
-          diffTyped: D1.diffTyped + diff0 + D2.diffTyped,
-          diffExpected: D1.diffExpected + diff0 + D2.diffExpected,
-          CSlength: D1.CSlength + length0 + D2.CSlength
+          diffTyped: D1.diffTyped + diffCommon + D2.diffTyped,
+          diffExpected: D1.diffExpected + diffCommon + D2.diffExpected
         }
       }
     }
-  
-    const D = Diff2([1, n], [1, m]); // compute full diff
-    const score = D.CSlength / m; // corrected score
 
-    return { score, "CSlength": D.CSlength, "diffTyped": D.diffTyped, "diffExpected": D.diffExpected };
+    return Diff2([1, n], [1, m]); // full diff
   }
 
   // displaying the diff

@@ -51,7 +51,7 @@ html:is(.iphone, ipad) body {
 .firefox #qa_box.card input:focus-visible {
   outline: solid 1px rgb(229, 151, 0);
   outline-offset: -2px;
-  border-color: rgb(229, 151, 0);
+  /* border-color: rgb(229, 151, 0); */
 }
 
 /* desktop reviewer css */
