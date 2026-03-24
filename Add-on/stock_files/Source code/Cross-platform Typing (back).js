@@ -1,4 +1,23 @@
 (() => {
+
+  // prevent ankiweb from immediately rating a card flipped by Enter
+  if (!!window.qa_box && !window.awRefocus) {
+    const btnAreaL = document.getElementById("ansarea");
+    window.awRefocus = new MutationObserver(() => {
+      btnAreaL.querySelectorAll('[autofocus]').forEach(L => {
+        L.removeAttribute('autofocus');
+        L.blur();
+      });
+      setTimeout(() => {
+        const rateButtonLs = btnAreaL.querySelectorAll('.btn.btn-primary.btn-lg');
+        if (rateButtonLs.length === 4) {
+          rateButtonLs[2].focus(); // refocus 'good' button
+        }
+      }, 0);
+    });
+    window.awRefocus.observe(btnAreaL, { childList: true, subtree: true });
+  };
+
   // retrieving and parsing expected answer
   const expAns = sessionStorage.getItem("card::expectedAnswer")?.trim() || "";
 
@@ -80,14 +99,19 @@
 
   // displaying the diff
   const typeAnsL = document.getElementById('typeans');
-  if (typeAns) {
+  if (typeAns === expAns) { // correct typed answer
+    typeAnsL.outerHTML = '<code id="typeans">' +
+                         '<span class="typeGood">' + 
+                         expAns + 
+                         '</span></code>';
+  } else if (typeAns) { // incorrect typed answer
     const ansDiff = stringDiff2(typeAns, expAns);
     typeAnsL.outerHTML = '<code id="typeans">' + 
                          ansDiff.diffTyped +
                          '<br><span id="typearrow">↓</span><br>' +
                          ansDiff.diffExpected +         
                          '</code>';
-  } else { // (no answer typed)
+  } else { // no typed answer
     typeAnsL.outerHTML = '<code id="typeans">' + expAns + '</code>';
   }
 })();
