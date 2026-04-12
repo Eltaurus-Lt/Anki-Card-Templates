@@ -4,7 +4,7 @@
 
   document.querySelectorAll("audio").forEach(audioL => {
     const linkL = document.createElement("a");
-    linkL.classList.add("replay-button","soundLink");
+    linkL.classList.add("replay-button", "soundLink");
     linkL.setAttribute('draggable', false);
     linkL.innerHTML = audioHTML;
 
@@ -26,12 +26,6 @@
     return attrs;
   }
 
-  function awTTS(text, lang) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    window.speechSynthesis.speak(utterance);
-  }
-
   function sanitizeStr(str) {
     return str.replace(/['"]/g, "");
   }
@@ -41,7 +35,7 @@
     return htmlContent.replace(TTSRegex, (_, attr_string, word) => {
       const attrs = parseTTSAttrs(attr_string);
       const lang = attrs["lang"]?.replace('_','-') || "en-US";
-      return `<a class="replay-button soundLink awtts" onclick="awTTS('${sanitizeStr(word)}','${sanitizeStr(lang)}')" href="../#">${audioHTML}</a>`;
+      return `<a class="replay-button soundLink" onclick="const ut = new SpeechSynthesisUtterance('${sanitizeStr(word)}');ut.lang='${sanitizeStr(lang)}';window.speechSynthesis.speak(ut);" href="../#">${audioHTML}</a>`;
     });
   }
 

@@ -57,7 +57,7 @@ hr {
   background-color: #737373;
   margin: 1em 0;
   border: none;
-  height: 1px
+  height: 1px;
 }
 
 #typeans {
@@ -70,7 +70,7 @@ hr {
 
 code#typeans {
   white-space: pre-wrap;
-  font-variant-ligatures: none
+  font-variant-ligatures: none;
 }
 
 .typeGood {
@@ -80,10 +80,10 @@ code#typeans {
 
 .typeBad {
   color: #000;
-  background: #faa
+  background: #faa;
 }
 
 .typeMissed {
   color: #000;
-  background: #ccc
+  background: #ccc;
 }
