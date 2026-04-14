@@ -213,7 +213,7 @@ def Styling():
 def create(col):
     dialog = NoteTypeCreator()
     if not dialog.exec():
-        return
+        return col.models.current()
     noteType_data = dialog.get_full_options()
 
     ### Create Note Type

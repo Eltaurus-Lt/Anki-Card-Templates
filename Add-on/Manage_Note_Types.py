@@ -1,11 +1,17 @@
 from anki import stdmodels
 from anki.models import ModelManager
+from aqt.utils import tr, getText
 from . import Memrise_Cards
 
 def basic_universal_model(col):
-    mm = col.models
 
-    noteType = mm.new("Basic (Lτ)")
+    noteTypeName, ok = getText(tr.actions_name(), default = "Basic (Lτ)")
+
+    if not ok:
+        return col.models.current() 
+
+    mm = col.models
+    noteType = mm.new(noteTypeName)
 
     # Fields
     mm.addField(noteType, mm.newField("Front"))
@@ -30,7 +36,6 @@ orig_get_stock_notetypes = stdmodels.get_stock_notetypes
 
 def patched_get_stock_notetypes(*args, **kwargs):
     models = orig_get_stock_notetypes(*args, **kwargs)
-    col = args[0]
     models.insert(4, ("Basic (Lτ)", basic_universal_model))
     models.insert(5, ("Memrise (Lτ)", Memrise_Cards.create))
     return models
