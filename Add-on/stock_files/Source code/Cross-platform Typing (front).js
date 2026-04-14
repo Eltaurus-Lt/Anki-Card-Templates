@@ -1,3 +1,4 @@
+// cross-platform typing
 if (!window.answer) { // prevent execution on the back side
 
   // parsing and saving expected answer

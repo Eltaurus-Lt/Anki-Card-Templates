@@ -1,3 +1,4 @@
+// cross-platform typed answer diff
 (() => {
 
   // prevent ankiweb from immediately rating a card flipped by Enter

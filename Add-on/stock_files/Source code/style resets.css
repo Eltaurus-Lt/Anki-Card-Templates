@@ -1,3 +1,5 @@
+/* AnkiWeb and AnkiMobile resets */
+
 body:has(#qa_box),
 #qa_box.card {
   background: unset;

@@ -1,7 +1,16 @@
 from anki import stdmodels
 from anki.models import ModelManager
 from aqt.utils import tr, getText
-from . import Memrise_Cards
+from . import Memrise_Cards, user_files
+
+def insertJS(script_name):
+    return (
+            '\n'
+            '\n'
+            '<script>\n'
+            f'{user_files.load("Source code/"+script_name+".js")}\n'
+            '</script>\n'
+           )
 
 def basic_universal_model(col):
 
@@ -16,12 +25,44 @@ def basic_universal_model(col):
     # Fields
     mm.addField(noteType, mm.newField("Front"))
     mm.addField(noteType, mm.newField("Back"))
-    mm.addField(noteType, mm.newField("Audio"))
 
     # Card Type
     cardType = mm.newTemplate("Card 1")
-    cardType["qfmt"] = "<data>{{Back}}</data>{{Front}}"
-    cardType["afmt"] = "{{FrontSide}}<hr id=answer>{{Back}}"
+    cardType["qfmt"] = (
+                        '<data id="expans">{{Back}}</data>\n'
+                        '\n'
+                        '{{Front}}\n'
+                        '\n'
+                        '<input id="typeans" type="text" inputmode="text" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">\n'
+                        f"{insertJS('Cross-platform Typing (front)')}"
+                        f"{insertJS('AnkiWeb audio')}"
+                       )
+    cardType["afmt"] = (
+                        '{{Front}}\n'
+                        '\n'
+                        '<hr id=answer>\n'
+                        '\n'
+                        '<input id="typeans">\n'
+                        f"{insertJS('Cross-platform Typing (back)')}"
+                        f"{insertJS('AnkiWeb audio')}"
+                       )
+    noteType["css"] = (
+                        f'{user_files.load("Source code/common.css")}\n'
+                        '\n'
+                        f'{user_files.load("Source code/style resets.css")}\n'
+                        '\n'
+                        '\n'
+                        '\n'
+                        '/* card styling */\n' 
+                        '\n'
+                        '.card {\n'
+                        '    font-family: arial;\n'
+                        '    font-size: 20px;\n'
+                        '    line-height: 1.5;\n'
+                        '    text-align: center;\n'
+                        '    color: black;\n'
+                        '}'
+                       )
     mm.addTemplate(noteType, cardType)
 
     # Add to the collection
