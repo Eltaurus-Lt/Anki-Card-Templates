@@ -85,6 +85,7 @@ def basic_universal_model(col):
                         '    line-height: 1.5;\n'
                         '    text-align: center;\n'
                         '    color: black;\n'
+                        '    background-color: white;\n'
                         '}'
                        )
     mm.addTemplate(noteType, cardType)
