@@ -24,7 +24,7 @@ import os, json, re
 from anki.hooks import addHook
 from aqt import mw
 from aqt.utils import tooltip
-from . import console
+from .py_utils import console
 
 addon_path = os.path.dirname(__file__)
 

@@ -23,11 +23,10 @@
 
 import json, os, re, textwrap
 from aqt.qt import *
-from aqt import mw
 from anki.models import ModelManager
 from PyQt6 import QtCore, QtWidgets
 from aqt.utils import tooltip
-from . import user_files
+from .py_utils import user_files
 
 
 mode_aliases = {
@@ -177,10 +176,10 @@ def BackHTML(cardType_data, fields_data):
     return insertAtAnchor(main_html, ["⚓", "Extra"], extra_html)
 
 def FrontScript():
-    return user_files.load(f"Source code/Template Front scripts.js")
+    return user_files.load(f"Source code/Memrise/Front.js")
 
 def BackScript():
-    return user_files.load(f"Source code/Template Back scripts.js")
+    return user_files.load(f"Source code/Memrise/Back.js")
 
 def templateJoin(html, js):
     return html + textwrap.dedent("""
@@ -206,20 +205,20 @@ def templateJoin(html, js):
     """).rstrip()
 
 def Styling():
-    main_style = user_files.load(f"Source code/Template Styling.css")
+    main_style = user_files.load(f"Source code/Memrise/Styling.css")
     themes = "\n\n\n".join([user_files.load(f"Color Themes/{theme}.css") for theme in user_files.list("Color Themes", ".css")])
 
     return insertAtAnchor(main_style, ["⚓", "themes"], themes)
 
-def create():
+def create(col):
     dialog = NoteTypeCreator()
     if not dialog.exec():
-        return
+        return col.models.current()
     noteType_data = dialog.get_full_options()
 
     ### Create Note Type
 
-    mm = mw.col.models
+    mm = col.models
     noteType = mm.new(noteType_data["Note Type"])
     theme = noteType_data["Theme"].replace("ー","")
 
@@ -257,8 +256,10 @@ def create():
     noteType["css"] = Styling()
 
     mm.add(noteType)
-    mw.col.models.save(noteType)
+    col.models.save(noteType)
     tooltip(f"Note Type \"{noteType_data['Note Type']}\" successfully created")
+
+    return noteType
 
 
 ###  DIALOG
@@ -350,7 +351,7 @@ class NoteTypeCreator(QDialog):
         # if modified: warning...
         preset_json = user_files.load(f"Note Presets/{self.preset.currentText()}.json")
         if preset_json is None:
-            tooltip(f"error loading {preset} file")
+            tooltip(f"error loading {self.preset} file")
             return
 
         preset = json.loads(preset_json)

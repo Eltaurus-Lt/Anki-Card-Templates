@@ -23,7 +23,7 @@
 
 import os
 
-addon_path = os.path.dirname(__file__)
+addon_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def save(path, data):
     file_path = os.path.join(addon_path, "user_files", os.path.normpath(path))
