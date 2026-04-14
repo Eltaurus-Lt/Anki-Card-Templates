@@ -23,7 +23,6 @@
 
 import json, os, re, textwrap
 from aqt.qt import *
-from aqt import mw
 from anki.models import ModelManager
 from PyQt6 import QtCore, QtWidgets
 from aqt.utils import tooltip
@@ -211,7 +210,7 @@ def Styling():
 
     return insertAtAnchor(main_style, ["⚓", "themes"], themes)
 
-def create():
+def create(col):
     dialog = NoteTypeCreator()
     if not dialog.exec():
         return
@@ -219,7 +218,7 @@ def create():
 
     ### Create Note Type
 
-    mm = mw.col.models
+    mm = col.models
     noteType = mm.new(noteType_data["Note Type"])
     theme = noteType_data["Theme"].replace("ー","")
 
@@ -257,8 +256,10 @@ def create():
     noteType["css"] = Styling()
 
     mm.add(noteType)
-    mw.col.models.save(noteType)
+    col.models.save(noteType)
     tooltip(f"Note Type \"{noteType_data['Note Type']}\" successfully created")
+
+    return noteType
 
 
 ###  DIALOG
