@@ -1,7 +1,8 @@
 from anki import stdmodels
 from anki.models import ModelManager
 from aqt.utils import tr, getText
-from . import Memrise_Cards, user_files
+from . import Memrise_Cards
+from .py_utils import user_files
 
 def insertJS(script_name):
     return (

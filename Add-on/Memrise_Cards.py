@@ -26,7 +26,7 @@ from aqt.qt import *
 from anki.models import ModelManager
 from PyQt6 import QtCore, QtWidgets
 from aqt.utils import tooltip
-from . import user_files
+from .py_utils import user_files
 
 
 mode_aliases = {
@@ -351,7 +351,7 @@ class NoteTypeCreator(QDialog):
         # if modified: warning...
         preset_json = user_files.load(f"Note Presets/{self.preset.currentText()}.json")
         if preset_json is None:
-            tooltip(f"error loading {preset} file")
+            tooltip(f"error loading {self.preset} file")
             return
 
         preset = json.loads(preset_json)
