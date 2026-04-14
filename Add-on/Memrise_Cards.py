@@ -177,10 +177,10 @@ def BackHTML(cardType_data, fields_data):
     return insertAtAnchor(main_html, ["⚓", "Extra"], extra_html)
 
 def FrontScript():
-    return user_files.load(f"Source code/Template Front scripts.js")
+    return user_files.load(f"Source code/Memrise/Front.js")
 
 def BackScript():
-    return user_files.load(f"Source code/Template Back scripts.js")
+    return user_files.load(f"Source code/Memrise/Back.js")
 
 def templateJoin(html, js):
     return html + textwrap.dedent("""
@@ -206,7 +206,7 @@ def templateJoin(html, js):
     """).rstrip()
 
 def Styling():
-    main_style = user_files.load(f"Source code/Template Styling.css")
+    main_style = user_files.load(f"Source code/Memrise/Styling.css")
     themes = "\n\n\n".join([user_files.load(f"Color Themes/{theme}.css") for theme in user_files.list("Color Themes", ".css")])
 
     return insertAtAnchor(main_style, ["⚓", "themes"], themes)
