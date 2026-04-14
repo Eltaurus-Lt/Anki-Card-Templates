@@ -8,7 +8,9 @@ set "script_name=%~nx0"
 set "script_path=%~dp0"
 
 :: remove garbage files
-if exist "__pycache__" rd /s /q "__pycache__"
+for /d /r %%i in (__pycache__) do (
+    if exist "%%i" rd /s /q "%%i"
+)
 REM if exist "meta.json" del /f /q "meta.json"
 if exist "%zipped%" del /f /q "%zipped%"
 if exist "%~dp0*.ankiaddon" del "%~dp0*.ankiaddon" /q
