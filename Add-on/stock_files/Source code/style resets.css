@@ -1,5 +1,9 @@
 /* AnkiWeb and AnkiMobile resets */
 
+body:has(#qa_box) {
+    min-height: fit-content;
+}
+
 body:has(#qa_box),
 #qa_box.card {
   background: unset;
