@@ -22,11 +22,11 @@ def embed_card_info(card):
             card_info["stability"] = card.memory_state.stability             
     reviewer.web.eval(f"""
             (()=>{{
-                let scriptL = document.getElementById('lt-card-data');
+                let scriptL = document.getElementById('lt-card-info');
                 if (!scriptL) {{
                     scriptL = document.createElement("script");
                     scriptL.type = "application/json";
-                    scriptL.id = 'lt-card-data';
+                    scriptL.id = 'lt-card-info';
                     document.head.appendChild(scriptL);
                 }}
                 scriptL.textContent = '{json.dumps(card_info)}';
