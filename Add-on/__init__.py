@@ -4,3 +4,4 @@ from .py_modules import Webview_injector
 from . import Browser_Context_menu
 from . import Tools_Menu
 from . import Manage_Note_Types
+from .py_modules import Reviewer
