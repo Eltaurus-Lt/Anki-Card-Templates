@@ -1,0 +1,105 @@
+{
+    "Fields": [
+        {
+            "Name": "Japanese",
+            "large": true,
+            "back": true,
+            "static": "",
+            "random": "日一国会人年大十二本中長出三同時政事自行社見月分議後前民生連五発間対上部東者党地合市業内相方四定今回新場金員九入選立開手米力学問高代明実円関決子動京全目表戦経通外最言氏現理調体化田当八六約主題下首意法不来作性的要用制治度務強気小七成期公持野協取都和統以機平総加山思家話世受区領多県続進正安設保改数記院女初北午指権心界支第産結百派点教報済書府活原先共得解名交資予川向際査勝面委告軍文反元重近千考判認画海参売利組知案道信策集在件団別物側任引使求所次水半品昨論計死官増係感特情投示変打男基私各始島直両朝革価式確村提運終挙果西勢減台広容必応演電歳住争談能無再位置企真流格有疑口過局少放税検藤町常校料沢裁状工建あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
+        },
+        {
+            "Name": "Kana",
+            "large": true,
+            "back": true,
+            "static": "",
+            "random": "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょ"
+        },
+        {
+            "Name": "English",
+            "large": false,
+            "back": true,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz "
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Mems",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Recognition",
+            "Q": "Japanese",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Recognition",
+            "Q": "Japanese",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "Japanese",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "Japanese",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "Kana"
+        },
+        {
+            "Name": "Reading",
+            "Q": "Japanese",
+            "A": "Kana",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct reading",
+            "Extra": "English"
+        },
+        {
+            "Name": "Reading",
+            "Q": "Japanese",
+            "A": "Kana",
+            "in": "Typing",
+            "prompt": "Type the correct reading",
+            "Extra": "English"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the correct translation for what you hear",
+            "Extra": "Japanese"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation for what you hear",
+            "Extra": "Japanese"
+        }
+    ]
+}

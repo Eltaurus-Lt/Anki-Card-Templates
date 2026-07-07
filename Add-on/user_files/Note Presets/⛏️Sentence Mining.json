@@ -1,0 +1,142 @@
+{
+    "Fields": [
+        {
+            "Name": "Word",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Translation",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Sentence",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Sentence translation",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Screenshot",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Notes",
+            "large": false,
+            "back": true,
+            "math": false,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Sentence recognition",
+            "Q": "Sentence",
+            "A": "Sentence translation",
+            "in": "Multiple-Choice",
+            "prompt": "Select the translation for the sentence",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Sentence recognition",
+            "Q": "Sentence",
+            "A": "Sentence translation",
+            "in": "Typing",
+            "prompt": "Translate the sentence",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Word recognition",
+            "Q": "Sentence",
+            "A": "Translation",
+            "in": "Multiple-Choice",
+            "prompt": "Select the translation for the highlighted word",
+            "Extra": "Sentence translation"
+        },
+        {
+            "Name": "Word recognition",
+            "Q": "Sentence",
+            "A": "Translation",
+            "in": "Typing",
+            "prompt": "Translate the highlighted word",
+            "Extra": "Sentence translation"
+        },
+        {
+            "Name": "Sentence translation",
+            "Q": "Sentence translation",
+            "A": "Sentence",
+            "in": "Tapping",
+            "prompt": "Assemble the sentence translation from the words",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Sentence translation",
+            "Q": "Sentence translation",
+            "A": "Sentence",
+            "in": "Typing",
+            "prompt": "Translate the sentence",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Listening skills",
+            "Q": "Audio",
+            "A": "Translation",
+            "in": "Multiple-Choice",
+            "prompt": "Pick the translation for what you hear",
+            "Extra": "Word"
+        },
+        {
+            "Name": "Listening skills",
+            "Q": "Audio",
+            "A": "Translation",
+            "in": "Typing",
+            "prompt": "Translate what you hear",
+            "Extra": "Word"
+        },
+        {
+            "Name": "Word translation",
+            "Q": "Translation",
+            "A": "Word",
+            "in": "Multiple-Choice",
+            "prompt": "Select the translation for the word",
+            "Extra": "Sentence"
+        },
+        {
+            "Name": "Word translation",
+            "Q": "Translation",
+            "A": "Word",
+            "in": "Typing",
+            "prompt": "Translate the word",
+            "Extra": "Sentence"
+        }
+    ]
+}

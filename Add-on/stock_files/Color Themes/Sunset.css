@@ -1,0 +1,98 @@
+/* Start of code by Eltaurus */
+body:has(div.card-content[theme="Sunset"]) {
+    --col-sunset-yellow: #f7dc6f;
+    --col-sunset-focusblue: #69ade8;
+    --col-sunset-focuspaleblue: #a0bbd6;
+    --col-sunset-darkblue: #14274f;
+    --col-sunset-darkerblue: #081738;
+
+    --col-input-text: var(--col-sunset-yellow);
+    --col-input-border: var(--col-sunset-darkerblue);
+    --col-input-bg: #493b5d;
+
+    --col-audio-bg: #f7f395;
+    --col-audio-passive: #f6777d;
+    --op-audio-passive: .65;
+    --col-audio-container: #f4975180;
+
+    --col-button-text: var(--col-input-text); 
+    --col-button-border: var(--col-input-border);
+    --col-button-bg: var(--col-input-bg);
+
+    --col-spell-good: transparent;
+    --col-spell-missed: var(--col-inset-bg);
+    --col-spell-bad: #f55b5088;
+
+    --col-pressed-outline: #6e80ad;
+
+    --col-intbtn-text: var(--col-audio-fg);
+    --col-intbtn-bg: var(--col-audio-bg);
+    --col-intbtn-border: #f6777d20;
+    --col-intbtn-hover: var(--col-sunset-focuspaleblue);
+}
+body:has(div.card-content[theme="Sunset"]).card ::selection,
+body:has(div.card-content[theme="Sunset"]) .card ::selection {
+    color: white;
+    background-color: var(--col-sunset-focusblue);
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) {
+    --col-text: var(--col-sunset-darkblue);
+    --col-focus: var(--col-sunset-focusblue);
+    --col-bg: #f1becf;
+
+    --col-audio-fg: var(--col-text);
+
+    --col-text-faint: #f55b50cc;
+    --col-sep: #493b5d50;
+    --col-inset-bg: #493b5d60;
+
+    --col-correct-text: #293d05;
+    --col-correct-border: #759d0a;
+    --col-correct-bg: #bedf65;
+    --col-close-text: #a12e03;
+    --col-close-border: #f55b50;
+    --col-close-bg: #f49751;
+    --col-wrong-text: #54070c;
+    --col-wrong-border: #a5202a;
+    --col-wrong-bg: #f55b50;
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
+  color: var(--col-text);
+}
+body:has(div.card-content[theme="Sunset"]):not(.nightMode):not(.night_mode) .membtn {
+    --col-text: var(--col-sunset-yellow);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) {
+    --col-text: var(--col-sunset-yellow);
+    --col-focus: var(--col-sunset-focuspaleblue);
+    --col-bg: var(--col-sunset-darkblue);
+
+    --col-audio-fg: var(--col-sunset-darkerblue);
+    --op-audio-passive: .8;
+    --col-audio-container: #f49751d0;
+
+    --col-text-faint: #7e4f6b;
+    --col-sep: #493b5da0;
+    --col-inset-bg: #504165;
+
+    --col-correct-text: #bedf65;
+    --col-correct-border: #293d05;
+    --col-correct-bg: #688d14;
+    --col-close-text: #f7dc6fe5;
+    --col-close-border: #a12e03;
+    --col-close-bg: #f49751c0;
+    --col-wrong-text: #f6777d;
+    --col-wrong-border: #54070c;
+    --col-wrong-bg: #92212f;
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .front-extra {
+    color: var(--col-sunset-darkerblue);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) #spelldiff :is(.typeGood, .typeBad, .typeMissed) {
+    color: var(--col-sunset-focuspaleblue);
+}
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode).card .cloze,
+body:has(div.card-content[theme="Sunset"]):is(.nightMode, .night_mode) .card .cloze {
+    color: var(--col-audio-passive);
+}
+/* End of code by Eltaurus */

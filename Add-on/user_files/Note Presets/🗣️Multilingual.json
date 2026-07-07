@@ -1,0 +1,165 @@
+{
+    "Fields": [
+        {
+            "Name": "English",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyz"
+        },
+        {
+            "Name": "Deutsch",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyzäöüß"
+        },
+        {
+            "Name": "Français",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "abcdefghijklmnopqrstuvwxyzàâæçéèêëîïôœùûüÿ"
+        },
+        {
+            "Name": "Русский",
+            "large": false,
+            "back": false,
+            "static": " ",
+            "random": "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        },
+        {
+            "Name": "Voice",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Stimme",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Voix",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Голос",
+            "large": false,
+            "back": false,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Image",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Description (en)",
+            "Q": "Image",
+            "A": "English",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Voice"
+        },
+        {
+            "Name": "Description (de)",
+            "Q": "Image",
+            "A": "Deutsch",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Description (fr)",
+            "Q": "Image",
+            "A": "Français",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Description (ru)",
+            "Q": "Image",
+            "A": "Русский",
+            "in": "Multiple-Choice",
+            "prompt": "Pick what's depicted in the Image",
+            "Extra": "Голос"
+        },
+        {
+            "Name": "Translation (en→de)",
+            "Q": "English",
+            "A": "Deutsch",
+            "in": "Typing",
+            "prompt": "Type the correct translation to German",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Translation (de→fr)",
+            "Q": "Deutsch",
+            "A": "Français",
+            "in": "Typing",
+            "prompt": "Type the correct translation to French",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Translation (fr→ru)",
+            "Q": "Français",
+            "A": "Русский",
+            "in": "Typing",
+            "prompt": "Type the correct translation to Russian",
+            "Extra": "Голос"
+        },
+        {
+            "Name": "Translation (ru→en)",
+            "Q": "Русский",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation to English",
+            "Extra": "Voice"
+        },
+        {
+            "Name": "Listening (en→ru)",
+            "Q": "Voice",
+            "A": "Русский",
+            "in": "Typing",
+            "prompt": "Translate what you hear to Russian",
+            "Extra": "Голос"
+        },
+        {
+            "Name": "Listening (ru→fr)",
+            "Q": "Голос",
+            "A": "Français",
+            "in": "Typing",
+            "prompt": "Translate what you hear to French",
+            "Extra": "Voix"
+        },
+        {
+            "Name": "Listening (fr→de)",
+            "Q": "Voix",
+            "A": "Deutsch",
+            "in": "Typing",
+            "prompt": "Translate what you hear to German",
+            "Extra": "Stimme"
+        },
+        {
+            "Name": "Listening (de→en)",
+            "Q": "Stimme",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Translate what you hear to English",
+            "Extra": "Voice"
+        }
+    ]
+}

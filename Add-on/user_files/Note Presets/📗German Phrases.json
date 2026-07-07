@@ -1,0 +1,91 @@
+{
+    "Fields": [
+        {
+            "Name": "German",
+            "large": false,
+            "back": true,
+            "static": "äöüß",
+            "random": ""
+        },
+        {
+            "Name": "English",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        },
+        {
+            "Name": "Audio",
+            "large": false,
+            "back": true,
+            "static": "",
+            "random": ""
+        }
+    ],
+    "Card Types": [
+        {
+            "Name": "Recognition",
+            "Q": "German",
+            "A": "English",
+            "in": "Tapping",
+            "prompt": "Tap the correct translation",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Recognition",
+            "Q": "German",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "German",
+            "in": "Tapping",
+            "prompt": "Tap the correct translation",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Translation",
+            "Q": "English",
+            "A": "German",
+            "in": "Typing",
+            "prompt": "Type the correct translation",
+            "Extra": "ー"
+        },
+        {
+            "Name": "Spelling",
+            "Q": "Audio",
+            "A": "German",
+            "in": "Tapping",
+            "prompt": "Tap what you hear",
+            "Extra": "English"
+        },
+        {
+            "Name": "Spelling",
+            "Q": "Audio",
+            "A": "German",
+            "in": "Typing",
+            "prompt": "Type what you hear",
+            "Extra": "English"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Tapping",
+            "prompt": "Tap the correct translation for what you hear",
+            "Extra": "German"
+        },
+        {
+            "Name": "Listening",
+            "Q": "Audio",
+            "A": "English",
+            "in": "Typing",
+            "prompt": "Type the correct translation for what you hear",
+            "Extra": "German"
+        }
+    ]
+}

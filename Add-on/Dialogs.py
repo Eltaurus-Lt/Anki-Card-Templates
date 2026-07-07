@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2023-2024 Eltaurus
+# Copyright © 2023-2025 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -21,6 +21,9 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 from aqt.qt import *
+from PyQt6 import QtCore, QtWidgets
+
+from aqt.utils import tooltip
 
 def is_choice_string(string):
     return ("choice" in string or "Choice" in string)

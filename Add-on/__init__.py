@@ -1,7 +1,9 @@
 from . import Clear_Shortcuts
-from . import Fill_Choices_menu
 from . import Editor_buttons
 from . import Editor_styles
+from . import Browser_Context_menu
+from . import Tools_Menu
+
 
 # from aqt import gui_hooks, mw
 # from aqt.editor import Editor
