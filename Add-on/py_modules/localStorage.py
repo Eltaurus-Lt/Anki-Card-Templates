@@ -1,15 +1,29 @@
+# This script is part of the Lt-Cards Add-on for Anki.
+# Source: github.com/Eltaurus-Lt/Anki-Card-Templates
+# 
+# Copyright © 2026 Eltaurus
+# Contact: 
+#     Email: Eltaurus@inbox.lt
+#     GitHub: github.com/Eltaurus-Lt
+#     Anki Forums: forums.ankiweb.net/u/Eltaurus
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 from aqt.utils import tooltip
 
 from aqt import mw, gui_hooks
 import os, json
-
-# does not clutter card templates
-# saves data on each mutation, preserving changes even on window termination and crashes
-# loads immediately on app startup
-# syncs between all app webviews
-# does not randomly override mobile local storage
-# saves data in safe strictly-data format (json)
-# does not save changes made via localStorage[key] = ...
 
 mw.addonManager.setWebExports(__name__, r"js/.*\.js$")
 # addons_folder = mw.addonManager.addonsFolder()
