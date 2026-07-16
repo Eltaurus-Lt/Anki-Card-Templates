@@ -25,7 +25,7 @@ from aqt.utils import tooltip
 from aqt import mw, gui_hooks
 import os, json
 
-mw.addonManager.setWebExports(__name__, r"js/.*\.js$")
+# mw.addonManager.setWebExports(__name__, r"js/.*\.js$")
 # addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 
