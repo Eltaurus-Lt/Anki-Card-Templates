@@ -2,7 +2,7 @@ from aqt import dialogs, gui_hooks, mw
 
 
 def search_listener(handled, cmd, context):
-    prefix = "Browser search::"
+    prefix = "action::search:"
     if not cmd.startswith(prefix):
         return handled
 
