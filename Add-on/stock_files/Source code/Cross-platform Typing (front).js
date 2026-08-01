@@ -14,7 +14,6 @@ if (!window.answer) { // prevent execution on the back side
   }
 
   storeAnswer(); // clean up the storage after previous card
-  sessionStorage.setItem("card::input", "typing"); // saving the front-side input method
 
   function ShowAnswer() {
     if (!!window.pycmd) { // desktop

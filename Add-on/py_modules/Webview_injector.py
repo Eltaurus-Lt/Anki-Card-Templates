@@ -31,7 +31,6 @@ from aqt.clayout import CardLayout
 import os, re, json
 
 config = mw.addonManager.getConfig(__name__)
-mw.addonManager.setWebExports(__name__, r"css/.*\.css|js/.*\.js|user_files/(.*\.(css|js))$")
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 
