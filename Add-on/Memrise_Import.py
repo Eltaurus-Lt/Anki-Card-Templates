@@ -20,9 +20,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-from aqt.utils import tooltip
+import os, webbrowser
+
+from aqt import mw
 from aqt.qt import *
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
+
+from aqt.utils import tooltip
+
+addons_folder = mw.addonManager.addonsFolder()
+addon_name = mw.addonManager.addonFromModule(__name__)
+addon_path = os.path.join(addons_folder, addon_name)
 
 class MemriseImportSettings(QDialog):
     def toggleCellCheckbox(self, cellWidget):
@@ -68,6 +76,7 @@ class MemriseImportSettings(QDialog):
         ## Widgets
 
         self.setWindowTitle("Memrise Course Import")
+        self.setWindowIcon(QtGui.QIcon(os.path.join(addon_path, "icons", "import.ico")))
         coursesLable = QLabel("Courses")
         font_metrics = QFontMetrics(coursesLable.font())
         lh = font_metrics.lineSpacing()
@@ -205,6 +214,7 @@ class MemriseImportSettings(QDialog):
 
         # Ok/Cancel + Help
         button_help = QPushButton("Help")
+        button_help.clicked.connect(lambda: webbrowser.open("https://forums.ankiweb.net/t/memrise-card-template-support-thread"))
         button_ok = QPushButton("Import")
         button_ok.clicked.connect(self.accept)
         button_cancel = QPushButton("Cancel")
