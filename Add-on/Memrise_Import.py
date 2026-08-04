@@ -26,15 +26,27 @@ from aqt import mw
 from aqt.qt import *
 from PyQt6 import QtCore, QtWidgets, QtGui
 
-from aqt.utils import tooltip
+from .py_utils import user_files
+
 
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 addon_path = os.path.join(addons_folder, addon_name)
 
-new_note_types = ['(new 1)', '(new 2)', '(new 3)']
-note_types = ['basic', 'memrise', 'snap', 'codex']
-themes = ['defualt', 'blue', 'green', 'yellow']
+# move to utils
+def indexOf( array, el, default = 0):
+        try:
+            return array.index(el)
+        except ValueError:
+            return default
+
+# move to user_files
+def getThemeList():
+    themeList = user_files.list("Color Themes", ".css")
+    themeList.insert(0, "ー")
+    default = indexOf(themeList, "Memrise", indexOf(themeList, "Anki", 1))
+    return themeList, default
+
 
 class NoScrollComboBox(QComboBox):
     def wheelEvent(self, event):
@@ -61,15 +73,16 @@ class MemriseImportSettings(QDialog):
         course = QLabel(path)
         self.coursesTable.setCellWidget(row, 0, course)
 
-        theme_drop = NoScrollComboBox()
-        theme_drop.addItems(themes)
-        theme_drop.setCurrentIndex(1)
+        theme_drop = NoScrollComboBox() 
+        themeList, defaultIndex = getThemeList()
+        theme_drop.addItems(themeList)
+        theme_drop.setCurrentIndex(defaultIndex)
         self.coursesTable.setCellWidget(row, 1, theme_drop)
 
         noteType_drop = NoScrollComboBox()
-        noteType_drop.addItems(new_note_types)
+        noteType_drop.addItems([f"(auto {n})" for n in range(3)])
         noteType_drop.insertSeparator(noteType_drop.count())
-        noteType_drop.addItems(note_types)
+        noteType_drop.addItems([m["name"] for m in mw.col.models.all()])
         noteType_drop.setCurrentIndex(1)
         self.coursesTable.setCellWidget(row, 2, noteType_drop)
 
@@ -138,12 +151,14 @@ class MemriseImportSettings(QDialog):
         headerMaster = self.coursesTable.horizontalHeader()
         self.coursesTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         headerMaster.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Stretch)
-        self.coursesTable.setColumnWidth(1, int(6 * lh))
-        self.coursesTable.setColumnWidth(2, int(6 * lh))
+        self.coursesTable.setColumnWidth(1, int(5 * lh))
+        self.coursesTable.setColumnWidth(2, int(7 * lh))
         self.coursesTable.setColumnWidth(3, int(3.5 * lh))
         headerMaster.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Fixed)
-        headerMaster.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        headerMaster.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Interactive)
         headerMaster.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        headerMaster.setMinimumSectionSize(3 * lh)
+        headerMaster.setMaximumSectionSize(15 * lh)
 
         # tests group
         self.audioTests_checkbox = QCheckBox()
@@ -288,4 +303,4 @@ def import_courses():
         return
     import_options = dialog.get_full_options()
 
-    tooltip(import_options["importProgress"])
+    mw.reviewer.web.eval(f'console.log(`{import_options["importProgress"]}`)')
