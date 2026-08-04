@@ -22,21 +22,35 @@
 
 from aqt.utils import tooltip
 from aqt.qt import *
+from PyQt6 import QtCore, QtWidgets
 
 class MemriseImportSettings(QDialog):
+    def toggleCellCheckbox(self, cellWidget):
+        if cellWidget:
+            checkbox = cellWidget.findChild(QCheckBox)
+            if checkbox:
+                checkbox.setChecked(not checkbox.isChecked())
+
+    def setHeadersWithTooltips(self, table, headersWithTooltips):
+        for i, (header, tooltip) in enumerate(headersWithTooltips):
+            header_widget = QTableWidgetItem(header)
+            if tooltip is not None:
+                header_widget.setToolTip(tooltip)
+            table.setHorizontalHeaderItem(i, header_widget)
+
     def __init__(self):
         super().__init__()
 
         self.setStyleSheet("""
             QHeaderView::section:horizontal { padding: 0; }
             QHeaderView::section:vertical { padding: 7px; }
-            QTableCornerButton::section { background: #73c7f4; }
+            QTableCornerButton::section { background: #febd11; }
             QTableWidget::item {  }
             QCheckBox { padding-left: 7px; }
             QToolTip {  }
             QHeaderView::section { 
-                color: white; 
-                background: #73c7f4; 
+                color: #29374a; 
+                background: #febd11; 
                 font-weight: bold; 
                 font-size: 15px; 
             }
@@ -54,6 +68,35 @@ class MemriseImportSettings(QDialog):
         ## Widgets
 
         self.setWindowTitle("Memrise Course Import")
+        coursesLable = QLabel("Courses")
+        font_metrics = QFontMetrics(coursesLable.font())
+        lh = font_metrics.lineSpacing()
+        self.setMinimumWidth(36 * lh)
+
+        # Main table
+        self.coursesTable = QTableWidget(0, 4)
+        self.setHeadersWithTooltips(self.coursesTable, [
+            ("Course", None),
+            ("Theme", None),
+            ("Note Type", None),
+            ("Import", None)])
+        self.coursesTable.horizontalHeader().setMinimumSectionSize(2 * lh)
+        self.coursesTable.setSelectionMode(QtWidgets.QTableWidget.SelectionMode.NoSelection)
+        self.coursesTable.cellClicked.connect(lambda r, c: self.toggleCellCheckbox(self.coursesTable.cellWidget(r, c)))
+        self.coursesTable.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.coursesTable.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
+        self.coursesTable.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollMode.ScrollPerPixel)
+
+
+        headerMaster = self.coursesTable.horizontalHeader()
+        self.coursesTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        headerMaster.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        self.coursesTable.setColumnWidth(1, int(6 * lh))
+        self.coursesTable.setColumnWidth(2, int(6 * lh))
+        self.coursesTable.setColumnWidth(3, int(3.5 * lh))
+        headerMaster.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        headerMaster.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        headerMaster.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Fixed)
 
         # tests group
         self.audioTests_checkbox = QCheckBox()
@@ -91,6 +134,9 @@ class MemriseImportSettings(QDialog):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
+        layout.addWidget(coursesLable)
+        layout.addWidget(self.coursesTable)
+
         tests_group = QGroupBox("Test types")
         # todo tooltip : at least 1 typing-tapping should be enabled, applicable to newly created note types only
         tests_layout = QVBoxLayout()
@@ -100,21 +146,26 @@ class MemriseImportSettings(QDialog):
         tests_row1 = QHBoxLayout()
         tests_row1.addWidget(QLabel("Audio"))
         tests_row1.addWidget(self.audioTests_checkbox)
+        tests_row1.addStretch()
         tests_layout.addLayout(tests_row1)
 
         tests_row2 = QHBoxLayout()
         tests_row2.addWidget(QLabel("Typing"))
         tests_row2.addWidget(self.typingTests_checkbox)
+        tests_row2.addSpacing(2 * lh)
         tests_row2.addWidget(QLabel("Multiple Choice"))
         tests_row2.addWidget(self.multichoiceTests_checkbox)
+        tests_row2.addSpacing(2 * lh)
         tests_row2.addWidget(QLabel("Tapping"))
         tests_row2.addWidget(self.tappingTests_checkbox)
+        tests_row2.addStretch()
         tests_layout.addLayout(tests_row2)
 
 
         scheduling_row = QHBoxLayout()
         scheduling_row.addWidget(QLabel("Import Learning progress"))
         scheduling_row.addWidget(self.scheduling_checkbox)
+        scheduling_row.addStretch()
         layout.addLayout(scheduling_row)
 
         # ▼ Advanced
@@ -122,11 +173,13 @@ class MemriseImportSettings(QDialog):
         choices_row = QHBoxLayout()
         choices_row.addWidget(QLabel("Choices: "))
         choices_row.addWidget(self.choices_drop)
+        choices_row.addStretch()
         layout.addLayout(choices_row)
 
         reverse_row = QHBoxLayout()
         reverse_row.addWidget(QLabel("Reverse Cards: "))
         reverse_row.addWidget(self.reverse_drop)
+        reverse_row.addStretch()
         layout.addLayout(reverse_row)
 
 
@@ -138,11 +191,13 @@ class MemriseImportSettings(QDialog):
         subdeck_row = QHBoxLayout()
         subdeck_row.addWidget(QLabel("Replicate folder tree"))
         subdeck_row.addWidget(self.subdecks_checkbox)
+        subdeck_row.addStretch()
         subdecks_layout.addLayout(subdeck_row)
 
         levels_row = QHBoxLayout()
         levels_row.addWidget(QLabel("Subdecks from levels"))
         levels_row.addWidget(self.levels_checkbox)
+        levels_row.addStretch()
         subdecks_layout.addLayout(levels_row)
 
 

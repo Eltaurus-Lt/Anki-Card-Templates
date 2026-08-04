@@ -23,8 +23,8 @@
 
 import json, os, re, textwrap
 from aqt.qt import *
-from anki.models import ModelManager
 from PyQt6 import QtCore, QtWidgets
+from anki.models import ModelManager
 from aqt.utils import tooltip
 from .py_utils import user_files
 
