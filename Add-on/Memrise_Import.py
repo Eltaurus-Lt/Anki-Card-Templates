@@ -32,6 +32,14 @@ addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 addon_path = os.path.join(addons_folder, addon_name)
 
+new_note_types = ['(new 1)', '(new 2)', '(new 3)']
+note_types = ['basic', 'memrise', 'snap', 'codex']
+themes = ['defualt', 'blue', 'green', 'yellow']
+
+class NoScrollComboBox(QComboBox):
+    def wheelEvent(self, event):
+        event.ignore()
+
 class MemriseImportSettings(QDialog):
     def toggleCellCheckbox(self, cellWidget):
         if cellWidget:
@@ -45,6 +53,36 @@ class MemriseImportSettings(QDialog):
             if tooltip is not None:
                 header_widget.setToolTip(tooltip)
             table.setHorizontalHeaderItem(i, header_widget)
+
+    def add_courseRow(self, path):
+        row = self.coursesTable.rowCount()
+        self.coursesTable.setRowCount(row + 1)
+
+        course = QLabel(path)
+        self.coursesTable.setCellWidget(row, 0, course)
+
+        theme_drop = NoScrollComboBox()
+        theme_drop.addItems(themes)
+        theme_drop.setCurrentIndex(1)
+        self.coursesTable.setCellWidget(row, 1, theme_drop)
+
+        noteType_drop = NoScrollComboBox()
+        noteType_drop.addItems(new_note_types)
+        noteType_drop.insertSeparator(noteType_drop.count())
+        noteType_drop.addItems(note_types)
+        noteType_drop.setCurrentIndex(1)
+        self.coursesTable.setCellWidget(row, 2, noteType_drop)
+
+        import_checkbox = QCheckBox()
+        import_checkbox.setChecked(True)
+        checkbox_cell = QWidget()
+        checkbox_layout = QHBoxLayout()
+        checkbox_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        checkbox_layout.setContentsMargins(0, 0, 0, 0)
+        checkbox_cell.setLayout(checkbox_layout)
+        checkbox_layout.addWidget(import_checkbox)
+        self.coursesTable.setCellWidget(row, 3, checkbox_cell)
+
 
     def __init__(self):
         super().__init__()
@@ -126,12 +164,12 @@ class MemriseImportSettings(QDialog):
 
         # multiple choice filling
         self.choices_drop = QComboBox()
-        self.choices_drop.addItems(["leave empty", "import", "autofill", "autofill empty"])
+        self.choices_drop.addItems(["Leave empty", "Import", "Autofill", "Autofill empty"])
         self.choices_drop.setCurrentIndex(1)
 
         # reverse tests
         self.reverse_drop = QComboBox()
-        self.reverse_drop.addItems(["auto", "all", "none", "flagged", "exclude flagged"])
+        self.reverse_drop.addItems(["Auto", "All", "None", "Flagged", "Exclude flagged"])
         self.reverse_drop.setCurrentIndex(0)
 
         # decks group
@@ -147,7 +185,7 @@ class MemriseImportSettings(QDialog):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        layout.addWidget(coursesLable)
+        # layout.addWidget(coursesLable)
         layout.addWidget(self.coursesTable)
 
 
@@ -239,6 +277,10 @@ class MemriseImportSettings(QDialog):
         button_layout.addWidget(button_cancel)
 
         layout.addLayout(button_layout)
+
+
+        self.add_courseRow("course1")
+        self.add_courseRow("path2")
 
 def import_courses():
     dialog = MemriseImportSettings()
