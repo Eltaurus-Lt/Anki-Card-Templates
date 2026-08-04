@@ -10,7 +10,7 @@ aqt.mw.form.menuTools.addAction(create_MemriseNT)
 # tools_list_menu.addAction(action)
 # aqt.mw.form.menuTools.addMenu(tools_list_menu)
 
-import_Memrise = aqt.qt.QAction("Import from Memrise...", aqt.mw)
+import_Memrise = aqt.qt.QAction("Import Memrise Courses...", aqt.mw)
 import_Memrise.triggered.connect(Memrise_Import.import_courses)
 
 menu = aqt.mw.form.menuCol
