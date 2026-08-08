@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os, webbrowser
+import os, re, webbrowser
 
 from aqt import mw
 from aqt.qt import *
@@ -297,10 +297,128 @@ class MemriseImportSettings(QDialog):
         self.add_courseRow("course1")
         self.add_courseRow("path2")
 
-def import_courses():
-    dialog = MemriseImportSettings()
-    if not dialog.exec():
-        return
-    import_options = dialog.get_full_options()
 
-    mw.reviewer.web.eval(f'console.log(`{import_options["importProgress"]}`)')
+def fileScan(root_path):
+    def isCourse(csv_filename):
+        return re.match(r"^.+\[\d+\][\d\W]*\.csv$", csv_filename)
+
+# move to Dialogs.py
+class QFolderOrFileDialog(QFileDialog):
+    def __init__(self, caption="Select File or Folder", directory="", filter="All Files (*)"):
+        super().__init__(mw)
+        
+        self.setWindowTitle(caption)
+
+        if directory and os.path.exists(directory):
+            self.setDirectory(directory)
+        else:
+            self.setDirectory(os.path.expanduser("~"))
+            
+        filters = filter.split(";;") if ";;" in filter else [filter]
+        self.setNameFilters(filters)
+        
+        self.setOption(QFileDialog.Option.DontUseNativeDialog, True)
+        self.setFileMode(QFileDialog.FileMode.ExistingFiles)
+        
+        self.btn_enter = QPushButton("Open Folder", self)
+        self.btn_enter.clicked.connect(self.enter_selected_folder)
+        self.btn_import = QPushButton("Import", self)
+                    
+        if file_view := self.findChild(QListView, "listView"):
+            file_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        if tree_view := self.findChild(QTreeView, "treeView"):
+            tree_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+
+
+        # modify layout
+        if type_label := self.findChild(QLabel, "fileTypeLabel"): type_label.hide()
+        if type_combo := self.findChild(QComboBox, "fileTypeCombo"): type_combo.hide()
+        name_label = self.findChild(QLabel, "fileNameLabel")
+        name_input = self.findChild(QLineEdit, "fileNameEdit")
+        button_box = self.findChild(QDialogButtonBox)
+        if button_box:
+            ok_button = button_box.button(QDialogButtonBox.StandardButton.Open)
+            cancel_button = button_box.button(QDialogButtonBox.StandardButton.Cancel)
+            button_box.hide()
+            self.btn_import.clicked.connect(ok_button.click)
+        
+        # root_layout = QVBoxLayout(self)
+        # root_layout.setContentsMargins(0, 0, 0, 0)
+        # root_layout.setSpacing(0)
+
+        new_row = QWidget()
+        row_layout = QHBoxLayout()
+        row_layout.setContentsMargins(0, 0, 0, 0)
+        new_row.setLayout(row_layout)
+
+        if name_label: 
+            name_label.setText("Selected: ")
+            name_label.adjustSize()
+            # row_layout.addWidget(name_label)
+        if name_input:
+            name_input.setSizePolicy(QtWidgets.QSizePolicy.Policy.MinimumExpanding, QtWidgets.QSizePolicy.Policy.Fixed)
+            # row_layout.addWidget(name_input)
+        row_layout.addWidget(self.btn_enter)
+        self.btn_enter.hide()
+        row_layout.addWidget(self.btn_import)
+        if cancel_button:
+            row_layout.addWidget(cancel_button)
+
+
+        grid = self.findChild(QGridLayout)
+        if grid:
+            grid.addWidget(name_label, 2, 0)
+            grid.addWidget(name_input, 2, 1)
+            grid.addWidget(new_row, 2, 2)
+
+
+
+
+    def selectedFiles(self):
+        files = super().selectedFiles()
+        return [self.directory().absolutePath()] if not files else files
+
+    def accept(self):
+        if not self.selectedFiles():
+            self.selectFile(self.directory().absolutePath())
+        QDialog.accept(self)
+
+    def done(self, result):
+        QDialog.done(self, result)
+
+    # def on_item_clicked(self, index):
+    #     model = index.model()
+    #     if model:
+    #         if model.isDir(index):
+    #             self.setFileMode(QFileDialog.FileMode.Directory)
+    #         else:
+    #             self.setFileMode(QFileDialog.FileMode.ExistingFiles)
+
+    def enter_selected_folder(self):
+        selected = self.selectedFiles()
+        if selected and os.path.isdir(selected[0]):
+            self.setDirectory(selected[0])
+
+
+
+def import_courses():
+    file_dialog = QFolderOrFileDialog(
+        caption = "Select course .csv files, course folders, or a parent folder with multiple courses",
+        directory = os.path.expanduser("~/Downloads"),
+        filter = "CSV Files (*.csv);;All Files (*)"
+        )
+
+    if file_dialog.exec():
+        selected_paths = file_dialog.selectedFiles()
+        if not selected_paths:
+            return
+    else:
+        return
+
+    # dialog = MemriseImportSettings()
+    # if not dialog.exec():
+    #     return
+    # import_options = dialog.get_full_options()
+
+    mw.reviewer.web.eval(f'console.log(`{str(selected_paths)}`)')
+    # mw.reviewer.web.eval(f'console.log(`{import_options["importProgress"]}`)')
