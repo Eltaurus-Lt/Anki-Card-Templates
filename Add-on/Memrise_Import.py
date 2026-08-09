@@ -306,7 +306,7 @@ def fileScan(root_path):
 class QFolderOrFileDialog(QFileDialog):
     def __init__(self, caption="Select File or Folder", directory="", filter="All Files (*)"):
         super().__init__(mw)
-        
+
         self.setWindowTitle(caption)
 
         if directory and os.path.exists(directory):
@@ -320,8 +320,8 @@ class QFolderOrFileDialog(QFileDialog):
         self.setOption(QFileDialog.Option.DontUseNativeDialog, True)
         self.setFileMode(QFileDialog.FileMode.ExistingFiles)
         
-        self.btn_enter = QPushButton("Open Folder", self)
-        self.btn_enter.clicked.connect(self.enter_selected_folder)
+        # self.btn_enter = QPushButton("Open Folder", self)
+        # self.btn_enter.clicked.connect(self.enter_selected_folder)
         self.btn_import = QPushButton("Import", self)
                     
         if file_view := self.findChild(QListView, "listView"):
@@ -334,18 +334,14 @@ class QFolderOrFileDialog(QFileDialog):
         if type_label := self.findChild(QLabel, "fileTypeLabel"): type_label.hide()
         if type_combo := self.findChild(QComboBox, "fileTypeCombo"): type_combo.hide()
         name_label = self.findChild(QLabel, "fileNameLabel")
-        name_input = self.findChild(QLineEdit, "fileNameEdit")
+        self.name_input = self.findChild(QLineEdit, "fileNameEdit")
         button_box = self.findChild(QDialogButtonBox)
         if button_box:
             ok_button = button_box.button(QDialogButtonBox.StandardButton.Open)
             cancel_button = button_box.button(QDialogButtonBox.StandardButton.Cancel)
             button_box.hide()
-            self.btn_import.clicked.connect(ok_button.click)
+            self.btn_import.clicked.connect(lambda *_: self.confirm_import())
         
-        # root_layout = QVBoxLayout(self)
-        # root_layout.setContentsMargins(0, 0, 0, 0)
-        # root_layout.setSpacing(0)
-
         new_row = QWidget()
         row_layout = QHBoxLayout()
         row_layout.setContentsMargins(0, 0, 0, 0)
@@ -354,12 +350,10 @@ class QFolderOrFileDialog(QFileDialog):
         if name_label: 
             name_label.setText("Selected: ")
             name_label.adjustSize()
-            # row_layout.addWidget(name_label)
-        if name_input:
-            name_input.setSizePolicy(QtWidgets.QSizePolicy.Policy.MinimumExpanding, QtWidgets.QSizePolicy.Policy.Fixed)
-            # row_layout.addWidget(name_input)
-        row_layout.addWidget(self.btn_enter)
-        self.btn_enter.hide()
+        if self.name_input:
+            self.name_input.setSizePolicy(QtWidgets.QSizePolicy.Policy.MinimumExpanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        # row_layout.addWidget(self.btn_enter)
+        # self.btn_enter.hide()
         row_layout.addWidget(self.btn_import)
         if cancel_button:
             row_layout.addWidget(cancel_button)
@@ -368,36 +362,44 @@ class QFolderOrFileDialog(QFileDialog):
         grid = self.findChild(QGridLayout)
         if grid:
             grid.addWidget(name_label, 2, 0)
-            grid.addWidget(name_input, 2, 1)
+            grid.addWidget(self.name_input, 2, 1)
             grid.addWidget(new_row, 2, 2)
 
 
+        for view in (file_view, tree_view):
+            if view and view.selectionModel():
+                view.selectionModel().selectionChanged.connect(lambda *_: self.update_ui_state())
+        self.directoryEntered.connect(lambda *_: self.update_ui_state())
+
+
+    def update_ui_state(self):
+        selected = self.selectedFiles()
+        if selected:
+            self.name_input.setText(", ".join([os.path.basename(p) for p in selected]))
+            # if len(selected) > 1:
+            #     self.btn_import.setText(f"Import ({len(selected)} sources)")
+            # elif os.path.isdir(selected[0]):
+            #     self.btn_import.setText("Import Folder")
+            # else:
+            #     self.btn_import.setText("Import File")
+        else:
+            self.name_input.setText(os.path.basename(self.directory().absolutePath()))
+            # self.btn_import.setText("Import Folder")
+
+    def confirm_import(self):
+        if self.name_input.text():
+            QtWidgets.QDialog.done(self, QtWidgets.QDialog.DialogCode.Accepted)
 
 
     def selectedFiles(self):
-        files = super().selectedFiles()
-        return [self.directory().absolutePath()] if not files else files
+        file_view = self.findChild(QListView, "listView")
+        tree_view = self.findChild(QTreeView, "treeView")
 
-    def accept(self):
-        if not self.selectedFiles():
-            self.selectFile(self.directory().absolutePath())
-        QDialog.accept(self)
+        for view in (file_view, tree_view):
+            if view and view.selectionModel() and view.selectionModel().hasSelection():
+                return super().selectedFiles()
 
-    def done(self, result):
-        QDialog.done(self, result)
-
-    # def on_item_clicked(self, index):
-    #     model = index.model()
-    #     if model:
-    #         if model.isDir(index):
-    #             self.setFileMode(QFileDialog.FileMode.Directory)
-    #         else:
-    #             self.setFileMode(QFileDialog.FileMode.ExistingFiles)
-
-    def enter_selected_folder(self):
-        selected = self.selectedFiles()
-        if selected and os.path.isdir(selected[0]):
-            self.setDirectory(selected[0])
+        return [self.directory().absolutePath()]
 
 
 
