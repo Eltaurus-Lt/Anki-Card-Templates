@@ -32,6 +32,7 @@ from .py_utils import user_files
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 addon_path = os.path.join(addons_folder, addon_name)
+import_folder = os.path.expanduser("~/Downloads")
 
 # move to utils
 def indexOf( array, el, default = 0):
@@ -305,6 +306,7 @@ def fileScan(root_path):
 # move to Dialogs.py
 class QFolderOrFileDialog(QFileDialog):
     def __init__(self, caption="Select File or Folder", directory="", filter="All Files (*)"):
+        global import_folder
         super().__init__(mw)
 
         self.setWindowTitle(caption)
@@ -323,11 +325,14 @@ class QFolderOrFileDialog(QFileDialog):
         # self.btn_enter = QPushButton("Open Folder", self)
         # self.btn_enter.clicked.connect(self.enter_selected_folder)
         self.btn_import = QPushButton("Import", self)
+
+        self.file_view = self.findChild(QListView, "listView")
+        self.tree_view = self.findChild(QTreeView, "treeView")
                     
-        if file_view := self.findChild(QListView, "listView"):
-            file_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
-        if tree_view := self.findChild(QTreeView, "treeView"):
-            tree_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        if self.file_view:
+            self.file_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        if self.tree_view:
+            self.tree_view.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
 
 
         # modify layout
@@ -366,7 +371,7 @@ class QFolderOrFileDialog(QFileDialog):
             grid.addWidget(new_row, 2, 2)
 
 
-        for view in (file_view, tree_view):
+        for view in (self.file_view, self.tree_view):
             if view and view.selectionModel():
                 view.selectionModel().selectionChanged.connect(lambda *_: self.update_ui_state())
         self.directoryEntered.connect(lambda *_: self.update_ui_state())
@@ -387,15 +392,14 @@ class QFolderOrFileDialog(QFileDialog):
             # self.btn_import.setText("Import Folder")
 
     def confirm_import(self):
+        global import_folder
+        import_folder = self.directory().absolutePath()
         if self.name_input.text():
             QtWidgets.QDialog.done(self, QtWidgets.QDialog.DialogCode.Accepted)
 
 
     def selectedFiles(self):
-        file_view = self.findChild(QListView, "listView")
-        tree_view = self.findChild(QTreeView, "treeView")
-
-        for view in (file_view, tree_view):
+        for view in (self.file_view, self.tree_view):
             if view and view.selectionModel() and view.selectionModel().hasSelection():
                 return super().selectedFiles()
 
@@ -404,9 +408,10 @@ class QFolderOrFileDialog(QFileDialog):
 
 
 def import_courses():
+    global import_folder
     file_dialog = QFolderOrFileDialog(
         caption = "Select course .csv files, course folders, or a parent folder with multiple courses",
-        directory = os.path.expanduser("~/Downloads"),
+        directory = import_folder,
         filter = "CSV Files (*.csv);;All Files (*)"
         )
 
