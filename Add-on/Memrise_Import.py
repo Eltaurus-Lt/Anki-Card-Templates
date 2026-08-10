@@ -187,10 +187,10 @@ class MemriseImportSettings(QDialog):
         self.coursesTable.setCellWidget(row, 1, theme_drop)
 
         noteType_drop = NoScrollComboBox()
-        noteType_drop.addItems([f"(auto {n})" for n in range(3)])
+        noteType_drop.addItems([f"(auto {n+1})" for n in range(len(self.courseTabs))])
         noteType_drop.insertSeparator(noteType_drop.count())
         noteType_drop.addItems([m["name"] for m in mw.col.models.all()])
-        noteType_drop.setCurrentIndex(1)
+        noteType_drop.setCurrentIndex(row)
         self.coursesTable.setCellWidget(row, 2, noteType_drop)
 
         import_checkbox = QCheckBox()
@@ -402,8 +402,36 @@ class MemriseImportSettings(QDialog):
 
 
         # populate courses table
+        self.courseTabs = courses
         for course in courses:
             self.add_courseRow(f"{"::".join([*course["deck tree"], course["proper name"]])} [{course["id"]}]")
+
+
+    def course_options(self):
+        importTabs = []
+        for row in range(len(self.courseTabs)):
+            if self.coursesTable.cellWidget(row, 3).layout().itemAt(0).widget().isChecked():
+                importTabs.append(self.courseTabs[row])
+                importTabs[-1]["Theme"] = self.coursesTable.cellWidget(row, 1).currentText()
+                importTabs[-1]["Note Type"] = self.coursesTable.cellWidget(row, 2).currentText()
+                importTabs[-1]["NT_isNew"] = self.coursesTable.cellWidget(row, 2).currentIndex() < len(self.courseTabs)
+
+        return importTabs
+
+    def import_options(self):
+        return {
+                "import::meta": self.meta_checkbox.isChecked(),
+                "import::media": self.media_checkbox.isChecked(),
+                "import::revlog": self.scheduling_checkbox.isChecked(),
+                "tests::audio": self.audioTests_checkbox.isChecked(), 
+                "tests::typing": self.typingTests_checkbox.isChecked(),
+                "tests::multichoice": self.multichoiceTests_checkbox.isChecked(),
+                "tests::tapping": self.tappingTests_checkbox.isChecked(),
+                "advanced::choices": self.choices_drop.currentText(),
+                "advanced::reversed": self.reverse_drop.currentText(),
+                "advanced::subtree": self.subdecks_checkbox.isChecked(),
+                "advanced::sublevels": self.levels_checkbox.isChecked(),
+            }
 
 
 def courseScan(root_path):
@@ -468,7 +496,25 @@ def import_courses():
     dialog = MemriseImportSettings(courses)
     if not dialog.exec():
         return
-    import_options = dialog.get_full_options()
+    course_options = dialog.course_options()
+    import_options = dialog.import_options()
 
 
-    # mw.reviewer.web.eval(f'console.log(`{import_options["importProgress"]}`)')
+
+    # ## Note Types creation
+    # # Field indexing
+    # new_noteTypes = []
+    # for options in course_options:
+    #     new_noteTypes.
+
+    # ## Decks creation
+    # for options in course_options:
+
+    # ## Course import
+    # for course in course_options:
+
+    # ## revlog
+
+
+    mw.reviewer.web.eval(f'console.log(`{str(course_options)}`)')
+    mw.reviewer.web.eval(f'console.log(`{str(import_options)}`)')
