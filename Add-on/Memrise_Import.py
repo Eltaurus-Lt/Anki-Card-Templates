@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os, re, webbrowser
+import os, re, csv, json, webbrowser
 
 from aqt import mw
 from aqt.qt import *
@@ -492,6 +492,7 @@ def import_courses():
         tooltip("No courses found in the selection")
         return
 
+
     ## Import Options Dialog
     dialog = MemriseImportSettings(courses)
     if not dialog.exec():
@@ -500,21 +501,125 @@ def import_courses():
     import_options = dialog.import_options()
 
 
+    ## Note Types indexing
+    new_noteTypes = {}
+    for course in course_options:
+        if course["NT_isNew"]:
+            new_noteTypes.setdefault(course["Note Type"], []).append(course)
 
-    # ## Note Types creation
-    # # Field indexing
-    # new_noteTypes = []
-    # for options in course_options:
-    #     new_noteTypes.
+    #  assign unique names to auto (switch existing right after entering)
+    new_noteTypeNames = {}
+
+    new_noteTypeFields = {}
+    # flag fields
+    # choises fields
+
+# learnable id == in different directions??
+
+    for noteType in new_noteTypes:
+        fields = []
+        for course in new_noteTypes[noteType]:
+            with open(course["csv path"], newline="", encoding="utf-8") as csv_file:
+                learn_col = -1
+                def_col = -1
+                tags_col = -1
+                prog_col = -1
+                meta_col = -1
+                columns = []
+                cards = []
+                for row in csv.reader(csv_file):
+                    # file headers
+                    row0 = row[0][1:] if row[0].startswith("\ufeff") else row[0] # removing BOM
+                    if row0.startswith("#"):
+                        if row0.startswith("#tags column:"):
+                            tags_col = int(row0[len("#tags column:"):]) - 1
+                        elif row0.startswith("#columns:"):
+                            for i in range(len(row)):
+                                # column headers
+                                header = row[i] if i > 0 else row0[len("#columns:"):]
+                                columns.append(header)
+                                if header == "Learnable":
+                                    learn_col = i
+                                elif header == "Definition":
+                                    def_col = i
+                                elif header == "Learnable meta":
+                                    meta_col = i
+                                elif header == "Progress":
+                                    prog_col = i
+                                elif header == "Level tags" and tags_col < 0:
+                                    tags_col = i
+
+                    # cards
+                    else:
+                        card = {"Fields": {}, "Choices": {}, "Direction": "Definition → Learnable", "Level": False, "Tags": ""}
+
+                        if prog_col >= 0 and row[prog_col] and row[prog_col] != "new":
+                            try:
+                                card["Progress"] = json.loads(row[prog_col])
+                            except:
+                                tooltip("invalid progress json")
+
+                        meta = False
+                        if meta_col >= 0 and row[meta_col]:
+                            try:
+                                meta = json.loads(row[meta_col])
+                                if not meta or not meta["learnable"] or not meta["definition"]:
+                                    meta = False
+                                if meta:
+                                    card["Direction"] = f"{meta["definition"]} → {meta["learnable"]}"
+                                    if temp := meta["choices"]:
+                                        card["Choices"][meta["learnable"]] = set(temp)
+                                    if temp := meta["reverse choices"]:
+                                        card["Choices"][meta["definition"]] = set(temp)
+                            except:
+                                tooltip("invalid learnable meta json")
+
+                        for i in range(len(row)):
+                            if columns and i < len(columns):
+                                field = columns[i]
+                            elif i == 0:
+                                field = "Learnable"
+                            elif i == 1:
+                                field = "Definition"
+                            else:
+                                field = f"Extra {i - 1}"
+
+                            if i == learn_col:
+                                if meta:
+                                    field = meta["learnable"]
+                            elif i == def_col:
+                                if meta:
+                                    field = meta["definition"]
+                            elif i == tags_col:
+                                card["Tags"] = row[i]
+                                card["Level"] = row[i].split("::")[-1]
+                                continue
+                            elif i == prog_col or i == meta_col:
+                                continue
+                            
+                            if field not in fields:
+                                fields.append(field)                            
+                            if row[i]:
+                                card["Fields"][field] = row[i]
+
+                        cards.append(card)
+                        mw.reviewer.web.eval(f'console.log(`{str(card)}`)')
+
+
+                # # merge into notes
+                # notes = []
+                # for card in cards
+
+
+                # Copying media
+
+
+    ## move theme outside the table
 
     # ## Decks creation
-    # for options in course_options:
-
-    # ## Course import
-    # for course in course_options:
 
     # ## revlog
 
 
-    mw.reviewer.web.eval(f'console.log(`{str(course_options)}`)')
-    mw.reviewer.web.eval(f'console.log(`{str(import_options)}`)')
+    # mw.reviewer.web.eval(f'console.log(`{str(course_options)}`)')
+    # mw.reviewer.web.eval(f'console.log(`{str(import_options)}`)')
