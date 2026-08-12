@@ -29,6 +29,26 @@ from aqt.utils import tooltip
 
 from .py_utils import user_files
 
+# todo
+# # D root bug
+# # settings dialog
+# # # selectable rows for batch setup
+# # # renamable NTs
+# # # re layout
+# # # *advanced
+# # import
+# # # media (renames table)
+# # # create decks
+# # # create NTs
+# # # meta
+# # # revlog
+# # choices
+# # # fill
+# # # convert img and audio 
+# # !progress bars
+# # test
+# # # (old) courses with no headers
+
 
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
@@ -180,18 +200,12 @@ class MemriseImportSettings(QDialog):
         course = QLabel(path)
         self.coursesTable.setCellWidget(row, 0, course)
 
-        theme_drop = NoScrollComboBox() 
-        themeList, defaultIndex = getThemeList()
-        theme_drop.addItems(themeList)
-        theme_drop.setCurrentIndex(defaultIndex)
-        self.coursesTable.setCellWidget(row, 1, theme_drop)
-
         noteType_drop = NoScrollComboBox()
         noteType_drop.addItems([f"(auto {n+1})" for n in range(len(self.courseTabs))])
-        noteType_drop.insertSeparator(noteType_drop.count())
-        noteType_drop.addItems([m["name"] for m in mw.col.models.all()])
+        # noteType_drop.insertSeparator(noteType_drop.count())
+        # noteType_drop.addItems([m["name"] for m in mw.col.models.all()])
         noteType_drop.setCurrentIndex(row)
-        self.coursesTable.setCellWidget(row, 2, noteType_drop)
+        self.coursesTable.setCellWidget(row, 1, noteType_drop)
 
         import_checkbox = QCheckBox()
         import_checkbox.setChecked(True)
@@ -201,7 +215,7 @@ class MemriseImportSettings(QDialog):
         checkbox_layout.setContentsMargins(0, 0, 0, 0)
         checkbox_cell.setLayout(checkbox_layout)
         checkbox_layout.addWidget(import_checkbox)
-        self.coursesTable.setCellWidget(row, 3, checkbox_cell)
+        self.coursesTable.setCellWidget(row, 2, checkbox_cell)
 
 
     def __init__(self, courses):
@@ -241,10 +255,9 @@ class MemriseImportSettings(QDialog):
         self.setMinimumWidth(36 * lh)
 
         # Main table
-        self.coursesTable = QTableWidget(0, 4)
+        self.coursesTable = QTableWidget(0, 3)
         self.setHeadersWithTooltips(self.coursesTable, [
             ("Course", None),
-            ("Theme", None),
             ("Note Type", None),
             ("Import", None)])
         self.coursesTable.horizontalHeader().setMinimumSectionSize(2 * lh)
@@ -259,13 +272,17 @@ class MemriseImportSettings(QDialog):
         self.coursesTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         headerMaster.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.coursesTable.setColumnWidth(1, int(6 * lh))
-        self.coursesTable.setColumnWidth(2, int(6 * lh))
-        self.coursesTable.setColumnWidth(3, int(3.5 * lh))
-        headerMaster.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Fixed)
-        headerMaster.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Interactive)
-        headerMaster.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.Fixed)
+        self.coursesTable.setColumnWidth(2, int(3.5 * lh))
+        headerMaster.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Interactive)
+        headerMaster.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Fixed)
         headerMaster.setMinimumSectionSize(3 * lh)
         headerMaster.setMaximumSectionSize(15 * lh)
+
+        # theme
+        self.theme_drop = NoScrollComboBox() 
+        themeList, defaultIndex = getThemeList()
+        self.theme_drop.addItems(themeList)
+        self.theme_drop.setCurrentIndex(defaultIndex)
 
         # tests group
         self.audioTests_checkbox = QCheckBox()
@@ -310,6 +327,11 @@ class MemriseImportSettings(QDialog):
         # layout.addWidget(coursesLable)
         layout.addWidget(self.coursesTable)
 
+        theme_row = QHBoxLayout()
+        theme_row.addWidget(QLabel("Color Theme:")) 
+        theme_row.addWidget(self.theme_drop)
+        theme_row.addStretch()
+        layout.addLayout(theme_row)
 
         importOptions_group = QGroupBox("Import:")
         importOptions_layout = QVBoxLayout()
@@ -410,16 +432,17 @@ class MemriseImportSettings(QDialog):
     def course_options(self):
         importTabs = []
         for row in range(len(self.courseTabs)):
-            if self.coursesTable.cellWidget(row, 3).layout().itemAt(0).widget().isChecked():
+            if self.coursesTable.cellWidget(row, 2).layout().itemAt(0).widget().isChecked():
                 importTabs.append(self.courseTabs[row])
-                importTabs[-1]["Theme"] = self.coursesTable.cellWidget(row, 1).currentText()
-                importTabs[-1]["Note Type"] = self.coursesTable.cellWidget(row, 2).currentText()
-                importTabs[-1]["NT_isNew"] = self.coursesTable.cellWidget(row, 2).currentIndex() < len(self.courseTabs)
+                # importTabs[-1]["Theme"] = self.coursesTable.cellWidget(row, 1).currentText()
+                importTabs[-1]["Note Type"] = self.coursesTable.cellWidget(row, 1).currentText()
+                importTabs[-1]["NT_isNew"] = self.coursesTable.cellWidget(row, 1).currentIndex() < len(self.courseTabs)
 
         return importTabs
 
     def import_options(self):
         return {
+                "theme": self.theme_drop.currentText(),
                 "import::meta": self.meta_checkbox.isChecked(),
                 "import::media": self.media_checkbox.isChecked(),
                 "import::revlog": self.scheduling_checkbox.isChecked(),
@@ -499,6 +522,13 @@ def import_courses():
         return
     course_options = dialog.course_options()
     import_options = dialog.import_options()
+
+    # mw.reviewer.web.eval(f'console.log(`{str(course_options)}`)')
+    mw.reviewer.web.eval(f'console.log(`{str(import_options)}`)')
+
+    if not course_options:
+        tooltip("No courses selected for import")
+        return
 
 
     ## Note Types indexing
@@ -592,7 +622,7 @@ def import_courses():
                                     field = meta["definition"]
                             elif i == tags_col:
                                 card["Tags"] = row[i]
-                                card["Level"] = row[i].split("::")[-1]
+                                card["Level"] = row[i].split("::")[-1].replace("_", " ")
                                 continue
                             elif i == prog_col or i == meta_col:
                                 continue
@@ -619,7 +649,3 @@ def import_courses():
     # ## Decks creation
 
     # ## revlog
-
-
-    # mw.reviewer.web.eval(f'console.log(`{str(course_options)}`)')
-    # mw.reviewer.web.eval(f'console.log(`{str(import_options)}`)')
