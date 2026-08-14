@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2025 Eltaurus
+# Copyright © 2025-2026 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -20,15 +20,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os, json, re
-from anki.hooks import addHook
+import re, json
 from aqt import mw
-from aqt.utils import tooltip
-from .py_utils import console
+from ..utils import console
 
-addon_path = os.path.dirname(__file__)
-
-def alts_format_legacy(editor):
+def format_legacy(editor):
     selection = editor.web.selectedText()
     if selection:
         alt_section = '<span part="alt">' + selection + '</span>' # does not work when selection ends at a closnig tag + part gets immediately cleared in 25.02.1+
@@ -37,12 +33,10 @@ def alts_format_legacy(editor):
 
 def count_brs(html):
     match = re.search(r'(<br\s*/?>)+\s*$', html)
-    if match:
-        return match.group(0).count('<br')
-    return 0
+    return match.group(0).count('<br') if match else 0
 
 
-def alts_format(editor):
+def format(editor):
     current_field = editor.currentField
     if current_field is None:
         tooltip('No field selected')
@@ -124,7 +118,7 @@ def alts_format(editor):
 
     editor.web.evalWithCallback(js_code, callback)
 
-def alts_erase(editor):
+def erase(editor):
     current_field = editor.currentField
     if current_field is None:
         tooltip('No field selected')
@@ -174,27 +168,3 @@ def alts_erase(editor):
             tooltip("An error occurred while processing the selection!")
 
     editor.web.evalWithCallback(js_code, callback)
-
-def setupEditorButtonsFilter(buttons, editor):
-    buttons.insert(0,
-        editor.addButton(
-            os.path.join(addon_path, "icons", "alts.svg"),
-            'alts',
-            alts_format,
-            tip = "Format as an alternative (Alt+A)",
-            keys="Alt+A"
-        )
-    )
-    buttons.insert(1,
-        editor.addButton(
-            os.path.join(addon_path, "icons", "alts-erase.svg"),
-            'erase alts',
-            alts_erase,
-            tip = "Erase alternative formatting (Alt+X)",
-            keys="Alt+X"
-        )
-    )
-
-    return buttons
-
-addHook("setupEditorButtons", setupEditorButtonsFilter)

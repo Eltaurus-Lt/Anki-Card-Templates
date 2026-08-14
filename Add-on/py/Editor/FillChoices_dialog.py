@@ -23,30 +23,28 @@
 from aqt.qt import *
 from PyQt6 import QtCore, QtWidgets
 
-from aqt.utils import tooltip
-
-def is_choice_string(string):
+def _is_choice_string(string):
     return ("choice" in string or "Choice" in string)
 
-def choices_field_index(array):
+def _choices_field_index(array):
     for i, string in enumerate(array):
-        if is_choice_string(string):
+        if _is_choice_string(string):
             return i
     return len(array)-1
 
-class FillChoices(QDialog):
+class FillSetup(QDialog):
     def __init__(self, notes_fields):
         super().__init__()
 
         # Create widgets
         self.source_label = QLabel("Source Field")
         self.source_field = QComboBox()
-        self.source_field.addItems([field for field in notes_fields if not is_choice_string(field)])
+        self.source_field.addItems([field for field in notes_fields if not _is_choice_string(field)])
 
         self.choices_label = QLabel("Choices Field")
         self.choices_field = QComboBox()
         self.choices_field.addItems(notes_fields)
-        self.choices_field.setCurrentIndex(choices_field_index(notes_fields))
+        self.choices_field.setCurrentIndex(_choices_field_index(notes_fields))
 
         self.radio_label = QLabel("Action")
         self.radio_group = QButtonGroup()

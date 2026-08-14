@@ -17,9 +17,9 @@ def embed_card_info(card):
     # fsrs
     if hasattr(card, "memory_state"):
         if hasattr(card.memory_state, "difficulty"):
-            card_info["difficulty"] = card.memory_state.difficulty 
+            card_info["difficulty"] = card.memory_state.difficulty
         if hasattr(card.memory_state, "stability"): # 90% interval
-            card_info["stability"] = card.memory_state.stability             
+            card_info["stability"] = card.memory_state.stability
     reviewer.web.eval(f"""
             (()=>{{
                 let scriptL = document.getElementById('lt-card-info');

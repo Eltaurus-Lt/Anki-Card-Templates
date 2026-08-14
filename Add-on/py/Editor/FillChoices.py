@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2023-2025 Eltaurus
+# Copyright © 2023-2026 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -21,14 +21,16 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import re
-from . import Dialogs
-from aqt import mw, gui_hooks
+from bs4 import BeautifulSoup
+
+from aqt import mw
 from aqt.qt import *
 from aqt.utils import tooltip
 
-from bs4 import BeautifulSoup
+from .FillChoices_dialog import FillSetup
 
-def removeAlts(fieldContents):
+
+def _remove_alts(fieldContents):
     if fieldContents.find('alt') == -1:
         return fieldContents
 
@@ -45,7 +47,7 @@ def removeAlts(fieldContents):
 
     return str(soup)
 
-def clozeChoices(fieldContents):
+def _cloze_choices(fieldContents):
     # does not interpret clozed hints the same way as Anki and does not order nested clozes with same number the same way
     clozes_stack = []
     clozes_closed = {}
@@ -86,7 +88,39 @@ def clozeChoices(fieldContents):
 
     return set(clozes_closed.values())
 
-def fill_choices(browser):
+
+
+def Exec(notes, options):
+    source_field, choices_field, append = options
+    # Gathering all potential choice options
+    all_choices = set()
+    for note in notes:
+        if source_field in note.keys():
+            mainAns = _remove_alts(note[source_field])
+            cloze_choices = _cloze_choices(mainAns)
+            if cloze_choices:
+                all_choices.update(cloze_choices)
+            else:
+                all_choices.add(mainAns)
+
+    # Filling choices field on each note
+    counter = 0
+    for note in notes:
+        if choices_field not in note.keys():
+            continue
+        choices_filtered = {choice for choice in all_choices if (source_field not in note.keys() or choice != _remove_alts(note[source_field]))}
+
+        if append and note[choices_field]:
+            choices_filtered.update([choice.strip() for choice in note[choices_field].split("|")])
+
+        note[choices_field] = " | ".join([choice for choice in choices_filtered if choice])
+        mw.col.update_note(note)
+        counter += 1
+
+    return counter
+
+
+def Setup(browser):
     notes = [mw.col.get_note(note_id) for note_id in browser.selected_notes()]
 
     if len(notes) < 2:
@@ -101,49 +135,12 @@ def fill_choices(browser):
             if not (field in added or added.add(field)):
                 unique_fields.append(field)
 
+
     # Settings Dialog
-    dialog = Dialogs.FillChoices(unique_fields)
+    dialog = FillSetup(unique_fields)
     if not dialog.exec():
         return
-    source_field, choices_field, append = dialog.get_selected_options()
 
-    # Gathering all potential choice options
-    all_choices = set()
-    for note in notes:
-        if source_field in note.keys():
-            mainAns = removeAlts(note[source_field])
-            cloze_choices = clozeChoices(mainAns)
-            if cloze_choices:
-                all_choices.update(cloze_choices)
-            else:
-                all_choices.add(mainAns)
-
-    # Filling choices field on each note
-    counter = 0
-    for note in notes:
-        if choices_field not in note.keys():
-            continue
-        choices_filtered = {choice for choice in all_choices if (source_field not in note.keys() or choice != removeAlts(note[source_field]))}
-
-        if append and note[choices_field]:
-            choices_filtered.update([choice.strip() for choice in note[choices_field].split("|")])
-
-        note[choices_field] = " | ".join([choice for choice in choices_filtered if choice])
-        mw.col.update_note(note)
-        counter += 1
+    counter = Exec(notes, dialog.get_selected_options())
 
     tooltip(f'Choices filled for {counter} notes')
-    
-
-
-def choices_context_menu(browser):
-    menuC = browser.form.menu_Cards
-    actionC = menuC.addAction("Fill Choices")
-    qconnect(actionC.triggered, lambda: fill_choices(browser))
-
-    menuN = browser.form.menu_Notes
-    actionN = menuN.addAction("Fill Choices")
-    qconnect(actionN.triggered, lambda: fill_choices(browser))
-
-
-gui_hooks.browser_menus_did_init.append(choices_context_menu)
