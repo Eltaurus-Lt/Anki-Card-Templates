@@ -28,9 +28,15 @@ from aqt import mw
 addons_folder = mw.addonManager.addonsFolder()
 addon_name = mw.addonManager.addonFromModule(__name__)
 addon_root = os.path.join(addons_folder, addon_name)
-# addon_url = 
+addon_url = f"/_addons/{addon_name}"
+
 
 # todo: remove unnecessary normpaths
+
+def _collection_folder():
+    if mw.col and mw.col.media: # not available during app startup
+        return mw.col.media.dir()
+
 
 def _path(path, root = addon_root):
     if os.path.isfile(root):
@@ -38,8 +44,21 @@ def _path(path, root = addon_root):
 
     return os.path.normpath(os.path.join(root, os.path.normpath(path)))
 
+
 def _user_path(path):
     return os.path.join("user_files", os.path.normpath(path))
+
+
+def icon(icon_file):
+    return os.path.join(addon_root, "icons", icon_file)
+
+
+def url(file):
+    return f"{addon_url}/{file}"
+
+
+def is_file(file, root = addon_root):
+    return os.path.isfile(_path(file, root))
 
 
 def contents(file_path, root = addon_root):
@@ -58,6 +77,7 @@ def file_list(ext, path, root = addon_root):
     else:
         return set()
 
+
 def user_list(ext, path):
     return file_list(ext, _user_path(path))
 
@@ -73,5 +93,17 @@ def user_save(data, path):
         file.write(data)
 
 
-def icon(icon_file):
-    return os.path.join(addon_root, "icons", icon_file)
+def col_save(data, filename):
+    collection_folder = _collection_folder()
+    if not collection_folder:
+        return
+    try:
+        with open(_path(filename, collection_folder), "w", encoding="utf-8") as file:
+            file.write(data)
+    except Exception as e:
+        return e
+
+
+def col_contents(filename):
+    if collection_folder := _collection_folder():
+        return contents(filename, collection_folder)

@@ -43,7 +43,7 @@ function thumbHTML(deckname) {
 }
 
 // get add-on config
-const configLt = JSON.parse(document.getElementById('lt-config')?.getAttribute('data-config') || "{}");
+const configLt = JSON.parse(document.getElementById('tau-config')?.textContent || "{}");
 const extList = configLt["thumbnail extensions"] || ['jpg', 'png', 'jpeg'];
 
 window.addEventListener('DOMContentLoaded', function () {

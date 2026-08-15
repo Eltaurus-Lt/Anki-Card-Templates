@@ -48,6 +48,8 @@ from .Dialogs.Import import MemriseImportSettings
 # # !progress bars
 # # test
 # # # (old) courses with no headers
+# # # saving/renaming presets
+# # # user themes
 
 
 addons_folder = mw.addonManager.addonsFolder()

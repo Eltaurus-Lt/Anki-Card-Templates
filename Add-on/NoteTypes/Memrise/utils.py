@@ -30,7 +30,7 @@ def version():
 def list_themes(include_default = True):
     stock_themes = files.file_list(".css", "Themes", __file__)
     user_themes = files.user_list(".css", "Memrise Themes")
-    return (["ー"] if include_default else [])  + sorted(stock_themes | user_themes)
+    return (["ー"] if include_default else []) + sorted(stock_themes | user_themes)
 
 def default_theme(theme_list):
     return indexOf(theme_list, "Memrise", indexOf(theme_list, "Anki", 1))
