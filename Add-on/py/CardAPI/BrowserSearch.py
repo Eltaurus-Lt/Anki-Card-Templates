@@ -20,19 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-from aqt import dialogs, gui_hooks, mw
+from aqt import dialogs, mw
 
+from ..utils import pycmd
 
-def search_listener(handled, cmd, context):
-    prefix = "action::search:"
-    if not cmd.startswith(prefix):
-        return handled
-
-    search_query = cmd[len(prefix):]
+def search_callback(query):
     browser = dialogs.open("Browser", mw)
-    browser.form.searchEdit.lineEdit().setText(search_query)
+    browser.form.searchEdit.lineEdit().setText(query)
     browser.onSearchActivated()
-    return (True, None)
 
-
-gui_hooks.webview_did_receive_js_message.append(search_listener)
+pycmd.bridge({"action": {"search": search_callback}})

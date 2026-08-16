@@ -1,1 +1,1 @@
-from . import shortcuts, localStorage, Injectors
+from . import Shortcuts, localStorage, Injectors

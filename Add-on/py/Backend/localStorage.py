@@ -23,7 +23,7 @@
 from aqt import gui_hooks
 from aqt.utils import tooltip
 
-from ..utils import files, inject
+from ..utils import files, inject, pycmd
 
 def inject_js(web_content, context) -> None:
     if localStorage := files.col_contents("_localStorage.json"):
@@ -31,15 +31,12 @@ def inject_js(web_content, context) -> None:
         inject.js_content("localStorage.load.js", web_content)
     inject.js_content("localStorage.save.js", web_content) # listener
 
-def save_bridge(handled, cmd, context):
-    prefix = "save_localStorage::"
-    if not cmd.startswith(prefix):
-        return handled
-
-    if e := files.col_save(cmd[len(prefix):], "_localStorage.json"):
+def save(data_text):
+    if e := files.col_save(data_text, "_localStorage.json"):
         tooltip(f"localStorage save error: {e}")
-        
-    return (True, None)
 
 gui_hooks.webview_will_set_content.append(inject_js)
-gui_hooks.webview_did_receive_js_message.append(save_bridge)
+pycmd.bridge({ "save_localStorage": save })
+
+
+
