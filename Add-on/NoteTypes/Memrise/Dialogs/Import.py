@@ -20,6 +20,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import webbrowser
+
 from aqt.qt import *
 from PyQt6 import QtCore, QtWidgets, QtGui
 from ....py.Dialogs import *
@@ -103,7 +105,7 @@ class MemriseImportSettings(QDialog):
         coursesLable = QLabel("Courses")
         font_metrics = QFontMetrics(coursesLable.font())
         lh = font_metrics.lineSpacing()
-        self.setMinimumWidth(30 * lh)
+        self.setMinimumWidth(36 * lh)
 
         # Main table
         self.coursesTable = QTableWidget(0, 3)
@@ -179,9 +181,9 @@ class MemriseImportSettings(QDialog):
         layout.addWidget(self.coursesTable)
 
         theme_row = QHBoxLayout()
-        theme_row.addWidget(QLabel("Color Theme:")) 
-        theme_row.addWidget(self.theme_drop)
         theme_row.addStretch()
+        theme_row.addWidget(QLabel("<b>Color Theme</b>:")) 
+        theme_row.addWidget(self.theme_drop)
         layout.addLayout(theme_row)
 
         importOptions_group = QGroupBox("Import:")
@@ -208,23 +210,25 @@ class MemriseImportSettings(QDialog):
         tests_group.setLayout(tests_layout)
         layout.addWidget(tests_group)
 
-        tests_row1 = QHBoxLayout()
-        tests_row1.addWidget(QLabel("Audio"))
-        tests_row1.addWidget(self.audioTests_checkbox)
-        tests_row1.addStretch()
-        tests_layout.addLayout(tests_row1)
-
-        tests_row2 = QHBoxLayout()
-        tests_row2.addWidget(QLabel("Typing"))
-        tests_row2.addWidget(self.typingTests_checkbox)
-        tests_row2.addSpacing(1 * lh)
-        tests_row2.addWidget(QLabel("Multiple Choice"))
-        tests_row2.addWidget(self.multichoiceTests_checkbox)
-        tests_row2.addSpacing(1 * lh)
-        tests_row2.addWidget(QLabel("Tapping"))
-        tests_row2.addWidget(self.tappingTests_checkbox)
-        tests_row2.addStretch()
-        tests_layout.addLayout(tests_row2)
+        tests_row = QHBoxLayout()
+        tests_row.addWidget(QLabel("Typing"))
+        tests_row.addWidget(self.typingTests_checkbox)
+        tests_row.addSpacing(1 * lh)
+        tests_row.addWidget(QLabel("Multiple Choice"))
+        tests_row.addWidget(self.multichoiceTests_checkbox)
+        tests_row.addSpacing(1 * lh)
+        tests_row.addWidget(QLabel("Tapping"))
+        tests_row.addWidget(self.tappingTests_checkbox)
+        tests_row.addSpacing(1 * lh)
+        div = QFrame()
+        div.setFrameShape(QFrame.Shape.VLine)
+        div.setFrameShadow(QFrame.Shadow.Sunken)
+        tests_row.addWidget(div)
+        tests_row.addSpacing(1 * lh)
+        tests_row.addWidget(QLabel("Audio Mode"))
+        tests_row.addWidget(self.audioTests_checkbox)
+        tests_row.addStretch()
+        tests_layout.addLayout(tests_row)
 
         # ▼ Advanced
 

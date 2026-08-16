@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os, re, csv, json, webbrowser
+import os, re, csv, json
 
 from aqt import mw
 from aqt.utils import tooltip
@@ -31,9 +31,8 @@ from .Dialogs.Import import MemriseImportSettings
 # todo
 # # D root bug
 # # settings dialog
-# # # selectable rows for batch setup
+# # # selectable rows for batch setup (fix height)
 # # # renamable NTs
-# # # re layout
 # # # *advanced
 # # import
 # # # merge notes
@@ -52,9 +51,6 @@ from .Dialogs.Import import MemriseImportSettings
 # # # user themes
 
 
-addons_folder = mw.addonManager.addonsFolder()
-addon_name = mw.addonManager.addonFromModule(__name__)
-addon_path = os.path.join(addons_folder, addon_name)
 import_folder = os.path.expanduser("~/Downloads")
 
 
