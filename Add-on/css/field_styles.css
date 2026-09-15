@@ -8,3 +8,7 @@
 
 anki-editable {
 }
+
+.alt + br:not(:has( + *)) { /* hide trailing <br>'s */
+    display: none;
+}

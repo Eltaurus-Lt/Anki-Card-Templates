@@ -43,7 +43,7 @@ def format(editor):
         return
     current_note = editor.note
 
-    count_before = count_brs(current_note.fields[current_field])
+    # count_before = count_brs(current_note.fields[current_field])
 
     js_code = """
         (function() {
@@ -110,7 +110,7 @@ def format(editor):
                     tooltip("formatted field content should be selected instead of html code")
                 return
 
-            editor.saveNow(br_cleanup)
+            # editor.saveNow(br_cleanup)
                 
 
         except json.JSONDecodeError:
@@ -132,16 +132,16 @@ def erase(editor):
                 const field = shadowRoot.querySelector('[contenteditable="true"]');
                 // const fieldContent0 = field.innerHTML;
 
-                const altDivs = field.querySelectorAll('div[part="alt"], div.alt');
+                const toRemove = field.querySelectorAll('div[part="alt"], div.alt, div.alt + br:not(:has( + *))');
 
-                altDivs.forEach(altDiv => {
-                    const parent = altDiv.parentNode;
+                toRemove.forEach(removable => {
+                    const parent = removable.parentNode;
 
-                    while (altDiv.firstChild) {
-                        parent.insertBefore(altDiv.firstChild, altDiv);
+                    while (removable.firstChild) {
+                        parent.insertBefore(removable.firstChild, removable);
                     }
 
-                    parent.removeChild(altDiv);
+                    parent.removeChild(removable);
                 });
 
                 const fieldContent = field.innerHTML;
