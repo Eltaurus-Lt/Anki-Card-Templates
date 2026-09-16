@@ -27,22 +27,22 @@ from .NoteTypes import NoteTypeManager
 # # todo:
 # add separator to tool menu
 
-# File Menu
+# # File Menu
 
-import_Memrise = aqt.qt.QAction("Import Memrise Courses...", aqt.mw)
-import_Memrise.triggered.connect(NoteTypes.Memrise.Import)
+# import_Memrise = aqt.qt.QAction("Import Memrise Courses...", aqt.mw)
+# import_Memrise.triggered.connect(NoteTypes.Memrise.Import)
 
-menu = aqt.mw.form.menuCol
-current_actions = menu.actions()
-insert_index = None
-for i, act in enumerate(current_actions):
-	if "Import" in act.text():
-		insert_index = i + 1
-		break
-if insert_index is not None:
-	menu.insertAction(current_actions[insert_index], import_Memrise)
-else:
-	menu.addAction(import_Memrise)
+# menu = aqt.mw.form.menuCol
+# current_actions = menu.actions()
+# insert_index = None
+# for i, act in enumerate(current_actions):
+# 	if "Import" in act.text():
+# 		insert_index = i + 1
+# 		break
+# if insert_index is not None:
+# 	menu.insertAction(current_actions[insert_index], import_Memrise)
+# else:
+# 	menu.addAction(import_Memrise)
 
 
 
