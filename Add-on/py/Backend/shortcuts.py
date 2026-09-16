@@ -1,7 +1,7 @@
 # This script is part of the Lt-Cards Add-on for Anki.
 # Source: github.com/Eltaurus-Lt/Anki-Card-Templates
 # 
-# Copyright © 2023-2024 Eltaurus
+# Copyright © 2023-2026 Eltaurus
 # Contact: 
 #     Email: Eltaurus@inbox.lt
 #     GitHub: github.com/Eltaurus-Lt
@@ -23,34 +23,57 @@
 from anki.hooks import wrap
 from aqt import mw
 from aqt.reviewer import Reviewer
-#from aqt.qt import Qt # slows down deck loading
 
-config = mw.addonManager.getConfig(__name__)
+def dispatch(key_event):
+    aqt2js_mapping = {
+        " ": (" ", "Space"),
+        "16777220": ("Enter", "Enter"), # return
+        "16777221": ("Enter", "Enter"), # enter
+    }
 
-def removeShortcuts(self, _old):
-    actionAliases = {
-        "Enter/Space": self.onEnterKey
-        }
-    
-    # keysToRemove = {
-    #     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-    #     # Qt.Key.Key_Enter, Qt.Key.Key_Return, 
-    #     # Qt.Key.Key_Space # does not work?
-    #     }
-    # actionsToRemove = {
-    #     self.onEnterKey, # Enter
-    #     #self.on_pause_audio, # 5
-    #     #self.on_seek_backward, # 6
-    #     #self.on_seek_forward # 7
-    #     }
-    keysToRemove = {key for key in config["reserved keys"] if key not in actionAliases}
-    actionsToRemove = {actionAliases[key] for key in config["reserved keys"] if key in actionAliases}
+    keyCombination = [key.lower() for key in str(key_event).split("+")] # for compound shortcuts, e.g. Ctrl+Shift+X
+    baseKey = keyCombination[-1]
 
+    # no escaping (for performance), so certain special characters wouldn't work
+    dispatch_js = f"""
+    (function() {{
+        const event = {{
+            key: "{aqt2js_mapping.get(baseKey, (None, None))[0] or baseKey}",
+            code: "{aqt2js_mapping.get(baseKey, (None, None))[1] or (f"Key{baseKey.upper()}" if baseKey.isalpha() and len(baseKey) == 1 else baseKey)}",
+            ctrlKey: {"true" if "ctrl" in keyCombination or "control" in keyCombination else "false"},
+            shiftKey: {"true" if "shift" in keyCombination else "false"},
+            altKey: {"true" if "alt" in keyCombination else "false"},
+            metaKey: {"true" if "meta" in keyCombination or "cmd" in keyCombination or "win" in keyCombination else "false"},
+            bubbles: true,
+            cancelable: true
+        }};
+        
+        document.dispatchEvent(new KeyboardEvent('keydown', event));
+        // document.dispatchEvent(new KeyboardEvent('keyup', event));
+    }})();
+    """
+
+    mw.reviewer.web.eval(dispatch_js)
+
+
+def keywrap(key, state: None):
+    def conditionedCallback():
+        if (
+            mw.reviewer and
+            (not state or mw.reviewer.state == state) and
+            mw.reviewer.card and
+            "(Lτ)" in mw.reviewer.card.model()["name"]
+        ):
+            dispatch(key[0]) # pass key event to webview
+        else:
+            key[1]() # trigger stock anki callback
+
+    return (key[0], conditionedCallback)
+
+def passShortcuts(self, _old):
     shortcuts = _old(self)
-    shortcuts = [key for key in shortcuts if key[0] not in keysToRemove]
-    shortcuts = [key for key in shortcuts if key[1] not in actionsToRemove]
-
+    shortcuts = [keywrap(key, "question") if (isinstance(key[0], str) and key[0] in "1234567890") else key for key in shortcuts]
+    shortcuts = [keywrap(key, "answer") if key[1] == self.onEnterKey else key for key in shortcuts]
     return shortcuts
 
-
-Reviewer._shortcutKeys = wrap(Reviewer._shortcutKeys, removeShortcuts, "around")
+Reviewer._shortcutKeys = wrap(Reviewer._shortcutKeys, passShortcuts, "around")
