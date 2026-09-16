@@ -28,23 +28,16 @@ function stripNumbering(namestring) {
   return namestring.replace(/^L?(\d+\.)+\s*/g, "");
 }
 
-function retry(imgL) {
-  const currentExt = imgL.src.split('.').pop();
-  const i = extList.indexOf(currentExt) + 1;
-  if (i < extList.length) {
-    imgL.src = imgL.src.slice(0, -currentExt.length) + extList[i];
-  } else {
-    imgL.remove();
-  }
-}
-function thumbHTML(deckname) {
-  if (typeof(extList) === 'undefined' || !extList[0]) return ``;
-  return `<img src='_thumb_${deckname}.{extList[0]}' height="0" width="0" onload="this.classList.add('deckthumb');this.removeAttribute('height');this.removeAttribute('width')" onerror="retry(this)"\>`;
+function thumbHTML(thumbFile) {
+  if (thumbFile) {
+    return `<img src='${thumbFile}' class='deckthumb'\>`;
+  } else
+    return ``;
 }
 
 // get add-on config
 const configLt = JSON.parse(document.getElementById('tau-config')?.textContent || "{}");
-const extList = configLt["thumbnail extensions"] || ['jpg', 'png', 'jpeg'];
+const thumbFiles = JSON.parse(document.getElementById('tau-thumbs')?.textContent || "{}");
 
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -66,8 +59,8 @@ window.addEventListener('DOMContentLoaded', function () {
         deckL.classList.add('mem-level');
         deckL.setAttribute("data-levelN", levelN);
         deckL.innerHTML = strippedName;
-      } else {
-        deckL.innerHTML = thumbHTML(strippedName) + strippedName;
+      } else if (thumbFiles[deckname]) {
+        deckL.innerHTML = thumbHTML(thumbFiles[deckname]) + strippedName;
       }
     }
   });
@@ -86,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function () {
       if (levelN) {
         return `<span class='sublevel' data-levelN="${levelN}">${strippedName}</span>`;
       }
-      return `${thumbHTML(strippedName)}<span class='subdeck'>${strippedName}</span>`;
+      return `${thumbHTML(thumbFiles[subname])}<span class='subdeck'>${strippedName}</span>`;
     }).join('<span class="divider">::</span>');
     if ((configLt["numbered decks"] || configLt["deck styling"]) && isNumbered) {
       headerL.classList.add('numbered');

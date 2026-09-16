@@ -107,3 +107,7 @@ def col_save(data, filename):
 def col_contents(filename):
     if collection_folder := _collection_folder():
         return contents(filename, collection_folder)
+
+def col_file(filename):
+    if (collection_folder := _collection_folder()) and is_file(filename, collection_folder):
+        return filename

@@ -23,7 +23,7 @@
 from aqt import mw, gui_hooks
 from aqt.webview import WebContent
 
-from ..utils import inject
+from ..utils import inject, files
 
 
 ## Data
@@ -110,3 +110,25 @@ def field_injector(editor):
 gui_hooks.webview_will_set_content.append(window_injector)
 # gui_hooks.editor_did_init.append(field_injector)
 gui_hooks.editor_did_load_note.append(field_injector)
+
+
+
+## Deck thumbnails
+
+def thumbnail_injector(web_content: WebContent, context: None):
+    if not isinstance(context, (DeckBrowser, Overview)):
+        return
+
+    decks = [deck.split("::")[-1] for deck in mw.col.decks.all_names()]
+    thumbs = {}
+
+    for deck in decks:
+        for ext in config["thumbnail extensions"]:
+            if thumb := files.col_file( f"_thumb_{deck}.{ext}" ):
+                thumbs[deck] = thumb
+                break
+
+    inject.json_content(thumbs, web_content, tag_id="tau-thumbs")
+
+if config.get("deck styling") and config.get("thumbnail extensions"):
+    gui_hooks.webview_will_set_content.append(thumbnail_injector)
