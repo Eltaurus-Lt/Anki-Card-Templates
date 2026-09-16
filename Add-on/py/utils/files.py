@@ -109,5 +109,5 @@ def col_contents(filename):
         return contents(filename, collection_folder)
 
 def col_file(filename):
-    if (collection_folder := _collection_folder()) and is_file(filename, collection_folder):
-        return filename
+    if collection_folder := _collection_folder():
+        return is_file(filename, collection_folder)

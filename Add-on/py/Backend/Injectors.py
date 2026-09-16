@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import re
 from aqt import mw, gui_hooks
 from aqt.webview import WebContent
 
@@ -123,9 +124,11 @@ def thumbnail_injector(web_content: WebContent, context: None):
     thumbs = {}
 
     for deck in decks:
+        thumb_basename = f"_thumb_{re.sub(r"^L?(\d+\.)+\s*", "", deck)}" # strip numbering
         for ext in config["thumbnail extensions"]:
-            if thumb := files.col_file( f"_thumb_{deck}.{ext}" ):
-                thumbs[deck] = thumb
+            thumb_filename = f"{thumb_basename}.{ext}"
+            if files.col_file( thumb_filename ):
+                thumbs[deck] = thumb_filename
                 break
 
     inject.json_content(thumbs, web_content, tag_id="tau-thumbs")
