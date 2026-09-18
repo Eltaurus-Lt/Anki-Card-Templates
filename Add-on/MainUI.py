@@ -21,8 +21,10 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import aqt
+from aqt import gui_hooks
 from . import NoteTypes
 from .NoteTypes import NoteTypeManager
+from .py.Backend import Thumbnails
 
 # # todo:
 # add separator to tool menu
@@ -55,3 +57,21 @@ aqt.mw.form.menuTools.addAction(new_MemriseNT)
 # tools_list_menu = aqt.qt.QMenu('Tau Cards', aqt.mw)
 # tools_list_menu.addAction(action)
 # aqt.mw.form.menuTools.addMenu(tools_list_menu)
+
+
+
+# Gear Menu (Decks)
+
+def thumbnail_action(menu, did):
+	did = str(did)
+	if did in Thumbnails.dic:
+		action = aqt.qt.QAction("Remove Thumbnail", aqt.mw)
+		action.triggered.connect(lambda: Thumbnails.remove(did))
+		# refresh
+	else:
+		action = aqt.qt.QAction("Set Thumbnail", aqt.mw)
+		action.triggered.connect(lambda: Thumbnails.set(did))
+
+	menu.insertAction(menu.actions()[1], action)
+
+gui_hooks.deck_browser_will_show_options_menu.append(thumbnail_action)

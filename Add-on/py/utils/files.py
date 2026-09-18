@@ -31,6 +31,7 @@ addon_root = os.path.join(addons_folder, addon_name)
 addon_url = f"/_addons/{addon_name}"
 
 
+# todo: define collection folder on main_window_did_init => remove from col_ functions
 # todo: remove unnecessary normpaths
 
 def _collection_folder():
@@ -111,3 +112,12 @@ def col_contents(filename):
 def col_file(filename):
     if collection_folder := _collection_folder():
         return is_file(filename, collection_folder)
+
+def col_copy(source_path, filename):
+    if collection_folder := _collection_folder():
+        import shutil
+        shutil.copy(source_path, os.path.join(collection_folder, filename))
+
+def col_delete(filename):
+    if collection_folder := _collection_folder():
+        os.remove(os.path.join(collection_folder, filename))
