@@ -22,6 +22,7 @@
 
 import re, json
 from aqt import mw
+from aqt.utils import tooltip
 from ..utils import console
 
 def format_legacy(editor):
