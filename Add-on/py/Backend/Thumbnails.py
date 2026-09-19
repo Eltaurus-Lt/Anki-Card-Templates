@@ -35,10 +35,12 @@ def _load():
     global dic
     contents = files.col_contents("_deckThumbnails.json") or "{}"
     dic = json.loads(contents)
+    mw.deckBrowser.refresh()
 
 def _save():
     global dic
     files.col_save(json.dumps(dic), "_deckThumbnails.json")
+    mw.deckBrowser.refresh()
 
 gui_hooks.main_window_did_init.append(_load)
 

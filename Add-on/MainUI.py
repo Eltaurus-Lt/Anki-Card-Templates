@@ -67,7 +67,6 @@ def thumbnail_action(menu, did):
 	if did in Thumbnails.dic:
 		action = aqt.qt.QAction("Remove Thumbnail", aqt.mw)
 		action.triggered.connect(lambda: Thumbnails.remove(did))
-		# refresh
 	else:
 		action = aqt.qt.QAction("Set Thumbnail", aqt.mw)
 		action.triggered.connect(lambda: Thumbnails.set(did))

@@ -116,22 +116,34 @@ gui_hooks.editor_did_load_note.append(field_injector)
 
 ## Deck thumbnails
 
+from . import Thumbnails
+
 def thumbnail_injector(web_content: WebContent, context: None):
     if not isinstance(context, (DeckBrowser, Overview)):
         return
 
-    decks = [deck.split("::")[-1] for deck in mw.col.decks.all_names()]
+    decks = mw.col.decks.all_names_and_ids()
+    for deck in decks:
+        deck.name = deck.name.split("::")[-1]
+
     thumbs = {}
 
     for deck in decks:
-        thumb_basename = f"_thumb_{re.sub(r"^L?(\d+\.)+\s*", "", deck)}" # strip numbering
+        if str(deck.id) in Thumbnails.dic:
+            thumbs[deck.name] = Thumbnails.dic[str(deck.id)]
+            continue
+
+        if not config.get("thumbnail extensions"):
+            continue
+
+        thumb_basename = f"_thumb_{re.sub(r"^L?(\d+\.)+\s*", "", deck.name)}" # strip numbering
         for ext in config["thumbnail extensions"]:
             thumb_filename = f"{thumb_basename}.{ext}"
             if files.col_file( thumb_filename ):
-                thumbs[deck] = thumb_filename
+                thumbs[deck.name] = thumb_filename
                 break
 
     inject.json_content(thumbs, web_content, tag_id="tau-thumbs")
 
-if config.get("deck styling") and config.get("thumbnail extensions"):
+if config.get("deck styling"):
     gui_hooks.webview_will_set_content.append(thumbnail_injector)
