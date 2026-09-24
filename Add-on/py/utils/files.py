@@ -31,7 +31,6 @@ addon_root = os.path.join(addons_folder, addon_name)
 addon_url = f"/_addons/{addon_name}"
 
 
-# todo: define collection folder on main_window_did_init => remove from col_ functions
 # todo: remove unnecessary normpaths
 
 def _collection_folder():
