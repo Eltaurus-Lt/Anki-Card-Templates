@@ -100,7 +100,6 @@ class MemriseImportSettings(QDialog):
         ## Widgets
 
         self.setWindowTitle("Memrise Course Import")
-        console.log(files.icon("import.ico"))
         self.setWindowIcon(QtGui.QIcon(files.icon("mem-import.ico")))
         coursesLable = QLabel("Courses")
         font_metrics = QFontMetrics(coursesLable.font())
@@ -225,7 +224,7 @@ class MemriseImportSettings(QDialog):
         div.setFrameShadow(QFrame.Shadow.Sunken)
         tests_row.addWidget(div)
         tests_row.addSpacing(1 * lh)
-        tests_row.addWidget(QLabel("Audio Mode"))
+        tests_row.addWidget(QLabel("Audio Questions"))
         tests_row.addWidget(self.audioTests_checkbox)
         tests_row.addStretch()
         tests_layout.addLayout(tests_row)
@@ -281,7 +280,7 @@ class MemriseImportSettings(QDialog):
         # populate courses table
         self.courseTabs = courses
         for course in courses:
-            self.add_courseRow(f"{"::".join([*course["deck tree"], course["proper name"]])} [{course["id"]}]")
+            self.add_courseRow(f"{"::".join([*course["deck tree"], course["name"]])} [{course["id"]}]")
 
 
     def course_options(self):
