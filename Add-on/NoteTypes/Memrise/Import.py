@@ -26,11 +26,17 @@ from aqt import mw
 from aqt.utils import tooltip
 
 from ...py.Dialogs import QBatchDialog
+from ...py.Backend import Thumbnails
 from .Dialogs.Import import MemriseImportSettings
+
+from ...py.utils import console
 
 # todo
 # # D root bug
+# # aurora course bug
 # # fix root folder definition
+# # thumbnail refresh without reset
+
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
 # # # renamable NTs
@@ -41,7 +47,6 @@ from .Dialogs.Import import MemriseImportSettings
 
 # # import
 # # # merge notes
-# # # deck thumbnails
 # # # author ava
 # # # media (renames table)
 # # # create NTs
@@ -321,7 +326,7 @@ def getMeta(course):
             if ext.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tiff"}:
                 continue
             if name.startswith(prefix):
-                return file_name
+                return full_path
 
     meta["thumbnail"] = find_img_file(course["name"])
     if meta["author"]:
@@ -366,12 +371,14 @@ def Import(*args):
 
             # create decks with descriptions
             full_deck_name = course["deck"] # todo: or course["name"]
-            deck = mw.col.decks.get(mw.col.decks.id(full_deck_name))  # creates the deck (with parents) if new
-            if deck:
+            did = mw.col.decks.id(full_deck_name) # creates the deck (with parents) if new
+            if (deck := mw.col.decks.get(did)):
                 course_meta = getMeta(course)
                 if description := formatDescription(course_meta):
                     deck["desc"] = description
                     mw.col.decks.save(deck)
+                if course_meta.get("thumbnail"):
+                    Thumbnails.set(did, course_meta["thumbnail"])
             else:
                 tooltip(f"error creating course deck [{course["id"]}]")
                 continue
@@ -404,5 +411,4 @@ def Import(*args):
             # write history
             ... # todo
 
-    # deck screen refresh
-    mw.reset()
+    mw.deckBrowser.refresh()

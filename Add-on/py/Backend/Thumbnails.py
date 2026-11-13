@@ -45,14 +45,16 @@ def _save():
 gui_hooks.main_window_did_init.append(_load)
 
 
-def set(did):
+def set(did, thumb_filename = ""):
     global dic
-    thumb_filename, _ = QFileDialog.getOpenFileName(
-        mw,
-        "Select image file",
-        "",
-        "Image Files (*.png *.jpg *.jpeg *.webp *.gif);;All Files (*.*)"
-    )
+
+    if not thumb_filename:
+        thumb_filename, _ = QFileDialog.getOpenFileName(
+            mw,
+            "Select image file",
+            "",
+            "Image Files (*.png *.jpg *.jpeg *.webp *.gif);;All Files (*.*)"
+        )
     if not thumb_filename:
         return
     ext = QFileInfo(thumb_filename).suffix()
