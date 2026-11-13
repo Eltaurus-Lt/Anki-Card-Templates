@@ -1,0 +1,56 @@
+.description:has(.course-author),
+.description:has(.course-description) {
+    padding: 1em 2em;
+    margin-top: -4em;
+    margin-bottom: 1em;
+    border-radius: var(--border-radius-large);
+
+    max-width: 500px;
+
+    /*
+    background: #2b3648;
+    --border: rgba(14%, 48%, 67%, .5);
+    --fg: white;
+    --fg-subtle: white;
+    */
+}
+
+
+.course-author {
+    text-align: right;
+}
+.course-author:has(+ .course-description) {
+    text-align: right;
+}
+
+.course-author > span:first-child {
+    font-size: 13px;
+}
+
+.course-author img {
+    border: #fff solid 1px;
+    border-radius: 5px;
+    max-height: 1.85em;
+    padding: 0 .1em;
+    vertical-align: bottom;
+}
+
+.author-name {
+    color: var(--fg);
+    font-weight: bold;
+}
+
+
+.course-description {
+    padding: .5em 0;
+
+    /*font-size: 16px;*/
+    text-align: justify;
+
+    color: var(--fg);
+    border-top: 2px solid var(--border);
+}
+
+.course-author + .course-description {
+    margin-top: .5em;
+}

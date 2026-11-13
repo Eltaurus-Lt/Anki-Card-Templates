@@ -23,12 +23,14 @@
 import os, re, csv, json
 
 from aqt import mw
-from aqt.utils import tooltip
+from aqt.qt import QFileInfo
 
 from ...py.Dialogs import QBatchDialog
 from ...py.Backend import Thumbnails
+from ...py.utils import files
 from .Dialogs.Import import MemriseImportSettings
 
+from aqt.utils import tooltip
 from ...py.utils import console
 
 # todo
@@ -36,18 +38,13 @@ from ...py.utils import console
 # # aurora course bug
 # # fix root folder definition
 # # thumbnail refresh without reset
-
-# # settings dialog
-# # # selectable rows for batch setup (fix height)
-# # # renamable NTs
-# # # *advanced
-### move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
+# # course deck from info.md (preserve punctuation)
+# # author from course name as fallback
 
 # learnable id == in different directions??
 
 # # import
 # # # merge notes
-# # # author ava
 # # # media (renames table)
 # # # create NTs
 # # # create level subdecks
@@ -57,18 +54,24 @@ from ...py.utils import console
 # # # fill
 # # # Audio Q
 # # # convert img and audio 
-# # description.css
 # # import options
 # # !progress bar
-# # # ... todos
-# # # author from course name as fallback
-# # # mw.reset()
+
+
+# # settings dialog
+# # # selectable rows for batch setup (fix height)
+# # # renamable NTs
+# # # *advanced
+### move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
+
 # # test
 # # # partially deleted meta
 # # # (old) courses with no headers
 # # # saving/renaming presets
 # # # user themes
 # # # selected folders have no courses
+# # # ... todos
+# # # mw.reset()
 
 
 import_folder = os.path.expanduser("~/Downloads")
@@ -335,16 +338,16 @@ def getMeta(course):
     return meta
 
 def formatDescription(meta):
-    description = ""
-    if meta.get("description"):
-        description += f"<div class='course-description'>{meta["description"]}</div>"
     author_html = ""
-    if meta.get("ava"):
-        author_html += f"<img src='{meta["ava"]}'> "
     if meta.get("author"):
+        if meta.get("ava"):
+            author_html += f"<img src='{meta["ava"]}'> "
         author_html += f"<span class='author-name'>{meta["author"]}</span>"
+    description = ""
     if author_html:
         description += f"<div class='course-author'><span>by</span> {author_html}</div>"
+    if meta.get("description"):
+        description += f"<div class='course-description'>{meta["description"]}</div>"
     return description
 
 
@@ -374,11 +377,16 @@ def Import(*args):
             did = mw.col.decks.id(full_deck_name) # creates the deck (with parents) if new
             if (deck := mw.col.decks.get(did)):
                 course_meta = getMeta(course)
+                if course_meta.get("thumbnail"):
+                    Thumbnails.set(did, course_meta["thumbnail"])
+                if course_meta.get("ava"):
+                    ava_ext = QFileInfo(course_meta["ava"]).suffix()
+                    ava_filename = f"_{course_meta["author"]}_memuser.{ava_ext}"
+                    files.col_copy(course_meta["ava"], ava_filename)
+                    course_meta["ava"] = ava_filename
                 if description := formatDescription(course_meta):
                     deck["desc"] = description
                     mw.col.decks.save(deck)
-                if course_meta.get("thumbnail"):
-                    Thumbnails.set(did, course_meta["thumbnail"])
             else:
                 tooltip(f"error creating course deck [{course["id"]}]")
                 continue
