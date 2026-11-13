@@ -30,6 +30,7 @@ from .Dialogs.Import import MemriseImportSettings
 
 # todo
 # # D root bug
+# # fix root folder definition
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
 # # # renamable NTs
@@ -40,22 +41,29 @@ from .Dialogs.Import import MemriseImportSettings
 
 # # import
 # # # merge notes
+# # # deck thumbnails
+# # # author ava
 # # # media (renames table)
-# # # create decks
 # # # create NTs
-# # # meta
+# # # create level subdecks
 # # # tags
 # # # revlog
 # # choices
 # # # fill
 # # # Audio Q
 # # # convert img and audio 
+# # description.css
+# # import options
 # # !progress bar
 # # # ... todos
+# # # author from course name as fallback
+# # # mw.reset()
 # # test
+# # # partially deleted meta
 # # # (old) courses with no headers
 # # # saving/renaming presets
 # # # user themes
+# # # selected folders have no courses
 
 
 import_folder = os.path.expanduser("~/Downloads")
@@ -72,14 +80,17 @@ def selectCourses():
             rel_path = os.path.relpath(full_path, import_folder).split(os.sep)
 
             deck_tree = rel_path[:-1]
+            course_folder = None
 
             if len(deck_tree) > 0 and deck_tree[-1].startswith(short_tab[0]):
+                course_folder = os.path.join(import_folder, *deck_tree)
                 deck_tree.pop()
 
             return {
                     "name": short_tab[0],
                     "id": short_tab[1],
-                    "deck tree": deck_tree,
+                    "deck_tree": deck_tree,
+                    "folder": course_folder,
                     "csv path": full_path
                     }
 
@@ -113,8 +124,8 @@ def selectCourses():
     courses = [course for path in selected_paths for course in courseScan(path)]
 
     if not courses:
-       tooltip("No courses found in the selection")
-       return
+        tooltip("No courses found in the selection")
+        return
 
     return courses
 
@@ -282,16 +293,66 @@ def mergeIntoNotes(cards):
     return notes
 
 
+def getMeta(course):
+    meta = {}
+    
+    if not course["folder"] or not os.path.isfile(meta_path := os.path.join(course["folder"], "info.md")):
+        tooltip("no meta")
+        return meta
+
+    meta["author"] = None
+    meta["description"] = ""
+    desc_started = False
+    with open(meta_path, newline="", encoding="utf-8") as meta_file:
+        for line in meta_file.readlines():
+            if line.startswith("### by"):
+                meta["author"] = meta["author"] or line[len("### by"):].strip().strip("_")
+            if line.strip() and not line.startswith("#"):
+                desc_started = True
+            if desc_started:
+                meta["description"] += line
+
+    def find_img_file(prefix):
+        for file_name in os.listdir(course["folder"]):
+            full_path = os.path.join(course["folder"], file_name)
+            if not os.path.isfile(full_path):
+                continue
+            name, ext = os.path.splitext(file_name)
+            if ext.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tiff"}:
+                continue
+            if name.startswith(prefix):
+                return file_name
+
+    meta["thumbnail"] = find_img_file(course["name"])
+    if meta["author"]:
+        meta["ava"] = find_img_file(meta["author"])
+
+    return meta
+
+def formatDescription(meta):
+    description = ""
+    if meta.get("description"):
+        description += f"<div class='course-description'>{meta["description"]}</div>"
+    author_html = ""
+    if meta.get("ava"):
+        author_html += f"<img src='{meta["ava"]}'> "
+    if meta.get("author"):
+        author_html += f"<span class='author-name'>{meta["author"]}</span>"
+    if author_html:
+        description += f"<div class='course-author'><span>by</span> {author_html}</div>"
+    return description
+
 
 def Import(*args):
 
-    # courses = [...{ name (str), id (int_str), deck tree [...folder (str)], csv path (str) } ]
+    # courses = [...{ name (str), id (int_str), deck_tree [str], folder (str), csv path (str) } ]
     courses = selectCourses()
 
-    # course_options = [...{ name (str), id (int_str), deck tree [...folder (str)], csv path (str), Note Type (str), NT_isNew (✓) } ]
+    # course_options = [...{ name (str), id (int_str), deck_tree [str], folder (str), csv path (str), Note Type (str), NT_isNew (✓) } ]
     # import_options = { theme (str), import::meta (✓), import::media (✓), import::revlog (✓), tests::audio (✓), tests::typing (✓), tests::multichoice (✓), tests::tapping (✓), advanced::... (todo) }
-    course_options, import_options = selectOptions(courses)
+    course_options, import_options = selectOptions(courses) or (None, None)
     if not course_options or not import_options: return
+
 
     # noteType_courses = { ...noteType: { name (str), is_new (✓), courses: [...course] } }
     noteType_courses = groupByNoteTypes(course_options)
@@ -302,11 +363,20 @@ def Import(*args):
         for course in noteType["courses"]:
             # cards = [...{ Fields: { field: content (str) }, Choices: {...field: [...choices (str)] }, Direction (str), Level (str), Tags (str), History {mem} } ]
             cards, card_fields, card_types = parseCourse(course, import_options)
-            
+
+            # create decks with descriptions
+            full_deck_name = course["deck"] # todo: or course["name"]
+            deck = mw.col.decks.get(mw.col.decks.id(full_deck_name))  # creates the deck (with parents) if new
+            if deck:
+                course_meta = getMeta(course)
+                if description := formatDescription(course_meta):
+                    deck["desc"] = description
+                    mw.col.decks.save(deck)
+            else:
+                tooltip(f"error creating course deck [{course["id"]}]")
+                continue
+
             rename_dict = copyMedia(course)
-            # create decks
-            # copy deck meta
-            ... #todo
 
             # notes = [...{ Fields: { ...field: content (str) }, Choices: {...field: [...choices (str)] }, Cards: { ...Direction: { Level (str), History {mem} } }, Tags (str) } ]
             card_notes = mergeIntoNotes(cards)
@@ -319,6 +389,7 @@ def Import(*args):
         # create note type
         if noteType["is_new"]:
             ... #todo
+            # redefine note type name to protect from duplicates
 
         for note in notes:
             # create note (with flags)
@@ -328,9 +399,10 @@ def Import(*args):
             ... # todo
 
             # move cards into decks
-            # if levelsubdecks and not level_deck:
-            #   create deck
             ... # todo
 
             # write history
             ... # todo
+
+    # deck screen refresh
+    mw.reset()

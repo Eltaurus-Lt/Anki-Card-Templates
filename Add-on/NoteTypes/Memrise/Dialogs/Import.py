@@ -279,8 +279,9 @@ class MemriseImportSettings(QDialog):
 
         # populate courses table
         self.courseTabs = courses
-        for course in courses:
-            self.add_courseRow(f"{"::".join([*course["deck tree"], course["name"]])} [{course["id"]}]")
+        for course in self.courseTabs:
+            course["deck"] = "::".join([*course["deck_tree"], course["name"]])
+            self.add_courseRow(f"{course["deck"]} [{course["id"]}]")
 
 
     def course_options(self):
