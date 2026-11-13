@@ -34,9 +34,8 @@ from aqt.utils import tooltip
 from ...py.utils import console
 
 # todo
-# # D root bug
-# # aurora course bug
 # # fix root folder definition
+# # D root bug
 # # thumbnail refresh without reset
 # # course deck from info.md (preserve punctuation)
 # # author from course name as fallback
@@ -54,7 +53,6 @@ from ...py.utils import console
 # # # fill
 # # # Audio Q
 # # # convert img and audio 
-# # import options
 # # !progress bar
 
 
@@ -70,6 +68,7 @@ from ...py.utils import console
 # # # saving/renaming presets
 # # # user themes
 # # # selected folders have no courses
+# # import options
 # # # ... todos
 # # # mw.reset()
 
@@ -187,16 +186,19 @@ def parseCourse(course, import_options):
 
     with open(course["csv path"], newline="", encoding="utf-8") as csv_file:
         for row in csv.reader(csv_file):
+            # empty line
+            if not row:
+                continue
 
             # file headers
-            row0 = row[0][1:] if row[0].startswith("\ufeff") else row[0] # removing BOM
-            if row0.startswith("#"):
-                if row0.startswith("#tags column:"):
-                    tags_col = int(row0[len("#tags column:"):]) - 1
-                elif row0.startswith("#columns:"):
+            cell0 = row[0][1:] if row[0].startswith("\ufeff") else row[0] # removing BOM
+            if cell0.startswith("#"):
+                if cell0.startswith("#tags column:"):
+                    tags_col = int(cell0[len("#tags column:"):]) - 1
+                elif cell0.startswith("#columns:"):
                     for i in range(len(row)):
                         # column headers
-                        header = row[i] if i > 0 else row0[len("#columns:"):]
+                        header = row[i] if i > 0 else cell0[len("#columns:"):]
                         columns.append(header)
                         if header == "Learnable":
                             learn_col = i
