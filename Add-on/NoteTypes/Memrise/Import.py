@@ -29,6 +29,7 @@ from ...py.Dialogs import QBatchDialog
 from ...py.Backend import Thumbnails
 from ...py.utils import files
 from .Dialogs.Import import MemriseImportSettings
+from . import Create
 
 from aqt.utils import tooltip
 from ...py.utils import console
@@ -37,24 +38,30 @@ from ...py.utils import console
 # # fix root folder definition
 # # D root bug
 # # thumbnail refresh without reset
+# # # expand all decks that are not levels
 # # course deck from info.md (preserve punctuation)
 # # author from course name as fallback
+# # max deckname length (overview screen)
 
 # learnable id == in different directions??
 
 # # import
-# # # merge notes
-# # # media (renames table)
-# # # create NTs
+# # # direction flag fields
+# # # Audio Q
 # # # create level subdecks
 # # # tags
 # # # revlog
+# # # # preexisting NTs
 # # choices
 # # # fill
-# # # Audio Q
 # # # convert img and audio 
-# # !progress bar
 
+
+# # import
+# # # merge notes
+# # # media (renames table)
+# # !progress bar
+# # autofill onscreen keyboard
 
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
@@ -181,8 +188,8 @@ def parseCourse(course, import_options):
     columns = []
 
     cards = []
-    card_fields = []
-    card_types = []
+    course_fields = []
+    course_directions = []
 
     with open(course["csv path"], newline="", encoding="utf-8") as csv_file:
         for row in csv.reader(csv_file):
@@ -235,8 +242,8 @@ def parseCourse(course, import_options):
                             card["Choices"][meta["definition"]] = set(temp)
                 except:
                     tooltip("invalid learnable meta json")
-            if card["Direction"] not in card_types:
-                card_types.append(card["Direction"])
+            if card["Direction"] not in course_directions:
+                course_directions.append(card["Direction"])
             card["History"] = {}
 
             for i in range(len(row)):
@@ -262,14 +269,14 @@ def parseCourse(course, import_options):
                 elif i == prog_col or i == meta_col:
                     continue
                 
-                if field not in card_fields:
-                    card_fields.append(field)
+                if field not in course_fields:
+                    course_fields.append(field)
                 if row[i]:
                     card["Fields"][field] = row[i]
 
             cards.append(card)
 
-    return cards, card_fields, card_types
+    return cards, course_fields, course_directions
 
 
 def copyMedia(course):
@@ -370,9 +377,10 @@ def Import(*args):
     for noteType in noteType_courses.values():
         fields = []
         notes = []
+        directions = []
         for course in noteType["courses"]:
             # cards = [...{ Fields: { field: content (str) }, Choices: {...field: [...choices (str)] }, Direction (str), Level (str), Tags (str), History {mem} } ]
-            cards, card_fields, card_types = parseCourse(course, import_options)
+            cards, course_fields, course_directions = parseCourse(course, import_options)
 
             # create decks with descriptions
             full_deck_name = course["deck"] # todo: or course["name"]
@@ -399,14 +407,54 @@ def Import(*args):
             card_notes = mergeIntoNotes(cards)
 
             notes += [mediaRename(note, rename_dict) for note in card_notes]
-            fields += [field for field in card_fields if field not in fields]
+            fields += [field for field in course_fields if field not in fields]
+            directions += [direction for direction in course_directions if direction not in directions]
 
-        # todo
-        flag_fields = []
-        # create note type
+
+        # setup the note type
+        model = None
+        card_types = []
         if noteType["is_new"]:
-            ... #todo
-            # redefine note type name to protect from duplicates
+            # create new note type
+            field_data = [{
+                "Name": field,
+                "large": False,
+                "back": True,
+                "math": False,
+                "static": "",
+                "random": "",
+            } for field in fields]
+
+            for direction in directions:
+                Q_field, A_field = direction.split(" → ", 1)
+                Extra_field = next((field for field in fields if field not in [Q_field, A_field, "Audio", "Image"]), "ー")
+
+                input_mode = "Typing"
+                card_types.append({
+                    "Name": f"{direction} ({input_mode})",
+                    "Q": Q_field,
+                    "A": A_field,
+                    "in": input_mode,
+                    "prompt": "Type the correct answer" if input_mode == "Typing" else "Pick the correct answer",
+                    "Extra": Extra_field,
+                    "Origin": direction
+                })
+
+            noteType_setup = {
+                "Note Type": noteType["name"],
+                "Fields": field_data,
+                "Card Types": card_types, 
+                "Theme": import_options["theme"]
+            }
+
+            model = Create.Assemble(noteType_setup)
+        else:
+            model = mw.col.models.by_name(noteType["name"])
+            # todo: card type origins here
+        if not model:
+            tooltip(f"error setting up {"new " if noteType["is_new"] else ""}model {noteType["name"]}")
+            continue
+
 
         for note in notes:
             # create note (with flags)

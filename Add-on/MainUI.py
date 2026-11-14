@@ -31,7 +31,7 @@ from .py.Backend import Thumbnails
 
 # File Menu
 
-import_Memrise = aqt.qt.QAction("Import Memrise Courses...", aqt.mw)
+import_Memrise = aqt.qt.QAction("Import Memrise Coursesᵝ...", aqt.mw)
 import_Memrise.triggered.connect(NoteTypes.Memrise.Import)
 
 menu = aqt.mw.form.menuCol

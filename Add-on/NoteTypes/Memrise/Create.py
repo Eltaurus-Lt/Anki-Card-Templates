@@ -255,7 +255,6 @@ def Assemble(noteType_setup):
 
     mm.add(noteType)
     mw.col.models.save(noteType)
-    tooltip(f"Note Type \"{noteType_setup['Note Type']}\" successfully created")
 
     return noteType
 
@@ -263,6 +262,8 @@ def Assemble(noteType_setup):
 def Setup(*args):
     dialog = ConstructorDialog()
     if dialog.exec():
-        return Assemble(dialog.get_full_options())
+        model = Assemble(dialog.get_full_options())
+        tooltip(f"Note Type \"{model["name"]}\" successfully created")
+        return model
 
     return mw.col.models.current()
