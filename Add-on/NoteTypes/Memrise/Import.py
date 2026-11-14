@@ -37,6 +37,7 @@ from ...py.utils import console
 # todo
 # # fix root folder definition
 # # D root bug
+# # italian/french bugs
 # # thumbnail refresh without reset
 # # # expand all decks that are not levels
 # # course deck from info.md (preserve punctuation)
@@ -60,6 +61,7 @@ from ...py.utils import console
 # # import
 # # # merge notes
 # # # media (renames table)
+# # # distinct meta folder
 # # !progress bar
 # # autofill onscreen keyboard
 
@@ -280,9 +282,14 @@ def parseCourse(course, import_options):
     return cards, course_fields, course_directions
 
 
-def copyMedia(course):
+def copyMedia(media_folder):
     rename_dict = {}
-    # todo
+    if not media_folder:
+        return rename_dict
+
+    for media_file in os.listdir(media_folder):
+        files.col_copy(os.path.join(media_folder, media_file), media_file)
+    
     return rename_dict
 
 def mediaRename(note, rename_dict):
@@ -314,9 +321,15 @@ def mergeIntoNotes(cards, course_deck):
 
 def getMeta(course):
     meta = {}
-    
+
+    parent_folder = os.path.dirname(course["csv path"])
+    for entry in os.listdir(parent_folder):
+        full_path = os.path.join(parent_folder, entry)
+        if os.path.isdir(full_path) and entry.startswith(f"{course["name"]} [{course["id"]}]_media"):
+            meta["media folder"] = full_path
+
     if not course["folder"] or not os.path.isfile(meta_path := os.path.join(course["folder"], "info.md")):
-        tooltip("no meta")
+        # tooltip("no meta")
         return meta
 
     meta["author"] = None
@@ -403,7 +416,7 @@ def Import(*args):
                 tooltip(f"error creating course deck [{course["id"]}]")
                 continue
 
-            rename_dict = copyMedia(course)
+            rename_dict = copyMedia(course_meta.get("media folder"))
 
             # notes = [...{ Deck (str), Fields: { ...field: content (str) }, Cards: { ...Direction: { Level (str), History {mem} } }, Choices: {...field: [...choices (str)] }, Tags (str) } ]
             card_notes = mergeIntoNotes(cards, full_deck_name)
