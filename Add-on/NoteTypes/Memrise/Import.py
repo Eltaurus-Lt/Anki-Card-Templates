@@ -76,6 +76,7 @@ from ...py.utils import console
 # # # user themes
 # # # selected folders have no courses
 # # import options
+# # # option to not import/hide on the back Learnable ID
 # # # ... todos
 # # # mw.reset()
 
@@ -290,7 +291,7 @@ def mediaRename(note, rename_dict):
         return field_contents
     return note
 
-def mergeIntoNotes(cards):
+def mergeIntoNotes(cards, course_deck):
     notes = []
     # todo
     for card in cards:
@@ -298,6 +299,7 @@ def mergeIntoNotes(cards):
             "Fields": card["Fields"],
             "Choices": card["Choices"],
             "Tags": card["Tags"],
+            "Deck": course_deck,
             "Cards": {
                 card["Direction"]: {
                     "Level": card.get("Level"),
@@ -403,8 +405,8 @@ def Import(*args):
 
             rename_dict = copyMedia(course)
 
-            # notes = [...{ Fields: { ...field: content (str) }, Choices: {...field: [...choices (str)] }, Cards: { ...Direction: { Level (str), History {mem} } }, Tags (str) } ]
-            card_notes = mergeIntoNotes(cards)
+            # notes = [...{ Deck (str), Fields: { ...field: content (str) }, Cards: { ...Direction: { Level (str), History {mem} } }, Choices: {...field: [...choices (str)] }, Tags (str) } ]
+            card_notes = mergeIntoNotes(cards, full_deck_name)
 
             notes += [mediaRename(note, rename_dict) for note in card_notes]
             fields += [field for field in course_fields if field not in fields]
@@ -456,12 +458,18 @@ def Import(*args):
             continue
 
 
-        for note in notes:
-            # create note (with flags)
-            ... # todo
+        for note_data in notes:
+            # create note
+            note = mw.col.new_note(model)
+
+            for field in model["flds"]:
+                if field["name"] in note_data["Fields"]:
+                    note[field["name"]] = note_data["Fields"][field["name"]]
 
             # fill choices
             ... # todo
+
+            mw.col.add_note(note, mw.col.decks.id(note_data["Deck"]))
 
             # move cards into decks
             ... # todo
