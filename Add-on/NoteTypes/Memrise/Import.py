@@ -47,7 +47,6 @@ from ...py.utils import console
 # # import
 # # # direction flag fields
 # # # Audio Q
-# # # create level subdecks
 # # # tags
 
 # # choices
@@ -490,10 +489,25 @@ def Import(*args):
             # fill choices
             ... # todo
 
-            mw.col.add_note(note, mw.col.decks.id(note_data["Deck"]))
+            course_did = mw.col.decks.id(note_data["Deck"])
+            mw.col.add_note(note, course_did)
+            
 
-            # move cards into decks
-            ... # todo
+            # move cards to level subdecks
+            course_deck = mw.col.decks.get(course_did)
+            for card_id in note.card_ids():
+                card = mw.col.get_card(card_id)
+                card_type = card_types[card.ord]
+                level = note_data["Cards"][card_type["Origin"]]["Level"].replace("::", "_")
+                level_N, level_name = re.match(r'(\d+)\s*(.*)', level).groups()
+                level_did = mw.col.decks.id(f"{full_deck_name}::L{level_N}. {level_name}")
+                if level_did is None:
+                    continue
+                mw.col.set_deck([card_id], level_did)
+                level_deck = mw.col.decks.get(level_did)
+                if not level_deck["desc"] and course_deck["desc"]:
+                    level_deck["desc"] = course_deck["desc"]
+                    mw.col.decks.save(level_deck)
 
             # write history
             ... # todo
