@@ -35,9 +35,8 @@ from aqt.utils import tooltip
 from ...py.utils import console
 
 # todo
-# # fix root folder definition
-# # D root bug
-# # italian/french bugs
+# # fix root folder determination
+# # # D root bug
 # # thumbnail refresh without reset
 # # # expand all decks that are not levels
 # # course deck from info.md (preserve punctuation)
@@ -51,19 +50,20 @@ from ...py.utils import console
 # # # Audio Q
 # # # create level subdecks
 # # # tags
-# # # revlog
-# # # # preexisting NTs
+
 # # choices
 # # # fill
 # # # convert img and audio 
 
 
 # # import
+# # # revlog
+# # # # preexisting NTs
 # # # merge notes
-# # # media (renames table)
-# # # distinct meta folder
+# # # media renames
 # # !progress bar
 # # autofill onscreen keyboard
+
 
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
@@ -188,7 +188,9 @@ def parseCourse(course, import_options):
     tags_col = -1
     prog_col = -1
     meta_col = -1
+
     columns = []
+    unnamed = 0
 
     cards = []
     course_fields = []
@@ -209,6 +211,9 @@ def parseCourse(course, import_options):
                     for i in range(len(row)):
                         # column headers
                         header = row[i] if i > 0 else cell0[len("#columns:"):]
+                        if not header.strip():
+                            header = f"unnamed_field_{unnamed}"
+                            unnamed += 1
                         columns.append(header)
                         if header == "Learnable":
                             learn_col = i
@@ -425,6 +430,8 @@ def Import(*args):
             fields += [field for field in course_fields if field not in fields]
             directions += [direction for direction in course_directions if direction not in directions]
 
+        if not fields or not notes or not directions:
+            continue
 
         # setup the note type
         model = None
