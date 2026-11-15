@@ -39,15 +39,12 @@ from ...py.utils import console
 # # # D root bug
 # # thumbnail refresh without reset
 # # # expand all decks that are not levels
-# # author from course name as fallback
+# # author in meta from course name as fallback
 # # max deckname length (overview screen)
-
-# learnable id == in different directions??
 
 # # import
 # # # direction flag fields
 # # # Audio Q
-# # # tags
 
 # # choices
 # # # fill
@@ -57,9 +54,8 @@ from ...py.utils import console
 # # import
 # # # revlog
 # # # # preexisting NTs
-# # # merge notes
+# # # merge notes (learnable id == in different directions??)
 # # # media renames
-# # !progress bar
 # # autofill onscreen keyboard
 
 
@@ -68,9 +64,10 @@ from ...py.utils import console
 # # # renamable NTs
 # # # *advanced
 ### move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
+# # !progress bar
 
 # # test
-# # # partially deleted meta
+# # # partially deleted meta (author fallback)
 # # # (old) courses with no headers
 # # # saving/renaming presets
 # # # user themes
@@ -485,6 +482,8 @@ def Import(*args):
             for field in model["flds"]:
                 if field["name"] in note_data["Fields"]:
                     note[field["name"]] = note_data["Fields"][field["name"]]
+
+            note.add_tag(f"{note_data["Tags"]} Memrise")
 
             # fill choices
             ... # todo
