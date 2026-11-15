@@ -39,7 +39,6 @@ from ...py.utils import console
 # # # D root bug
 # # thumbnail refresh without reset
 # # # expand all decks that are not levels
-# # course deck from info.md (preserve punctuation)
 # # author from course name as fallback
 # # max deckname length (overview screen)
 
@@ -342,6 +341,8 @@ def getMeta(course):
     desc_started = False
     with open(meta_path, newline="", encoding="utf-8") as meta_file:
         for line in meta_file.readlines():
+            if line.startswith("# **") and line.endswith("**\n"):
+                meta["name"] = line[len("# **"):-len("**\n")]
             if line.startswith("### by"):
                 meta["author"] = meta["author"] or line[len("### by"):].strip().strip("_")
             if line.strip() and not line.startswith("#"):
@@ -390,7 +391,6 @@ def Import(*args):
     course_options, import_options = selectOptions(courses) or (None, None)
     if not course_options or not import_options: return
 
-
     # noteType_courses = { ...noteType: { name (str), is_new (✓), courses: [...course] } }
     noteType_courses = groupByNoteTypes(course_options)
 
@@ -402,11 +402,12 @@ def Import(*args):
             # cards = [...{ Fields: { field: content (str) }, Choices: {...field: [...choices (str)] }, Direction (str), Level (str), Tags (str), History {mem} } ]
             cards, course_fields, course_directions = parseCourse(course, import_options)
 
+            course_meta = getMeta(course)
+
             # create decks with descriptions
-            full_deck_name = course["deck"] # todo: or course["name"]
+            full_deck_name = "::".join([*course["deck_tree"], course_meta.get("name") or course["name"]]) # todo: or course["name"]
             did = mw.col.decks.id(full_deck_name) # creates the deck (with parents) if new
             if (deck := mw.col.decks.get(did)):
-                course_meta = getMeta(course)
                 if course_meta.get("thumbnail"):
                     Thumbnails.set(did, course_meta["thumbnail"])
                 if course_meta.get("ava"):
