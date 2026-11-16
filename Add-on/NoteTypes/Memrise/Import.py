@@ -48,7 +48,6 @@ from ...py.utils import console
 # # # reverse Q
 
 # # choices
-# # # import
 # # # fill
 # # # convert img and audio 
 
@@ -301,7 +300,7 @@ def mediaRename(note, rename_dict):
         return field_contents
     return note
 
-def mergeIntoNotes(cards, course_deck):
+def notesFromCards(cards, course_deck, merge = False):
     notes = []
     # todo
     for card in cards:
@@ -438,7 +437,7 @@ def Import(*args):
             rename_dict = copyMedia(course_meta.get("media folder")) if import_options["import::media"] else {}
 
             # notes = [...{ Deck (str), Fields: { ...field: content (str) }, Cards: { ...Direction: { Level (str), History {mem} } }, Choices: {...field: [...choices (str)] }, Tags (str) } ]
-            card_notes = mergeIntoNotes(cards, full_deck_name)
+            card_notes = notesFromCards(cards, full_deck_name)
 
             notes += [mediaRename(note, rename_dict) for note in card_notes]
             fields += [field for field in course_fields if field not in fields]
@@ -501,34 +500,36 @@ def Import(*args):
             for field in model["flds"]:
                 if field["name"] in note_data["Fields"]:
                     note[field["name"]] = note_data["Fields"][field["name"]]
+                elif field["name"].startswith("Choices "):
+                    note[field["name"]] = " | ".join(note_data["Choices"].get(field["name"][len("Choices "):], []))
 
             note.add_tag(f"{note_data["Tags"]} Memrise")
-
-            # fill choices
-            ... # todo
 
             course_did = mw.col.decks.id(note_data["Deck"])
             mw.col.add_note(note, course_did)
             
-
             # move cards to level subdecks
             course_deck = mw.col.decks.get(course_did)
             for card_id in note.card_ids():
                 card = mw.col.get_card(card_id)
                 card_type = card_types[card.ord]
-                level = note_data["Cards"][card_type["Origin"]]["Level"].replace("::", "_")
-                level_N, level_name = re.match(r'(\d+)\s*(.*)', level).groups()
-                level_did = mw.col.decks.id(f"{full_deck_name}::L{level_N}. {level_name}")
-                if level_did is None:
-                    continue
-                mw.col.set_deck([card_id], level_did)
-                level_deck = mw.col.decks.get(level_did)
-                if not level_deck["desc"] and course_deck["desc"]:
-                    level_deck["desc"] = course_deck["desc"]
-                    mw.col.decks.save(level_deck)
+                if (mem_card := note_data["Cards"].get(card_type["Origin"])): # todo: else try reverse direction
+                    level = mem_card["Level"].replace("::", "_")
+                    level_N, level_name = re.match(r'(\d+)\s*(.*)', level).groups()
+                    level_did = mw.col.decks.id(f"{full_deck_name}::L{level_N}. {level_name}")
+                    if level_did is None:
+                        continue
+                    mw.col.set_deck([card_id], level_did)
+                    level_deck = mw.col.decks.get(level_did)
+                    if not level_deck["desc"] and course_deck["desc"]:
+                        level_deck["desc"] = course_deck["desc"]
+                        mw.col.decks.save(level_deck)
 
             # import history
             if import_options["import::revlog"]:
                 ... #todo
+
+        #fill choices
+        ... #todo
 
     mw.deckBrowser.refresh()
