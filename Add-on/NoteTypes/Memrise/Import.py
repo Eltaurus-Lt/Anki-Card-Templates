@@ -38,15 +38,17 @@ from ...py.utils import console
 # # fix root folder determination
 # # # D root bug
 # # thumbnail refresh without reset
-# # # expand all decks that are not levels
+# # # expand all non-level decks
 # # author in meta from course name as fallback
 # # max deckname length (overview screen)
 
 # # import
 # # # direction flag fields
 # # # Audio Q
+# # # reverse Q
 
 # # choices
+# # # import
 # # # fill
 # # # convert img and audio 
 
@@ -55,9 +57,10 @@ from ...py.utils import console
 # # # revlog
 # # # # preexisting NTs
 # # # merge notes (learnable id == in different directions??)
+
 # # # media renames
 # # autofill onscreen keyboard
-# # fsrs by default (+adv setting)
+# # fsrs by default (+adv setting) | import difficulty
 
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
@@ -253,6 +256,7 @@ def parseCourse(course, import_options):
                     field = columns[i]
                 elif i == 0:
                     field = "Learnable"
+                    #todo: replace from meta when no columns
                 elif i == 1:
                     field = "Definition"
                 else:
@@ -376,6 +380,19 @@ def formatDescription(meta):
     return description
 
 
+
+def completeCardTypeData(card_type_data, input_mode, audio = False):
+    return {
+        "Name": f"{card_type_data["direction"]} ({input_mode})",
+        "Q": card_type_data["Q"],
+        "A": card_type_data["A"],
+        "in": input_mode,
+        "prompt": "Type the correct answer" if input_mode == "Typing" else "Pick the correct answer",
+        "Extra": card_type_data["Extra"],
+        "Origin": card_type_data["direction"]
+    }
+
+
 def Import(*args):
 
     # courses = [...{ name (str), id (int_str), deck_tree [str], folder (str), csv path (str) } ]
@@ -447,17 +464,19 @@ def Import(*args):
             for direction in directions:
                 Q_field, A_field = direction.split(" → ", 1)
                 Extra_field = next((field for field in fields if field not in [Q_field, A_field, "Audio", "Image"]), "ー")
-
-                input_mode = "Typing"
-                card_types.append({
-                    "Name": f"{direction} ({input_mode})",
+                card_type_data = {
+                    "direction": direction,
                     "Q": Q_field,
                     "A": A_field,
-                    "in": input_mode,
-                    "prompt": "Type the correct answer" if input_mode == "Typing" else "Pick the correct answer",
-                    "Extra": Extra_field,
-                    "Origin": direction
-                })
+                    "Extra": Extra_field
+                }
+
+                if import_options["tests::multichoice"]:
+                    card_types.append(completeCardTypeData(card_type_data, "Multiple-Choice"))
+                if import_options["tests::tapping"]:
+                    card_types.append(completeCardTypeData(card_type_data, "Tapping"))
+                if import_options["tests::typing"] or (not import_options["tests::tapping"] and not import_options["tests::multichoice"]):
+                    card_types.append(completeCardTypeData(card_type_data, "Typing"))
 
             noteType_setup = {
                 "Note Type": noteType["name"],
