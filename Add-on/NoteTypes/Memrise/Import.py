@@ -57,7 +57,7 @@ from ...py.utils import console
 # # # merge notes (learnable id == in different directions??)
 # # # media renames
 # # autofill onscreen keyboard
-
+# # fsrs by default (+adv setting)
 
 # # settings dialog
 # # # selectable rows for batch setup (fix height)
@@ -72,7 +72,6 @@ from ...py.utils import console
 # # # saving/renaming presets
 # # # user themes
 # # # selected folders have no courses
-# # import options
 # # # option to not import/hide on the back Learnable ID
 # # # ... todos
 # # # mw.reset()
@@ -404,21 +403,22 @@ def Import(*args):
             full_deck_name = "::".join([*course["deck_tree"], course_meta.get("name") or course["name"]]) # todo: or course["name"]
             did = mw.col.decks.id(full_deck_name) # creates the deck (with parents) if new
             if (deck := mw.col.decks.get(did)):
-                if course_meta.get("thumbnail"):
-                    Thumbnails.set(did, course_meta["thumbnail"])
-                if course_meta.get("ava"):
-                    ava_ext = QFileInfo(course_meta["ava"]).suffix()
-                    ava_filename = f"_{course_meta["author"]}_memuser.{ava_ext}"
-                    files.col_copy(course_meta["ava"], ava_filename)
-                    course_meta["ava"] = ava_filename
-                if description := formatDescription(course_meta):
-                    deck["desc"] = description
-                    mw.col.decks.save(deck)
+                if import_options["import::meta"]:
+                    if course_meta.get("thumbnail"):
+                        Thumbnails.set(did, course_meta["thumbnail"])
+                    if course_meta.get("ava"):
+                        ava_ext = QFileInfo(course_meta["ava"]).suffix()
+                        ava_filename = f"_{course_meta["author"]}_memuser.{ava_ext}"
+                        files.col_copy(course_meta["ava"], ava_filename)
+                        course_meta["ava"] = ava_filename
+                    if description := formatDescription(course_meta):
+                        deck["desc"] = description
+                        mw.col.decks.save(deck)
             else:
                 tooltip(f"error creating course deck [{course["id"]}]")
                 continue
 
-            rename_dict = copyMedia(course_meta.get("media folder"))
+            rename_dict = copyMedia(course_meta.get("media folder")) if import_options["import::media"] else {}
 
             # notes = [...{ Deck (str), Fields: { ...field: content (str) }, Cards: { ...Direction: { Level (str), History {mem} } }, Choices: {...field: [...choices (str)] }, Tags (str) } ]
             card_notes = mergeIntoNotes(cards, full_deck_name)
@@ -508,7 +508,8 @@ def Import(*args):
                     level_deck["desc"] = course_deck["desc"]
                     mw.col.decks.save(level_deck)
 
-            # write history
-            ... # todo
+            # import history
+            if import_options["import::revlog"]:
+                ... #todo
 
     mw.deckBrowser.refresh()
