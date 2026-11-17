@@ -35,8 +35,6 @@ from aqt.utils import tooltip
 from ...py.utils import console
 
 # todo
-# # fix root folder determination
-# # # D root bug
 # # thumbnail refresh without reset
 # # # expand all non-level decks
 # # author in meta from course name as fallback
@@ -78,8 +76,11 @@ from ...py.utils import console
 # # # ... todos
 # # # mw.reset()
 
+# # license urls
+# # # help button url
 
-import_folder = os.path.expanduser("~/Downloads")
+
+import_folder = os.path.normpath(os.path.expanduser("~/Downloads"))
 
 def selectCourses():
     def courseScan(root_path):
@@ -130,6 +131,7 @@ def selectCourses():
     selected_paths = None
     if file_dialog.exec():
         selected_paths = file_dialog.selectedFiles()
+        import_folder = file_dialog.import_folder()
     if selected_paths is None:
         # tooltip("No files selected")
         return

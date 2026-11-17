@@ -24,13 +24,13 @@ from aqt import mw
 from aqt.qt import *
 from PyQt6 import QtCore, QtWidgets
 
+
 class NoScrollComboBox(QComboBox):
     def wheelEvent(self, event):
         event.ignore()
 
 class QBatchDialog(QFileDialog):
     def __init__(self, caption="Select File or Folder", directory="", filter="All Files (*)"):
-        global import_folder
         super().__init__(mw)
 
         self.setWindowTitle(caption)
@@ -116,11 +116,11 @@ class QBatchDialog(QFileDialog):
             # self.btn_import.setText("Import Folder")
 
     def confirm_import(self):
-        global import_folder
-        import_folder = self.directory().absolutePath()
         if self.name_input.text():
             QtWidgets.QDialog.done(self, QtWidgets.QDialog.DialogCode.Accepted)
 
+    def import_folder(self):
+        return self.directory().absolutePath()
 
     def selectedFiles(self):
         for view in (self.file_view, self.tree_view):
