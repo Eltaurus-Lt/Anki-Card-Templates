@@ -35,8 +35,8 @@ from aqt.utils import tooltip
 from ...py.utils import console
 
 # todo
-# # thumbnail refresh without reset
 # # author in meta from course name as fallback
+# # error on missing level tags
 
 # # import
 # # # direction flag fields

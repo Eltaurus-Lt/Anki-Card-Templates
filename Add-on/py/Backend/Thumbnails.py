@@ -47,6 +47,7 @@ gui_hooks.main_window_did_init.append(_load)
 
 def set(did, thumb_filename = ""):
     global dic
+    did = str(did)
 
     if not thumb_filename:
         thumb_filename, _ = QFileDialog.getOpenFileName(
