@@ -36,24 +36,20 @@ from ...py.utils import console
 
 # todo
 # # thumbnail refresh without reset
-# # # expand all non-level decks
 # # author in meta from course name as fallback
-# # max deckname length (overview screen)
 
 # # import
 # # # direction flag fields
+# # # merge notes (learnable id == in different directions??)
 # # # Audio Q
 # # # reverse Q
-
-# # choices
-# # # fill
-# # # convert img and audio 
-
 
 # # import
 # # # revlog
 # # # # preexisting NTs
-# # # merge notes (learnable id == in different directions??)
+# # choices
+# # # fill
+# # # convert img and audio 
 
 # # # media renames
 # # autofill onscreen keyboard
@@ -65,6 +61,7 @@ from ...py.utils import console
 # # # *advanced
 ### move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
 # # !progress bar
+# # restyle deck overview thumnails (name max-width)
 
 # # test
 # # # partially deleted meta (author fallback)
@@ -421,6 +418,7 @@ def Import(*args):
             full_deck_name = "::".join([*course["deck_tree"], course_meta.get("name") or course["name"]]) # todo: or course["name"]
             did = mw.col.decks.id(full_deck_name) # creates the deck (with parents) if new
             if (deck := mw.col.decks.get(did)):
+                # import thumbnails and other course metadata
                 if import_options["import::meta"]:
                     if course_meta.get("thumbnail"):
                         Thumbnails.set(did, course_meta["thumbnail"])
@@ -432,6 +430,12 @@ def Import(*args):
                     if description := formatDescription(course_meta):
                         deck["desc"] = description
                         mw.col.decks.save(deck)
+
+                # expand the decks
+                supdeck = full_deck_name
+                while (supdeck := supdeck.rsplit("::", 1)[0] if "::" in supdeck else False):
+                    if (supdid := mw.col.decks.id_for_name(supdeck)):
+                        mw.col.decks.set_collapsed(supdid, False, 0)
             else:
                 tooltip(f"error creating course deck [{course["id"]}]")
                 continue
