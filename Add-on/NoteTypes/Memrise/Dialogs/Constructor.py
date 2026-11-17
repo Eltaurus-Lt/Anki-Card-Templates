@@ -22,11 +22,12 @@
 
 import json
 from aqt.qt import *
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 from ....py.Dialogs import *
 
 from aqt.utils import tooltip
 from .. import utils
+from ....py.utils import files
 
 
 # todo: review private/public variables
@@ -172,6 +173,7 @@ class ConstructorDialog(QDialog):
         layout = QVBoxLayout()
         self.setLayout(layout)
         self.setWindowTitle("Memrise Note Type Constructor")
+        self.setWindowIcon(QtGui.QIcon(files.icon("mem-create.ico")))
 
         self.noteType = QLineEdit("New Note Type")
         self.noteType.setToolTip("<nobr>Name for the Note Type being created:</nobr><br><nobr>\"Greek\", \"History\", \"Spanish (no audio)\",</nobr><br>\"Geography (multiple-choice)\", etc.")
