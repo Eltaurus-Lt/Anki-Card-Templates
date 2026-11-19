@@ -517,7 +517,9 @@ class ConstructorDialog(QDialog):
             "A": self.cardTypes.cellWidget(row, 2).currentText(),
             "in": self.cardTypes.cellWidget(row, 3).currentText(),
             "prompt": self.cardTypes.cellWidget(row, 4).text(),
-            "Extra": self.cardTypes.cellWidget(row, 5).currentText()
+            "Extra": self.cardTypes.cellWidget(row, 5).currentText(),
+            "EnablingF": None,
+            "DisablingF": None,
         }
 
     def clone_cardType(self):

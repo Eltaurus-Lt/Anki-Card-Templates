@@ -62,6 +62,10 @@ def insertAtAnchor(source_text, anchors, insert_text):
 
 def choicify(field_name):
     return "Choices " + field_name
+def flagify(direction, enabling):
+    if enabling:
+        return "⚑ " + direction # (disable)
+    return "⚐ " + direction.replace("→", "⥇") # ⤃
 
 def FrontHTML(cardType_data, fields_dict, theme = ""):
     def large_class(field_name):
@@ -122,9 +126,9 @@ def FrontHTML(cardType_data, fields_dict, theme = ""):
             </div>
 
         </div>
-        <a id="Lt" href="https://github.com/Eltaurus-Lt/Anki-Card-Templates" target="_blank"></a>
+        <a id="Lt" href="https://github.com/Eltaurus-Lt/Tau-Cards" target="_blank"></a>
         { "{{/"+choices+"}}" if mch else "" }{{{{/{A}}}}}{{{{/{Q}}}}}
-    """)
+    """).rstrip()
 
     return insertAtAnchor(main_html, ["⚓", "Extra"], extra_html)
 
@@ -174,9 +178,12 @@ def BackHTML(cardType_data, fields_data):
                 ⚓::Extra
             </div>  
         </div>
-    """)
+    """).rstrip()
 
     return insertAtAnchor(main_html, ["⚓", "Extra"], extra_html)
+
+def condition(frontHTML, flagField, enabling):
+    return f"{{{{{"#" if enabling else "^"}{flagField}}}}}{frontHTML}{{{{/{flagField}}}}}"
 
 def FrontScript():
     return file.contents(f"Template/Front.js", __file__)
@@ -186,6 +193,7 @@ def BackScript():
 
 def templateJoin(html, js):
     return html + textwrap.dedent("""
+
 
 
 
@@ -240,16 +248,42 @@ def Assemble(noteType_setup):
             field["excludeFromSearch"] = True
             mm.add_field(noteType, field)
 
+    enablingFlags = set()
+    disablingFlags = set()
+
     # Card Types
     pad_CTnames = len(noteType_setup["Card Types"]) != len({cardType_data["Name"] for cardType_data in noteType_setup["Card Types"]})
     for cardType_data in noteType_setup["Card Types"]:
         CTname = cardType_data["Name"]
         if pad_CTnames:
-            CTname += " [" + cardType_data["in"] + "]" 
+            CTname += " [" + cardType_data["in"] + "]"
+
+        frontHTML = FrontHTML(cardType_data, fields_dict, theme)
+        if cardType_data["EnablingF"]:
+            flagField = flagify(cardType_data["EnablingF"], True)
+            enablingFlags.add(flagField)
+            frontHTML = condition(frontHTML, flagField, True)
+        if cardType_data["DisablingF"]:
+            flagField = flagify(cardType_data["DisablingF"], False)
+            disablingFlags.add(flagField)
+            frontHTML = condition(frontHTML, flagField, False)
+
         cardType = mm.new_template(CTname)
-        cardType["qfmt"] = templateJoin(FrontHTML(cardType_data, fields_dict, theme), FrontScript())
+        cardType["qfmt"] = templateJoin(frontHTML, FrontScript())
         cardType["afmt"] = templateJoin(BackHTML(cardType_data, noteType_setup["Fields"]), BackScript())
         mm.add_template(noteType, cardType)
+
+    # Flag Fields
+    for flagField in enablingFlags:
+        field = mm.new_field(flagField)
+        field["sticky"] = True
+        field["excludeFromSearch"] = True
+        mm.add_field(noteType, field)
+    for flagField in disablingFlags:
+        field = mm.new_field(flagField)
+        field["sticky"] = True
+        field["excludeFromSearch"] = True
+        mm.add_field(noteType, field)
 
     noteType["css"] = Styling()
 

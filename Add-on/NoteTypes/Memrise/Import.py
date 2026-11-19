@@ -36,10 +36,9 @@ from ...py.utils import console
 
 # todo
 # # author in meta from course name as fallback
-# # error on missing level tags
+# # fix error on level tags missing in csv
 
 # # import
-# # # direction flag fields
 # # # merge notes (learnable id == in different directions??)
 # # # Audio Q
 # # # reverse Q
@@ -51,22 +50,20 @@ from ...py.utils import console
 # # # fill
 # # # convert img and audio 
 
-# # # media renames
-# # autofill onscreen keyboard
-# # fsrs by default (+adv setting) | import difficulty
-
-# # settings dialog
-# # # selectable rows for batch setup (fix height)
+# # interface
+# # # !progress bar
 # # # renamable NTs
-# # # *advanced
-### move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
-# # !progress bar
-# # restyle deck overview thumnails (name max-width)
+# # # advanced section (collapsable)
+# # # # skip learnable id
+# # # move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
+
+# # autofill onscreen keyboard
+# # autoname NTs
 
 # # test
 # # # partially deleted meta (author fallback)
-# # # (old) courses with no headers
-# # # saving/renaming presets
+# # # missing A or Q does not create flag field
+# # # (old) courses with no headers in csv
 # # # user themes
 # # # selected folders have no courses
 # # # option to not import/hide on the back Learnable ID
@@ -75,6 +72,11 @@ from ...py.utils import console
 
 # # license urls
 # # # help button url
+
+# # fsrs by default (+adv setting) | import difficulty
+# interface: selectable rows for batch setup (fix height)
+# media renames
+# # restyle deck overview thumnails (name max-width)
 
 
 import_folder = os.path.normpath(os.path.expanduser("~/Downloads"))
@@ -189,7 +191,7 @@ def parseCourse(course, import_options):
 
     cards = []
     course_fields = []
-    course_directions = []
+    course_directions = {}
 
     with open(course["csv path"], newline="", encoding="utf-8") as csv_file:
         for row in csv.reader(csv_file):
@@ -223,7 +225,9 @@ def parseCourse(course, import_options):
                 continue
 
             # cards
-            card = {"Fields": {}, "Choices": {}, "Direction": "Definition → Learnable", "Level": False, "Tags": ""}
+            Q_Field = "Definition"
+            A_Field = "Learnable"
+            card = {"Fields": {}, "Choices": {}, "Level": False, "Tags": ""}
 
             if prog_col >= 0 and row[prog_col] and row[prog_col] != "new":
                 try:
@@ -238,15 +242,22 @@ def parseCourse(course, import_options):
                     if not meta or not meta["learnable"] or not meta["definition"]:
                         meta = False
                     if meta:
-                        card["Direction"] = f"{meta["definition"]} → {meta["learnable"]}"
+                        Q_Field = meta["definition"]
+                        A_Field = meta["learnable"]
                         if temp := meta["choices"]:
-                            card["Choices"][meta["learnable"]] = set(temp)
+                            card["Choices"][A_Field] = set(temp)
                         if temp := meta["reverse choices"]:
-                            card["Choices"][meta["definition"]] = set(temp)
+                            card["Choices"][Q_Field] = set(temp)
                 except:
                     tooltip("invalid learnable meta json")
+
+            card["Direction"] = f"{Q_Field} → {A_Field}"
             if card["Direction"] not in course_directions:
-                course_directions.append(card["Direction"])
+                course_directions[card["Direction"]] = {
+                    "Q_Field": Q_Field,
+                    "A_Field": A_Field
+                }
+
             card["History"] = {}
 
             for i in range(len(row)):
@@ -301,21 +312,23 @@ def mediaRename(note, rename_dict):
 
 def notesFromCards(cards, course_deck, merge = False):
     notes = []
-    # todo
     for card in cards:
-        note = {
-            "Fields": card["Fields"],
-            "Choices": card["Choices"],
-            "Tags": card["Tags"],
-            "Deck": course_deck,
-            "Cards": {
-                card["Direction"]: {
-                    "Level": card.get("Level"),
-                    "History": card["History"]
+        if not merge:
+            note = {
+                "Fields": card["Fields"],
+                "Choices": card["Choices"],
+                "Tags": card["Tags"],
+                "Deck": course_deck,
+                "Cards": {
+                    card["Direction"]: {
+                        "Level": card.get("Level"),
+                        "History": card["History"]
+                    }
                 }
             }
-        }
-        notes.append(note)
+            notes.append(note)
+        else:
+            ... #todo
 
     return notes
 
@@ -381,13 +394,15 @@ def formatDescription(meta):
 
 def completeCardTypeData(card_type_data, input_mode, audio = False):
     return {
-        "Name": f"{card_type_data["direction"]} ({input_mode})",
+        "Name": f"{card_type_data["direction"]} [{input_mode}]",
         "Q": card_type_data["Q"],
         "A": card_type_data["A"],
         "in": input_mode,
         "prompt": "Type the correct answer" if input_mode == "Typing" else "Pick the correct answer",
         "Extra": card_type_data["Extra"],
-        "Origin": card_type_data["direction"]
+        "Origin": card_type_data["direction"],
+        "EnablingF": card_type_data["enabling"],
+        "DisablingF": card_type_data["disabling"]
     }
 
 
@@ -407,7 +422,7 @@ def Import(*args):
     for noteType in noteType_courses.values():
         fields = []
         notes = []
-        directions = []
+        directions = {}
         for course in noteType["courses"]:
             # cards = [...{ Fields: { field: content (str) }, Choices: {...field: [...choices (str)] }, Direction (str), Level (str), Tags (str), History {mem} } ]
             cards, course_fields, course_directions = parseCourse(course, import_options)
@@ -447,15 +462,35 @@ def Import(*args):
 
             notes += [mediaRename(note, rename_dict) for note in card_notes]
             fields += [field for field in course_fields if field not in fields]
-            directions += [direction for direction in course_directions if direction not in directions]
+            for direction, dir_data in course_directions.items():
+                if direction not in directions:
+                    directions[direction] = dir_data
 
         if not fields or not notes or not directions:
             continue
+
 
         # setup the note type
         model = None
         card_types = []
         if noteType["is_new"]:
+
+            # index memrise directions
+            for direction, dir_data in directions.items():
+                count = len(notes)
+                for note_data in notes:
+                    if direction not in note_data["Cards"]:
+                        # do not count already empty cards towards flagging requirements
+                        if note_data["Fields"].get(dir_data["Q_Field"]) and note_data["Fields"].get(dir_data["A_Field"]):
+                            count -= 1
+                if count < len(notes):
+                    if 2 * count < len(notes): # move to .heuristics
+                        dir_data["condition"] = True # enabling
+                    else:
+                        dir_data["condition"] = False # disabling
+                else:
+                    dir_data["condition"] = None
+
             # create new note type
             field_data = [{
                 "Name": field,
@@ -466,13 +501,15 @@ def Import(*args):
                 "random": "",
             } for field in fields]
 
-            for direction in directions:
-                Q_field, A_field = direction.split(" → ", 1)
-                Extra_field = next((field for field in fields if field not in [Q_field, A_field, "Audio", "Image"]), "ー")
+            for direction, dir_data in directions.items():
+                Extra_field = next((field for field in fields if field not in [dir_data["Q_Field"], dir_data["A_Field"], "Audio", "Image"]), "ー") #todo: move to .heuristics
                 card_type_data = {
                     "direction": direction,
-                    "Q": Q_field,
-                    "A": A_field,
+                    "disabling": direction if dir_data["condition"] is False else None,
+                    "enabling": direction if dir_data["condition"] is True else None,
+
+                    "Q": dir_data["Q_Field"],
+                    "A": dir_data["A_Field"],
                     "Extra": Extra_field
                 }
 
@@ -499,16 +536,32 @@ def Import(*args):
             continue
 
 
+        model_fields = mw.col.models.field_names(model)
+
         for note_data in notes:
             # create note
             note = mw.col.new_note(model)
 
-            for field in model["flds"]:
-                if field["name"] in note_data["Fields"]:
-                    note[field["name"]] = note_data["Fields"][field["name"]]
-                elif field["name"].startswith("Choices "):
-                    note[field["name"]] = " | ".join(note_data["Choices"].get(field["name"][len("Choices "):], []))
-
+            # base fields
+            for field, contents in note_data["Fields"].items():
+                if field in model_fields:
+                    note[field] = contents
+            # choice fields
+            for field, choices in note_data["Choices"].items():
+                field_name = Create.choicify(field)
+                if field_name in model_fields:
+                    note[field_name] = " | ".join(choices)
+            # flag fields
+            for direction, dir_data in directions.items():
+                if direction not in note_data["Cards"] and dir_data["condition"] is False:
+                    field_name = Create.flagify(direction, False)
+                    if field_name in model_fields:
+                        note[field_name] = "⚑" #⚐
+                if direction in note_data["Cards"] and dir_data["condition"] is True:
+                    field_name = Create.flagify(direction, True)
+                    if field_name in model_fields:
+                        note[field_name] = "⚑"
+            # tags
             note.add_tag(f"{note_data["Tags"]} Memrise")
 
             course_did = mw.col.decks.id(note_data["Deck"])

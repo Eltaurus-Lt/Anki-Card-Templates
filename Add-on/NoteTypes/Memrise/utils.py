@@ -25,7 +25,7 @@ from ...py.utils import files
 from ...py.utils import indexOf
 
 def version():
-    return "5.2"
+    return "5.3"
 
 def list_themes(include_default = True):
     stock_themes = files.file_list(".css", "Themes", __file__)
