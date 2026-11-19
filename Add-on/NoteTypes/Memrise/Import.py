@@ -36,7 +36,6 @@ from ...py.utils import console
 
 # todo
 # # author in meta from course name as fallback
-# # fix error on level tags missing in csv
 
 # # import
 # # # merge notes (learnable id == in different directions??)
@@ -57,8 +56,10 @@ from ...py.utils import console
 # # # # skip learnable id
 # # # move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
 
+# heuristics
 # # autofill onscreen keyboard
 # # autoname NTs
+# # todos
 
 # # test
 # # # partially deleted meta (author fallback)
@@ -227,7 +228,7 @@ def parseCourse(course, import_options):
             # cards
             Q_Field = "Definition"
             A_Field = "Learnable"
-            card = {"Fields": {}, "Choices": {}, "Level": False, "Tags": ""}
+            card = {"Fields": {}, "Choices": {}, "Level": None, "Tags": ""}
 
             if prog_col >= 0 and row[prog_col] and row[prog_col] != "new":
                 try:
@@ -484,7 +485,7 @@ def Import(*args):
                         if note_data["Fields"].get(dir_data["Q_Field"]) and note_data["Fields"].get(dir_data["A_Field"]):
                             count -= 1
                 if count < len(notes):
-                    if 2 * count < len(notes): # move to .heuristics
+                    if 2 * count < len(notes): # todo: move to .heuristics
                         dir_data["condition"] = True # enabling
                     else:
                         dir_data["condition"] = False # disabling
@@ -572,7 +573,8 @@ def Import(*args):
             for card_id in note.card_ids():
                 card = mw.col.get_card(card_id)
                 card_type = card_types[card.ord]
-                if (mem_card := note_data["Cards"].get(card_type["Origin"])): # todo: else try reverse direction
+                mem_card = note_data["Cards"].get(card_type["Origin"]) # todo: or reverse direction
+                if mem_card and mem_card["Level"]:
                     level = mem_card["Level"].replace("::", "_")
                     level_N, level_name = re.match(r'(\d+)\s*(.*)', level).groups()
                     level_did = mw.col.decks.id(f"{full_deck_name}::L{level_N}. {level_name}")
