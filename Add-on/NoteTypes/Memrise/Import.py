@@ -34,15 +34,10 @@ from . import Create
 from aqt.utils import tooltip
 from ...py.utils import console
 
-# todo
-# # author in meta from course name as fallback
-
 # # import
 # # # merge notes (learnable id == in different directions??)
 # # # Audio Q
 # # # reverse Q
-
-# # import
 # # # revlog
 # # # # preexisting NTs
 # # choices
@@ -62,7 +57,7 @@ from ...py.utils import console
 # # todos
 
 # # test
-# # # partially deleted meta (author fallback)
+# # # partially deleted meta (author fallback | no ava)
 # # # missing A or Q does not create flag field
 # # # (old) courses with no headers in csv
 # # # user themes
@@ -95,17 +90,19 @@ def selectCourses():
 
             deck_tree = rel_path[:-1]
             course_folder = None
+            wrapper = None
 
             if len(deck_tree) > 0 and deck_tree[-1].startswith(short_tab[0]):
                 course_folder = os.path.join(import_folder, *deck_tree)
-                deck_tree.pop()
+                wrapper = deck_tree.pop()
 
             return {
                     "name": short_tab[0],
                     "id": short_tab[1],
                     "deck_tree": deck_tree,
                     "folder": course_folder,
-                    "csv path": full_path
+                    "wrapping folder": wrapper,
+                    "csv path": full_path,
                     }
 
         if os.path.isdir(root_path):
@@ -347,7 +344,18 @@ def getMeta(course):
         # tooltip("no meta")
         return meta
 
-    meta["author"] = None
+    def authorFromFolder(course):
+        if not course["wrapping folder"]:
+            return
+        pre, sep, _ = course["wrapping folder"][len(course["name"]):].partition(f"[{course["id"]}]")
+        if not sep:
+            return
+        pre = pre.strip()
+        if not pre.startswith("by"):
+            return
+        return pre[len("by"):].strip()
+        
+    meta["author"] = authorFromFolder(course) # fallback
     meta["description"] = ""
     desc_started = False
     with open(meta_path, newline="", encoding="utf-8") as meta_file:
@@ -369,7 +377,7 @@ def getMeta(course):
             name, ext = os.path.splitext(file_name)
             if ext.lower() not in {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tiff"}:
                 continue
-            if name.startswith(prefix):
+            if name.lower().startswith(prefix.lower()):
                 return full_path
 
     meta["thumbnail"] = find_img_file(course["name"])
