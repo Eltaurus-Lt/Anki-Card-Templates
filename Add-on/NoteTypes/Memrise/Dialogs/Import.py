@@ -230,36 +230,58 @@ class MemriseImportSettings(QDialog):
         tests_layout.addLayout(tests_row)
 
         # ▼ Advanced
+        adv_toggle = QToolButton(text="  ▸ Advanced", checkable=True, autoRaise=True)
+        adv_padding = 8
+        BASE_STYLE = "QToolButton { border: none; background: transparent; font-weight: bold;"
+        adv_toggle.setStyleSheet(f"{BASE_STYLE} padding-bottom: {adv_padding}px; }}")
+        layout.addWidget(adv_toggle)
 
-        # choices_row = QHBoxLayout()
-        # choices_row.addWidget(QLabel("Choices: "))
-        # choices_row.addWidget(self.choices_drop)
-        # choices_row.addStretch()
-        # layout.addLayout(choices_row)
+        adv_box = QWidget(visible=False)
+        adv_layout = QVBoxLayout(adv_box)
+        layout.addWidget(adv_box)
 
-        # reverse_row = QHBoxLayout()
-        # reverse_row.addWidget(QLabel("Reverse Cards: "))
-        # reverse_row.addWidget(self.reverse_drop)
-        # reverse_row.addStretch()
-        # layout.addLayout(reverse_row)
+        def _toggle_adv(on: bool):
+            delta = adv_layout.totalSizeHint().height() + layout.spacing() - adv_padding
+            target_h = self.height() + (delta if on else -delta)
+            self.setUpdatesEnabled(False)
+            adv_box.setVisible(on)
+            adv_toggle.setText("  ▾ Advanced" if on else "  ▸ Advanced")
+            adv_toggle.setStyleSheet(f"{BASE_STYLE} padding-bottom: {0 if on else adv_padding}px; }}")
+            QTimer.singleShot(0, lambda: (self.resize(self.width(), target_h), self.setUpdatesEnabled(True)))
+
+        adv_toggle.toggled.connect(_toggle_adv)
 
 
-        # subdecks_group = QGroupBox("Subdecks")
-        # subdecks_layout = QVBoxLayout()
-        # subdecks_group.setLayout(subdecks_layout)
-        # layout.addWidget(subdecks_group)
+        choices_row = QHBoxLayout()
+        choices_row.addWidget(QLabel("Choices: "))
+        choices_row.addWidget(self.choices_drop)
+        choices_row.addStretch()
+        adv_layout.addLayout(choices_row)
 
-        # subdeck_row = QHBoxLayout()
-        # subdeck_row.addWidget(QLabel("Replicate folder tree"))
-        # subdeck_row.addWidget(self.subdecks_checkbox)
-        # subdeck_row.addStretch()
-        # subdecks_layout.addLayout(subdeck_row)
+        reverse_row = QHBoxLayout()
+        reverse_row.addWidget(QLabel("Reverse Cards: "))
+        reverse_row.addWidget(self.reverse_drop)
+        reverse_row.addStretch()
+        adv_layout.addLayout(reverse_row)
 
-        # levels_row = QHBoxLayout()
-        # levels_row.addWidget(QLabel("Subdecks from levels"))
-        # levels_row.addWidget(self.levels_checkbox)
-        # levels_row.addStretch()
-        # subdecks_layout.addLayout(levels_row)
+
+        subdecks_group = QGroupBox("Subdecks")
+        subdecks_layout = QVBoxLayout()
+        subdecks_group.setLayout(subdecks_layout)
+        adv_layout.addWidget(subdecks_group)
+
+        subdeck_row = QHBoxLayout()
+        subdeck_row.addWidget(QLabel("Replicate folder tree"))
+        subdeck_row.addWidget(self.subdecks_checkbox)
+        subdeck_row.addStretch()
+        subdecks_layout.addLayout(subdeck_row)
+
+        levels_row = QHBoxLayout()
+        levels_row.addWidget(QLabel("Subdecks from levels"))
+        levels_row.addWidget(self.levels_checkbox)
+        levels_row.addStretch()
+        subdecks_layout.addLayout(levels_row)
+
 
         # Ok/Cancel + Help
         button_help = QPushButton("Help")

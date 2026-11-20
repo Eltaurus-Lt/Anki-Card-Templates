@@ -45,7 +45,6 @@ from ...py.utils import console
 # # interface
 # # # !progress bar
 # # # renamable NTs
-# # # advanced section (collapsable)
 # # # move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
 
 # heuristics
