@@ -36,10 +36,8 @@ from ...py.utils import console
 
 # # import
 # # # merge notes (learnable id == in different directions??)
-# # # Audio Q
 # # # reverse Q
 # # # revlog
-# # # # preexisting NTs
 # # choices
 # # # fill
 # # # convert img and audio 
@@ -48,13 +46,13 @@ from ...py.utils import console
 # # # !progress bar
 # # # renamable NTs
 # # # advanced section (collapsable)
-# # # # skip learnable id
 # # # move theme inside the table ( existing NT - deactivate; new NT - change for all courses with same NT when changed / autochange when NT is changed to new and used by other course)
 
 # heuristics
 # # autofill onscreen keyboard
 # # autoname NTs
 # # todos
+# # # # preexisting NTs
 
 # # test
 # # # partially deleted meta (author fallback | no ava)
@@ -68,7 +66,11 @@ from ...py.utils import console
 
 # # license urls
 # # # help button url
+# # check addon name when fresh-installing from aw/from folder
+# # coursedump crossrefs
 
+# # autobackup
+# # QueryOp
 # # fsrs by default (+adv setting) | import difficulty
 # interface: selectable rows for batch setup (fix height)
 # media renames
@@ -168,7 +170,7 @@ def groupByNoteTypes(course_options):
             noteTypes[course["Note Type"]]["courses"].append(course)
         else:
             noteTypes[course["Note Type"]] = {
-                # assign unique names to auto
+                # assign unique names to auto (todo: move to .heuristics)
                 "name": course["name"] if (course["NT_isNew"] and course["Note Type"].startswith("(auto ") and course["Note Type"].endswith(")") ) else course["Note Type"], 
                 "is_new": course["NT_isNew"],
                 "courses": [course]
@@ -403,7 +405,7 @@ def formatDescription(meta):
 
 def completeCardTypeData(card_type_data, input_mode, audio = False):
     return {
-        "Name": f"{card_type_data["direction"]} [{input_mode}]",
+        "Name": f"{card_type_data["Q"]} → {card_type_data["A"]} [{input_mode}]",
         "Q": card_type_data["Q"],
         "A": card_type_data["A"],
         "in": input_mode,
@@ -424,6 +426,8 @@ def Import(*args):
     # import_options = { theme (str), import::meta (✓), import::media (✓), import::revlog (✓), tests::audio (✓), tests::typing (✓), tests::multichoice (✓), tests::tapping (✓), advanced::... (todo) }
     course_options, import_options = selectOptions(courses) or (None, None)
     if not course_options or not import_options: return
+    if (not import_options["tests::tapping"] and not import_options["tests::multichoice"]):
+        import_options["tests::typing"] = True
 
     # noteType_courses = { ...noteType: { name (str), is_new (✓), courses: [...course] } }
     noteType_courses = groupByNoteTypes(course_options)
@@ -526,8 +530,17 @@ def Import(*args):
                     card_types.append(completeCardTypeData(card_type_data, "Multiple-Choice"))
                 if import_options["tests::tapping"]:
                     card_types.append(completeCardTypeData(card_type_data, "Tapping"))
-                if import_options["tests::typing"] or (not import_options["tests::tapping"] and not import_options["tests::multichoice"]):
+                if import_options["tests::typing"]:
                     card_types.append(completeCardTypeData(card_type_data, "Typing"))
+
+                if import_options["tests::audio"] and "Audio" in fields:
+                    card_type_data["Q"] = "Audio"
+                    if import_options["tests::multichoice"]:
+                        card_types.append(completeCardTypeData(card_type_data, "Multiple-Choice"))
+                    if import_options["tests::tapping"]:
+                        card_types.append(completeCardTypeData(card_type_data, "Tapping"))
+                    if import_options["tests::typing"]:
+                        card_types.append(completeCardTypeData(card_type_data, "Typing"))
 
             noteType_setup = {
                 "Note Type": noteType["name"],
